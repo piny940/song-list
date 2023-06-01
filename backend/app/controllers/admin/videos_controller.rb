@@ -18,7 +18,7 @@ class Admin::VideosController < Admin::Base
     @video = Video.new(video_params)
 
     if @video.save
-      redirect_to admin_videos_path, notice: "Videoが作成されました。"
+      redirect_to admin_channel_videos_path(@channel), notice: "Videoが作成されました。"
     else
       render :new, status: :unprocessable_entity
     end
@@ -26,7 +26,7 @@ class Admin::VideosController < Admin::Base
 
   def update
     if @video.update(video_params)
-      redirect_to admin_videos_path, notice: "Videoが更新されました。"
+      redirect_to admin_channel_videos_path(@channel), notice: "Videoが更新されました。"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -34,7 +34,7 @@ class Admin::VideosController < Admin::Base
 
   def destroy
     @video.destroy
-    redirect_to admin_videos_path, notice: "Videoが削除されました。"
+    redirect_to admin_channel_videos_path(@channel), notice: "Videoが削除されました。"
   end
 
   private

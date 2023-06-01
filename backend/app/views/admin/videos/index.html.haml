@@ -2,10 +2,9 @@
 %table.table
   %thead.table-light
     %tr
-      %th Channel
+      %th Thumbnail
       %th Video
       %th Kind
-      %th Response json
       %th Title
       %th
 
@@ -14,10 +13,9 @@
       %td{colspan: 6}= link_to 'video新規作成', new_admin_channel_video_path(@channel), class: 'btn btn-primary w-100'
     - @videos.each do |video|
       %tr
-        %td= video.channel_id
+        %th= image_tag video.thumbnails["high"]["url"], width: 200
         %td= video.video_id
         %td= video.kind
-        %td= video.response_json
         %td= video.title
         %td
           = link_to '閲覧', admin_channel_video_path(@channel, video), class: 'btn btn-sm btn-outline-primary'

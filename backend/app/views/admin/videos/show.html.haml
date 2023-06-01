@@ -15,6 +15,6 @@
   .col-md-3.fw-bold Title
   .col-md-9= @video.title
 
-= link_to '編集', edit_channel_video_path(@channel, @video)
+= link_to '編集', edit_admin_channel_video_path(@channel, @video)
 \|
 = link_to '戻る', admin_channel_videos_path(@channel)
