@@ -18,7 +18,8 @@ class Video < ApplicationRecord
     create!(
       video_id:,
       title: items[0].snippet.title,
-      response_json: items[0].to_h
+      response_json: items[0].to_h,
+      kind:
     )
   end
 
