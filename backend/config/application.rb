@@ -30,5 +30,7 @@ module BackendSongList
     end
     config.time_zone = 'Tokyo'
     config.action_controller.forgery_protection_origin_check = false
+
+    config.i18n.fallbacks = { ja: :en }
   end
 end

@@ -5,7 +5,7 @@ class Video < ApplicationRecord
     video: 0,
     live: 10,
     short: 20
-  }
+  }, _prefix: true
 
   def self.fetch_and_create!(video_id)
     response = Youtube.get_video(video_id)

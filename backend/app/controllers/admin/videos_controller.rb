@@ -48,6 +48,6 @@ class Admin::VideosController < Admin::Base
   end
 
   def video_params
-    params.require(:video).permit(:channel_id, :video_id, :kind, :response_json, :title)
+    params.require(:video).permit(:channel_id, :video_id, :kind, :title)
   end
 end
