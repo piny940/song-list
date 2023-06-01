@@ -21,4 +21,29 @@ class Video < ApplicationRecord
       response_json: items[0].to_h
     )
   end
+
+  # {
+  #   default: {
+  #     width: number,
+  #     height: number,
+  #     url: string,
+  #   },
+  #   medium: {
+  #     width: number,
+  #     height: number,
+  #     url: string,
+  #   },
+  #   high: {
+  #     width: number,
+  #     height: number,
+  #     url: string,
+  #   },
+  # }
+  def thumbnails
+    response_json["snippet"]["thumbnails"]
+  end
+
+  def description
+    response_json['snippet']['description']
+  end
 end
