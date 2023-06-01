@@ -1,17 +1,25 @@
-class Channel < ApplicationRecord
-  has_many :videos, dependent: :destroy
+class Video < ApplicationRecord
+  belongs_to :channel
 
-  def self.fetch_and_create!(channel_id)
-    response = Youtube.get_channel(channel_id)
+  enum kind: {
+    video: 0,
+    live: 10,
+    short: 20
+  }, _prefix: true
 
+  def self.fetch_and_create!(video_id)
+    response = Youtube.get_video(video_id)
     items = response.items
 
     return if items.blank?
 
+    kind = items[0].live_streaming_details.present? ? 'live' : 'video'
+
     create!(
-      channel_id:,
-      name: items[0].snippet.title,
-      response_json: items[0].to_h
+      video_id:,
+      title: items[0].snippet.title,
+      response_json: items[0].to_h,
+      kind:
     )
   end
 
@@ -38,9 +46,5 @@ class Channel < ApplicationRecord
 
   def description
     response_json['snippet']['description']
-  end
-
-  def custom_id
-    response_json['snippet']['customUrl']
   end
 end

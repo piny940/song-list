@@ -1,5 +1,25 @@
 %h1 チャンネル編集
-= render "form", channel: @channel
+
+= form_with(model: [:admin, @channel]) do |form|
+  - if @channel.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@channel.errors.count, "error")} prohibited this channel from being saved:"
+      %ul
+        - @channel.errors.full_messages.each do |message|
+          %li= message
+  
+  .row.mb-3
+    .col-md-3.col-form-label.fw-bold channel_id
+    .col-md-9= form.text_field :channel_id, class: 'form-control'
+  .row.mb-3
+    .col-md-3.col-form-label.fw-bold name
+    .col-md-9= form.text_field :name, class: 'form-control'
+  .row.mb-3
+    .col-md-3.col-form-label.fw-bold twitter_id
+    .col-md-9= form.text_field :twitter_id, class: 'form-control'
+  .row
+    .col
+      = form.submit '保存', class: 'btn btn-primary d-block w-100'
 
 = link_to '閲覧', admin_channel_path(@channel)
 \|

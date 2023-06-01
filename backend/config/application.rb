@@ -26,8 +26,11 @@ module BackendSongList
       g.assets = false
       g.helper = false
       g.template_engine = :haml
+      g.test_framework = false
     end
     config.time_zone = 'Tokyo'
     config.action_controller.forgery_protection_origin_check = false
+
+    config.i18n.fallbacks = { ja: :en }
   end
 end

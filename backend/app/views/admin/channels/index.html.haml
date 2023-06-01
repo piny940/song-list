@@ -6,7 +6,7 @@
       %th Channel id
       %th 名前
       %th Twitter
-      %th
+      %th リンク
 
   %tbody
     %tr
@@ -18,6 +18,7 @@
         %td= channel.name
         %td= channel.twitter_id
         %td
+          = link_to '動画一覧', admin_channel_videos_path(channel), class: 'btn btn-sm btn-outline-primary'
           = link_to '閲覧', admin_channel_path(channel), class: 'btn btn-sm btn-outline-primary'
           = link_to '編集', edit_admin_channel_path(channel), class: 'btn btn-sm btn-outline-primary'
           = link_to '削除', admin_channel_path(channel), method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: 'btn btn-sm btn-outline-danger'

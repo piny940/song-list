@@ -41,6 +41,10 @@ Naming/VariableNumber:
   Enabled: false
 Rails/InverseOf:
   Enabled: false
+Rails/HelperInstanceVariable:
+  Enabled: false
+Metrics/CyclomaticComplexity:
+  Enabled: false
 
 Gemspec/DeprecatedAttributeAssignment: # new in 1.30
   Enabled: true

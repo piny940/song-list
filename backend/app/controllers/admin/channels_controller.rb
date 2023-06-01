@@ -14,9 +14,9 @@ class Admin::ChannelsController < Admin::Base
   def edit; end
 
   def create
-    @channel = Channel.new(channel_params)
+    @channel = Channel.fetch_and_create!(channel_params[:channel_id])
 
-    if @channel.save
+    if @channel.present?
       redirect_to @channel, notice: 'Channel が作成されました。'
     else
       render :new, status: :unprocessable_entity
@@ -43,6 +43,6 @@ class Admin::ChannelsController < Admin::Base
   end
 
   def channel_params
-    params.require(:channel).permit(:channel_id, :name, :twitter_id, :response_json)
+    params.require(:channel).permit(:channel_id, :name, :twitter_id)
   end
 end

@@ -1,0 +1,17 @@
+%h1 Video
+.row.py-1
+  .col-md-3.fw-bold Title
+  .col-md-9= @video.title
+.row.py-1
+  .col-md-3.fw-bold Video
+  .col-md-9= @video.video_id
+.row.py-1
+  .col-md-3.fw-bold Kind
+  .col-md-9= @video.kind
+.row.py-1
+  .col-md-3.fw-bold Response json
+  .col-md-9= @video.response_json
+
+= link_to '編集', edit_admin_channel_video_path(@channel, @video)
+\|
+= link_to '戻る', admin_channel_videos_path(@channel)
