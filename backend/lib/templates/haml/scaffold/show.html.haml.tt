@@ -1,0 +1,10 @@
+%h1 <%= singular_name %>
+<% attributes.reject(&:password_digest?).each do |attribute| -%>
+.row.py-1
+  .col-md-3.fw-bold <%= attribute.human_name %>
+  .col-md-9= @<%= singular_name %>.<%= attribute.column_name %>
+<% end -%>
+
+= link_to '編集', edit_<%= singular_name %>_path(@<%= singular_name %>)
+\|
+= link_to '戻る', <%= plural_table_name %>_path

@@ -1,0 +1,14 @@
+こんにちは
+
+.list-group
+  - if current_user.present?
+    = link_to admin_path, class: 'list-group-item d-flex align-items-center' do
+      %i.mio manage_accounts
+      管理者ページ
+    = link_to destroy_user_session_path, class: 'list-group-item d-flex align-items-center', method: :delete do
+      %i.mio logout
+      ログアウト
+  - else
+    = link_to new_user_session_path, class: 'list-group-item d-flex align-items-center' do
+      %i.mio login
+      ログイン

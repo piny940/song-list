@@ -1,0 +1,31 @@
+!!!
+%html{:lang => "ja"}
+  %head= render 'layouts/common_header'
+  %body
+    %nav.navbar.navbar-expand-md.navbar-dark.bg-dark.fixed-top
+      .container
+        = link_to 'RailsTemplate', root_path, class: 'navbar-brand'
+        %button.navbar-toggler{"aria-controls" => "navbarTogglerDemo02", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarTogglerDemo02", "data-bs-toggle" => "collapse", :type => "button"}
+          %span.navbar-toggler-icon
+        #navbarTogglerDemo02.collapse.navbar-collapse
+          %ul.navbar-nav.ms-auto.mb-2.mb-lg-0
+            - if current_user.nil?
+              %li.nav-item
+                = link_to new_user_session_path, class: 'nav-link d-flex align-items-center' do
+                  %span.mio login
+                  ログイン
+            - if current_user&.kind_admin?
+              %li.nav-item
+                = link_to admin_path, class: 'nav-link d-flex align-items-center' do
+                  %span.mio psychology
+                  管理者
+              = link_to  destroy_user_session_path, method: :delete, class: 'nav-link d-flex align-items-center' do
+                %i.mio logout
+                ログアウト
+    .container.page-content
+      - if notice
+        .alert.alert-info= notice
+      - if alert
+        .alert.alert-danger= alert
+      = render 'application/breadcrumbs'
+      = yield

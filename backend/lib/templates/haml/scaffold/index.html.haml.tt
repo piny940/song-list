@@ -1,0 +1,21 @@
+%h1 <%= singular_name %>一覧
+%table.table
+  %thead.table-light
+    %tr
+<% attributes.reject(&:password_digest?).each do |attribute| -%>
+      %th <%= attribute.human_name %>
+<% end -%>
+      %th
+
+  %tbody
+    %tr
+      %td{colspan: <%= attributes.reject(&:password_digest?).length + 1 %>}= link_to '<%= singular_name %>新規作成', new_<%= singular_name %>_path, class: 'btn btn-primary w-100'
+    - @<%= plural_table_name %>.each do |<%= singular_table_name %>|
+      %tr
+<% attributes.reject(&:password_digest?).each do |attribute| -%>
+        %td= <%= singular_name %>.<%= attribute.column_name %>
+<% end -%>
+        %td
+          = link_to '閲覧', <%= singular_name %>_path(<%= singular_name %>), class: 'btn btn-sm btn-outline-primary'
+          = link_to '編集', edit_<%= singular_name %>_path(<%= singular_name %>), class: 'btn btn-sm btn-outline-primary'
+          = link_to '削除', <%= singular_name %>_path(<%= singular_name %>), method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: 'btn btn-sm btn-outline-danger'

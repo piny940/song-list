@@ -1,0 +1,5 @@
+if ENV.fetch('GOOGLE_JSON', nil).present?
+  GOOGLE_CREDENTIALS_PATH = 'tmp/google.json'.freeze
+  File.write(GOOGLE_CREDENTIALS_PATH, ENV.fetch('GOOGLE_JSON', nil))
+  ENV['GOOGLE_APPLICATION_CREDENTIALS'] = GOOGLE_CREDENTIALS_PATH
+end

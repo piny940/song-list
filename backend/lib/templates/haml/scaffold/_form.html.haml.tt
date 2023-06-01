@@ -1,0 +1,26 @@
+= form_with(model: <%= model_resource_name %>) do |form|
+  - if <%= singular_table_name %>.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(<%= singular_table_name %>.errors.count, "error")} prohibited this <%= singular_table_name %> from being saved:"
+      %ul
+        - <%= singular_table_name %>.errors.full_messages.each do |message|
+          %li= message
+  
+<% attributes.each do |attribute| -%>
+<% if attribute.password_digest? -%>
+  .row.mb-3
+    .col-md-3.col-form-label.fw-bold password
+    .col-md-9= form.password_field :password, class: 'form-control'
+
+  .row.mb-3
+    .col-md-3.col-form-label.fw-bold password_confirmation
+    .col-md-9= form.password_field :password_confirmation, class: 'form-control'
+<% else -%>
+  .row.mb-3
+    .col-md-3.col-form-label.fw-bold <%= attribute.column_name %>
+    .col-md-9= form.<%= attribute.field_type %> :<%= attribute.column_name %>, class: 'form-control'
+<% end -%>
+<% end -%>
+  .row
+    .col
+      = form.submit '保存', class: 'btn btn-primary d-block w-100'
