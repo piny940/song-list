@@ -1,0 +1,23 @@
+%h1 channel一覧
+%table.table
+  %thead.table-light
+    %tr
+      %th Channel
+      %th Name
+      %th Twitter
+      %th Response json
+      %th
+
+  %tbody
+    %tr
+      %td{colspan: 5}= link_to 'channel新規作成', new_admin_channel_path, class: 'btn btn-primary w-100'
+    - @admin_channels.each do |admin_channel|
+      %tr
+        %td= channel.channel_id
+        %td= channel.name
+        %td= channel.twitter_id
+        %td= channel.response_json
+        %td
+          = link_to '閲覧', admin_channel_path(channel), class: 'btn btn-sm btn-outline-primary'
+          = link_to '編集', edit_admin_channel_path(channel), class: 'btn btn-sm btn-outline-primary'
+          = link_to '削除', admin_channel_path(channel), method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: 'btn btn-sm btn-outline-danger'
