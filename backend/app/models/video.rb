@@ -41,7 +41,7 @@ class Video < ApplicationRecord
   #   },
   # }
   def thumbnails
-    response_json["snippet"]["thumbnails"]
+    response_json['snippet']['thumbnails']
   end
 
   def description

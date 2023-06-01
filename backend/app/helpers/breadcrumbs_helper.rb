@@ -13,9 +13,9 @@ module BreadcrumbsHelper
       ['admin/homes#show', 'admin/channels#index', 'admin/channels#new'],
       ['admin/homes#show', 'admin/channels#index', 'admin/channels#show', 'admin/channels#edit'],
       ['admin/homes#show', 'admin/channels#index', 'admin/channels#show',
-        'admin/videos#index', 'admin/videos#show', 'admin/videos#edit'],
+       'admin/videos#index', 'admin/videos#show', 'admin/videos#edit'],
       ['admin/homes#show', 'admin/channels#index', 'admin/channels#show',
-        'admin/videos#index', 'admin/videos#new'],
+       'admin/videos#index', 'admin/videos#new']
     ]
   end
 

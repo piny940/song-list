@@ -1,6 +1,6 @@
 class Admin::VideosController < Admin::Base
   before_action :set_channel
-  before_action :set_video, only: %i[ show edit update destroy ]
+  before_action :set_video, only: %i[show edit update destroy]
 
   def index
     @videos = Video.all
@@ -18,7 +18,7 @@ class Admin::VideosController < Admin::Base
     @video = @channel.videos.fetch_and_create!(video_params[:video_id])
 
     if @video.present?
-      redirect_to admin_channel_videos_path(@channel), notice: "Videoが作成されました。"
+      redirect_to admin_channel_videos_path(@channel), notice: 'Videoが作成されました。'
     else
       render :new, status: :unprocessable_entity
     end
@@ -26,7 +26,7 @@ class Admin::VideosController < Admin::Base
 
   def update
     if @video.update(video_params)
-      redirect_to admin_channel_videos_path(@channel), notice: "Videoが更新されました。"
+      redirect_to admin_channel_videos_path(@channel), notice: 'Videoが更新されました。'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -34,7 +34,7 @@ class Admin::VideosController < Admin::Base
 
   def destroy
     @video.destroy
-    redirect_to admin_channel_videos_path(@channel), notice: "Videoが削除されました。"
+    redirect_to admin_channel_videos_path(@channel), notice: 'Videoが削除されました。'
   end
 
   private
