@@ -23,13 +23,13 @@ default: &default
 
 development:
   <<: *default
-  database: rails_template_development
+  database: backend_song_list_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user running Rails.
-  #username: rails_template
+  #username: backend_song_list
 
   # The password associated with the postgres role (username).
   #password:
@@ -57,7 +57,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: rails_template_test
+  database: backend_song_list_test
   username: <%= ENV.fetch('TEST_PG_USER', nil) %>
   password: <%= ENV.fetch('TEST_PG_PASSWORD', nil) %>
   host: <%= ENV.fetch('TEST_PG_HOST', nil) %>
@@ -84,6 +84,6 @@ test:
 #
 production:
   <<: *default
-  database: rails_template_production
-  username: rails_template
-  password: <%= ENV["RAILS_TEMPLATE_DATABASE_PASSWORD"] %>
+  database: backend_song_list_production
+  username: backend_song_list
+  password: <%= ENV["backend_song_list_DATABASE_PASSWORD"] %>
