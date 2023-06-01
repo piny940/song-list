@@ -1,0 +1,6 @@
+%h1 <%= singular_name %>編集
+= render "form", <%= singular_table_name %>: @<%= singular_table_name %>
+
+= link_to '閲覧', <%= singular_name %>_path(@<%= singular_name %>)
+\|
+= link_to '戻る', <%= plural_table_name %>_path

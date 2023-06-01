@@ -1,0 +1,16 @@
+- breadcrumbs = breadcrumbs(controller_path, controller.action_name)
+- if breadcrumbs.present?
+  %nav{"aria-label" => "breadcrumb", style: '--bs-breadcrumb-divider: \'>\';' }
+    %ol.breadcrumb
+      - breadcrumbs[0..-2].each do |breadcrumb|
+        %li.breadcrumb-item
+          - if breadcrumb[:url]
+            %a{:href => breadcrumb[:url]}= breadcrumb[:name]
+          - else
+            = breadcrumb[:name]
+      %li.breadcrumb-item.active{"aria-current" => "page"}
+        - last_breaccrumb = breadcrumbs.last
+        - if last_breaccrumb[:url]
+          %a{:href => last_breaccrumb[:url]}= last_breaccrumb[:name]
+        - else
+          = last_breaccrumb[:name]
