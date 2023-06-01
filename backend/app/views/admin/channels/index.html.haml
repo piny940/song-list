@@ -1,11 +1,11 @@
-%h1 channel一覧
+%h1 チャンネル一覧
 %table.table
   %thead.table-light
     %tr
-      %th Channel
-      %th Name
+      %th アイコン
+      %th Channel id
+      %th 名前
       %th Twitter
-      %th Response json
       %th
 
   %tbody
@@ -13,10 +13,10 @@
       %td{colspan: 5}= link_to 'channel新規作成', new_admin_channel_path, class: 'btn btn-primary w-100'
     - @channels.each do |channel|
       %tr
+        %td= image_tag channel.thumbnails["default"]["url"], width: 100
         %td= channel.channel_id
         %td= channel.name
         %td= channel.twitter_id
-        %td= channel.response_json
         %td
           = link_to '閲覧', admin_channel_path(channel), class: 'btn btn-sm btn-outline-primary'
           = link_to '編集', edit_admin_channel_path(channel), class: 'btn btn-sm btn-outline-primary'

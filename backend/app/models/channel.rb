@@ -30,9 +30,9 @@ class Channel < ApplicationRecord
   #     url: string,
   #   },
   # }
-  def thumnails
+  def thumbnails
     hash = JSON.parse(response_json)
-    hash["snippet"]["thumnails"]
+    hash["snippet"]["thumbnails"]
   end
 
   def description
