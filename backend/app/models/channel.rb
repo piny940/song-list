@@ -8,7 +8,7 @@ class Channel < ApplicationRecord
 
     return if items.blank?
 
-    Channel.create!(
+    create!(
       channel_id:,
       name: items[0].snippet.title,
       response_json: items[0].to_h
