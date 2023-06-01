@@ -1,5 +1,5 @@
 class Admin::ChannelsController < Admin::Base
-  before_action :set_channel, only: %i[ show edit update destroy ]
+  before_action :set_channel, only: %i[show edit update destroy]
 
   def index
     @channels = Channel.all
@@ -17,7 +17,7 @@ class Admin::ChannelsController < Admin::Base
     @channel = Channel.new(channel_params)
 
     if @channel.save
-      redirect_to @channel, notice: "Channel が作成されました。"
+      redirect_to @channel, notice: 'Channel が作成されました。'
     else
       render :new, status: :unprocessable_entity
     end
@@ -25,7 +25,7 @@ class Admin::ChannelsController < Admin::Base
 
   def update
     if @channel.update(channel_params)
-      redirect_to admin_channels_path, notice: "Channel が更新されました。"
+      redirect_to admin_channels_path, notice: 'Channel が更新されました。'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -33,7 +33,7 @@ class Admin::ChannelsController < Admin::Base
 
   def destroy
     @channel.destroy
-    redirect_to admin_channels_path, notice: "Channel が削除されました。"
+    redirect_to admin_channels_path, notice: 'Channel が削除されました。'
   end
 
   private
