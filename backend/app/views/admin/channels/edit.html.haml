@@ -1,0 +1,6 @@
+%h1 チャンネル編集
+= render "form", channel: @channel
+
+= link_to '閲覧', admin_channel_path(@channel)
+\|
+= link_to '戻る', admin_channels_path

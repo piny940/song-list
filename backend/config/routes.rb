@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root to: 'homes#show'
 
   namespace :admin do
+    resources :channels
     resource to: 'homes#show'
   end
 end

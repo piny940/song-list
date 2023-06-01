@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  channel_id: MyString
+  name: MyString
+  twitter_id: MyString
+  response_json: 
+
+two:
+  channel_id: MyString
+  name: MyString
+  twitter_id: MyString
+  response_json: 
