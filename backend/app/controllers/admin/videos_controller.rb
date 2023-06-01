@@ -15,9 +15,9 @@ class Admin::VideosController < Admin::Base
   def edit; end
 
   def create
-    @video = Video.new(video_params)
+    @video = @channel.videos.fetch_and_create!(video_params[:video_id])
 
-    if @video.save
+    if @video.present?
       redirect_to admin_channel_videos_path(@channel), notice: "Videoが作成されました。"
     else
       render :new, status: :unprocessable_entity

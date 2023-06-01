@@ -16,7 +16,7 @@ class Admin::ChannelsController < Admin::Base
   def create
     @channel = Channel.fetch_and_create!(channel_params[:channel_id])
 
-    if @channel.save
+    if @channel.present?
       redirect_to @channel, notice: 'Channel が作成されました。'
     else
       render :new, status: :unprocessable_entity

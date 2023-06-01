@@ -13,7 +13,7 @@ class Video < ApplicationRecord
 
     return if items.blank?
 
-    kind = 'live' if items[0].live_streaming_details.present?
+    kind = items[0].live_streaming_details.present? ? 'live' : 'video'
 
     create!(
       video_id:,
