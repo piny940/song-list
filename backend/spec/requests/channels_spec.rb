@@ -14,4 +14,15 @@ describe Api::ChannelsController, type: :request do
       expect(json["channels"][0]["thumbnails"]["medium"]["width"]).to eq 240
     end
   end
+  describe 'GET /api/channels/:id' do
+    it('正常に取得できる') do
+      one = channels(:one)
+      get "/api/channels/#{one.id}"
+
+      expect(response.status).to eq(200)
+
+      json = JSON.parse(response.body)
+      expect(json["channel"]["thumbnails"]["medium"]["width"]).to eq 240
+    end
+  end
 end
