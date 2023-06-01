@@ -9,7 +9,7 @@ class Video < ApplicationRecord
 
   def self.fetch_and_create!(video_id)
     response = Youtube.get_video(video_id)
-    items = reponse.items
+    items = response.items
 
     return if items.blank?
 
