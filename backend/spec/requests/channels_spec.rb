@@ -1,6 +1,8 @@
 require 'rails_helper'
 
-describe 'Channels', type: :request do
+describe Api::ChannelsController, type: :request do
+  fixtures :channels
+
   describe 'GET /api/channels' do
     it('正常に取得できる') do
       get '/api/channels'
@@ -8,9 +10,8 @@ describe 'Channels', type: :request do
       expect(response.status).to eq(200)
 
       json = JSON.parse(response.body)
-
       expect(json["channels"].count).to eq 1
-      expect(json["channels"][0]["medium"]["width"]).to eq 200
+      expect(json["channels"][0]["thumbnails"]["medium"]["width"]).to eq 240
     end
   end
 end
