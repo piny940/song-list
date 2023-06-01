@@ -1,4 +1,4 @@
-= form_with(model: [:admin, video]) do |form|
+= form_with(model: [:admin, @channel, video]) do |form|
   - if video.errors.any?
     #error_explanation
       %h2= "#{pluralize(video.errors.count, "error")} prohibited this video from being saved:"
@@ -6,9 +6,6 @@
         - video.errors.full_messages.each do |message|
           %li= message
   
-  .row.mb-3
-    .col-md-3.col-form-label.fw-bold channel_id
-    .col-md-9= form.text_field :channel_id, class: 'form-control'
   .row.mb-3
     .col-md-3.col-form-label.fw-bold video_id
     .col-md-9= form.text_field :video_id, class: 'form-control'

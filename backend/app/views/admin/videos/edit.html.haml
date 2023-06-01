@@ -1,6 +1,6 @@
 %h1 video編集
 = render "form", video: @video
 
-= link_to '閲覧', admin_video_path(@video)
+= link_to '閲覧', admin_channel_video_path(@channel, @video)
 \|
-= link_to '戻る', admin_videos_path
+= link_to '戻る', admin_channel_videos_path(@channel)

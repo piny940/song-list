@@ -1,4 +1,5 @@
 class Admin::VideosController < Admin::Base
+  before_action :set_channel
   before_action :set_video, only: %i[ show edit update destroy ]
 
   def index
@@ -37,6 +38,10 @@ class Admin::VideosController < Admin::Base
   end
 
   private
+
+  def set_channel
+    @channel = Channel.find(params[:channel_id])
+  end
 
   def set_video
     @video = Video.find(params[:id])
