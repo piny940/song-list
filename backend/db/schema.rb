@@ -14,7 +14,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_100333) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "admin_channels", force: :cascade do |t|
+  create_table "channels", force: :cascade do |t|
     t.string "channel_id"
     t.string "name"
     t.string "twitter_id"

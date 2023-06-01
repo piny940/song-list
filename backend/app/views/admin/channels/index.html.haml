@@ -11,7 +11,7 @@
   %tbody
     %tr
       %td{colspan: 5}= link_to 'channel新規作成', new_admin_channel_path, class: 'btn btn-primary w-100'
-    - @admin_channels.each do |admin_channel|
+    - @channels.each do |channel|
       %tr
         %td= channel.channel_id
         %td= channel.name

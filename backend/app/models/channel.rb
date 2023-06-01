@@ -1,2 +1,2 @@
-class Admin::Channel < ApplicationRecord
+class Channel < ApplicationRecord
 end
