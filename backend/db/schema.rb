@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_01_100333) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_01_132235) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -36,4 +36,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_100333) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "videos", force: :cascade do |t|
+    t.bigint "channel_id", null: false
+    t.string "video_id", null: false
+    t.integer "kind", default: 0, null: false
+    t.json "response_json", null: false
+    t.string "title", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["channel_id"], name: "index_videos_on_channel_id"
+  end
+
+  add_foreign_key "videos", "channels"
 end
