@@ -8,4 +8,8 @@ Rails.application.routes.draw do
     resources :channels
     resource to: 'homes#show'
   end
+
+  namespace :api do
+    resources :channels, only: %i[index show]
+  end
 end
