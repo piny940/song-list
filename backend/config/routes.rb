@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resource to: 'homes#show'
   end
 
-  namespace :api do
+  namespace :api, defaults: { format: :json } do
     resources :channels, only: %i[index show]
   end
 end
