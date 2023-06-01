@@ -25,11 +25,9 @@ class Youtube
     service.list_live_chat_messages(chat_id, 'id,snippet,authorDetails', page_token:)
   end
 
-  private
-
   def self.service
     service = Google::Apis::YoutubeV3::YouTubeService.new
-    service.key = ENV['GOOGLE_API_KEY']
+    service.key = ENV.fetch('GOOGLE_API_KEY', nil)
     service
   end
 end

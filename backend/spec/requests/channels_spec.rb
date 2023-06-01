@@ -9,9 +9,9 @@ describe Api::ChannelsController, type: :request do
 
       expect(response.status).to eq(200)
 
-      json = JSON.parse(response.body)
-      expect(json["channels"].count).to eq 1
-      expect(json["channels"][0]["thumbnails"]["medium"]["width"]).to eq 240
+      json = response.parsed_body
+      expect(json['channels'].count).to eq 1
+      expect(json['channels'][0]['thumbnails']['medium']['width']).to eq 240
     end
   end
   describe 'GET /api/channels/:id' do
@@ -21,8 +21,8 @@ describe Api::ChannelsController, type: :request do
 
       expect(response.status).to eq(200)
 
-      json = JSON.parse(response.body)
-      expect(json["channel"]["thumbnails"]["medium"]["width"]).to eq 240
+      json = response.parsed_body
+      expect(json['channel']['thumbnails']['medium']['width']).to eq 240
     end
   end
 end

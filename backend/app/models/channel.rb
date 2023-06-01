@@ -31,14 +31,14 @@ class Channel < ApplicationRecord
   #   },
   # }
   def thumbnails
-    response_json["snippet"]["thumbnails"]
+    response_json['snippet']['thumbnails']
   end
 
   def description
-    response_json["snippet"]["description"]
+    response_json['snippet']['description']
   end
 
   def custom_id
-    response_json["snippet"]["customUrl"]
+    response_json['snippet']['customUrl']
   end
 end

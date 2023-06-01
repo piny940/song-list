@@ -3,4 +3,3 @@ json.channels do
     json.partial! channel
   end
 end
-
