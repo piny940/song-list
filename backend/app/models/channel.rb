@@ -9,7 +9,7 @@ class Channel < ApplicationRecord
     Channel.create!(
       channel_id:,
       name: items[0].snippet.title,
-      response_json: items[0].to_json
+      response_json: items[0].to_h
     )
   end
 
@@ -31,16 +31,14 @@ class Channel < ApplicationRecord
   #   },
   # }
   def thumbnails
-    hash = JSON.parse(response_json)
-    hash["snippet"]["thumbnails"]
+    response_json["snippet"]["thumbnails"]
   end
 
   def description
-    hash = JSON.parse(response_json)
-    hash["snippet"]["description"]
+    response_json["snippet"]["description"]
   end
 
   def custom_id
-    hash["snippet"]["customUrl"]
+    response_json["snippet"]["customUrl"]
   end
 end

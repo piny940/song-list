@@ -90,3 +90,6 @@ gem 'devise-i18n'
 
 # Youtube
 gem 'google-apis-youtube_v3'
+
+# テスト
+gem 'rspec-rails', groups: %i[development test]
