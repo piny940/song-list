@@ -87,3 +87,6 @@ gem 'rack-cors'
 # ログイン
 gem 'devise'
 gem 'devise-i18n'
+
+# Youtube
+gem 'google-apis-youtube_v3'
