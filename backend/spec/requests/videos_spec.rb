@@ -1,6 +1,6 @@
 describe Api::VideosController do
   fixtures :channels, :videos
-  let(:channel) { channels(:one) }
+  let(:channel) { channels(:shairu) }
   let(:video) { videos(:one) }
 
   describe 'GET /api/videos' do
@@ -12,7 +12,7 @@ describe Api::VideosController do
 
       json = response.parsed_body
 
-      expect(json['videos'].count).to eq 1
+      expect(json['videos'].count).to eq 2
       expect(json['videos'][0]['id']).to eq video.id
       expect(json['videos'][0]['video_id']).to eq video.video_id
       expect(json['videos'][0]['channel_id']).to eq channel.id
