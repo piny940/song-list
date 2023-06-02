@@ -1,4 +1,4 @@
-= form_with(model: [:admin, @song_item, song_diff]) do |form|
+= form_with(model: [:admin, @video, @song_item, song_diff]) do |form|
   - if song_diff.errors.any?
     #error_explanation
       %h2= "#{pluralize(song_diff.errors.count, "error")} prohibited this song_diff from being saved:"
