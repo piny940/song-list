@@ -6,3 +6,9 @@ two:
 
 three:
   video_id: two
+
+# Activeでないsong_item
+four:
+  video_id: one
+five:
+  video_id: one
