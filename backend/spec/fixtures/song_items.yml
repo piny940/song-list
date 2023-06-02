@@ -1,14 +1,14 @@
 one:
-  video_id: one
+  video: one
 
 two:
-  video_id: one
+  video: one
 
 three:
-  video_id: two
+  video: two
 
 # Activeでないsong_item
 four:
-  video_id: one
+  video: one
 five:
-  video_id: one
+  video: one

@@ -1,9 +1,7 @@
 one:
   email: test1@example.com
-  password: password
-  password_confirmation: password
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
 
 two:
   email: test2@example.com
-  password: password
-  password_confirmation: password
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>

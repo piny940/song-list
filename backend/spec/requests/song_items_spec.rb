@@ -1,6 +1,12 @@
-describe Api::Video::SongItemsController do
+describe Api::SongItemsController do
+  fixtures :channels
+  fixtures :videos
+  fixtures :song_items
+  fixtures :users
+  fixtures :song_diffs
+
   let(:video) { videos(:one) }
-  let(:endpoint) { "api/song_items" }
+  let(:endpoint) { "/api/song_items" }
 
   describe 'GET /api/song_items' do
     it('全てのsong_itemsを取得できる') do
@@ -9,7 +15,7 @@ describe Api::Video::SongItemsController do
       expect(response.status).to eq 200
 
       json = response.parsed_body
-
+      p json
       # activeでないsong_itemは取得しない
       expect(json["song_items"].count).to eq 3
       expect(json["song_items"][0]["title"]).to eq 'アイドル2'
@@ -19,7 +25,7 @@ describe Api::Video::SongItemsController do
     end
 
     it('特定のvideoのsong_itemsを取得できる') do
-      get endpoint, video_id: video.id
+      get endpoint, params: { video_id: video.id }
 
       expect(response.status).to eq 200
 

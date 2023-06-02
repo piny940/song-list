@@ -4,12 +4,14 @@ one1:
   title: アイドル1
   author: YOASOBI
   song_item: one
+  status: approved
 
 one2:
   made_by: one
   time: 2023-06-02T00:08:16
   title: アイドル2
   song_item: one
+  status: approved
 
 two1:
   made_by: one
@@ -17,6 +19,7 @@ two1:
   title: アイドル3
   author: YOASOBI
   song_item: two
+  status: approved
 
 three1:
   made_by: one
@@ -24,7 +27,21 @@ three1:
   title: アイドル4
   author: YOASOBI
   song_item: three
+  status: approved
 
 four1:
   made_by: one
   song_item: four
+  status: approved
+
+four2:
+  made_by: one
+  song_item: four
+  status: pending
+  author: YOASOBI
+
+four3:
+  made_by: one
+  song_item: four
+  status: rejected
+  author: YOASOBI
