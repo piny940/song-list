@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   root to: 'homes#show'
 
   namespace :admin do
-    resources :channels do
-      resources :videos
+    resources :channels
+    resources :videos
+    scope module: :videos do
+      resources :song_items
     end
     resource to: 'homes#show'
   end

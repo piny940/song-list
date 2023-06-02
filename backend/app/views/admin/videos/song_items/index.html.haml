@@ -1,0 +1,17 @@
+%h1 song_item一覧
+%table.table
+  %thead.table-light
+    %tr
+      %th Video
+      %th
+
+  %tbody
+    %tr
+      %td{colspan: 2}= link_to 'song_item新規作成', new_admin_video_song_item_path(@video), class: 'btn btn-primary w-100'
+    - @song_items.each do |song_item|
+      %tr
+        %td= song_item.video_id
+        %td
+          = link_to '閲覧', admin_video_song_item_path(@video, song_item), class: 'btn btn-sm btn-outline-primary'
+          = link_to '編集', edit_admin_video_song_item_path(@video, song_item), class: 'btn btn-sm btn-outline-primary'
+          = link_to '削除', admin_video_song_item_path(@video, song_item), method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: 'btn btn-sm btn-outline-danger'

@@ -1,5 +1,6 @@
 class Video < ApplicationRecord
   belongs_to :channel
+  has_many :song_items, dependent: :destroy
 
   enum kind: {
     video: 0,
