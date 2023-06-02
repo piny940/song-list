@@ -1,15 +1,16 @@
 class Admin::VideosController < Admin::Base
-  before_action :set_scope
   before_action :set_video, only: %i[show edit update destroy]
 
   def index
-    @videos = @scope.all
+    channel = Channel.find_by(id: params[:channel_id])
+    scope = channel.present? ? channel.videos : Video
+    @videos = scope.all
   end
 
   def show; end
 
   def new
-    @video = @scope.new
+    @video = Video.new
   end
 
   def edit; end
@@ -19,7 +20,7 @@ class Admin::VideosController < Admin::Base
     @video = channel.videos.fetch_and_create!(video_params[:video_id])
 
     if @video.present?
-      redirect_to admin_channel_videos_path(@channel), notice: 'Videoが作成されました。'
+      redirect_to admin_videos_path(channel_id: channel.id), notice: 'Videoが作成されました。'
     else
       render :new, status: :unprocessable_entity
     end
@@ -27,7 +28,7 @@ class Admin::VideosController < Admin::Base
 
   def update
     if @video.update(video_params)
-      redirect_to admin_channel_videos_path(@channel), notice: 'Videoが更新されました。'
+      redirect_to admin_videos_path(channel_id: @video.channel.id), notice: 'Videoが更新されました。'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -35,18 +36,13 @@ class Admin::VideosController < Admin::Base
 
   def destroy
     @video.destroy
-    redirect_to admin_channel_videos_path(@channel), notice: 'Videoが削除されました。'
+    redirect_to admin_videos_path(channel_id: @channel&.id), notice: 'Videoが削除されました。'
   end
 
   private
 
-  def set_scope
-    channel = params[:channel_id].present? && Channel.find_by(id: params[:channel_id])
-    @scope = channel.present? ? channel.videos : Video
-  end
-
   def set_video
-    @video = @scope.find(params[:id])
+    @video = Video.find(params[:id])
   end
 
   def video_params

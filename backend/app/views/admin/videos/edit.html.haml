@@ -7,7 +7,9 @@
       %ul
         - @video.errors.full_messages.each do |message|
           %li= message
-
+  .row.mb-3
+    .col-md-3.col-form-label.fw-bold channel
+    .col-md-9= form.collection_select :channel_id, Channel.all, :id, :name, {}, class: 'form-control'
   .row.mb-3
     .col-md-3.col-form-label.fw-bold title
     .col-md-9= form.text_field :title, class: 'form-control'
