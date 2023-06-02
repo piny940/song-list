@@ -1,6 +1,6 @@
-one:
-  name: test
-  channel_id: test_channel_id
+shairu:
+  name: Shairu.chしゃいる
+  channel_id: UCe_8qM8Wk4cU5oD3WO07gZg
   twitter_id: hoge
   response_json:
     {
@@ -35,5 +35,50 @@ one:
                 },
             },
           "title": "Shairu.chしゃいる",
+        },
+    }
+
+mashiro:
+  channel_id: UCewRhO43UmIohSBzW2HMheA
+  name: 凪乃ましろ / Nagino Mashiro
+  twitter_id:
+  response_json:
+    {
+      "etag": "TG0f9n0NYrGrjEifK7_bvNN-qYQ",
+      "id": "UCewRhO43UmIohSBzW2HMheA",
+      "kind": "youtube#channel",
+      "snippet":
+        {
+          "country": "JP",
+          "custom_url": "@naginomashiro",
+          "description": "頭まっしろ 歌うぽんこつ 凪乃ましろです🍽\n\nとある夢を追いかけて住んでいた街を飛び出し、\n憧れていた海の見える町にたどり着きました。\n\nこれからこの場所で、歌を中心に、ASMR、ゲームなど、\nたくさんのことに挑戦していきます！\n見守ってくださると嬉しいです。\n自慢の推し、生き甲斐になれるようにがんばります！\n\n🍽規約とリンク🔗\nhttps://lit.link/naginomashiro\n\n🍽Twitter\nhttps://twitter.com/Nagino_Mashiro\n\n🍽FANBOX一部プラン始動！\nhttps://naginomashiro.fanbox.cc\n\n是非ご感想を「#なぎのらいぶ」で呟いてください🙏🏻\n高評価・コメント・拡散、すべて励みになります🙏🏻\n\n୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧\n\n🍽配信ルール\n✨　ＰＯＮの扱いは、愛があればＯＫです！\n◯　離脱コメント（ただし拾えるとは限りません…！「ほかの配信に行く」は✕）\n◯　ないすぱ、ないぎふ、メンシ歓迎\n△　指示コメント（求めたときのみアドバイスをください！）\n△　長文コメ（可能な限りマシュマロでくださると嬉しい）\n△　歌枠リクエスト（基本はマシュマロで！枠でくださってもＯＫだけど歌えるとは限りません…！）\n⚠以下は全てお控えください…！\n✕　鳩行為　他配信者のお話\n✕　ネタバレ、ほのめかし\n✕　「荒らし」「スパム」「ルール違反」への反応\n（私が何とかします、お任せください！耐えられないときはそっとブロックをお願いします。）\n✕　チャット内での会話（待機中も）\n✕　初見詐欺\n✕　同じコメントを連投\n✕　同時接続数報告\n✕　他リスナーへの挨拶（初見・配信者）\n✕　流れに関係ない話（自分語りなど）\n（お聞きしたい気持ちはあっても枠の進行のためにスルーしてしまうのが心苦しいので…！）\n\n🙏🏻お願い\n　　コメントは日本語か英語でお願い申し上げます。\n　　Please chat in EN or JP！Thank you！\n\nいつも守ってくださるみなさまのおかげで、あたたかくて素敵な雰囲気の枠になっています！\nありがとうございます🙏🏻\n\n୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧\n\n🍽歌唱依頼・お仕事のご連絡はメールアドレスへ\nnagino.official@gmail.com\n",
+          "localized":
+            {
+              "description": "頭まっしろ 歌うぽんこつ 凪乃ましろです🍽\n\nとある夢を追いかけて住んでいた街を飛び出し、\n憧れていた海の見える町にたどり着きました。\n\nこれからこの場所で、歌を中心に、ASMR、ゲームなど、\nたくさんのことに挑戦していきます！\n見守ってくださると嬉しいです。\n自慢の推し、生き甲斐になれるようにがんばります！\n\n🍽規約とリンク🔗\nhttps://lit.link/naginomashiro\n\n🍽Twitter\nhttps://twitter.com/Nagino_Mashiro\n\n🍽FANBOX一部プラン始動！\nhttps://naginomashiro.fanbox.cc\n\n是非ご感想を「#なぎのらいぶ」で呟いてください🙏🏻\n高評価・コメント・拡散、すべて励みになります🙏🏻\n\n୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧\n\n🍽配信ルール\n✨　ＰＯＮの扱いは、愛があればＯＫです！\n◯　離脱コメント（ただし拾えるとは限りません…！「ほかの配信に行く」は✕）\n◯　ないすぱ、ないぎふ、メンシ歓迎\n△　指示コメント（求めたときのみアドバイスをください！）\n△　長文コメ（可能な限りマシュマロでくださると嬉しい）\n△　歌枠リクエスト（基本はマシュマロで！枠でくださってもＯＫだけど歌えるとは限りません…！）\n⚠以下は全てお控えください…！\n✕　鳩行為　他配信者のお話\n✕　ネタバレ、ほのめかし\n✕　「荒らし」「スパム」「ルール違反」への反応\n（私が何とかします、お任せください！耐えられないときはそっとブロックをお願いします。）\n✕　チャット内での会話（待機中も）\n✕　初見詐欺\n✕　同じコメントを連投\n✕　同時接続数報告\n✕　他リスナーへの挨拶（初見・配信者）\n✕　流れに関係ない話（自分語りなど）\n（お聞きしたい気持ちはあっても枠の進行のためにスルーしてしまうのが心苦しいので…！）\n\n🙏🏻お願い\n　　コメントは日本語か英語でお願い申し上げます。\n　　Please chat in EN or JP！Thank you！\n\nいつも守ってくださるみなさまのおかげで、あたたかくて素敵な雰囲気の枠になっています！\nありがとうございます🙏🏻\n\n୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧\n\n🍽歌唱依頼・お仕事のご連絡はメールアドレスへ\nnagino.official@gmail.com\n",
+              "title": "凪乃ましろ / Nagino Mashiro",
+            },
+          "published_at": "2022-06-30T16:04:10.883+00:00",
+          "thumbnails":
+            {
+              "default":
+                {
+                  "height": 88,
+                  "url": "https://yt3.ggpht.com/P3YFc-Z6O8gostkjj5eRv6a8_jjk7YSWQRM5OkevJMkVX-ImetePNRBvyjcLP5EFE80gIWBp=s88-c-k-c0x00ffffff-no-rj",
+                  "width": 88,
+                },
+              "high":
+                {
+                  "height": 800,
+                  "url": "https://yt3.ggpht.com/P3YFc-Z6O8gostkjj5eRv6a8_jjk7YSWQRM5OkevJMkVX-ImetePNRBvyjcLP5EFE80gIWBp=s800-c-k-c0x00ffffff-no-rj",
+                  "width": 800,
+                },
+              "medium":
+                {
+                  "height": 240,
+                  "url": "https://yt3.ggpht.com/P3YFc-Z6O8gostkjj5eRv6a8_jjk7YSWQRM5OkevJMkVX-ImetePNRBvyjcLP5EFE80gIWBp=s240-c-k-c0x00ffffff-no-rj",
+                  "width": 240,
+                },
+            },
+          "title": "凪乃ましろ / Nagino Mashiro",
         },
     }

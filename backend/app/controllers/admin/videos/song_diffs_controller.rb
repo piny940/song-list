@@ -3,7 +3,7 @@ class Admin::Videos::SongDiffsController < Admin::Videos::Base
   before_action :set_song_diff, only: %i[ show edit update destroy ]
 
   def index
-    @song_diffs = SongDiff.all
+    @song_diffs = @song_item.song_diffs.all
   end
 
   def show; end
@@ -44,7 +44,7 @@ class Admin::Videos::SongDiffsController < Admin::Videos::Base
   end
 
   def set_song_diff
-    @song_diff = SongDiff.find(params[:id])
+    @song_diff = @song_item.song_diffs.find(params[:id])
   end
 
   def song_diff_params

@@ -21,5 +21,6 @@ Rails.application.routes.draw do
     resources :channels, only: %i[index show] do
       resources :videos, only: %i[index show]
     end
+    resources :song_items, only: %i[index show]
   end
 end

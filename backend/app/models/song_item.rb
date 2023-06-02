@@ -5,7 +5,14 @@ class SongItem < ApplicationRecord
   def active?
     return false unless song_diffs.status_approved.present?
     
-    !song_diffs.status_approved.order(id: :desc).last.deletion?
+    !song_diffs.status_approved.last.deletion?
+  end
+
+  def self.active
+    lasts = SongDiff.status_approved.where(created_at: SongDiff.status_approved \
+              .group(:song_item_id).select('max(created_at)'))
+    where(id: lasts.where.not(title: ["", nil]).or(lasts.where.not(author: ["", nil])) \
+            .or(lasts.where.not(time: ["", nil])).pluck(:song_item_id))
   end
 
   def title

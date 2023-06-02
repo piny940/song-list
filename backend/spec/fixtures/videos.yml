@@ -1,5 +1,5 @@
 one:
-  channel: one
+  channel: shairu
   video_id: video_one
   kind: live
   title: title_one
@@ -63,5 +63,144 @@ one:
                 },
             },
           "title": "【#歌枠 】初見さん大歓迎だよ～！！周年まであと３日！うたうぞおおおっ！【#新人vtuber/しゃいる】",
+        },
+    }
+
+two:
+  title: 【自己紹介】はじめまして！しゃいるです！【新人Vtuber】
+  channel: shairu
+  video_id: CnyROu_ZfYk
+  kind: video
+  response_json:
+    {
+      "etag": "UxMS_lEPfTs3qrdfY14fy7_7_5k",
+      "id": "CnyROu_ZfYk",
+      "kind": "youtube#video",
+      "snippet":
+        {
+          "category_id": "10",
+          "channel_id": "UCe_8qM8Wk4cU5oD3WO07gZg",
+          "channel_title": "Shairu.chしゃいる",
+          "description": "新人Vtuberのしゃいるです！\n雪と星のバーチャル魔法使いです❄🌟\nよろしくお願いしますっ\n\n🌟しゃいるTwitter\nhttps://twitter.com/Shairu_Vt\nYouTube: https://onl.sc/bhpNHtt\n\n\n❄クラウドファンディングをしています\nhttps://camp-fire.jp/projects/view/577548?utm_source=twitter\u0026utm_medium=social\u0026utm_campaign=tw_po_share_mypage_projects_show\n\n\n🌟欲しい物リスト\nhttps://www.amazon.jp/hz/wishlist/ls/3K818U4IBHTB6?ref_=wl_share\n\n\n❄キャラクターデザイン\nむにんしきﾏﾏ\nhttps://twitter.com/muninshiki\n\n\n🌟Live2D制作\nmemenoﾊﾟﾊﾟ\nhttps://twitter.com/mementojai\n\n\n❄ロゴデザイン\nボロ雑巾様\nhttps://twitter.com/Boro_Dayo\n\n\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \n\n\n❄使用させて頂いた素材\n\n\n【背景】OKUMONO様 \nhttps://twitter.com/okumono1\n\n\n【BGM】Safu様\nhttps://twitter.com/safuworks\n\n\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n是非チャンネル登録と高評価、Twitterのフォローよろしくお願いします❄\nしゃいるの事応援してもらえたらうれしいです🌟",
+          "live_broadcast_content": "none",
+          "localized":
+            {
+              "description": "新人Vtuberのしゃいるです！\n雪と星のバーチャル魔法使いです❄🌟\nよろしくお願いしますっ\n\n🌟しゃいるTwitter\nhttps://twitter.com/Shairu_Vt\nYouTube: https://onl.sc/bhpNHtt\n\n\n❄クラウドファンディングをしています\nhttps://camp-fire.jp/projects/view/577548?utm_source=twitter\u0026utm_medium=social\u0026utm_campaign=tw_po_share_mypage_projects_show\n\n\n🌟欲しい物リスト\nhttps://www.amazon.jp/hz/wishlist/ls/3K818U4IBHTB6?ref_=wl_share\n\n\n❄キャラクターデザイン\nむにんしきﾏﾏ\nhttps://twitter.com/muninshiki\n\n\n🌟Live2D制作\nmemenoﾊﾟﾊﾟ\nhttps://twitter.com/mementojai\n\n\n❄ロゴデザイン\nボロ雑巾様\nhttps://twitter.com/Boro_Dayo\n\n\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \n\n\n❄使用させて頂いた素材\n\n\n【背景】OKUMONO様 \nhttps://twitter.com/okumono1\n\n\n【BGM】Safu様\nhttps://twitter.com/safuworks\n\n\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n是非チャンネル登録と高評価、Twitterのフォローよろしくお願いします❄\nしゃいるの事応援してもらえたらうれしいです🌟",
+              "title": "【自己紹介】はじめまして！しゃいるです！【新人Vtuber】",
+            },
+          "published_at": "2022-05-30T13:43:13.000+00:00",
+          "thumbnails":
+            {
+              "default":
+                {
+                  "height": 90,
+                  "url": "https://i.ytimg.com/vi/CnyROu_ZfYk/default.jpg",
+                  "width": 120,
+                },
+              "high":
+                {
+                  "height": 360,
+                  "url": "https://i.ytimg.com/vi/CnyROu_ZfYk/hqdefault.jpg",
+                  "width": 480,
+                },
+              "maxres":
+                {
+                  "height": 720,
+                  "url": "https://i.ytimg.com/vi/CnyROu_ZfYk/maxresdefault.jpg",
+                  "width": 1280,
+                },
+              "medium":
+                {
+                  "height": 180,
+                  "url": "https://i.ytimg.com/vi/CnyROu_ZfYk/mqdefault.jpg",
+                  "width": 320,
+                },
+              "standard":
+                {
+                  "height": 480,
+                  "url": "https://i.ytimg.com/vi/CnyROu_ZfYk/sddefault.jpg",
+                  "width": 640,
+                },
+            },
+          "title": "【自己紹介】はじめまして！しゃいるです！【新人Vtuber】",
+        },
+    }
+
+three:
+  channel: mashiro
+  title: 【朝活ティアキン】雑談多めのゼルダの伝説 ティアーズ オブ ザ キングダム【#新人Vtuber#凪乃ましろ 】
+  video_id: GQn1LkJ4X4o
+  kind: live
+  response_json:
+    {
+      "etag": "ixZHB5PCic0qzJ9nbgbHpr3Shr0",
+      "id": "GQn1LkJ4X4o",
+      "kind": "youtube#video",
+      "live_streaming_details":
+        {
+          "actual_end_time": "2023-06-02T04:32:13.000+00:00",
+          "actual_start_time": "2023-06-01T22:19:16.000+00:00",
+          "scheduled_start_time": "2023-06-01T21:30:00.000+00:00",
+        },
+      "snippet":
+        {
+          "category_id": "20",
+          "channel_id": "UCewRhO43UmIohSBzW2HMheA",
+          "channel_title": "凪乃ましろ / Nagino Mashiro",
+          "default_audio_language": "ja",
+          "description": "なるべくおはようを言いたいのですが、見逃しちゃうこともあります！できるだけがんばる\n\n←前回(本編)　https://www.youtube.com/live/Z07wQHtvo4g?feature=share\n次回(本編)　→　\n\nブレワイはこちら→　https://youtube.com/playlist?list=PLtAxr4ZNb5phR99Rne9Kn3pCzHFMJ1vr1\n\n\n୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧\n\n見つけてくださってありがとう！\n頭まっしろ 歌うぽんこつ 凪乃ましろです🍽\n\nNice to meet you ! I'm Nagino Mashiro.\nI am a Japanese ponkotsu Vsinger.\nThank you for your watching !\n \n୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧\n\n🍽規約とリンク🔗\nhttps://lit.link/naginomashiro\n\n🍽Twitter\nhttps://twitter.com/nagino_mashiro\n\n🍽メンバーシップはこちら！\nhttps://www.youtube.com/channel/UCewRhO43UmIohSBzW2HMheA/join\n\n🍽FANBOX一部プラン始動！\nhttps://naginomashiro.fanbox.cc\n\n是非ご感想を「#なぎのらいぶ」で呟いてください🙏🏻\n高評価・コメント・拡散、すべて励みになります🙏🏻\n\n୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧\n\n🍽歌唱依頼・お仕事のご連絡はメールアドレスへ\nnagino.official@gmail.com\n\n୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧\n\n🍽配信ルール\n✨　ＰＯＮの扱いは、愛があればＯＫです！\n◯　離脱コメント（ただし拾えるとは限りません…！「ほかの配信に行く」は✕）\n◯　ないすぱ、ないぎふ、メンシ歓迎\n△　指示コメント（求めたときのみアドバイスをください！）\n△　長文コメ（可能な限りマシュマロでくださると嬉しい）\n△　歌枠リクエスト（基本はマシュマロで！枠でくださってもＯＫだけど歌えるとは限りません…！）\n⚠以下は全てお控えください…！\n✕　鳩行為　他配信者のお話\n✕　ネタバレ、ほのめかし\n✕　「荒らし」「スパム」「ルール違反」への反応.\n（私が何とかします、お任せください！耐えられないときはそっとブロックをお願いします。）\n✕　チャット内での会話（待機中も）\n✕　初見詐欺\n✕　同じコメントを連投\n✕　同時接続数報告\n✕　他リスナーへの挨拶（初見・配信者）\n✕　流れに関係ない話（自分語りなど）\n（お聞きしたい気持ちはあっても枠の進行のためにスルーしてしまうのが心苦しいので…！）\n\n🙏🏻お願い\n　　コメントは日本語か英語でお願い申し上げます。\n　　Please chat in EN or JP！Thank you！\n\nいつも守ってくださるみなさまのおかげで、あたたかくて素敵な雰囲気の枠になっています！\nありがとうございます🙏🏻\n\n୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧\n\nお母様＆お父様 / 菊月様\nhttps://twitter.com/kikugetu\n\nED / 京あめこ様\nhttps://twitter.com/u_matchaman\n\nBGM / Nofu様\nhttps://twitter.com/cheaptune\n\n音声機材調整 / シィナ様\nhttps://twitter.com/paruina\n\n୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧",
+          "live_broadcast_content": "none",
+          "localized":
+            {
+              "description": "なるべくおはようを言いたいのですが、見逃しちゃうこともあります！できるだけがんばる\n\n←前回(本編)　https://www.youtube.com/live/Z07wQHtvo4g?feature=share\n次回(本編)　→　\n\nブレワイはこちら→　https://youtube.com/playlist?list=PLtAxr4ZNb5phR99Rne9Kn3pCzHFMJ1vr1\n\n\n୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧\n\n見つけてくださってありがとう！\n頭まっしろ 歌うぽんこつ 凪乃ましろです🍽\n\nNice to meet you ! I'm Nagino Mashiro.\nI am a Japanese ponkotsu Vsinger.\nThank you for your watching !\n \n୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧\n\n🍽規約とリンク🔗\nhttps://lit.link/naginomashiro\n\n🍽Twitter\nhttps://twitter.com/nagino_mashiro\n\n🍽メンバーシップはこちら！\nhttps://www.youtube.com/channel/UCewRhO43UmIohSBzW2HMheA/join\n\n🍽FANBOX一部プラン始動！\nhttps://naginomashiro.fanbox.cc\n\n是非ご感想を「#なぎのらいぶ」で呟いてください🙏🏻\n高評価・コメント・拡散、すべて励みになります🙏🏻\n\n୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧\n\n🍽歌唱依頼・お仕事のご連絡はメールアドレスへ\nnagino.official@gmail.com\n\n୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧\n\n🍽配信ルール\n✨　ＰＯＮの扱いは、愛があればＯＫです！\n◯　離脱コメント（ただし拾えるとは限りません…！「ほかの配信に行く」は✕）\n◯　ないすぱ、ないぎふ、メンシ歓迎\n△　指示コメント（求めたときのみアドバイスをください！）\n△　長文コメ（可能な限りマシュマロでくださると嬉しい）\n△　歌枠リクエスト（基本はマシュマロで！枠でくださってもＯＫだけど歌えるとは限りません…！）\n⚠以下は全てお控えください…！\n✕　鳩行為　他配信者のお話\n✕　ネタバレ、ほのめかし\n✕　「荒らし」「スパム」「ルール違反」への反応.\n（私が何とかします、お任せください！耐えられないときはそっとブロックをお願いします。）\n✕　チャット内での会話（待機中も）\n✕　初見詐欺\n✕　同じコメントを連投\n✕　同時接続数報告\n✕　他リスナーへの挨拶（初見・配信者）\n✕　流れに関係ない話（自分語りなど）\n（お聞きしたい気持ちはあっても枠の進行のためにスルーしてしまうのが心苦しいので…！）\n\n🙏🏻お願い\n　　コメントは日本語か英語でお願い申し上げます。\n　　Please chat in EN or JP！Thank you！\n\nいつも守ってくださるみなさまのおかげで、あたたかくて素敵な雰囲気の枠になっています！\nありがとうございます🙏🏻\n\n୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧\n\nお母様＆お父様 / 菊月様\nhttps://twitter.com/kikugetu\n\nED / 京あめこ様\nhttps://twitter.com/u_matchaman\n\nBGM / Nofu様\nhttps://twitter.com/cheaptune\n\n音声機材調整 / シィナ様\nhttps://twitter.com/paruina\n\n୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧",
+              "title": "【朝活ティアキン】雑談多めのゼルダの伝説 ティアーズ オブ ザ キングダム【 #新人Vtuber #凪乃ましろ 】",
+            },
+          "published_at": "2023-06-02T05:01:41.000+00:00",
+          "tags":
+            [
+              "ましろ",
+              "VTuber",
+              "凪乃ましろ",
+              "凪乃",
+              "Nagino_Mashiro",
+              "Nagino",
+              "Mashiro",
+              "新人",
+              "雑談",
+            ],
+          "thumbnails":
+            {
+              "default":
+                {
+                  "height": 90,
+                  "url": "https://i.ytimg.com/vi/GQn1LkJ4X4o/default.jpg",
+                  "width": 120,
+                },
+              "high":
+                {
+                  "height": 360,
+                  "url": "https://i.ytimg.com/vi/GQn1LkJ4X4o/hqdefault.jpg",
+                  "width": 480,
+                },
+              "medium":
+                {
+                  "height": 180,
+                  "url": "https://i.ytimg.com/vi/GQn1LkJ4X4o/mqdefault.jpg",
+                  "width": 320,
+                },
+              "maxres":
+                {
+                  "height": 720,
+                  "url": "https://i.ytimg.com/vi/GQn1LkJ4X4o/maxresdefault.jpg",
+                  "width": 1280,
+                },
+              "standard":
+                {
+                  "height": 480,
+                  "url": "https://i.ytimg.com/vi/GQn1LkJ4X4o/sddefault.jpg",
+                  "width": 640,
+                },
+            },
+          "title": "【朝活ティアキン】雑談多めのゼルダの伝説 ティアーズ オブ ザ キングダム【 #新人Vtuber #凪乃ましろ 】",
         },
     }
