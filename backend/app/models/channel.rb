@@ -1,5 +1,6 @@
 class Channel < ApplicationRecord
   has_many :videos, dependent: :destroy
+  validates :channel_id, presence: true, uniqueness: true
 
   def self.fetch_and_create!(channel_id)
     response = Youtube.get_channel(channel_id)

@@ -1,6 +1,7 @@
 class Video < ApplicationRecord
   belongs_to :channel
   has_many :song_items, dependent: :destroy
+  validates :video_id, presence: true, uniqueness: true
 
   enum kind: {
     video: 0,
@@ -15,7 +16,7 @@ class Video < ApplicationRecord
     return if items.blank?
 
     errors.add(:base, '与えられたチャンネルの動画ではありません。') \
-      if new.channel.channel_id.present? && new.channel.channel_id != items[0].snippet.channel_id
+      if new.channel.present? && new.channel_id != items[0].snippet.channel_id
     
     channel = Channel.find_by(channel_id: items[0].snippet.channel_id)
 
