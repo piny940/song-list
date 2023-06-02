@@ -6,6 +6,7 @@ class CreateSongDiffs < ActiveRecord::Migration[7.0]
       t.datetime :time
       t.string :title
       t.string :author
+      t.integer :status, null: false, default: 0
 
       t.timestamps
     end
