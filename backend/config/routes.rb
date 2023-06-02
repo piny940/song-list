@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   end
 
   namespace :api, defaults: { format: :json } do
-    resources :channels, only: %i[index show]
+    resources :channels, only: %i[index show] do
+      resources :videos, only: %i[index show]
+    end
   end
 end
