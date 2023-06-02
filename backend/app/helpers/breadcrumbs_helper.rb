@@ -52,7 +52,7 @@ module BreadcrumbsHelper
     when 'admin/videos/song_items#index'
       { name: '歌一覧', url: admin_video_song_items_path(@video) }
     when 'admin/videos/song_items#show'
-      { name: @song_item.id, url: admin_video_song_item_path(@video, @song_item) }
+      { name: @song_item.title || @song_item.id, url: admin_video_song_item_path(@video, @song_item) }
     when 'admin/videos/song_items#edit'
       { name: '編集', url: edit_admin_video_song_item_path(@video, @song_item) }
     when 'admin/videos/song_items#new'
