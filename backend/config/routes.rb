@@ -8,7 +8,9 @@ Rails.application.routes.draw do
     resources :channels
     resources :videos do
       scope module: :videos do
-        resources :song_items
+        resources :song_items do
+          resources :song_diffs
+        end
       end
     end
     

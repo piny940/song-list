@@ -1,0 +1,23 @@
+= form_with(model: [:admin, @song_item, song_diff]) do |form|
+  - if song_diff.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(song_diff.errors.count, "error")} prohibited this song_diff from being saved:"
+      %ul
+        - song_diff.errors.full_messages.each do |message|
+          %li= message
+  
+  .row.mb-3
+    .col-md-3.col-form-label.fw-bold made_by_id
+    .col-md-9= form.number_field :made_by_id, class: 'form-control'
+  .row.mb-3
+    .col-md-3.col-form-label.fw-bold time
+    .col-md-9= form.datetime_field :time, class: 'form-control'
+  .row.mb-3
+    .col-md-3.col-form-label.fw-bold title
+    .col-md-9= form.text_field :title, class: 'form-control'
+  .row.mb-3
+    .col-md-3.col-form-label.fw-bold author
+    .col-md-9= form.text_field :author, class: 'form-control'
+  .row
+    .col
+      = form.submit '保存', class: 'btn btn-primary d-block w-100'
