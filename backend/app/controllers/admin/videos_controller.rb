@@ -16,11 +16,10 @@ class Admin::VideosController < Admin::Base
   def edit; end
 
   def create
-    channel = Channel.find(video_params[:channel_id])
-    @video = channel.videos.fetch_and_create!(video_params[:video_id])
+    @video = Video.fetch_and_create!(video_params[:video_id])
 
     if @video.present?
-      redirect_to admin_videos_path(channel_id: channel.id), notice: 'Videoが作成されました。'
+      redirect_to admin_videos_path(channel_id: @video.channel.id), notice: 'Videoが作成されました。'
     else
       render :new, status: :unprocessable_entity
     end
@@ -36,7 +35,7 @@ class Admin::VideosController < Admin::Base
 
   def destroy
     @video.destroy
-    redirect_to admin_videos_path(channel_id: @channel&.id), notice: 'Videoが削除されました。'
+    redirect_to admin_videos_path(channel_id: @video.channel.id), notice: 'Videoが削除されました。'
   end
 
   private
