@@ -5,7 +5,10 @@ class SongItem < ApplicationRecord
   def active?
     return false unless song_diffs.status_approved.present?
     
-    !song_diffs.status_approved.order(id: :desc).last.deletion?
+    !song_diffs.status_approved.last.deletion?
+  end
+
+  def self.active
   end
 
   def title
