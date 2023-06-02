@@ -1,6 +1,6 @@
 %h1 Video編集
 
-= form_with(model: [:admin, @channel, @video]) do |form|
+= form_with(model: [:admin, @video]) do |form|
   - if @video.errors.any?
     #error_explanation
       %h2= "#{pluralize(@video.errors.count, "error")} prohibited this video from being saved:"
@@ -21,6 +21,6 @@
     .col
       = form.submit '保存', class: 'btn btn-primary d-block w-100'
 
-= link_to '閲覧', admin_channel_video_path(@channel, @video)
+= link_to '閲覧', admin_video_path(@video)
 \|
-= link_to '戻る', admin_channel_videos_path(@channel)
+= link_to '戻る', admin_videos_path

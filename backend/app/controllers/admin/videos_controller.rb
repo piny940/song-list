@@ -1,21 +1,22 @@
 class Admin::VideosController < Admin::Base
-  before_action :set_channel
+  before_action :set_scope
   before_action :set_video, only: %i[show edit update destroy]
 
   def index
-    @videos = Video.all
+    @videos = @scope.all
   end
 
   def show; end
 
   def new
-    @video = Video.new
+    @video = @scope.new
   end
 
   def edit; end
 
   def create
-    @video = @channel.videos.fetch_and_create!(video_params[:video_id])
+    channel = Channel.find(video_params[:channel_id])
+    @video = channel.videos.fetch_and_create!(video_params[:video_id])
 
     if @video.present?
       redirect_to admin_channel_videos_path(@channel), notice: 'Videoが作成されました。'
@@ -39,12 +40,13 @@ class Admin::VideosController < Admin::Base
 
   private
 
-  def set_channel
-    @channel = Channel.find(params[:channel_id])
+  def set_scope
+    channel = params[:channel_id].present? && Channel.find_by(id: params[:channel_id])
+    @scope = channel.present? ? channel.videos : Video
   end
 
   def set_video
-    @video = Video.find(params[:id])
+    @video = @scope.find(params[:id])
   end
 
   def video_params

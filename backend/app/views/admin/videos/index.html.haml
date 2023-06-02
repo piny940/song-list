@@ -10,7 +10,7 @@
 
   %tbody
     %tr
-      %td{colspan: 6}= link_to 'video新規作成', new_admin_channel_video_path(@channel), class: 'btn btn-primary w-100'
+      %td{colspan: 6}= link_to 'video新規作成', new_admin_video_path, class: 'btn btn-primary w-100'
     - @videos.each do |video|
       %tr
         %th= image_tag video.thumbnails["high"]["url"], width: 200
@@ -18,6 +18,6 @@
         %td= video.kind
         %td= video.title
         %td
-          = link_to '閲覧', admin_channel_video_path(@channel, video), class: 'btn btn-sm btn-outline-primary'
-          = link_to '編集', edit_admin_channel_video_path(@channel, video), class: 'btn btn-sm btn-outline-primary'
-          = link_to '削除', admin_channel_video_path(@channel, video), method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: 'btn btn-sm btn-outline-danger'
+          = link_to '閲覧', admin_video_path(video), class: 'btn btn-sm btn-outline-primary'
+          = link_to '編集', edit_admin_video_path(video), class: 'btn btn-sm btn-outline-primary'
+          = link_to '削除', admin_video_path(video), method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: 'btn btn-sm btn-outline-danger'
