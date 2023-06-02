@@ -13,7 +13,7 @@
       %td{colspan: 6}= link_to 'song_diff新規作成', new_admin_video_song_item_song_diff_path(@video, @song_item), class: 'btn btn-primary w-100'
     - @song_diffs.each do |song_diff|
       %tr
-        %td= song_diff.made_by_id
+        %td= song_diff.made_by.email
         %td= song_diff.time
         %td= song_diff.title
         %td= song_diff.author
