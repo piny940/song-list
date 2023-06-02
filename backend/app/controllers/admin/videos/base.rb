@@ -4,6 +4,6 @@ class Admin::Videos::Base < Admin::Base
   private
 
   def set_video
-    @video = @channel.videos.find(params[:video_id])
+    @video = Video.find(params[:video_id])
   end
 end

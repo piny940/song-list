@@ -2,19 +2,19 @@ class Admin::Videos::SongItemsController < Admin::Videos::Base
   before_action :set_song_item, only: %i[ show edit update destroy ]
 
   def index
-    @song_items = @video.sing_items.all
+    @song_items = @video.song_items.all
   end
 
   def show; end
 
   def new
-    @song_item = @video.sing_items.new
+    @song_item = @video.song_items.new
   end
 
   def edit; end
 
   def create
-    @song_item = @video.sing_items.new(song_item_params)
+    @song_item = @video.song_items.new(song_item_params)
 
     if @song_item.save
       redirect_to admin_video_song_items_path(@video), notice: "Song itemが作成されました。"

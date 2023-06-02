@@ -6,10 +6,12 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :channels
-    resources :videos
-    scope module: :videos do
-      resources :song_items
+    resources :videos do
+      scope module: :videos do
+        resources :song_items
+      end
     end
+    
     resource to: 'homes#show'
   end
 
