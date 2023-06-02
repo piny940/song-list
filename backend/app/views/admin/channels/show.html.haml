@@ -10,7 +10,7 @@
   .col-md-9= @channel.twitter_id
 .row.py-1
   .col-md-3.fw-bold Response json
-  .col-md-9= @channel.response_json
+  .col-md-9= @channel.response_json.to_json
 
 = link_to '編集', edit_admin_channel_path(@channel)
 \|
