@@ -4,6 +4,7 @@ class Api::SongItemsController < Api::Base
   def index
     scope = @video.present? ? @video.song_items : SongItem
     @song_items = scope.active
+    p @song_items.first.song_diffs.last
   end
 
   private

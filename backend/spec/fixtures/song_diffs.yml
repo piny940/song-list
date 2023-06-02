@@ -1,6 +1,6 @@
 one1:
   made_by: one
-  time: 2023-06-02T00:13:16
+  time: <%= Time.zone.parse("2023-06-02 00:13:16") %>
   title: アイドル1
   author: YOASOBI
   song_item: one
@@ -8,14 +8,14 @@ one1:
 
 one2:
   made_by: one
-  time: 2023-06-02T00:08:16
+  time: <%= Time.zone.parse("2023-06-02 00:08:16") %>
   title: アイドル2
   song_item: one
   status: approved
 
 two1:
   made_by: one
-  time: 2023-06-02T00:07:16
+  time: <%= Time.zone.parse("2023-06-02 00:07:16") %>
   title: アイドル3
   author: YOASOBI
   song_item: two
@@ -23,7 +23,7 @@ two1:
 
 three1:
   made_by: one
-  time: 2023-06-02T00:08:10
+  time: <%= Time.zone.parse("2023-06-02 00:08:10") %>
   title: アイドル4
   author: YOASOBI
   song_item: three
