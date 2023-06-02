@@ -2,21 +2,25 @@
 %table.table
   %thead.table-light
     %tr
+      %th ID
       %th Made by
       %th Time
       %th Title
       %th Author
+      %th Status
       %th
 
   %tbody
     %tr
-      %td{colspan: 6}= link_to 'song_diff新規作成', new_admin_video_song_item_song_diff_path(@video, @song_item), class: 'btn btn-primary w-100'
+      %td{colspan: 7}= link_to 'song_diff新規作成', new_admin_video_song_item_song_diff_path(@video, @song_item), class: 'btn btn-primary w-100'
     - @song_diffs.each do |song_diff|
       %tr
+        %td= song_diff.id
         %td= song_diff.made_by.email
         %td= song_diff.time
         %td= song_diff.title
         %td= song_diff.author
+        %td= song_diff.status
         %td
           = link_to '閲覧', admin_video_song_item_song_diff_path(@video, @song_item, song_diff), class: 'btn btn-sm btn-outline-primary'
           = link_to '編集', edit_admin_video_song_item_song_diff_path(@video, @song_item, song_diff), class: 'btn btn-sm btn-outline-primary'

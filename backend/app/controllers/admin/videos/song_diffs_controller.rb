@@ -48,6 +48,6 @@ class Admin::Videos::SongDiffsController < Admin::Videos::Base
   end
 
   def song_diff_params
-    params.require(:song_diff).permit(:made_by_id, :time, :title, :author)
+    params.require(:song_diff).permit(:made_by_id, :time, :title, :author, :status)
   end
 end

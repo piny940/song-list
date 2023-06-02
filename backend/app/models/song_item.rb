@@ -3,9 +3,9 @@ class SongItem < ApplicationRecord
   has_many :song_diffs, dependent: :destroy
 
   def active?
-    return false unless song_diffs.present?
+    return false unless song_diffs.status_approved.present?
     
-    !song_diffs.status_approved.last.deletion?
+    !song_diffs.status_approved.order(id: :desc).last.deletion?
   end
 
   def title
