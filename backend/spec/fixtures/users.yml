@@ -1,0 +1,9 @@
+one:
+  email: test1@example.com
+  password: password
+  password_confirmation: password
+
+two:
+  email: test2@example.com
+  password: password
+  password_confirmation: password
