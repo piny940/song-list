@@ -7,16 +7,16 @@
           %li= message
   
   .row.mb-3
-    .col-md-3.col-form-label.fw-bold made_by_id
-    .col-md-9= form.number_field :made_by_id, class: 'form-control'
+    .col-md-3.col-form-label.fw-bold made_by
+    .col-md-9= form.collection_select :made_by_id, User.all, :id, :email, {}, class: 'form-control'
   .row.mb-3
-    .col-md-3.col-form-label.fw-bold time
-    .col-md-9= form.datetime_field :time, class: 'form-control'
+    .col-md-3.col-form-label.fw-bold 開始時間
+    .col-md-9= form.time_field :time, class: 'form-control', step: 1
   .row.mb-3
-    .col-md-3.col-form-label.fw-bold title
+    .col-md-3.col-form-label.fw-bold タイトル
     .col-md-9= form.text_field :title, class: 'form-control'
   .row.mb-3
-    .col-md-3.col-form-label.fw-bold author
+    .col-md-3.col-form-label.fw-bold 作者
     .col-md-9= form.text_field :author, class: 'form-control'
   .row
     .col
