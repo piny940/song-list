@@ -15,12 +15,12 @@ class Video < ApplicationRecord
 
     return if items.blank?
 
-    return errors.add(:channel_id, '与えられたチャンネルの動画ではありません。') \
+    raise '与えられたチャンネルの動画ではありません。' \
       if new.channel.present? && new.channel_id != items[0].snippet.channel_id
     
     channel = Channel.find_by(channel_id: items[0].snippet.channel_id)
 
-    return errors.add(:channel_id, 'この動画のチャンネルは存在しません') if channel.blank?
+    raise 'この動画のチャンネルはデータベースに存在しません' if channel.blank?
 
     kind = items[0].live_streaming_details.present? ? 'live' : 'video'
 
