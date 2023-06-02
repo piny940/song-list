@@ -1,0 +1,6 @@
+%h1 SongDiff編集
+= render "form", song_diff: @song_diff
+
+= link_to '閲覧', admin_video_song_item_song_diff_path(@video, @song_item, @song_diff)
+\|
+= link_to '戻る', admin_video_song_item_song_diffs_path(@video, @song_item)

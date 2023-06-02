@@ -1,0 +1,17 @@
+%h1 SongDiff
+.row.py-1
+  .col-md-3.fw-bold Made by
+  .col-md-9= @song_diff.made_by_id
+.row.py-1
+  .col-md-3.fw-bold Time
+  .col-md-9= @song_diff.time
+.row.py-1
+  .col-md-3.fw-bold Title
+  .col-md-9= @song_diff.title
+.row.py-1
+  .col-md-3.fw-bold Author
+  .col-md-9= @song_diff.author
+
+= link_to '編集', edit_admin_video_song_item_song_diff_path(@video, @song_item, @song_diff)
+\|
+= link_to '戻る', admin_video_song_item_song_diffs_path(@video, @song_item)
