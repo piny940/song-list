@@ -9,6 +9,10 @@ class SongItem < ApplicationRecord
   end
 
   def self.active
+    lasts = SongDiff.where(created_at: SongDiff.status_approved \
+              .group(:song_item_id).select('max(created_at)'))
+    where(id: lasts.where.not(title: ["", nil]).or(lasts.where.not(author: ["", nil])) \
+            .or(lasts.where.not(time: ["", nil])).pluck(:song_item_id))
   end
 
   def title
