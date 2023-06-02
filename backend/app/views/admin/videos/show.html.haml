@@ -12,6 +12,6 @@
   .col-md-3.fw-bold Response json
   .col-md-9= @video.response_json.to_json
 
-= link_to '編集', edit_admin_channel_video_path(@channel, @video)
+= link_to '編集', edit_admin_video_path(@video)
 \|
-= link_to '戻る', admin_channel_videos_path(@channel)
+= link_to '戻る', admin_videos_path

@@ -12,10 +12,13 @@ module BreadcrumbsHelper
     [
       ['admin/homes#show', 'admin/channels#index', 'admin/channels#new'],
       ['admin/homes#show', 'admin/channels#index', 'admin/channels#show', 'admin/channels#edit'],
-      ['admin/homes#show', 'admin/channels#index', 'admin/channels#show',
-       'admin/videos#index', 'admin/videos#show', 'admin/videos#edit'],
-      ['admin/homes#show', 'admin/channels#index', 'admin/channels#show',
-       'admin/videos#index', 'admin/videos#new']
+      ['admin/homes#show', 'admin/videos#index', 'admin/videos#show', 'admin/videos#edit'],
+      ['admin/homes#show', 'admin/videos#index', 'admin/videos#new'],
+      ['admin/homes#show', 'admin/videos#index', 'admin/videos#show',
+        'admin/videos/song_items#index', 'admin/videos/song_items#show',
+        'admin/videos/song_items#edit'],
+      ['admin/homes#show', 'admin/videos#index', 'admin/videos#show',
+        'admin/videos/song_items#index', 'admin/videos/song_items#new'],
     ]
   end
 
@@ -32,13 +35,21 @@ module BreadcrumbsHelper
     when 'admin/channels#edit'
       { name: '編集', url: edit_admin_channel_path(@channel) }
     when 'admin/videos#index'
-      { name: '動画一覧', url: admin_channel_videos_path(@channel) }
+      { name: '動画一覧', url: admin_videos_path }
     when 'admin/videos#show'
-      { name: @video.title[0, 10], url: admin_channel_video_path(@channel, @video) }
+      { name: @video.title[0, 10], url: admin_video_path(@video) }
     when 'admin/videos#edit'
-      { name: '編集', url: edit_admin_channel_video_path(@channel, @video) }
+      { name: '編集', url: edit_admin_video_path(@video) }
     when 'admin/videos#new'
-      { name: '新規作成', url: new_admin_channel_video_path(@channel) }
+      { name: '新規作成', url: new_admin_video_path }
+    when 'admin/videos/song_items#index'
+      { name: '歌一覧', url: admin_video_song_items_path(@video) }
+    when 'admin/videos/song_items#show'
+      { name: @song_item.id, url: admin_video_song_item_path(@video, @song_item) }
+    when 'admin/videos/song_items#edit'
+      { name: '編集', url: edit_admin_video_song_item_path(@video, @song_item) }
+    when 'admin/videos/song_items#new'
+      { name: '新規作成', url: new_admin_video_song_item_path(@video) }
     else
       raise "breadcrumbs_url に #{name} が定義されていません！"
     end

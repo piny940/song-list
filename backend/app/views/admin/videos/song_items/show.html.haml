@@ -1,0 +1,8 @@
+%h1 SongItem
+.row.py-1
+  .col-md-3.fw-bold Video
+  .col-md-9= @song_item.video_id
+
+= link_to '編集', edit_admin_video_song_item_path(@video, @song_item)
+\|
+= link_to '戻る', admin_video_song_items_path(@video)

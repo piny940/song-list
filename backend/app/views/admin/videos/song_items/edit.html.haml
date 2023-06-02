@@ -1,0 +1,6 @@
+%h1 SongItem編集
+= render "form", song_item: @song_item
+
+= link_to '閲覧', admin_video_song_item_path(@video, @song_item)
+\|
+= link_to '戻る', admin_video_song_items_path(@video)

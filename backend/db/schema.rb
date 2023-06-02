@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_01_132235) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_02_074423) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,6 +21,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_132235) do
     t.json "response_json"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "song_items", force: :cascade do |t|
+    t.bigint "video_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["video_id"], name: "index_song_items_on_video_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -47,5 +54,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_132235) do
     t.index ["channel_id"], name: "index_videos_on_channel_id"
   end
 
+  add_foreign_key "song_items", "videos"
   add_foreign_key "videos", "channels"
 end
