@@ -12,6 +12,12 @@ class Youtube
     service.list_videos('liveStreamingDetails,snippet', id: video_id)
   end
 
+  RECENT_VIDEOS_ENDPOINT = 'https://www.youtube.com/feeds/videos.xml'.freeze
+  def self.get_recent_video_ids(channel_id)
+    xml = Nokogiri::XML(URI.parse.open("#{RECENT_VIDEOS_ENDPOINT}?channel_id=#{channel_id}"))
+    xml.css('feed entry id').map(&:text).pluck(9..)
+  end
+
   def self.get_chat_id(video_id)
     data = service.list_videos('liveStreamingDetails', id: video_id)
 

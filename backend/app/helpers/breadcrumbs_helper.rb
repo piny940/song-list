@@ -15,17 +15,17 @@ module BreadcrumbsHelper
       ['admin/homes#show', 'admin/videos#index', 'admin/videos#show', 'admin/videos#edit'],
       ['admin/homes#show', 'admin/videos#index', 'admin/videos#new'],
       ['admin/homes#show', 'admin/videos#index', 'admin/videos#show',
-        'admin/videos/song_items#index', 'admin/videos/song_items#show',
-        'admin/videos/song_items#edit'],
+       'admin/videos/song_items#index', 'admin/videos/song_items#show',
+       'admin/videos/song_items#edit'],
       ['admin/homes#show', 'admin/videos#index', 'admin/videos#show',
-        'admin/videos/song_items#index', 'admin/videos/song_items#new'],
+       'admin/videos/song_items#index', 'admin/videos/song_items#new'],
       ['admin/homes#show', 'admin/videos#index', 'admin/videos#show',
-        'admin/videos/song_items#index', 'admin/videos/song_items#show',
-        'admin/videos/song_diffs#index', 'admin/videos/song_diffs#show',
-        'admin/videos/song_diffs#edit'],
+       'admin/videos/song_items#index', 'admin/videos/song_items#show',
+       'admin/videos/song_diffs#index', 'admin/videos/song_diffs#show',
+       'admin/videos/song_diffs#edit'],
       ['admin/homes#show', 'admin/videos#index', 'admin/videos#show',
-        'admin/videos/song_items#index', 'admin/videos/song_items#show',
-        'admin/videos/song_diffs#index', 'admin/videos/song_diffs#new'],
+       'admin/videos/song_items#index', 'admin/videos/song_items#show',
+       'admin/videos/song_diffs#index', 'admin/videos/song_diffs#new']
     ]
   end
 

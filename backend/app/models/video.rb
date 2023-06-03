@@ -9,6 +9,12 @@ class Video < ApplicationRecord
     short: 20
   }, _prefix: true
 
+  enum status: {
+    ready: 0,
+    fetched: 10,
+    completed: 20
+  }, _prefix: true
+
   def self.fetch_and_create!(video_id)
     response = Youtube.get_video(video_id)
     items = response.items
@@ -17,7 +23,9 @@ class Video < ApplicationRecord
 
     raise '与えられたチャンネルの動画ではありません。' \
       if new.channel.present? && new.channel_id != items[0].snippet.channel_id
-    
+
+    return if Video.find_by(video_id:).present?
+
     channel = Channel.find_by(channel_id: items[0].snippet.channel_id)
 
     raise 'この動画のチャンネルはデータベースに存在しません' if channel.blank?
@@ -31,6 +39,10 @@ class Video < ApplicationRecord
       kind:,
       channel_id: channel.id
     )
+  end
+
+  def self.song_lives
+    where('title LIKE ?', '%歌枠%')
   end
 
   # {
@@ -56,5 +68,9 @@ class Video < ApplicationRecord
 
   def description
     response_json['snippet']['description']
+  end
+
+  def song_live?
+    !!title.match('歌枠')
   end
 end

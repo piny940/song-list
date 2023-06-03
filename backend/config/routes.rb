@@ -13,7 +13,7 @@ Rails.application.routes.draw do
         end
       end
     end
-    
+
     resource to: 'homes#show'
   end
 

@@ -5,6 +5,7 @@
       %th Thumbnail
       %th Video
       %th Kind
+      %th Status
       %th Title
       %th Links
 
@@ -16,6 +17,7 @@
         %th= image_tag video.thumbnails["high"]["url"], width: 200
         %td= video.video_id
         %td= video.kind
+        %td= video.status
         %td= video.title
         %td
           = link_to '歌リスト', admin_video_song_items_path(video), class: 'btn btn-sm btn-outline-primary'

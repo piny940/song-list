@@ -17,7 +17,7 @@ class Admin::ChannelsController < Admin::Base
     @channel = Channel.fetch_and_create!(channel_params[:channel_id])
 
     if @channel.present?
-      redirect_to @channel, notice: 'Channel が作成されました。'
+      redirect_to admin_channels_path, notice: 'Channel が作成されました。'
     else
       render :new, status: :unprocessable_entity
     end
