@@ -21,6 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_02_102529) do
     t.json "response_json"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["channel_id"], name: "index_channels_on_channel_id", unique: true
   end
 
   create_table "song_diffs", force: :cascade do |t|
@@ -66,6 +67,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_02_102529) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["channel_id"], name: "index_videos_on_channel_id"
+    t.index ["video_id"], name: "index_videos_on_video_id", unique: true
   end
 
   add_foreign_key "song_diffs", "song_items"
