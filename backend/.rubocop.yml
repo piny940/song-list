@@ -6,6 +6,7 @@ AllCops:
     - "db/**/*"
     - "bin/**/*"
     - "node_modules/**/*"
+  SuggestExtensions: false
 
 # 日本語でのコメントを許可
 Style/AsciiComments:
@@ -19,7 +20,8 @@ Documentation:
 Style/ClassAndModuleChildren:
   Enabled: false
 
-SuggestExtensions: false
+Naming/HeredocDelimiterNaming:
+  Enabled: false
 
 Naming/AccessorMethodName:
   Enabled: false

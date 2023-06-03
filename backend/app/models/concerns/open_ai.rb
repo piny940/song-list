@@ -10,7 +10,7 @@ module OpenAi
   #     content: string
   #   }
   # ]
-  COMPLETIONS_ENDPOINT = 'https://api.openai.com/v1/chat/completions'
+  COMPLETIONS_ENDPOINT = 'https://api.openai.com/v1/chat/completions'.freeze
   def self.complete_chat(messages)
     uri = URI.parse(COMPLETIONS_ENDPOINT)
     query = {
@@ -25,12 +25,10 @@ module OpenAi
     content
   end
 
-  private
-
   def self.header
     {
       'Content-Type': 'application/json',
-      'Authorization' => "Bearer #{ENV['OPENAI_API_KEY']}"
+      'Authorization' => "Bearer #{ENV.fetch('OPENAI_API_KEY', nil)}"
     }
   end
 end

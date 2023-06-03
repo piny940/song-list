@@ -32,12 +32,12 @@ module SongLive
       }
     ]
     content = OpenAi.complete_chat(messages)
-    content = content.grep(/unknown|UNKNOWN|/, "")
-    content = content.grep(/\"-\"/, '""')
-    
+    content = content.grep(/unknown|UNKNOWN|/, '')
+    content = content.grep(/"-"/, '""')
+
     begin
       JSON.parse(content)
-    rescue => exception
+    rescue StandardError
       []
     end
   end
