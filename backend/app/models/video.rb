@@ -18,6 +18,8 @@ class Video < ApplicationRecord
     raise '与えられたチャンネルの動画ではありません。' \
       if new.channel.present? && new.channel_id != items[0].snippet.channel_id
     
+    return if Video.find_by(video_id:).present?
+    
     channel = Channel.find_by(channel_id: items[0].snippet.channel_id)
 
     raise 'この動画のチャンネルはデータベースに存在しません' if channel.blank?

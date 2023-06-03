@@ -334,6 +334,7 @@ DEPENDENCIES
   haml-rails
   importmap-rails
   jbuilder
+  nokogiri
   pg (~> 1.1)
   puma (~> 5.0)
   rack-cors
