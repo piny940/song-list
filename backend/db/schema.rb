@@ -15,7 +15,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_02_102529) do
   enable_extension "plpgsql"
 
   create_table "channels", force: :cascade do |t|
-    t.string "channel_id"
+    t.string "channel_id", null: false
     t.string "name"
     t.string "twitter_id"
     t.json "response_json"
