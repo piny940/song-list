@@ -26,7 +26,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_02_102529) do
 
   create_table "song_diffs", force: :cascade do |t|
     t.bigint "song_item_id", null: false
-    t.integer "made_by_id", null: false
+    t.integer "made_by_id"
     t.datetime "time"
     t.string "title"
     t.string "author"

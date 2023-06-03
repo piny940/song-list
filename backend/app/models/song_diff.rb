@@ -1,6 +1,6 @@
 class SongDiff < ApplicationRecord
   belongs_to :song_item
-  belongs_to :made_by, class_name: 'User'
+  belongs_to :made_by, class_name: 'User', optional: true
 
   enum status: {
     pending: 0,

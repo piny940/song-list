@@ -16,7 +16,7 @@
     - @song_diffs.each do |song_diff|
       %tr
         %td= song_diff.id
-        %td= song_diff.made_by.email
+        %td= song_diff.made_by&.email
         %td= song_diff.time
         %td= song_diff.title
         %td= song_diff.author
