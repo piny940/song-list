@@ -62,6 +62,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_02_102529) do
     t.integer "kind", default: 0, null: false
     t.json "response_json", null: false
     t.string "title", null: false
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["channel_id"], name: "index_videos_on_channel_id"

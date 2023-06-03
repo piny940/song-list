@@ -9,6 +9,12 @@ class Video < ApplicationRecord
     short: 20
   }, _prefix: true
 
+  enum status: {
+    ready: 0,
+    fetched: 10,
+    completed: 20
+  }, _prefix: true
+
   def self.fetch_and_create!(video_id)
     response = Youtube.get_video(video_id)
     items = response.items

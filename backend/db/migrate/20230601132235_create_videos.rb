@@ -6,6 +6,7 @@ class CreateVideos < ActiveRecord::Migration[7.0]
       t.integer :kind, null: false, default: 0
       t.json :response_json, null: false
       t.string :title, null: false
+      t.integer :status, null: false, default: 0
 
       t.timestamps
     end
