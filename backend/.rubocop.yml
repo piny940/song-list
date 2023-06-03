@@ -19,6 +19,8 @@ Documentation:
 Style/ClassAndModuleChildren:
   Enabled: false
 
+SuggestExtensions: false
+
 Naming/AccessorMethodName:
   Enabled: false
 Metrics/AbcSize:
