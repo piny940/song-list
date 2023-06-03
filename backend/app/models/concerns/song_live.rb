@@ -13,17 +13,13 @@ module SongLive
 
   def parse_setlist(text)
     instruction = <<~EOS
-      以下は歌枠のsetlistです。これを時間と曲名と作曲者名のリストに変換してください。
+      以下はYoutubeの動画のコメントです。これが曲のセットリストであるかを判定し、セットリストであるならばこれを時間と曲名と作曲者名のリストに変換してください。
 
       フォーマットは
-      [
-          {
-            title: "",
-            time: "",
-              author:""
-          }
-      ]
-      というフォーマットで書いてください。
+      [{"title": "","time": "","author":""}]
+      というフォーマットで書いてください。内容が不明な箇所には'unknown'と書いてください。
+
+      セットリストでない場合はfalseと返してください。
     EOS
     messages = [
       {
@@ -35,6 +31,14 @@ module SongLive
         content: text
       }
     ]
-    OpenAi.complete_chat(messages)
+    content = OpenAi.complete_chat(messages)
+    content = content.grep(/unknown|UNKNOWN|/, "")
+    content = content.grep(/\"-\"/, '""')
+    
+    begin
+      JSON.parse(content)
+    rescue => exception
+      []
+    end
   end
 end

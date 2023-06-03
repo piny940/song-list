@@ -14,7 +14,7 @@ module OpenAi
   def self.complete_chat(messages)
     uri = URI.parse(COMPLETIONS_ENDPOINT)
     query = {
-      model: 'gpt-4',
+      model: 'gpt-3.5-turbo',
       messages:
     }
     response = Net::HTTP.post(uri, query.to_json, header)
@@ -27,9 +27,9 @@ module OpenAi
 
   private
 
-  def header
+  def self.header
     {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
       'Authorization' => "Bearer #{ENV['OPENAI_API_KEY']}"
     }
   end
