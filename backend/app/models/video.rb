@@ -35,6 +35,10 @@ class Video < ApplicationRecord
     )
   end
 
+  def self.song_lives
+    where("title LIKE ?", '%歌枠%')
+  end
+
   # {
   #   default: {
   #     width: number,
@@ -58,5 +62,9 @@ class Video < ApplicationRecord
 
   def description
     response_json['snippet']['description']
+  end
+
+  def song_live?
+    !!title.match('歌枠')
   end
 end
