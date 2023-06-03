@@ -1,0 +1,6 @@
+%h1 comment編集
+= render "form", comment: @comment
+
+= link_to '閲覧', admin_video_comment_path(@video, @comment)
+\|
+= link_to '戻る', admin_video_comments_path(@video)
