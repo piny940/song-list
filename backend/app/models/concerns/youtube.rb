@@ -1,7 +1,7 @@
 require 'google/apis/youtube_v3'
 require 'open-uri'
 
-class Youtube
+module Youtube
   extend ActiveSupport::Concern
 
   def self.get_channel(channel_id)
