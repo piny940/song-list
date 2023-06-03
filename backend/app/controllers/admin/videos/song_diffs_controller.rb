@@ -1,6 +1,6 @@
 class Admin::Videos::SongDiffsController < Admin::Videos::Base
   before_action :set_song_item
-  before_action :set_song_diff, only: %i[ show edit update destroy ]
+  before_action :set_song_diff, only: %i[show edit update destroy]
 
   def index
     @song_diffs = @song_item.song_diffs.all
@@ -18,7 +18,7 @@ class Admin::Videos::SongDiffsController < Admin::Videos::Base
     @song_diff = @song_item.song_diffs.new(song_diff_params)
 
     if @song_diff.save
-      redirect_to admin_video_song_item_song_diffs_path(@video, @song_item), notice: "Song diffが作成されました。"
+      redirect_to admin_video_song_item_song_diffs_path(@video, @song_item), notice: 'Song diffが作成されました。'
     else
       render :new, status: :unprocessable_entity
     end
@@ -26,7 +26,7 @@ class Admin::Videos::SongDiffsController < Admin::Videos::Base
 
   def update
     if @song_diff.update(song_diff_params)
-      redirect_to admin_video_song_item_song_diffs_path(@video, @song_item), notice: "Song diffが更新されました。"
+      redirect_to admin_video_song_item_song_diffs_path(@video, @song_item), notice: 'Song diffが更新されました。'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -34,7 +34,7 @@ class Admin::Videos::SongDiffsController < Admin::Videos::Base
 
   def destroy
     @song_diff.destroy
-    redirect_to admin_video_song_item_song_diffs_path(@video, @song_item), notice: "Song diffが削除されました。"
+    redirect_to admin_video_song_item_song_diffs_path(@video, @song_item), notice: 'Song diffが削除されました。'
   end
 
   private

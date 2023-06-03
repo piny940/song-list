@@ -1,5 +1,5 @@
 class Admin::Videos::SongItemsController < Admin::Videos::Base
-  before_action :set_song_item, only: %i[ show edit update destroy ]
+  before_action :set_song_item, only: %i[show edit update destroy]
 
   def index
     @song_items = @video.song_items.all
@@ -17,7 +17,7 @@ class Admin::Videos::SongItemsController < Admin::Videos::Base
     @song_item = @video.song_items.new(song_item_params)
 
     if @song_item.save
-      redirect_to admin_video_song_items_path(@video), notice: "Song itemが作成されました。"
+      redirect_to admin_video_song_items_path(@video), notice: 'Song itemが作成されました。'
     else
       render :new, status: :unprocessable_entity
     end
@@ -25,7 +25,7 @@ class Admin::Videos::SongItemsController < Admin::Videos::Base
 
   def update
     if @song_item.update(song_item_params)
-      redirect_to admin_video_song_items_path(@video), notice: "Song itemが更新されました。"
+      redirect_to admin_video_song_items_path(@video), notice: 'Song itemが更新されました。'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -33,7 +33,7 @@ class Admin::Videos::SongItemsController < Admin::Videos::Base
 
   def destroy
     @song_item.destroy
-    redirect_to admin_video_song_items_path(@video), notice: "Song itemが削除されました。"
+    redirect_to admin_video_song_items_path(@video), notice: 'Song itemが削除されました。'
   end
 
   private

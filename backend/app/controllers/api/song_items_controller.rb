@@ -12,21 +12,25 @@ class Api::SongItemsController < Api::Base
   private
 
   def set_video
-    return unless params[:video_id].present?
+    return if params[:video_id].blank?
 
     @video = Video.find_by(id: params[:video_id])
 
-    render json: {
-      message: 'Video not found'
-    }, status: 400 unless @video.present?
+    if @video.blank?
+      render json: {
+        message: 'Video not found'
+      }, status: :bad_request
+    end
   end
 
   def set_song_item
     scope = @video.present? ? @video.song_items : SongItem
     @song_item = scope.active.find_by(id: params[:id])
 
-    render json: {
-      message: 'Song item not found'
-    }, status: 400 unless @song_item.present?
+    if @song_item.blank?
+      render json: {
+        message: 'Song item not found'
+      }, status: :bad_request
+    end
   end
 end
