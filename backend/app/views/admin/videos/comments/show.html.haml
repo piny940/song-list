@@ -1,0 +1,14 @@
+%h1 comment
+.row.py-1
+  .col-md-3.fw-bold Video
+  .col-md-9= @comment.video_id
+.row.py-1
+  .col-md-3.fw-bold Status
+  .col-md-9= @comment.status
+.row.py-1
+  .col-md-3.fw-bold Response json
+  .col-md-9= @comment.response_json
+
+= link_to '編集', edit_admin_video_comment_path(@video, @comment)
+\|
+= link_to '戻る', admin_video_comments_path(@video)

@@ -3,6 +3,7 @@ class Video < ApplicationRecord
 
   belongs_to :channel
   has_many :song_items, dependent: :destroy
+  has_many :comments, dependent: :destroy
   validates :video_id, presence: true, uniqueness: true
 
   enum kind: {
@@ -11,6 +12,8 @@ class Video < ApplicationRecord
     short: 20
   }, _prefix: true
 
+  # コメントにセトリを探しに行ったらfetched
+  # セトリが確定したら(= セトリが見つかった or 歌枠ではなかったら)completed
   enum status: {
     ready: 0,
     fetched: 10,

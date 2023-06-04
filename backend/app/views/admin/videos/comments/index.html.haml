@@ -1,0 +1,21 @@
+%h1 Comment一覧
+%table.table
+  %thead.table-light
+    %tr
+      %th Status
+      %th Content
+      %th Author
+      %th
+
+  %tbody
+    %tr
+      %td{colspan: 4}= link_to 'comment新規作成', new_admin_video_comment_path(@video), class: 'btn btn-primary w-100'
+    - @comments.each do |comment|
+      %tr
+        %td= comment.status_i18n
+        %td= comment.content
+        %td= comment.author
+        %td
+          = link_to '閲覧', admin_video_comment_path(@video, comment), class: 'btn btn-sm btn-outline-primary'
+          = link_to '編集', edit_admin_video_comment_path(@video, comment), class: 'btn btn-sm btn-outline-primary'
+          = link_to '削除', admin_video_comment_path(@video, comment), method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: 'btn btn-sm btn-outline-danger'

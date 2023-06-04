@@ -25,7 +25,12 @@ module BreadcrumbsHelper
        'admin/videos/song_diffs#edit'],
       ['admin/homes#show', 'admin/videos#index', 'admin/videos#show',
        'admin/videos/song_items#index', 'admin/videos/song_items#show',
-       'admin/videos/song_diffs#index', 'admin/videos/song_diffs#new']
+       'admin/videos/song_diffs#index', 'admin/videos/song_diffs#new'],
+      ['admin/homes#show', 'admin/videos#index', 'admin/videos#show',
+       'admin/videos/comments#index', 'admin/videos/comments#show',
+       'admin/videos/comments#edit'],
+      ['admin/homes#show', 'admin/videos#index', 'admin/videos#show',
+       'admin/videos/comments#index', 'admin/videos/comments#new']
     ]
   end
 
@@ -65,6 +70,14 @@ module BreadcrumbsHelper
       { name: '編集', url: edit_admin_video_song_item_song_diff_path(@video, @song_item, @song_diff) }
     when 'admin/videos/song_diffs#new'
       { name: '新規作成', url: new_admin_video_song_item_song_diff_path(@video, @song_item) }
+    when 'admin/videos/comments#index'
+      { name: 'コメント一覧', url: admin_video_comments_path(@video) }
+    when 'admin/videos/comments#show'
+      { name: @comment.content[0, 10], url: admin_video_comment_path(@video, @comment) }
+    when 'admin/videos/comments#edit'
+      { name: '編集', url: edit_admin_video_comment_path(@video, @comment) }
+    when 'admin/videos/comments#new'
+      { name: '新規作成', url: new_admin_video_comment_path(@video) }
     else
       raise "breadcrumbs_url に #{name} が定義されていません！"
     end

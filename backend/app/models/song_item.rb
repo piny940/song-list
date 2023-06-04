@@ -32,4 +32,20 @@ class SongItem < ApplicationRecord
 
     song_diffs.status_approved.last.time
   end
+
+  def self.create_song_items_from_json(songs)
+    song_items = []
+    songs.each do |song|
+      song_item = create!
+      song_item.song_diffs.create!(
+        kind: 'auto',
+        author: song['author'],
+        time: Time.zone.parse(song['time']),
+        title: song['title'],
+        status: 'approved'
+      )
+      song_items.push(song_item)
+    end
+    song_items
+  end
 end

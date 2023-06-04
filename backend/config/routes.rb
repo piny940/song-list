@@ -11,6 +11,7 @@ Rails.application.routes.draw do
         resources :song_items do
           resources :song_diffs
         end
+        resources :comments
       end
     end
 
