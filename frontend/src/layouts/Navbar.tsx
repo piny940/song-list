@@ -10,7 +10,7 @@ export const Navbar: React.FC = () => {
     >
       <div className="container-fluid px-5">
         <Link href="/">
-          <div className="navbar-brand title fw-bold">Next Template</div>
+          <div className="navbar-brand title fw-bold">Song Lists</div>
         </Link>
         <IconButton theme="dark" onClick={() => undefined} />
       </div>

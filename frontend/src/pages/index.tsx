@@ -1,8 +1,8 @@
 import type { NextPage } from 'next'
-import { App } from '../containers/App'
+import { Home } from '../containers/Home'
 
-const Home: NextPage = () => {
-  return <App />
+const Index: NextPage = () => {
+  return <Home />
 }
 
-export default Home
+export default Index
