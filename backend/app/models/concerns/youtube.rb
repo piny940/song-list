@@ -18,6 +18,10 @@ module Youtube
     xml.css('feed entry id').map(&:text).pluck(9..)
   end
 
+  def self.get_comments_data(video_id, page_token: nil)
+    service.list_comment_threads('snippet,replies', video_id:, page_token:)
+  end
+
   def self.get_chat_id(video_id)
     data = service.list_videos('liveStreamingDetails', id: video_id)
 
