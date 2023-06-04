@@ -39,9 +39,10 @@ class SongItem < ApplicationRecord
       song_item = create!
       song_item.song_diffs.create!(
         kind: 'auto',
-        author: song['autor'],
+        author: song['author'],
         time: Time.zone.parse(song['time']),
-        title: song['title']
+        title: song['title'],
+        status: 'approved'
       )
       song_items.push(song_item)
     end
