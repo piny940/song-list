@@ -11,8 +11,8 @@ module SongComment
     update!(status: 'fetched')
     songs = parse_setlist
     update!(status: 'completed')
-    
-    return unless songs.present?
+
+    return if songs.blank?
 
     video.song_items.create_song_items_from_json(songs)
   end
