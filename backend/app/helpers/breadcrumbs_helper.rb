@@ -30,7 +30,7 @@ module BreadcrumbsHelper
        'admin/videos/comments#index', 'admin/videos/comments#show',
        'admin/videos/comments#edit'],
       ['admin/homes#show', 'admin/videos#index', 'admin/videos#show',
-       'admin/videos/comments#index', 'admin/videos/comments#new'],
+       'admin/videos/comments#index', 'admin/videos/comments#new']
     ]
   end
 
