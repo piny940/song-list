@@ -23,20 +23,15 @@ class Video < ApplicationRecord
   def self.fetch_and_create!(video_id)
     response = Youtube.get_video(video_id)
     items = response.items
-
     return if items.blank?
-
     raise '与えられたチャンネルの動画ではありません。' \
-      if new.channel.present? && new.channel_id != items[0].snippet.channel_id
-
+      if new.channel.present? && new.channel.channel_id != items[0].snippet.channel_id
     return if Video.find_by(video_id:).present?
 
     channel = Channel.find_by(channel_id: items[0].snippet.channel_id)
-
     raise 'この動画のチャンネルはデータベースに存在しません' if channel.blank?
 
     kind = items[0].live_streaming_details.present? ? 'live' : 'video'
-
     create!(
       video_id:,
       title: items[0].snippet.title,

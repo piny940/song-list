@@ -5,13 +5,17 @@ module SongLive
     def song_lives
       where('title LIKE ?', '%歌枠%')
     end
+
+    def search_and_create_song_items!
+      song_lives.each(&:search_and_create_song_items!)
+    end
   end
 
   def song_live?
     !!title.match('歌枠')
   end
 
-  def search_and_create_song_items
+  def search_and_create_song_items!
     # 歌枠でない場合はstatusをcompleteにして終了
     unless song_live?
       update!(status: 'completed')

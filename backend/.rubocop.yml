@@ -22,7 +22,8 @@ Style/ClassAndModuleChildren:
 
 Naming/HeredocDelimiterNaming:
   Enabled: false
-
+Security/Open:
+  Enabled: false
 Naming/AccessorMethodName:
   Enabled: false
 Metrics/AbcSize:
