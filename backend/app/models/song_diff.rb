@@ -8,6 +8,11 @@ class SongDiff < ApplicationRecord
     rejected: 20
   }, _prefix: true
 
+  enum kind: {
+    manual: 0,
+    auto: 10
+  }
+
   def deletion?
     time.blank? && title.blank? && author.blank?
   end

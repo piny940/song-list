@@ -42,6 +42,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_03_054131) do
     t.string "title"
     t.string "author"
     t.integer "status", default: 0, null: false
+    t.integer "kind", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["made_by_id"], name: "index_song_diffs_on_made_by_id"
