@@ -44,4 +44,16 @@ class Channel < ApplicationRecord
   def custom_id
     response_json['snippet']['customUrl']
   end
+
+  def search_and_create_recent_videos
+    new_videos = []
+    video_ids = Youtube.get_recent_video_ids(channel_id)
+    video_ids.each do |video_id|
+      v = Video.find_by(video_id:)
+      next if Video.find_by(video_id:).present?
+      video = videos.fetch_and_create!(video_id)
+      new_videos.push(video)
+    end
+    new_videos
+  end
 end

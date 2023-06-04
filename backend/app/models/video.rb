@@ -25,7 +25,7 @@ class Video < ApplicationRecord
     items = response.items
     return if items.blank?
     raise '与えられたチャンネルの動画ではありません。' \
-      if new.channel.present? && new.channel_id != items[0].snippet.channel_id
+      if new.channel.present? && new.channel.channel_id != items[0].snippet.channel_id
     return if Video.find_by(video_id:).present?
 
     channel = Channel.find_by(channel_id: items[0].snippet.channel_id)
@@ -39,16 +39,6 @@ class Video < ApplicationRecord
       kind:,
       channel_id: channel.id
     )
-  end
-
-  def self.search_and_create_recent_videos
-    videos = []
-    video_ids = Youtube.get_recent_video_ids(channel_id)
-    video_ids.each do |video_id|
-      video = fetch_and_create!(video_id)
-      videos.push(video)
-    end
-    videos
   end
 
   # {

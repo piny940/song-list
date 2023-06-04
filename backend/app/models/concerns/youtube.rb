@@ -14,7 +14,8 @@ module Youtube
 
   RECENT_VIDEOS_ENDPOINT = 'https://www.youtube.com/feeds/videos.xml'.freeze
   def self.get_recent_video_ids(channel_id)
-    xml = Nokogiri::XML(URI.parse.open("#{RECENT_VIDEOS_ENDPOINT}?channel_id=#{channel_id}"))
+    p channel_id
+    xml = Nokogiri::XML(URI.open("#{RECENT_VIDEOS_ENDPOINT}?channel_id=#{channel_id}"))
     xml.css('feed entry id').map(&:text).pluck(9..)
   end
 
