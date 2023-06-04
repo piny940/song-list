@@ -9,9 +9,16 @@ export const Navbar: React.FC = () => {
       className="navbar navbar-expand navbar-light bg-light"
     >
       <div className="container-fluid px-5">
-        <Link href="/">
-          <div className="navbar-brand title fw-bold">Next Template</div>
+        <Link href="/" className="navbar-brand title fw-bold">
+          Song Lists
         </Link>
+        <div className="navbar-nav w-100 mx-3">
+          <div className="nav-item">
+            <Link href="/channels" className="nav-link">
+              チャンネル一覧
+            </Link>
+          </div>
+        </div>
         <IconButton theme="dark" onClick={() => undefined} />
       </div>
     </nav>
