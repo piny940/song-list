@@ -12,6 +12,8 @@ class Video < ApplicationRecord
     short: 20
   }, _prefix: true
 
+  # コメントにセトリを探しに行ったらfetched
+  # セトリが確定したら(= セトリが見つかった or 歌枠ではなかったら)completed
   enum status: {
     ready: 0,
     fetched: 10,
