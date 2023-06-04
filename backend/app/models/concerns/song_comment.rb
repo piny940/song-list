@@ -10,11 +10,14 @@ module SongComment
 
     update!(status: 'fetched')
     songs = parse_setlist
+
+    unless songs.is_a?(Enumerable)
+      update!(status: 'completed')
+      return
+    end
+
+    video.song_items.create_from_json!(songs)
     update!(status: 'completed')
-
-    return if songs.blank?
-
-    video.song_items.create_song_items_from_json(songs)
   end
 
   private
@@ -50,7 +53,7 @@ module SongComment
     end
   end
 
-  SETLIST_REGEX = /セトリ|セットリスト|せっとりすと|(s|S)et(\s|_)?(l|L)ist/
+  SETLIST_REGEX = /セトリ|セットリスト|せっとりすと|(s|S)et(\s|_)?(l|L)ist|ｓｏｎｇ/
   def setlist?(text)
     !!text.match(SETLIST_REGEX)
   end

@@ -16,4 +16,15 @@ class SongDiff < ApplicationRecord
   def deletion?
     time.blank? && title.blank? && author.blank?
   end
+
+  def self.create_from_json!(song)
+    time = song['time'].length == 5 ? "00:#{song['time']}" : song['time']
+    create!(
+      kind: 'auto',
+      author: song['author'],
+      time: Time.zone.parse(time),
+      title: song['title'],
+      status: 'approved'
+    )
+  end
 end
