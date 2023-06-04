@@ -1,4 +1,6 @@
 class Comment < ApplicationRecord
+  include SongComment
+
   belongs_to :video
 
   # セトリのコメントでない場合はcompleted、
@@ -8,4 +10,8 @@ class Comment < ApplicationRecord
     fetched: 10,
     completed: 20
   }
+
+  def content
+    response_json.dig('snippet', 'top_level_comment', 'snippet', 'text_original')
+  end
 end

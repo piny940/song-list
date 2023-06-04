@@ -11,34 +11,27 @@ module SongLive
     !!title.match('歌枠')
   end
 
-  def parse_setlist(text)
-    instruction = <<~EOS
-      以下はYoutubeの動画のコメントです。これが曲のセットリストであるかを判定し、セットリストであるならばこれを時間と曲名と作曲者名のリストに変換してください。
+  def search_songs
+    songs = []
 
-      フォーマットは
-      [{"title": "","time": "","author":""}]
-      というフォーマットで書いてください。内容が不明な箇所には'unknown'と書いてください。
+    while true
+      page_token  = nil
+      response = Youtube.get_comments_data(video_id, page_token)
+      
+      break if response.items.nil?
 
-      セットリストでない場合はfalseと返してください。
-    EOS
-    messages = [
-      {
-        role: 'system',
-        content: instruction
-      },
-      {
-        role: 'assistant',
-        content: text
-      }
-    ]
-    content = OpenAi.complete_chat(messages)
-    content = content.grep(/unknown|UNKNOWN|/, '')
-    content = content.grep(/"-"/, '""')
+      response.items.each do |item|
+        next if Comment.find_by(comment_id: item.id).present?
+        comment = comments.create!(response_json: item.to_h)
+        songs = comment.search_songs
+        break if songs.present?
+      end
+      break if songs.present?
 
-    begin
-      JSON.parse(content)
-    rescue StandardError
-      []
+      page_token = response.next_page_token
+      break if page_token.blank?
     end
+
+    songs
   end
 end
