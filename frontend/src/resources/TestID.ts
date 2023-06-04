@@ -1,6 +1,6 @@
 export enum TestID {
   TEST = 'test',
-  APP = 'app',
+  HOME = 'home',
   CUSTOM404 = 'custom404',
   CUSTOM500 = 'custom500',
   NAVBAR = 'navbar',
