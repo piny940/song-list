@@ -8,7 +8,7 @@
   
   .row.mb-3
     .col-md-3.col-form-label.fw-bold status
-    .col-md-9= form.select :status, Comment.statuses_18n.invert, class: 'form-control'
+    .col-md-9= form.select :status, Comment.statuses_i18n.invert, {}, class: 'form-control'
   .row.mb-3
     .col-md-3.col-form-label.fw-bold response_json
     .col-md-9= form.text_area :response_json, class: 'form-control', size: '20x10'

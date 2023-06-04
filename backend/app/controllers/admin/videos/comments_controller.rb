@@ -43,6 +43,6 @@ class Admin::Videos::CommentsController < Admin::Videos::Base
   end
 
   def comment_params
-    params.require(:comment).permit(:video_id, :status, :response_json)
+    params.require(:comment).permit(:status, :response_json)
   end
 end
