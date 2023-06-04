@@ -1,7 +1,8 @@
 module SongComment
   extend ActiveSupport::Concern
 
-  def search_songs
+  # コメント本文にセトリが含まれるならsong_itemsを作成
+  def search_and_create_song_items
     unless setlist?(content)
       update!(status: 'completed')
       return
@@ -10,7 +11,10 @@ module SongComment
     update!(status: 'fetched')
     songs = parse_setlist
     update!(status: 'completed')
-    songs
+    
+    return unless songs.present?
+
+    video.song_items.create_song_items_from_json(songs)
   end
 
   private
