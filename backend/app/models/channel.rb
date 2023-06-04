@@ -49,7 +49,6 @@ class Channel < ApplicationRecord
     new_videos = []
     video_ids = Youtube.get_recent_video_ids(channel_id)
     video_ids.each do |video_id|
-      v = Video.find_by(video_id:)
       next if Video.find_by(video_id:).present?
       video = videos.fetch_and_create!(video_id)
       new_videos.push(video)
