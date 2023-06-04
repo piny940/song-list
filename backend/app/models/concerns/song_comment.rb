@@ -13,7 +13,7 @@ module SongComment
 
     unless songs.is_a?(Enumerable)
       update!(status: 'completed')
-      return 
+      return
     end
 
     video.song_items.create_from_json!(songs)

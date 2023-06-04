@@ -18,7 +18,7 @@ class SongDiff < ApplicationRecord
   end
 
   def self.create_from_json!(song)
-    time = song['time'].length == 5 ? ("00:#{song['time']}") : song['time']
+    time = song['time'].length == 5 ? "00:#{song['time']}" : song['time']
     create!(
       kind: 'auto',
       author: song['author'],
