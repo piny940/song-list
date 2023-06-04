@@ -15,4 +15,8 @@ class Comment < ApplicationRecord
   def content
     response_json.dig('snippet', 'top_level_comment', 'snippet', 'text_original')
   end
+
+  def author
+    response_json.dig('snippet', 'top_level_comment', 'snippet', 'author_display_name')
+  end
 end
