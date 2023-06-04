@@ -11,7 +11,7 @@ class SongDiff < ApplicationRecord
   enum kind: {
     manual: 0,
     auto: 10
-  }
+  }, _prefix: true
 
   def deletion?
     time.blank? && title.blank? && author.blank?

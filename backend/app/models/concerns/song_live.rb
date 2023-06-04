@@ -32,9 +32,9 @@ module SongLive
     end
 
     # 新しいコメントを探しに行く
+    page_token = nil
     loop do
-      page_token = nil
-      response = Youtube.get_comments_data(video_id, page_token)
+      response = Youtube.get_comments_data(video_id, page_token:)
 
       break if response.items.nil?
 
@@ -42,7 +42,7 @@ module SongLive
         # すでに調査済みのコメントはスルー
         next if Comment.find_by(comment_id: item.id).present?
 
-        comment = comments.create!(response_json: item.to_h)
+        comment = comments.create!(comment_id: item.id, response_json: item.to_h)
         song_items = comment.search_and_create_song_items
 
         # SongItemsが見つかり次第終了

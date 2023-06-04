@@ -40,8 +40,8 @@ module SongComment
       }
     ]
     content = OpenAi.complete_chat(messages)
-    content = content.grep(/unknown|UNKNOWN|/, '')
-    content = content.grep(/"-"/, '""')
+    content = content.gsub(/unknown|UNKNOWN|/, '')
+    content = content.gsub(/"-"/, '""')
 
     begin
       JSON.parse(content)

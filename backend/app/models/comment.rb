@@ -10,7 +10,7 @@ class Comment < ApplicationRecord
     ready: 0,
     fetched: 10,
     completed: 20
-  }
+  }, _prefix: true
 
   def content
     response_json.dig('snippet', 'top_level_comment', 'snippet', 'text_original')
