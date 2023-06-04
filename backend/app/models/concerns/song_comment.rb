@@ -11,7 +11,7 @@ module SongComment
     update!(status: 'fetched')
     songs = parse_setlist
 
-    unless songs.array?
+    unless songs.is_a?(Enumerable)
       update!(status: 'completed')
       return 
     end
