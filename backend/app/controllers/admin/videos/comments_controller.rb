@@ -1,5 +1,5 @@
 class Admin::Videos::CommentsController < Admin::Videos::Base
-  before_action :set_comment, only: %i[ show edit update destroy ]
+  before_action :set_comment, only: %i[show edit update destroy]
 
   def index
     @comments = @video.comments.all
@@ -17,7 +17,7 @@ class Admin::Videos::CommentsController < Admin::Videos::Base
     @comment = @video.comments.new(comment_params)
 
     if @comment.save
-      redirect_to admin_video_comments_path(@video), notice: "Commentが作成されました。"
+      redirect_to admin_video_comments_path(@video), notice: 'Commentが作成されました。'
     else
       render :new, status: :unprocessable_entity
     end
@@ -25,7 +25,7 @@ class Admin::Videos::CommentsController < Admin::Videos::Base
 
   def update
     if @comment.update(comment_params)
-      redirect_to admin_video_comments_path(@video), notice: "Commentが更新されました。"
+      redirect_to admin_video_comments_path(@video), notice: 'Commentが更新されました。'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -33,7 +33,7 @@ class Admin::Videos::CommentsController < Admin::Videos::Base
 
   def destroy
     @comment.destroy
-    redirect_to admin_video_comments_path(@video), notice: "Commentが削除されました。"
+    redirect_to admin_video_comments_path(@video), notice: 'Commentが削除されました。'
   end
 
   private

@@ -2,7 +2,7 @@ module SongComment
   extend ActiveSupport::Concern
 
   def search_songs
-    if !setlist?(content)
+    unless setlist?(content)
       update!(status: 'completed')
       return
     end
@@ -32,7 +32,7 @@ module SongComment
       },
       {
         role: 'assistant',
-        content: content
+        content:
       }
     ]
     content = OpenAi.complete_chat(messages)
@@ -46,7 +46,7 @@ module SongComment
     end
   end
 
-  SETLIST_REGEX = /セトリ|セットリスト|せっとりすと|(s|S)et(\s|\_)?(l|L)ist/
+  SETLIST_REGEX = /セトリ|セットリスト|せっとりすと|(s|S)et(\s|_)?(l|L)ist/
   def setlist?(text)
     !!text.match(SETLIST_REGEX)
   end

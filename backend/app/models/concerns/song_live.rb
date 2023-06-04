@@ -14,14 +14,15 @@ module SongLive
   def search_songs
     songs = []
 
-    while true
-      page_token  = nil
+    loop do
+      page_token = nil
       response = Youtube.get_comments_data(video_id, page_token)
-      
+
       break if response.items.nil?
 
       response.items.each do |item|
         next if Comment.find_by(comment_id: item.id).present?
+
         comment = comments.create!(response_json: item.to_h)
         songs = comment.search_songs
         break if songs.present?
