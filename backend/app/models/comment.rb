@@ -2,6 +2,7 @@ class Comment < ApplicationRecord
   include SongComment
 
   belongs_to :video
+  validates :comment_id, presence: true, uniqueness: true
 
   # セトリのコメントでない場合はcompleted、
   # セトリのコメントの場合は、OpenAIで調べたらcompleted、エラーが起こったらfetched

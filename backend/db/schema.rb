@@ -25,11 +25,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_03_054131) do
   end
 
   create_table "comments", force: :cascade do |t|
+    t.string "comment_id", null: false
     t.bigint "video_id", null: false
     t.integer "status", default: 0, null: false
     t.json "response_json", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_comments_on_comment_id", unique: true
     t.index ["video_id"], name: "index_comments_on_video_id"
   end
 
