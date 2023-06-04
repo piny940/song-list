@@ -10,11 +10,14 @@ module SongComment
 
     update!(status: 'fetched')
     songs = parse_setlist
+
+    unless songs.array?
+      update!(status: 'completed')
+      return 
+    end
+
+    video.song_items.create_from_json!(songs)
     update!(status: 'completed')
-
-    return if songs.blank?
-
-    video.song_items.create_song_items_from_json(songs)
   end
 
   private
