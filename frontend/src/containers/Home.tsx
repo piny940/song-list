@@ -7,7 +7,7 @@ export const Home: React.FC = () => {
       <h1>歌枠データベース</h1>
       <div className="list-group">
         <Link
-          href="/channel"
+          href="/channels"
           className="list-group-item list-group-item-action"
         >
           チャンネルから検索
