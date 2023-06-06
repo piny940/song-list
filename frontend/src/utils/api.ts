@@ -58,9 +58,9 @@ export const updateData = async (params: {
 
 export const getChannels = async () => {
   const response = await fetchApi({
-    url: '/api/channels',
+    url: '/channels',
     method: 'GET',
   })
   const json = await response.json()
-  return json.data as Channel[]
+  return json.channels as Channel[]
 }
