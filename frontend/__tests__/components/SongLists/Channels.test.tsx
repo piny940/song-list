@@ -8,20 +8,20 @@ import { Mock } from 'ts-mockery'
 import { Channel } from '@/resources/types'
 import { TestID } from '@/resources/TestID'
 
-const useSWRMock = jest.fn()
-useSWRMock.mockReturnValue({
-  data: [
-    Mock.from<Channel>({
-      id: 9000,
-      name: 'test9000',
-    }),
-    Mock.from<Channel>({
-      id: 9001,
-      name: 'test9001',
-    }),
-  ],
-})
-jest.mock('swr', () => useSWRMock)
+jest.mock('swr', () =>
+  jest.fn(() => ({
+    data: [
+      Mock.from<Channel>({
+        id: 9000,
+        name: 'test9000',
+      }),
+      Mock.from<Channel>({
+        id: 9001,
+        name: 'test9001',
+      }),
+    ],
+  }))
+)
 
 describe('<Channels />', () => {
   it('正常に描画される', async () => {
