@@ -9,7 +9,7 @@ export type ChannelsListProps = {
 
 export const ChannelsList: React.FC<ChannelsListProps> = ({ testID }) => {
   const { data } = useSWR<Channel[]>('/api/channels', getChannels)
-
+  console.log(data)
   return data ? (
     <div className="" data-testid={testID}>
       {data.map((channel) => (

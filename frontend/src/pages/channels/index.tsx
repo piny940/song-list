@@ -1,7 +1,6 @@
 import { Channels } from '@/containers/Channels'
-import { NextPage } from 'next'
 
-const ChannelsIndex: NextPage = () => {
+const ChannelsIndex: React.FC = () => {
   return <Channels />
 }
 
