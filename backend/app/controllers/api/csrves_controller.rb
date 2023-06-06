@@ -1,4 +1,4 @@
-class CsrfsController < ApplicationController
+class Api::CsrvesController < Api::Base
   def show
     render json: {
       token: form_authenticity_token,
