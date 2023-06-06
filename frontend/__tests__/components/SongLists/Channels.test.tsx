@@ -6,18 +6,28 @@ import {
 } from '@/components/SongLists/Channels'
 import { Mock } from 'ts-mockery'
 import { Channel } from '@/resources/types'
-import { TestID } from '@/resources/TestID'
 
+jest.mock('next/image')
 jest.mock('swr', () =>
   jest.fn(() => ({
     data: [
       Mock.from<Channel>({
         id: 9000,
         name: 'test9000',
+        thumbnails: {
+          default: {
+            url: '',
+          },
+        },
       }),
       Mock.from<Channel>({
         id: 9001,
         name: 'test9001',
+        thumbnails: {
+          default: {
+            url: '',
+          },
+        },
       }),
     ],
   }))
@@ -29,10 +39,10 @@ describe('<Channels />', () => {
       testID: 'testid',
     })
 
-    const { getByTestId, getAllByTestId } = render(<ChannelsList {...props} />)
+    const { getByTestId } = render(<ChannelsList {...props} />)
     await waitFor(() => {
       expect(getByTestId('testid')).toBeTruthy()
-      expect(getAllByTestId(TestID.CHANNEL).length).toBe(2)
+      expect(getByTestId('testid').children.length).toBe(2)
     })
   })
 })
