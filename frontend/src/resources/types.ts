@@ -36,3 +36,11 @@ export type Video = {
   thumbnails: Thumbnails
   description: string
 }
+
+export type SongItem = {
+  id: number
+  video_id: string
+  time: Date
+  title: string
+  author: string
+}
