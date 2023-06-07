@@ -1,3 +1,4 @@
+import { TestID } from '@/resources/TestID'
 import { SongItem } from '@/resources/types'
 import { getData } from '@/utils/api'
 import Error from 'next/error'
@@ -21,9 +22,11 @@ export const SongItems: React.FC<SongItemsProps> = ({ videoId, query }) => {
   if (error) return <Error statusCode={404} />
 
   return data ? (
-    <div className="">
+    <div className="" data-testid={TestID.SONG_ITEMS}>
       {data.song_items.map((songItem) => (
-        <div key={songItem.id}>{songItem.title}</div>
+        <div key={songItem.id} data-testid={TestID.SONG_ITEM}>
+          {songItem.title}
+        </div>
       ))}
     </div>
   ) : (
