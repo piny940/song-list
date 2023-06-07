@@ -26,3 +26,13 @@ export type Channel = {
   thumbnails: Thumbnails
   description: string
 }
+
+export type Video = {
+  id: number
+  video_id: string
+  title: string
+  kind: string
+  channel_id: string
+  thumbnails: Thumbnails
+  description: string
+}

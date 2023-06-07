@@ -1,7 +1,7 @@
-import { Channels } from '@/containers/Channels'
+import { ChannelsIndex } from '@/containers/Channels/Index'
 
-const ChannelsIndex: React.FC = () => {
-  return <Channels />
+const Index: React.FC = () => {
+  return <ChannelsIndex />
 }
 
-export default ChannelsIndex
+export default Index

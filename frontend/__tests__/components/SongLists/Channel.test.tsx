@@ -3,7 +3,6 @@ import { expect } from '@jest/globals'
 import { Channel, ChannelProps } from '@/components/SongLists/Channel'
 import { Mock } from 'ts-mockery'
 import { TestID } from '@/resources/TestID'
-import { Thumbnails } from '@/resources/types'
 
 jest.mock('next/image')
 describe('<Channel />', () => {
