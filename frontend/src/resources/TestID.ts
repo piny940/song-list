@@ -10,4 +10,6 @@ export enum TestID {
   CHANNEL = 'channel',
   VIDEOS = 'videos',
   VIDEO = 'video',
+  SONG_ITEMS = 'song-items',
+  SONG_ITEM = 'song-item',
 }
