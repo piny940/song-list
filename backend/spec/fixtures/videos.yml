@@ -204,3 +204,85 @@ three:
           "title": "【朝活ティアキン】雑談多めのゼルダの伝説 ティアーズ オブ ザ キングダム【 #新人Vtuber #凪乃ましろ 】",
         },
     }
+
+mashiro2:
+  channel: mashiro
+  title: >
+    【歌枠】アカペラ歌枠！レア枠だと思う Singing Stream♪【#新人Vtuber #凪乃ましろ 】
+  video_id: X6tHDJbdmnw
+  kind: live
+  status: completed
+  response_json:
+    {
+      "etag": "DFdYRoUIkqkuV-UR1BUMJRNwgjc",
+      "id": "X6tHDJbdmnw",
+      "kind": "youtube#video",
+      "live_streaming_details":
+        {
+          "scheduled_start_time": "2023-05-24T12:00:00.000+00:00",
+          "actual_start_time": "2023-05-24T12:04:36.000+00:00",
+          "actual_end_time": "2023-05-24T14:36:16.000+00:00",
+        },
+      "snippet":
+        {
+          "category_id": "10",
+          "channel_id": "UCewRhO43UmIohSBzW2HMheA",
+          "channel_title": "凪乃ましろ / Nagino Mashiro",
+          "default_audio_language": "ja",
+          "description": "爆死を欲しているかもしれない\n\n弾幕 ＞ 🍽🎶🍽🎶🍽\n\n୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧\n\n見つけてくださってありがとう！\n頭まっしろ 歌うぽんこつ 凪乃ましろです🍽\n\nNice to meet you ! I'm Nagino Mashiro.\nI am a Japanese ponkotsu Vsinger.\nThank you for your watching !\n\n୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧\n\n🍽規約とリンク🔗\nhttps://lit.link/naginomashiro\n\n🍽Twitter\nhttps://twitter.com/nagino_mashiro\n\n🍽メンバーシップはこちら！\nhttps://www.youtube.com/channel/UCewRhO43UmIohSBzW2HMheA/join\n\n🍽FANBOX一部プラン始動！\nhttps://naginomashiro.fanbox.cc\n\n是非ご感想を「#なぎのらいぶ」で呟いてください🙏🏻\n高評価・コメント・拡散、すべて励みになります🙏🏻\n\n୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧\n\n🍽歌唱依頼・お仕事のご連絡はメールアドレスへ\nnagino.official@gmail.com\n\n୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧\n\n🍽配信ルール\n✨　ＰＯＮの扱いは、愛があればＯＫです！\n◯　離脱コメント（ただし拾えるとは限りません…！「ほかの配信に行く」は✕）\n◯　ないすぱ、ないぎふ、メンシ歓迎\n△　指示コメント（求めたときのみアドバイスをください！）\n△　長文コメ（可能な限りマシュマロでくださると嬉しい）\n△　歌枠リクエスト（基本はマシュマロで！枠でくださってもＯＫだけど歌えるとは限りません…！）\n⚠以下は全てお控えください…！\n✕　鳩行為　他配信者のお話\n✕　ネタバレ、ほのめかし\n✕　「荒らし」「スパム」「ルール違反」への反応.\n（私が何とかします、お任せください！耐えられないときはそっとブロックをお願いします。）\n✕　チャット内での会話（待機中も）\n✕　初見詐欺\n✕　同じコメントを連投\n✕　同時接続数報告\n✕　他リスナーへの挨拶（初見・配信者）\n✕　流れに関係ない話（自分語りなど）\n（お聞きしたい気持ちはあっても枠の進行のためにスルーしてしまうのが心苦しいので…！）\n\n🙏🏻お願い\n　　コメントは日本語か英語でお願い申し上げます。\n　　Please chat in EN or JP！Thank you！\n\nいつも守ってくださるみなさまのおかげで、あたたかくて素敵な雰囲気の枠になっています！\nありがとうございます🙏🏻\n\n୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧\n\nお母様＆お父様 / 菊月様\nhttps://twitter.com/kikugetu\n\nED / 京あめこ様\nhttps://twitter.com/u_matchaman\n\nBGM / Nofu様\nhttps://twitter.com/cheaptune\n\n音声機材調整 / シィナ様\nhttps://twitter.com/paruina\n\n୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧\n\n🍽お借りする音源\n♫カラオケ歌っちゃ王　様\nhttps://www.youtube.com/@uta-cha-oh/\n♫生音風カラオケ屋　様\nhttps://www.youtube.com/@namakara/\n♫さばとP　様\nhttps://www.youtube.com/@sabato-kun/\n♫オフボーカル音源フリー　様\nhttps://www.youtube.com/@offvocalongen/\n♫Hiroのピアノ伴奏アレンジ　様\nhttps://www.youtube.com/@HiroPiano/\n♫KaraokeStudio by Harry Black　様\nhttps://www.youtube.com/@KaraokeStudiobyHarryBlack/\n♫【プロが作る】カラオケちゃんねる【高音質】　様\nhttps://www.youtube.com/@user-tb7kl9yg9k/\n♫ハイカラサウンド/ Highkara Sound　様\nhttps://www.youtube.com/@highkarasound/\n♫オフボーカルカラオケ　様\nhttps://www.youtube.com/@user-vr2ow4zm7o/\n♫カラオケ制作所「BOX」📦🎹　様\nhttps://www.youtube.com/@Karaoke_Studio_BOX/\n※動画によって使用していない場合がございます。",
+          "live_broadcast_content": "none",
+          "localized":
+            {
+              "description": "爆死を欲しているかもしれない\n\n弾幕 ＞ 🍽🎶🍽🎶🍽\n\n୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧\n\n見つけてくださってありがとう！\n頭まっしろ 歌うぽんこつ 凪乃ましろです🍽\n\nNice to meet you ! I'm Nagino Mashiro.\nI am a Japanese ponkotsu Vsinger.\nThank you for your watching !\n\n୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧\n\n🍽規約とリンク🔗\nhttps://lit.link/naginomashiro\n\n🍽Twitter\nhttps://twitter.com/nagino_mashiro\n\n🍽メンバーシップはこちら！\nhttps://www.youtube.com/channel/UCewRhO43UmIohSBzW2HMheA/join\n\n🍽FANBOX一部プラン始動！\nhttps://naginomashiro.fanbox.cc\n\n是非ご感想を「#なぎのらいぶ」で呟いてください🙏🏻\n高評価・コメント・拡散、すべて励みになります🙏🏻\n\n୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧\n\n🍽歌唱依頼・お仕事のご連絡はメールアドレスへ\nnagino.official@gmail.com\n\n୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧\n\n🍽配信ルール\n✨　ＰＯＮの扱いは、愛があればＯＫです！\n◯　離脱コメント（ただし拾えるとは限りません…！「ほかの配信に行く」は✕）\n◯　ないすぱ、ないぎふ、メンシ歓迎\n△　指示コメント（求めたときのみアドバイスをください！）\n△　長文コメ（可能な限りマシュマロでくださると嬉しい）\n△　歌枠リクエスト（基本はマシュマロで！枠でくださってもＯＫだけど歌えるとは限りません…！）\n⚠以下は全てお控えください…！\n✕　鳩行為　他配信者のお話\n✕　ネタバレ、ほのめかし\n✕　「荒らし」「スパム」「ルール違反」への反応.\n（私が何とかします、お任せください！耐えられないときはそっとブロックをお願いします。）\n✕　チャット内での会話（待機中も）\n✕　初見詐欺\n✕　同じコメントを連投\n✕　同時接続数報告\n✕　他リスナーへの挨拶（初見・配信者）\n✕　流れに関係ない話（自分語りなど）\n（お聞きしたい気持ちはあっても枠の進行のためにスルーしてしまうのが心苦しいので…！）\n\n🙏🏻お願い\n　　コメントは日本語か英語でお願い申し上げます。\n　　Please chat in EN or JP！Thank you！\n\nいつも守ってくださるみなさまのおかげで、あたたかくて素敵な雰囲気の枠になっています！\nありがとうございます🙏🏻\n\n୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧\n\nお母様＆お父様 / 菊月様\nhttps://twitter.com/kikugetu\n\nED / 京あめこ様\nhttps://twitter.com/u_matchaman\n\nBGM / Nofu様\nhttps://twitter.com/cheaptune\n\n音声機材調整 / シィナ様\nhttps://twitter.com/paruina\n\n୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧\n\n🍽お借りする音源\n♫カラオケ歌っちゃ王　様\nhttps://www.youtube.com/@uta-cha-oh/\n♫生音風カラオケ屋　様\nhttps://www.youtube.com/@namakara/\n♫さばとP　様\nhttps://www.youtube.com/@sabato-kun/\n♫オフボーカル音源フリー　様\nhttps://www.youtube.com/@offvocalongen/\n♫Hiroのピアノ伴奏アレンジ　様\nhttps://www.youtube.com/@HiroPiano/\n♫KaraokeStudio by Harry Black　様\nhttps://www.youtube.com/@KaraokeStudiobyHarryBlack/\n♫【プロが作る】カラオケちゃんねる【高音質】　様\nhttps://www.youtube.com/@user-tb7kl9yg9k/\n♫ハイカラサウンド/ Highkara Sound　様\nhttps://www.youtube.com/@highkarasound/\n♫オフボーカルカラオケ　様\nhttps://www.youtube.com/@user-vr2ow4zm7o/\n♫カラオケ制作所「BOX」📦🎹　様\nhttps://www.youtube.com/@Karaoke_Studio_BOX/\n※動画によって使用していない場合がございます。",
+              "title": "【歌枠】アカペラ歌枠！レア枠だと思う Singing Stream♪【#新人Vtuber #凪乃ましろ 】",
+            },
+          "published_at": "2023-05-24T15:01:10.000+00:00",
+          "tags":
+            [
+              "ましろ",
+              "VTuber",
+              "凪乃ましろ",
+              "凪乃",
+              "Nagino_Mashiro",
+              "Nagino",
+              "Mashiro",
+              "新人",
+              "歌枠",
+              "歌枠リレー",
+            ],
+          "thumbnails":
+            {
+              "default":
+                {
+                  "height": 90,
+                  "url": "https://i.ytimg.com/vi/X6tHDJbdmnw/default.jpg",
+                  "width": 120,
+                },
+              "high":
+                {
+                  "height": 360,
+                  "url": "https://i.ytimg.com/vi/X6tHDJbdmnw/hqdefault.jpg",
+                  "width": 480,
+                },
+              "maxres":
+                {
+                  "height": 720,
+                  "url": "https://i.ytimg.com/vi/X6tHDJbdmnw/maxresdefault.jpg",
+                  "width": 1280,
+                },
+              "medium":
+                {
+                  "height": 180,
+                  "url": "https://i.ytimg.com/vi/X6tHDJbdmnw/mqdefault.jpg",
+                  "width": 320,
+                },
+              "standard":
+                {
+                  "height": 480,
+                  "url": "https://i.ytimg.com/vi/X6tHDJbdmnw/sddefault.jpg",
+                  "width": 640,
+                },
+            },
+          "title": "【歌枠】アカペラ歌枠！レア枠だと思う Singing Stream♪【#新人Vtuber #凪乃ましろ 】",
+        },
+    }

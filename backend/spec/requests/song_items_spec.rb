@@ -17,7 +17,7 @@ describe Api::SongItemsController do
       json = response.parsed_body
 
       # activeでないsong_itemは取得しない
-      expect(json['song_items'].count).to eq 3
+      expect(json['song_items'].count).to eq 4
       expect(json['song_items'][0]['title']).to eq 'アイドル2'
       expect(Time.zone.parse(json['song_items'][0]['time'])).to eq Time.zone.parse('2023-06-02 00:08:16')
       expect(json['song_items'][0]['author']).to be_nil
@@ -33,6 +33,10 @@ describe Api::SongItemsController do
       expect(json['song_items'].count).to eq 2
       expect(json['song_items'][0]['title']).to eq 'アイドル2'
     end
+
+    # it('特定のchannelのsong_itemsを取得できる') do
+
+    # end
   end
 
   describe 'GET /api/song_items/:id' do

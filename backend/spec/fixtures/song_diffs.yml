@@ -45,3 +45,9 @@ four3:
   song_item: four
   status: rejected
   author: YOASOBI
+
+mashiro2_one1:
+  made_by: one
+  song_item: mashiro2_one
+  status: approved
+  author: YOASOBI
