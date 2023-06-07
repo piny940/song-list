@@ -1,5 +1,5 @@
 import { TestID } from '@/resources/TestID'
-import { Video as VideoType } from '@/resources/types'
+import { VideoType } from '@/resources/types'
 import Image from 'next/image'
 import { styled } from 'styled-components'
 

@@ -1,5 +1,5 @@
 import { TestID } from '@/resources/TestID'
-import { ChannelType, Video as VideoType } from '@/resources/types'
+import { ChannelType, VideoType } from '@/resources/types'
 import { getData } from '@/utils/api'
 import Error from 'next/error'
 import useSWR from 'swr'

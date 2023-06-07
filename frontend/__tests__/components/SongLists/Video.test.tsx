@@ -2,7 +2,7 @@ import { render, waitFor } from '@testing-library/react'
 import { expect } from '@jest/globals'
 import { Video, VideoProps } from '@/components/SongLists/Video'
 import { Mock } from 'ts-mockery'
-import { Video as VideoType } from '@/resources/types'
+import { VideoType } from '@/resources/types'
 import { TestID } from '@/resources/TestID'
 
 jest.mock('next/image')

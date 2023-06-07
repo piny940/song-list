@@ -2,7 +2,7 @@ import { render, waitFor } from '@testing-library/react'
 import { expect } from '@jest/globals'
 import { Videos, VideosProps } from '@/components/SongLists/Videos'
 import { Mock } from 'ts-mockery'
-import { ChannelType, Video } from '@/resources/types'
+import { ChannelType, VideoType } from '@/resources/types'
 import { TestID } from '@/resources/TestID'
 
 jest.mock('next/image')
@@ -10,7 +10,7 @@ jest.mock('swr', () =>
   jest.fn(() => ({
     data: {
       videos: [
-        Mock.from<Video>({
+        Mock.from<VideoType>({
           id: 1000,
           thumbnails: {
             medium: {
@@ -18,7 +18,7 @@ jest.mock('swr', () =>
             },
           },
         }),
-        Mock.from<Video>({
+        Mock.from<VideoType>({
           id: 1001,
           thumbnails: {
             medium: {

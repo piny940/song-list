@@ -27,7 +27,7 @@ export type ChannelType = {
   description: string
 }
 
-export type Video = {
+export type VideoType = {
   id: number
   video_id: string
   title: string
