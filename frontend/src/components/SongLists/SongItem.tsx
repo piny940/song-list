@@ -1,5 +1,5 @@
 import { TestID } from '@/resources/TestID'
-import { SongItem as SongItemType } from '@/resources/types'
+import { SongItemType } from '@/resources/types'
 
 export type SongItemProps = {
   songItem: SongItemType

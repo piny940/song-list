@@ -1,5 +1,5 @@
 import { TestID } from '@/resources/TestID'
-import { SongItem as SongItemType } from '@/resources/types'
+import { SongItemType } from '@/resources/types'
 import { getData } from '@/utils/api'
 import Error from 'next/error'
 import useSWR from 'swr'

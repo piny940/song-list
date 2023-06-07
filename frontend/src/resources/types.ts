@@ -37,7 +37,7 @@ export type VideoType = {
   description: string
 }
 
-export type SongItem = {
+export type SongItemType = {
   id: number
   video_id: string
   time: Date
