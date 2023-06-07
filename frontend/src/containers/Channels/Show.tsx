@@ -19,7 +19,9 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
   return data ? (
     <div className="channel">
       <h1>{data.channel.name}</h1>
-      <Videos type="large" channel={data.channel} />
+      <div className="w-50">
+        <Videos type="medium" channel={data.channel} />
+      </div>
     </div>
   ) : (
     <div className="">loading...</div>
