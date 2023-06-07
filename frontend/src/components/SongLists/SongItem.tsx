@@ -4,7 +4,7 @@ import { timeToString } from '@/utils/helpers'
 import { styled } from 'styled-components'
 
 const SongItemDiv = styled.div`
-  height: 50px;
+  /* height: 70px; */
 `
 
 export type SongItemProps = {
@@ -19,18 +19,27 @@ export const SongItem: React.FC<SongItemProps> = ({ songItem }) => {
 
   return (
     <SongItemDiv
-      className="border border-light shadow-sm m-1 p-2"
+      className="d-flex align-items-center border border-light rounded shadow-sm m-1 p-3"
       data-testid={TestID.SONG_ITEM}
     >
-      <a
-        href={`https://www.youtube.com/watch?v=${songItem.video_id}&t=${
-          hour * 3600 + minute * 60 + second
-        }`}
-        target="_blank"
-      >
-        {timeToString(time)}
-      </a>
-      {songItem.title}
+      <div className="">
+        <span className="">
+          <a
+            href={`https://www.youtube.com/watch?v=${songItem.video_id}&t=${
+              hour * 3600 + minute * 60 + second
+            }`}
+            target="_blank"
+          >
+            {timeToString(time)}
+          </a>
+        </span>
+      </div>
+      <div className="d-flex flex-wrap">
+        <div className="">
+          <span className="ms-2">{songItem.title}</span>
+        </div>
+        {songItem.author && <span className="ms-3">/ {songItem.author}</span>}
+      </div>
     </SongItemDiv>
   )
 }
