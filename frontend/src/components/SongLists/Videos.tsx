@@ -15,7 +15,7 @@ export const Videos: React.FC<VideosProps> = ({ channel }) => {
     getData
   )
   if (error) return <Error statusCode={404} />
-  console.log(data)
+
   return data ? (
     <div className="videos" data-testid={TestID.VIDEOS}>
       {data.videos.map((video) => (
