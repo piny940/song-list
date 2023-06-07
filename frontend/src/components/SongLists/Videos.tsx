@@ -1,3 +1,4 @@
+import { TestID } from '@/resources/TestID'
 import { Channel, Video } from '@/resources/types'
 import { getData } from '@/utils/api'
 import Error from 'next/error'
@@ -15,7 +16,7 @@ export const Videos: React.FC<VideosProps> = ({ channel }) => {
   if (error) return <Error statusCode={404} />
 
   return data ? (
-    <div className="videos">
+    <div className="videos" data-testid={TestID.VIDEOS}>
       {data.videos.map((video) => (
         <div className="" key={video.id}>
           {video.title}

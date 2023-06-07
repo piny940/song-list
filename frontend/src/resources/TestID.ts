@@ -6,5 +6,8 @@ export enum TestID {
   CUSTOM500 = 'custom500',
   NAVBAR = 'navbar',
   PROFILE_BUTTON = 'profile-button',
+  CHANNELS = 'channels',
   CHANNEL = 'channel',
+  VIDEOS = 'videos',
+  VIDEO = 'video',
 }
