@@ -26,12 +26,18 @@ export const fetchApi = async (params: {
   return response
 }
 
+export const getData = async (url: string) => {
+  const response = await fetchApi({
+    url: url,
+    method: 'GET',
+  })
+  return await response.json()
+}
+
 export const postData = async (params: {
   url: string
   data: object
   scope?: string
-  onSuccess: (json: any) => void
-  onFail: (json: any) => void
 }) => {
   const response = await fetchApi({
     url: params.url,
