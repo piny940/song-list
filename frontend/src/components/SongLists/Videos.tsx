@@ -18,7 +18,7 @@ export const Videos: React.FC<VideosProps> = ({ channel }) => {
   return data ? (
     <div className="videos" data-testid={TestID.VIDEOS}>
       {data.videos.map((video) => (
-        <div className="" key={video.id}>
+        <div className="" data-testid={TestID.VIDEO} key={video.id}>
           {video.title}
         </div>
       ))}

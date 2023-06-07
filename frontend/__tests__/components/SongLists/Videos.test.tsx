@@ -7,14 +7,16 @@ import { TestID } from '@/resources/TestID'
 
 jest.mock('swr', () =>
   jest.fn(() => ({
-    videos: [
-      Mock.from<Video>({
-        id: 1000,
-      }),
-      Mock.from<Video>({
-        id: 1001,
-      }),
-    ],
+    data: {
+      videos: [
+        Mock.from<Video>({
+          id: 1000,
+        }),
+        Mock.from<Video>({
+          id: 1001,
+        }),
+      ],
+    },
   }))
 )
 
