@@ -4,7 +4,6 @@ import Image from 'next/image'
 import styled from 'styled-components'
 
 const ChannelDiv = styled.div`
-  /* min-width: 350px; */
   height: 90px;
 `
 
