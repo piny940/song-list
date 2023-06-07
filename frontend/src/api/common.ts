@@ -1,4 +1,3 @@
-import { Channel } from '@/resources/types'
 import { serialize } from 'object-to-formdata'
 
 const getToken = async (): Promise<string> => {
@@ -54,13 +53,4 @@ export const updateData = async (params: {
     data: params.scope ? { [params.scope]: params.data } : params.data,
   })
   return await response.json()
-}
-
-export const getChannels = async () => {
-  const response = await fetchApi({
-    url: '/channels',
-    method: 'GET',
-  })
-  const json = await response.json()
-  return json.channels as Channel[]
 }
