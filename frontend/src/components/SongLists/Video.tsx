@@ -5,6 +5,14 @@ import { styled } from 'styled-components'
 
 const VideoDiv = styled.div``
 
+const VideoTitleDiv = styled.div`
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  overflow: hidden;
+  height: 60px;
+`
+
 export type VideoProps = {
   video: VideoType
   type: 'large' | 'medium'
@@ -22,7 +30,7 @@ export const Video: React.FC<VideoProps> = ({ video, type }) => {
       data-testid={TestID.VIDEO}
       style={{ ...size }}
     >
-      <div className="p-2">{video.title}</div>
+      <VideoTitleDiv className="p-2">{video.title}</VideoTitleDiv>
       <div className="">
         <Image
           src={video.thumbnails.high.url}
