@@ -10,26 +10,28 @@ import { Channel } from '@/resources/types'
 jest.mock('next/image')
 jest.mock('swr', () =>
   jest.fn(() => ({
-    data: [
-      Mock.from<Channel>({
-        id: 9000,
-        name: 'test9000',
-        thumbnails: {
-          default: {
-            url: '',
+    data: {
+      channels: [
+        Mock.from<Channel>({
+          id: 9000,
+          name: 'test9000',
+          thumbnails: {
+            default: {
+              url: '',
+            },
           },
-        },
-      }),
-      Mock.from<Channel>({
-        id: 9001,
-        name: 'test9001',
-        thumbnails: {
-          default: {
-            url: '',
+        }),
+        Mock.from<Channel>({
+          id: 9001,
+          name: 'test9001',
+          thumbnails: {
+            default: {
+              url: '',
+            },
           },
-        },
-      }),
-    ],
+        }),
+      ],
+    },
   }))
 )
 
