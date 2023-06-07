@@ -5,14 +5,14 @@ import {
   ChannelsListProps,
 } from '@/components/SongLists/Channels'
 import { Mock } from 'ts-mockery'
-import { Channel } from '@/resources/types'
+import { ChannelType } from '@/resources/types'
 
 jest.mock('next/image')
 jest.mock('swr', () =>
   jest.fn(() => ({
     data: {
       channels: [
-        Mock.from<Channel>({
+        Mock.from<ChannelType>({
           id: 9000,
           name: 'test9000',
           thumbnails: {
@@ -21,7 +21,7 @@ jest.mock('swr', () =>
             },
           },
         }),
-        Mock.from<Channel>({
+        Mock.from<ChannelType>({
           id: 9001,
           name: 'test9001',
           thumbnails: {

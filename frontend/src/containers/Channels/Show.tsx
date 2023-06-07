@@ -1,6 +1,6 @@
 import { SongItems } from '@/components/SongLists/SongItems'
 import { Videos } from '@/components/SongLists/Videos'
-import { Channel } from '@/resources/types'
+import { ChannelType } from '@/resources/types'
 import { getData } from '@/utils/api'
 import Error from 'next/error'
 import useSWR from 'swr'
@@ -10,7 +10,7 @@ export type ChannelsShowProps = {
 }
 
 export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
-  const { data, error } = useSWR<{ channel: Channel }>(
+  const { data, error } = useSWR<{ channel: ChannelType }>(
     `/channels/${id}`,
     getData
   )

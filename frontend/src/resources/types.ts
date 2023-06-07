@@ -18,7 +18,7 @@ export type Thumbnails = {
   }
 }
 
-export type Channel = {
+export type ChannelType = {
   id: number
   channel_id: string
   name: string
@@ -27,7 +27,7 @@ export type Channel = {
   description: string
 }
 
-export type Video = {
+export type VideoType = {
   id: number
   video_id: string
   title: string
@@ -37,10 +37,10 @@ export type Video = {
   description: string
 }
 
-export type SongItem = {
+export type SongItemType = {
   id: number
   video_id: string
-  time: Date
+  time: string
   title: string
   author: string
 }

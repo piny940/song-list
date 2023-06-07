@@ -1,5 +1,5 @@
 import { TestID } from '@/resources/TestID'
-import { Channel as ChannelType } from '@/resources/types'
+import { ChannelType } from '@/resources/types'
 import Image from 'next/image'
 import Link from 'next/link'
 import styled from 'styled-components'

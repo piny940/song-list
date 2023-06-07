@@ -1,4 +1,4 @@
-import { Channel as ChannelType } from '@/resources/types'
+import { ChannelType } from '@/resources/types'
 import { getData } from '@/utils/api'
 import useSWR from 'swr'
 import { Channel } from './Channel'
