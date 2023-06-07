@@ -7,9 +7,10 @@ import { Video } from './Video'
 
 export type VideosProps = {
   channel: Channel
+  type: 'large' | 'medium'
 }
 
-export const Videos: React.FC<VideosProps> = ({ channel }) => {
+export const Videos: React.FC<VideosProps> = ({ channel, type }) => {
   const { data, error } = useSWR<{ videos: VideoType[] }>(
     `/channels/${channel.id}/videos`,
     getData
@@ -17,13 +18,26 @@ export const Videos: React.FC<VideosProps> = ({ channel }) => {
   if (error) return <Error statusCode={404} />
 
   return data ? (
-    <div className="videos row row-cols-lg-3" data-testid={TestID.VIDEOS}>
-      {data.videos.map((video) => (
-        <div className="" key={video.id}>
-          <Video type="large" video={video} />
-        </div>
-      ))}
-    </div>
+    type === 'large' ? (
+      <div
+        className="videos row row-cols-lg-2 row-cols-xl-3"
+        data-testid={TestID.VIDEOS}
+      >
+        {data.videos.map((video) => (
+          <div className="" key={video.id}>
+            <Video type={type} video={video} />
+          </div>
+        ))}
+      </div>
+    ) : (
+      <div className="videos row row-cols-lg-2 row-cols-xl-3">
+        {data.videos.map((video) => (
+          <div className="" key={video.id}>
+            <Video type={type} video={video} />
+          </div>
+        ))}
+      </div>
+    )
   ) : (
     <div className="">loading...</div>
   )
