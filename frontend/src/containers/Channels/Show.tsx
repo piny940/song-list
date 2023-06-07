@@ -1,4 +1,4 @@
-import { SongItems } from '@/components/SongLists/SongItem'
+import { SongItems } from '@/components/SongLists/SongItems'
 import { Videos } from '@/components/SongLists/Videos'
 import { Channel } from '@/resources/types'
 import { getData } from '@/utils/api'
