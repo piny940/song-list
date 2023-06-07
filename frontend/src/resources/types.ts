@@ -40,7 +40,7 @@ export type VideoType = {
 export type SongItemType = {
   id: number
   video_id: string
-  time: Date
+  time: string
   title: string
   author: string
 }
