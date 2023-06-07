@@ -4,8 +4,8 @@ import Image from 'next/image'
 import styled from 'styled-components'
 
 const ChannelDiv = styled.div`
-  width: 400px;
-  height: 100px;
+  /* min-width: 350px; */
+  height: 90px;
 `
 
 export type ChannelProps = {
@@ -15,7 +15,7 @@ export type ChannelProps = {
 export const Channel: React.FC<ChannelProps> = ({ channel }) => {
   return (
     <ChannelDiv
-      className="d-flex border border-light rounded m-3 p-2 shadow-sm"
+      className="d-flex flex-grow-1 border border-light rounded m-1 p-2 shadow-sm"
       data-testid={TestID.CHANNEL}
     >
       <div className="d-flex align-items-center">

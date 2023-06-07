@@ -11,9 +11,14 @@ export const ChannelsList: React.FC<ChannelsListProps> = ({ testID }) => {
   const { data } = useSWR<ChannelType[]>('/api/channels', getChannels)
 
   return data ? (
-    <div className="" data-testid={testID}>
+    <div
+      className="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4"
+      data-testid={testID}
+    >
       {data.map((channel) => (
-        <Channel key={channel.id} channel={channel} />
+        <div className="col" key={channel.id}>
+          <Channel channel={channel} />
+        </div>
       ))}
     </div>
   ) : (
