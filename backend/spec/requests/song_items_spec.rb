@@ -5,7 +5,7 @@ describe Api::SongItemsController do
   fixtures :users
   fixtures :song_diffs
 
-  let(:video) { videos(:one) }
+  let(:video) { videos(:shairu1) }
   let(:endpoint) { '/api/song_items' }
 
   describe 'GET /api/song_items' do
