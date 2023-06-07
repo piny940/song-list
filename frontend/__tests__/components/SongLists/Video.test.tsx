@@ -5,11 +5,17 @@ import { Mock } from 'ts-mockery'
 import { Video as VideoType } from '@/resources/types'
 import { TestID } from '@/resources/TestID'
 
+jest.mock('next/image')
 describe('<Video />', () => {
   const props = Mock.from<VideoProps>({
     video: Mock.from<VideoType>({
       id: 1001,
       title: 'TestVideo',
+      thumbnails: {
+        medium: {
+          url: '',
+        },
+      },
     }),
   })
   it('正常に描画される', async () => {

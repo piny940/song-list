@@ -44,6 +44,7 @@ export const Video: React.FC<VideoProps> = ({ video, type }) => {
     <div
       className="video d-flex border border-light shadow-sm m-1"
       style={{ height: '90px' }}
+      data-testid={TestID.VIDEO}
     >
       <Image src={video.thumbnails.medium.url} width={160} height={90} alt="" />
       <MediumVideoTitleDiv className="p-2">

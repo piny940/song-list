@@ -5,15 +5,26 @@ import { Mock } from 'ts-mockery'
 import { Channel, Video } from '@/resources/types'
 import { TestID } from '@/resources/TestID'
 
+jest.mock('next/image')
 jest.mock('swr', () =>
   jest.fn(() => ({
     data: {
       videos: [
         Mock.from<Video>({
           id: 1000,
+          thumbnails: {
+            medium: {
+              url: '',
+            },
+          },
         }),
         Mock.from<Video>({
           id: 1001,
+          thumbnails: {
+            medium: {
+              url: '',
+            },
+          },
         }),
       ],
     },
