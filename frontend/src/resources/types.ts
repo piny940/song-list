@@ -18,7 +18,7 @@ export type Thumbnails = {
   }
 }
 
-export type Channel = {
+export type ChannelType = {
   id: number
   channel_id: string
   name: string

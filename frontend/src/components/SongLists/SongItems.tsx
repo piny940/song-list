@@ -1,8 +1,9 @@
 import { TestID } from '@/resources/TestID'
-import { SongItem } from '@/resources/types'
+import { SongItem as SongItemType } from '@/resources/types'
 import { getData } from '@/utils/api'
 import Error from 'next/error'
 import useSWR from 'swr'
+import { SongItem } from './SongItem'
 
 export type SongItemsProps = {
   videoId?: string
@@ -10,7 +11,7 @@ export type SongItemsProps = {
 }
 
 export const SongItems: React.FC<SongItemsProps> = ({ videoId, query }) => {
-  const { data, error } = useSWR<{ song_items: SongItem[] }>(
+  const { data, error } = useSWR<{ song_items: SongItemType[] }>(
     '/song_items?' +
       new URLSearchParams({
         query: query || '',
@@ -24,8 +25,8 @@ export const SongItems: React.FC<SongItemsProps> = ({ videoId, query }) => {
   return data ? (
     <div className="" data-testid={TestID.SONG_ITEMS}>
       {data.song_items.map((songItem) => (
-        <div key={songItem.id} data-testid={TestID.SONG_ITEM}>
-          {songItem.title}
+        <div key={songItem.id}>
+          <SongItem songItem={songItem} />
         </div>
       ))}
     </div>

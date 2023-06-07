@@ -1,12 +1,12 @@
 import { TestID } from '@/resources/TestID'
-import { Channel, Video as VideoType } from '@/resources/types'
+import { ChannelType, Video as VideoType } from '@/resources/types'
 import { getData } from '@/utils/api'
 import Error from 'next/error'
 import useSWR from 'swr'
 import { Video } from './Video'
 
 export type VideosProps = {
-  channel: Channel
+  channel: ChannelType
   type: 'large' | 'medium'
 }
 
