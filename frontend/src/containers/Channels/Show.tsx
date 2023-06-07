@@ -1,3 +1,4 @@
+import { Videos } from '@/components/SongLists/Videos'
 import { Channel } from '@/resources/types'
 import { getData } from '@/utils/api'
 import Error from 'next/error'
@@ -18,6 +19,10 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
   return data ? (
     <div className="channel">
       <h1>{data.channel.name}</h1>
+      <div className="w-50">
+        <div className="text-sm fw-bold w-100 text-center">配信から検索</div>
+        <Videos type="medium" channel={data.channel} />
+      </div>
     </div>
   ) : (
     <div className="">loading...</div>

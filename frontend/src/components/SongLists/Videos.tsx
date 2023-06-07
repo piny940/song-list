@@ -1,28 +1,43 @@
 import { TestID } from '@/resources/TestID'
-import { Channel, Video } from '@/resources/types'
+import { Channel, Video as VideoType } from '@/resources/types'
 import { getData } from '@/utils/api'
 import Error from 'next/error'
 import useSWR from 'swr'
+import { Video } from './Video'
 
 export type VideosProps = {
   channel: Channel
+  type: 'large' | 'medium'
 }
 
-export const Videos: React.FC<VideosProps> = ({ channel }) => {
-  const { data, error } = useSWR<{ videos: Video[] }>(
-    `/channels/${channel.id}`,
+export const Videos: React.FC<VideosProps> = ({ channel, type }) => {
+  const { data, error } = useSWR<{ videos: VideoType[] }>(
+    `/channels/${channel.id}/videos`,
     getData
   )
   if (error) return <Error statusCode={404} />
 
   return data ? (
-    <div className="videos" data-testid={TestID.VIDEOS}>
-      {data.videos.map((video) => (
-        <div className="" data-testid={TestID.VIDEO} key={video.id}>
-          {video.title}
-        </div>
-      ))}
-    </div>
+    type === 'large' ? (
+      <div
+        className="videos row row-cols-lg-2 row-cols-xl-3"
+        data-testid={TestID.VIDEOS}
+      >
+        {data.videos.map((video) => (
+          <div className="" key={video.id}>
+            <Video type={type} video={video} />
+          </div>
+        ))}
+      </div>
+    ) : (
+      <div className="videos" data-testid={TestID.VIDEOS}>
+        {data.videos.map((video) => (
+          <div className="" key={video.id}>
+            <Video type={type} video={video} />
+          </div>
+        ))}
+      </div>
+    )
   ) : (
     <div className="">loading...</div>
   )
