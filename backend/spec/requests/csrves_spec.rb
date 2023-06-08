@@ -3,7 +3,7 @@ describe Api::CsrvesController do
     it('正常に取得できる') do
       get api_csrf_path
       expect(response.status).to eq(200)
-      json = JSON.parse(response.body)
+      json = response.parsed_body
       expect(json['token']).to be_present
     end
   end

@@ -6,6 +6,12 @@ class Api::SongItemsController < Api::Base
   def index
     scope = @channel.present? ? @channel.all_song_items : SongItem
     scope = @video.present? ? @video.song_items : scope
+    scope = scope.joins(:latest_diff)
+    scope = params[:query].present? ?
+      scope.where('song_diffs.title LIKE ?', "%#{params[:query]}%")
+        .or(scope.where('song_diffs.author LIKE ?', "%#{params[:query]}%"))
+      : scope
+    scope.select(:id, :video_id, :latest_diff_id, :created_at, :updated_at)
     @song_items = scope.includes(:latest_diff, :video).active
   end
 
@@ -17,9 +23,11 @@ class Api::SongItemsController < Api::Base
     return if params[:channel_id].blank?
 
     @channel = Channel.find_by(id: params[:channel_id])
-    render json: {
-      message: 'Channel not found'
-    }, status: :bad_request if @channel.blank?
+    if @channel.blank?
+      render json: {
+        message: 'Channel not found'
+      }, status: :bad_request
+    end
   end
 
   def set_video
@@ -27,9 +35,11 @@ class Api::SongItemsController < Api::Base
 
     @video = Video.find_by(id: params[:video_id])
 
-    render json: {
-      message: 'Video not found'
-    }, status: :bad_request if @video.blank?
+    if @video.blank?
+      render json: {
+        message: 'Video not found'
+      }, status: :bad_request
+    end
   end
 
   def set_song_item
