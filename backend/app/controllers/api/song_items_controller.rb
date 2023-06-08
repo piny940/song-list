@@ -6,7 +6,7 @@ class Api::SongItemsController < Api::Base
   def index
     scope = @channel.present? ? @channel.all_song_items : SongItem
     scope = @video.present? ? @video.song_items : scope
-    @song_items = scope.active
+    @song_items = scope.includes(:latest_diff, :video).active
   end
 
   def show; end

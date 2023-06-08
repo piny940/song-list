@@ -2,6 +2,9 @@
 .row.py-1
   .col-md-3.fw-bold Video
   .col-md-9= @song_item.video_id
+.row.py-1
+  .col-md-3.fw-bold LatestDiff
+  .col-md-9= @song_item.latest_diff&.id
 
 = link_to '編集', edit_admin_video_song_item_path(@video, @song_item)
 \|

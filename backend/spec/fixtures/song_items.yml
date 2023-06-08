@@ -1,17 +1,22 @@
 one:
   video: shairu1
+  latest_diff: one2
 
 two:
   video: shairu1
+  latest_diff: two1
 
 three:
   video: shairu2
+  latest_diff: three1
 
 # Activeでないsong_item
 four:
   video: shairu1
+  latest_diff: four1
 five:
   video: shairu1
 
 mashiro2_one:
   video: mashiro2
+  latest_diff: mashiro2_one1
