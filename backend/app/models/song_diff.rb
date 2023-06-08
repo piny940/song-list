@@ -23,16 +23,16 @@ class SongDiff < ApplicationRecord
       kind: 'auto',
       author: song['author'],
       time: Time.zone.parse(time),
-      title: song['title'],
+      title: song['title']
     )
     diff.approve
   end
 
   def update_status!(new_status)
-    p new_status
+    Rails.logger.debug new_status
     SongItem.transaction do
       update!(status: new_status)
-      p song_item.song_diffs.status_approved.last
+      Rails.logger.debug song_item.song_diffs.status_approved.last
       song_item.update!(latest_diff_id: song_item.song_diffs.status_approved.last.id)
     end
   end

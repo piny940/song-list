@@ -17,9 +17,11 @@ class Api::SongItemsController < Api::Base
     return if params[:channel_id].blank?
 
     @channel = Channel.find_by(id: params[:channel_id])
-    render json: {
-      message: 'Channel not found'
-    }, status: :bad_request if @channel.blank?
+    if @channel.blank?
+      render json: {
+        message: 'Channel not found'
+      }, status: :bad_request
+    end
   end
 
   def set_video
@@ -27,9 +29,11 @@ class Api::SongItemsController < Api::Base
 
     @video = Video.find_by(id: params[:video_id])
 
-    render json: {
-      message: 'Video not found'
-    }, status: :bad_request if @video.blank?
+    if @video.blank?
+      render json: {
+        message: 'Video not found'
+      }, status: :bad_request
+    end
   end
 
   def set_song_item
