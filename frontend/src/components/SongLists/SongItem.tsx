@@ -19,35 +19,36 @@ export const SongItem: React.FC<SongItemProps> = ({ songItem }) => {
   const second = time.getSeconds()
 
   return (
-    <SongItemDiv
-      className="d-flex align-items-center border border-light rounded shadow-sm m-1 p-3"
-      data-testid={TestID.SONG_ITEM}
+    <a
+      href={`https://www.youtube.com/watch?v=${songItem.video.video_id}&t=${
+        hour * 3600 + minute * 60 + second
+      }`}
+      target="_blank"
     >
-      <div className="">
-        <span className="">
-          <a
-            href={`https://www.youtube.com/watch?v=${
-              songItem.video.video_id
-            }&t=${hour * 3600 + minute * 60 + second}`}
-            target="_blank"
-            className="d-flex align-items-center"
-          >
-            <Image
-              src="/images/youtube.svg"
-              width={22}
-              height={22}
-              alt="youtube icon"
-            />
-            <span className="ms-2">{timeToString(time)}</span>
-          </a>
-        </span>
-      </div>
-      <div className="d-flex flex-wrap">
+      <SongItemDiv
+        className="d-flex align-items-center border border-light rounded shadow-sm m-1 p-3"
+        data-testid={TestID.SONG_ITEM}
+      >
         <div className="">
-          <span className="ms-2">{songItem.title}</span>
+          <span className="">
+            <div className="d-flex align-items-center">
+              <Image
+                src="/images/youtube.svg"
+                width={22}
+                height={22}
+                alt="youtube icon"
+              />
+              <span className="ms-2">{timeToString(time)}</span>
+            </div>
+          </span>
         </div>
-        {songItem.author && <span className="ms-3">/ {songItem.author}</span>}
-      </div>
-    </SongItemDiv>
+        <div className="d-flex flex-wrap">
+          <div className="">
+            <span className="ms-2">{songItem.title}</span>
+          </div>
+          {songItem.author && <span className="ms-3">/ {songItem.author}</span>}
+        </div>
+      </SongItemDiv>
+    </a>
   )
 }
