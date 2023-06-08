@@ -28,6 +28,7 @@ export const SongItems: React.FC<SongItemsProps> = ({ videoId, query }) => {
       }).toString(),
     getData
   )
+  console.log(page)
 
   if (error) return <Error statusCode={404} />
 
@@ -40,7 +41,11 @@ export const SongItems: React.FC<SongItemsProps> = ({ videoId, query }) => {
           </div>
         ))}
       </div>
-      <Paging totalPages={data.total_pages} setPageNumber={setPage} />
+      <Paging
+        currentPage={page}
+        totalPages={data.total_pages}
+        setPageNumber={setPage}
+      />
     </div>
   ) : (
     <Loading />
