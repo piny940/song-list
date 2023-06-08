@@ -42,6 +42,20 @@ describe Api::SongItemsController do
       json = response.parsed_body
       expect(json['song_items'].count).to eq 3
     end
+
+    it('曲名で検索できる') do
+      get endpoint, params: { query: 'アイドル' }
+      expect(response.status).to eq 200
+      json = response.parsed_body
+      expect(json['song_items'].count).to eq 2
+    end
+
+    it('歌手名で検索できる') do
+      get endpoint, params: { query: 'YOASOBI' }
+      expect(response.status).to eq 200
+      json = response.parsed_body
+      expect(json['song_items'].count).to eq 3
+    end
   end
 
   describe 'GET /api/song_items/:id' do
