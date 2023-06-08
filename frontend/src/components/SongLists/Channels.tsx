@@ -2,6 +2,7 @@ import { ChannelType } from '@/resources/types'
 import { getData } from '@/utils/api'
 import useSWR from 'swr'
 import { Channel } from './Channel'
+import { Loading } from '../Common/Loading'
 
 export type ChannelsListProps = {
   testID?: string
@@ -22,6 +23,8 @@ export const ChannelsList: React.FC<ChannelsListProps> = ({ testID }) => {
       ))}
     </div>
   ) : (
-    <div className="">loading</div>
+    <div className="m-4">
+      <Loading />
+    </div>
   )
 }

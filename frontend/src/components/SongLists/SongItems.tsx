@@ -4,6 +4,7 @@ import { getData } from '@/utils/api'
 import Error from 'next/error'
 import useSWR from 'swr'
 import { SongItem } from './SongItem'
+import { Loading } from '../Common/Loading'
 
 export type SongItemsProps = {
   videoId?: string
@@ -31,6 +32,6 @@ export const SongItems: React.FC<SongItemsProps> = ({ videoId, query }) => {
       ))}
     </div>
   ) : (
-    <div>loading...</div>
+    <Loading />
   )
 }
