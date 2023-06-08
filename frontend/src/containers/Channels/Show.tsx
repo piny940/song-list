@@ -34,6 +34,7 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
                 type="text"
                 className="form-control"
                 value={query}
+                placeholder="曲名/歌手名を入力"
                 onChange={(e) => {
                   setQuery(e.target.value)
                 }}
