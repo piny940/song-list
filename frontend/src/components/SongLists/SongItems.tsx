@@ -34,7 +34,7 @@ export const SongItems: React.FC<SongItemsProps> = ({ videoId, query }) => {
 
   return data ? (
     <div className="">
-      <div className="" data-testid={TestID.SONG_ITEMS}>
+      <div className="mb-4" data-testid={TestID.SONG_ITEMS}>
         {data.song_items.map((songItem) => (
           <div key={songItem.id}>
             <SongItem songItem={songItem} />
