@@ -54,7 +54,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_08_022103) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "latest_diff_id"
-    t.integer "from_comment_id"
     t.index ["video_id"], name: "index_song_items_on_video_id"
   end
 
@@ -87,7 +86,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_08_022103) do
   add_foreign_key "comments", "videos"
   add_foreign_key "song_diffs", "song_items"
   add_foreign_key "song_diffs", "users", column: "made_by_id"
-  add_foreign_key "song_items", "comments", column: "from_comment_id"
   add_foreign_key "song_items", "song_diffs", column: "latest_diff_id"
   add_foreign_key "song_items", "videos"
   add_foreign_key "videos", "channels"
