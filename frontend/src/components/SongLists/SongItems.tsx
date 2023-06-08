@@ -5,7 +5,7 @@ import Error from 'next/error'
 import useSWR from 'swr'
 import { SongItem } from './SongItem'
 import { Loading } from '../Common/Loading'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Paging } from '../Common/Paging'
 
 export type SongItemsProps = {
@@ -13,8 +13,9 @@ export type SongItemsProps = {
   query?: string
 }
 
+const DEFAULT_PAGE = 1
 export const SongItems: React.FC<SongItemsProps> = ({ videoId, query }) => {
-  const [page, setPage] = useState(1)
+  const [page, setPage] = useState(DEFAULT_PAGE)
   const { data, error } = useSWR<{
     song_items: SongItemType[]
     total_pages: number
@@ -28,7 +29,9 @@ export const SongItems: React.FC<SongItemsProps> = ({ videoId, query }) => {
       }).toString(),
     getData
   )
-  console.log(page)
+  useEffect(() => {
+    setPage(DEFAULT_PAGE)
+  }, [query])
 
   if (error) return <Error statusCode={404} />
 
