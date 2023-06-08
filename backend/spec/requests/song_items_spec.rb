@@ -5,6 +5,7 @@ describe Api::SongItemsController do
   fixtures :users
   fixtures :song_diffs
 
+  let(:channel) { channels(:shairu) }
   let(:video) { videos(:shairu1) }
   let(:endpoint) { '/api/song_items' }
 
@@ -34,9 +35,13 @@ describe Api::SongItemsController do
       expect(json['song_items'][0]['title']).to eq 'アイドル2'
     end
 
-    # it('特定のchannelのsong_itemsを取得できる') do
+    it('特定のchannelのsong_itemsを取得できる') do
+      get endpoint, params: { channel_id: channel.id }
 
-    # end
+      expect(response.status).to eq 200
+      json = response.parsed_body
+      expect(json['song_items'].count).to eq 3
+    end
   end
 
   describe 'GET /api/song_items/:id' do
