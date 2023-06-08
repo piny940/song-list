@@ -26,6 +26,7 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
       <h1>{data.channel.name}</h1>
       <div className="d-flex">
         <div className="w-50 px-3">
+          <div className="text-sm fw-bold w-100 text-center">歌一覧</div>
           <div className="row px-4 my-2">
             <div className="fw-bold col-2 col-form-label">検索</div>
             <div className="col-10">
