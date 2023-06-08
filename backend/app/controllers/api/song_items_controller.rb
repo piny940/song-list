@@ -12,7 +12,8 @@ class Api::SongItemsController < Api::Base
         .or(scope.where('song_diffs.author LIKE ?', "%#{params[:query]}%"))
       : scope
     scope.select(:id, :video_id, :latest_diff_id, :created_at, :updated_at)
-    @song_items = scope.includes(:latest_diff, :video).active
+    scope = scope.includes(:latest_diff, :video).active
+    @song_items = scope.page(params[:page]).per(params[:count])
   end
 
   def show; end

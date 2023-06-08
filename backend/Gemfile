@@ -99,3 +99,6 @@ gem 'enum_help'
 
 # XML解析
 gem 'nokogiri'
+
+# ページング
+gem 'kaminari'
