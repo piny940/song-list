@@ -14,6 +14,7 @@ class Api::SongItemsController < Api::Base
     scope.select(:id, :video_id, :latest_diff_id, :created_at, :updated_at)
     scope = scope.includes(:latest_diff, :video).active
     @song_items = scope.page(params[:page]).per(params[:count])
+    @total_pages = @song_items.total_pages
   end
 
   def show; end

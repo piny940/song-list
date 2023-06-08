@@ -3,3 +3,4 @@ json.song_items do
     json.partial! song_item
   end
 end
+json.total_pages @total_pages

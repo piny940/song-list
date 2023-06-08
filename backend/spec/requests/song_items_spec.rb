@@ -23,6 +23,7 @@ describe Api::SongItemsController do
       expect(Time.zone.parse(json['song_items'][0]['time'])).to eq Time.zone.parse('2023-06-02 00:08:16')
       expect(json['song_items'][0]['author']).to be_nil
       expect(json['song_items'][1]['author']).to eq 'YOASOBI'
+      expect(json['total_pages']).to be_present
     end
 
     it('特定のvideoのsong_itemsを取得できる') do
