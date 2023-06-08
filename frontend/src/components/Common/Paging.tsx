@@ -13,6 +13,7 @@ export const Paging: React.FC<PagingProps> = ({
 }) => {
   const handlePageChange = ({ selected }: { selected: number }) => {
     setPageNumber(selected + 1)
+    window.scroll(0, 0)
   }
 
   return (
@@ -33,7 +34,6 @@ export const Paging: React.FC<PagingProps> = ({
       nextClassName="page-item"
       nextLinkClassName="page-link"
       activeClassName="active"
-      hrefBuilder={(_) => '#'}
     />
   )
 }
