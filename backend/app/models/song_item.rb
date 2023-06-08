@@ -1,7 +1,7 @@
 class SongItem < ApplicationRecord
   belongs_to :video
   has_many :song_diffs, dependent: :destroy
-  has_one :latest_diff, class_name: 'SongDiff'
+  belongs_to :latest_diff, class_name: 'SongDiff', optional: true
 
   def active?
     return false if song_diffs.status_approved.blank?

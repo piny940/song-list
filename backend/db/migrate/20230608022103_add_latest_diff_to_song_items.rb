@@ -4,7 +4,7 @@ class AddLatestDiffToSongItems < ActiveRecord::Migration[7.0]
     add_foreign_key :song_items, :song_diffs, column: :latest_diff_id
 
     SongItem.find_each do |song_item|
-      song_item.update!(latest_diff_id: song_item.song_diffs.where(status: 10).last)
+      song_item.update!(latest_diff_id: song_item.song_diffs.where(status: 10).last.id)
     end
   end
 
