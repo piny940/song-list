@@ -4,34 +4,26 @@ class SongItem < ApplicationRecord
   belongs_to :latest_diff, class_name: 'SongDiff', optional: true
 
   def active?
-    return false if song_diffs.status_approved.blank?
-
-    !song_diffs.status_approved.last.deletion?
+    latest_diff.present? && !latest_diff.deletion?
   end
 
   def self.active
-    lasts = SongDiff.status_approved.where(created_at: SongDiff.status_approved \
-              .group(:song_item_id).select('max(created_at)'))
-    where(id: lasts.where.not(title: ['', nil]).or(lasts.where.not(author: ['', nil])) \
-            .or(lasts.where.not(time: ['', nil])).pluck(:song_item_id))
+    diffs = SongDiff.status_approved.where.not(title: nil)
+      .or(SongDiff.status_approved.where.not(author: nil))
+      .or(SongDiff.status_approved.where.not(time: nil))
+    where(latest_diff_id: diffs.select(:id))
   end
 
   def title
-    return nil unless active?
-
-    song_diffs.status_approved.last.title
+    latest_diff&.title
   end
 
   def author
-    return nil unless active?
-
-    song_diffs.status_approved.last.author
+    latest_diff&.author
   end
 
   def time
-    return nil unless active?
-
-    song_diffs.status_approved.last.time
+    latest_diff&.time
   end
 
   def self.create_from_json!(songs)
