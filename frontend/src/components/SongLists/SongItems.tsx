@@ -28,19 +28,24 @@ export const SongItems: React.FC<SongItemsProps> = ({ videoId, query }) => {
       }).toString(),
     getData
   )
+  console.log(page)
 
   if (error) return <Error statusCode={404} />
 
   return data ? (
     <div className="">
-      <div className="" data-testid={TestID.SONG_ITEMS}>
+      <div className="mb-4" data-testid={TestID.SONG_ITEMS}>
         {data.song_items.map((songItem) => (
           <div key={songItem.id}>
             <SongItem songItem={songItem} />
           </div>
         ))}
       </div>
-      <Paging totalPages={data.total_pages} setPageNumber={setPage} />
+      <Paging
+        currentPage={page}
+        totalPages={data.total_pages}
+        setPageNumber={setPage}
+      />
     </div>
   ) : (
     <Loading />
