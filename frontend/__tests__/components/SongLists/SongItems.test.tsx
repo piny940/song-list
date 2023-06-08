@@ -3,7 +3,7 @@ import { expect } from '@jest/globals'
 import { SongItems } from '@/components/SongLists/SongItems'
 import { TestID } from '@/resources/TestID'
 import { Mock } from 'ts-mockery'
-import { SongItemType } from '@/resources/types'
+import { SongItemType, VideoType } from '@/resources/types'
 
 jest.mock('swr', () =>
   jest.fn(() => ({
@@ -11,9 +11,11 @@ jest.mock('swr', () =>
       song_items: [
         Mock.from<SongItemType>({
           id: 1000,
+          video: Mock.from<VideoType>({}),
         }),
         Mock.from<SongItemType>({
           id: 1001,
+          video: Mock.from<VideoType>({}),
         }),
       ],
     },
