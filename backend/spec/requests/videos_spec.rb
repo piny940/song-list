@@ -20,6 +20,7 @@ describe Api::VideosController do
       expect(json['videos'][0]['title']).to eq video.title
       expect(json['videos'][0]['thumbnails']['medium']['width']).to eq 320
       expect(json['videos'][0]['description']).to eq video.description
+      expect(json['total_pages']).to be_present
     end
   end
   describe 'GET /api/videos/:id' do
