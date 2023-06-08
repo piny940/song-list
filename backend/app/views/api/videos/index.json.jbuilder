@@ -3,3 +3,4 @@ json.videos do
     json.partial! video
   end
 end
+json.total_pages @total_pages
