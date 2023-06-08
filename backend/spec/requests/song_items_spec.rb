@@ -54,7 +54,7 @@ describe Api::SongItemsController do
       get endpoint, params: { query: 'YOASOBI' }
       expect(response.status).to eq 200
       json = response.parsed_body
-      expect(json['song_items'].count).to eq 3
+      expect(json['song_items'].count).to eq 2
     end
   end
 

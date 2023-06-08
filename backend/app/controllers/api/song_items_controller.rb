@@ -6,6 +6,12 @@ class Api::SongItemsController < Api::Base
   def index
     scope = @channel.present? ? @channel.all_song_items : SongItem
     scope = @video.present? ? @video.song_items : scope
+    scope = scope.joins(:latest_diff)
+    scope = params[:query].present? ?
+      scope.where('song_diffs.title LIKE ?', "%#{params[:query]}%")
+        .or(scope.where('song_diffs.author LIKE ?', "%#{params[:query]}%"))
+      : scope
+    scope.select(:id, :video_id, :latest_diff_id, :created_at, :updated_at)
     @song_items = scope.includes(:latest_diff, :video).active
   end
 
