@@ -1,3 +1,4 @@
+import { Loading } from '@/components/Common/Loading'
 import { SongItems } from '@/components/SongLists/SongItems'
 import { Videos } from '@/components/SongLists/Videos'
 import { ChannelType } from '@/resources/types'
@@ -47,6 +48,6 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
       </div>
     </div>
   ) : (
-    <div className="">loading...</div>
+    <Loading />
   )
 }

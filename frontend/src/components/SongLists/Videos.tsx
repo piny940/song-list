@@ -4,6 +4,7 @@ import { getData } from '@/utils/api'
 import Error from 'next/error'
 import useSWR from 'swr'
 import { Video } from './Video'
+import { Loading } from '../Common/Loading'
 
 export type VideosProps = {
   channel: ChannelType
@@ -39,6 +40,6 @@ export const Videos: React.FC<VideosProps> = ({ channel, type }) => {
       </div>
     )
   ) : (
-    <div className="">loading...</div>
+    <Loading />
   )
 }
