@@ -1,7 +1,7 @@
 describe Api::VideosController do
   fixtures :channels, :videos
   let(:channel) { channels(:shairu) }
-  let(:video) { videos(:one) }
+  let(:video) { videos(:shairu1) }
 
   describe 'GET /api/videos' do
     let(:endpoint) { "/api/channels/#{channel.id}/videos" }

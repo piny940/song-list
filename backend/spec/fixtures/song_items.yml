@@ -1,14 +1,17 @@
 one:
-  video: one
+  video: shairu1
 
 two:
-  video: one
+  video: shairu1
 
 three:
-  video: two
+  video: shairu2
 
 # Activeでないsong_item
 four:
-  video: one
+  video: shairu1
 five:
-  video: one
+  video: shairu1
+
+mashiro2_one:
+  video: mashiro2

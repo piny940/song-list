@@ -1,9 +1,11 @@
 class Api::SongItemsController < Api::Base
+  before_action :set_channel
   before_action :set_video
   before_action :set_song_item, only: %i[show]
 
   def index
-    scope = @video.present? ? @video.song_items : SongItem
+    scope = @channel.present? ? @channel.all_song_items : SongItem
+    scope = @video.present? ? @video.song_items : scope
     @song_items = scope.active
   end
 
@@ -11,16 +13,23 @@ class Api::SongItemsController < Api::Base
 
   private
 
+  def set_channel
+    return if params[:channel_id].blank?
+
+    @channel = Channel.find_by(id: params[:channel_id])
+    render json: {
+      message: 'Channel not found'
+    }, status: :bad_request if @channel.blank?
+  end
+
   def set_video
     return if params[:video_id].blank?
 
     @video = Video.find_by(id: params[:video_id])
 
-    if @video.blank?
-      render json: {
-        message: 'Video not found'
-      }, status: :bad_request
-    end
+    render json: {
+      message: 'Video not found'
+    }, status: :bad_request if @video.blank?
   end
 
   def set_song_item
