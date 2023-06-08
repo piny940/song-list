@@ -1,6 +1,7 @@
 import { TestID } from '@/resources/TestID'
 import { SongItemType } from '@/resources/types'
 import { timeToString } from '@/utils/helpers'
+import Image from 'next/image'
 import { styled } from 'styled-components'
 
 const SongItemDiv = styled.div`
@@ -25,12 +26,19 @@ export const SongItem: React.FC<SongItemProps> = ({ songItem }) => {
       <div className="">
         <span className="">
           <a
-            href={`https://www.youtube.com/watch?v=${songItem.video_id}&t=${
-              hour * 3600 + minute * 60 + second
-            }`}
+            href={`https://www.youtube.com/watch?v=${
+              songItem.video.video_id
+            }&t=${hour * 3600 + minute * 60 + second}`}
             target="_blank"
+            className="d-flex align-items-center"
           >
-            {timeToString(time)}
+            <Image
+              src="/images/youtube.svg"
+              width={22}
+              height={22}
+              alt="youtube icon"
+            />
+            <span className="ms-2">{timeToString(time)}</span>
           </a>
         </span>
       </div>
