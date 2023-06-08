@@ -5,7 +5,7 @@ two:
   video: shairu1
 
 three:
-  video: two
+  video: shairu2
 
 # Activeでないsong_item
 four:
