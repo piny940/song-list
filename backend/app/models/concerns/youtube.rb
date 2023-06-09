@@ -8,8 +8,9 @@ module Youtube
     service.list_channels('snippet', id: channel_id)
   end
 
-  def self.get_video(video_id)
-    service.list_videos('liveStreamingDetails,snippet', id: video_id)
+  # 21個以上は同時にgetできない
+  def self.get_videos(video_ids)
+    service.list_videos('liveStreamingDetails,snippet', id: video_ids.join(','))
   end
 
   RECENT_VIDEOS_ENDPOINT = 'https://www.youtube.com/feeds/videos.xml'.freeze
