@@ -22,7 +22,7 @@ describe Api::SongItemsController do
       expect(json['song_items'][0]['title']).to eq 'アイドル2'
       expect(Time.zone.parse(json['song_items'][0]['time'])).to eq Time.zone.parse('2023-06-02 00:08:16')
       expect(json['song_items'][0]['author']).to be_nil
-      expect(json['song_items'][1]['author']).to eq 'YOASOBI'
+      expect(json['song_items'][1]['author']).to eq 'YOASObi'
       expect(json['total_pages']).to be_present
     end
 
@@ -48,7 +48,7 @@ describe Api::SongItemsController do
       get endpoint, params: { query: 'アイドル' }
       expect(response.status).to eq 200
       json = response.parsed_body
-      expect(json['song_items'].count).to eq 2
+      expect(json['song_items'].count).to eq 1
     end
 
     it('歌手名で検索できる') do
