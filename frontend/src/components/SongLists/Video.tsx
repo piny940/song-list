@@ -24,6 +24,11 @@ export type VideoProps = {
 }
 
 export const Video: React.FC<VideoProps> = ({ video, type }) => {
+  const toVideoTime = (publishedAt: string) => {
+    const time = new Date(publishedAt)
+    if (!time) return ''
+    return `${time.getFullYear()}/${time.getMonth()}/${time.getDate()}`
+  }
   return type === 'large' ? (
     <div
       className="video border border-light shadow-sm m-1"
@@ -47,9 +52,14 @@ export const Video: React.FC<VideoProps> = ({ video, type }) => {
       data-testid={TestID.VIDEO}
     >
       <Image src={video.thumbnails.medium.url} width={160} height={90} alt="" />
-      <MediumVideoTitleDiv className="p-2">
-        <span>{video.title}</span>
-      </MediumVideoTitleDiv>
+      <div className="d-flex flex-column justify-content-between">
+        <MediumVideoTitleDiv className="p-2">
+          <span>{video.title}</span>
+        </MediumVideoTitleDiv>
+        <div className="pe-2 text-muted d-flex flex-row-reverse">
+          <span>{toVideoTime(video.published_at)}</span>
+        </div>
+      </div>
     </div>
   )
 }
