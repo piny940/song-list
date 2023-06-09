@@ -32,15 +32,16 @@ class Video < ApplicationRecord
     raise 'この動画のチャンネルはデータベースに存在しません' if channel.blank?
 
     kind = items[0].live_streaming_details.present? ? 'live' : 'video'
-    time = items[0].dig('live_streaming_details', 'scheduled_start_time') \
-            || items[0].dig('snippet', 'published_at')
+    published_at = items[0].live_streaming_details&.scheduled_start_time \
+          || items[0].snippet.published_at
+
     create!(
       video_id:,
       title: items[0].snippet.title,
       response_json: items[0].to_h,
       kind:,
       channel_id: channel.id,
-      published_at: Time.zone.parse(time)
+      published_at:
     )
   end
 

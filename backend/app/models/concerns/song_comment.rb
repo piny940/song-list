@@ -16,8 +16,9 @@ module SongComment
       return
     end
 
-    video.song_items.create_from_json!(songs)
+    song_items = video.song_items.create_from_json!(songs)
     update!(status: 'completed')
+    song_items
   end
 
   private

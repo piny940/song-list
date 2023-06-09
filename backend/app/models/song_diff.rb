@@ -27,6 +27,7 @@ class SongDiff < ApplicationRecord
       comment_id:
     )
     diff.update_status!('approved')
+    diff
   end
 
   def update_status!(new_status)
