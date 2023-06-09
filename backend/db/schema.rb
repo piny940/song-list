@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_08_022103) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_03_054131) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -28,6 +28,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_08_022103) do
     t.string "comment_id", null: false
     t.bigint "video_id", null: false
     t.integer "status", default: 0, null: false
+    t.string "author", null: false
+    t.string "content", null: false
     t.json "response_json", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -45,6 +47,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_08_022103) do
     t.integer "kind", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "comment_id"
     t.index ["made_by_id"], name: "index_song_diffs_on_made_by_id"
     t.index ["song_item_id"], name: "index_song_diffs_on_song_item_id"
   end
@@ -77,6 +80,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_08_022103) do
     t.json "response_json", null: false
     t.string "title", null: false
     t.integer "status", default: 0, null: false
+    t.datetime "published_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["channel_id"], name: "index_videos_on_channel_id"
@@ -84,6 +88,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_08_022103) do
   end
 
   add_foreign_key "comments", "videos"
+  add_foreign_key "song_diffs", "comments"
   add_foreign_key "song_diffs", "song_items"
   add_foreign_key "song_diffs", "users", column: "made_by_id"
   add_foreign_key "song_items", "song_diffs", column: "latest_diff_id"
