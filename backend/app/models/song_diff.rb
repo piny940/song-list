@@ -17,7 +17,7 @@ class SongDiff < ApplicationRecord
     time.blank? && title.blank? && author.blank?
   end
 
-  def self.create_from_json!(song, comment_id:nil)
+  def self.create_from_json!(song, comment_id: nil)
     time = song['time'].length == 5 ? "00:#{song['time']}" : song['time']
     diff = create!(
       kind: 'auto',

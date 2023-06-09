@@ -40,9 +40,11 @@ module SongLive
     loop do
       response = Youtube.get_comments_data(video_id, page_token:)
       break if response.items.nil?
+
       response.items.each do |item|
         # すでに調査済みのコメントはスルー
         next if Comment.find_by(comment_id: item.id).present?
+
         comment = comments.create!(
           comment_id: item.id,
           response_json: item.to_h,
