@@ -3,9 +3,10 @@ require 'open-uri'
 
 module Youtube
   extend ActiveSupport::Concern
-
-  def self.get_channel(channel_id)
-    service.list_channels('snippet', id: channel_id)
+  
+  # 21個以上は同時にgetできない
+  def self.get_channels(channel_ids)
+    service.list_channels('snippet', id: channel_ids.join(','))
   end
 
   # 21個以上は同時にgetできない

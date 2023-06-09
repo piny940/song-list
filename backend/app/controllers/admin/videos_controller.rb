@@ -16,7 +16,7 @@ class Admin::VideosController < Admin::Base
   def edit; end
 
   def create
-    @video = Video.fetch_and_create!(video_params[:video_id])
+    @video = Video.fetch_and_create!([video_params[:video_id]])[0]
 
     if @video.present?
       redirect_to admin_videos_path(channel_id: @video.channel.id), notice: 'Videoが作成されました。'
