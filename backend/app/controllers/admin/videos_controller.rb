@@ -4,7 +4,7 @@ class Admin::VideosController < Admin::Base
   def index
     channel = Channel.find_by(id: params[:channel_id])
     scope = channel.present? ? channel.videos : Video
-    @videos = scope.all
+    @videos = scope.order(published_at: :desc).all
   end
 
   def show; end
@@ -16,7 +16,7 @@ class Admin::VideosController < Admin::Base
   def edit; end
 
   def create
-    @video = Video.fetch_and_create!(video_params[:video_id])
+    @video = Video.fetch_and_create!([video_params[:video_id]])[0]
 
     if @video.present?
       redirect_to admin_videos_path(channel_id: @video.channel.id), notice: 'Videoが作成されました。'

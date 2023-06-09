@@ -14,7 +14,7 @@ class Admin::ChannelsController < Admin::Base
   def edit; end
 
   def create
-    @channel = Channel.fetch_and_create!(channel_params[:channel_id])
+    @channel = Channel.fetch_and_create!([channel_params[:channel_id]])[0]
 
     if @channel.present?
       redirect_to admin_channels_path, notice: 'Channel が作成されました。'

@@ -20,29 +20,34 @@ class Video < ApplicationRecord
     completed: 20
   }, _prefix: true
 
-  def self.fetch_and_create!(video_id)
-    response = Youtube.get_video(video_id)
-    items = response.items
-    return if items.blank?
-    raise '与えられたチャンネルの動画ではありません。' \
-      if new.channel.present? && new.channel.channel_id != items[0].snippet.channel_id
-    return if Video.find_by(video_id:).present?
+  def self.fetch_and_create!(video_ids)
+    response = Youtube.get_videos(video_ids)
+    videos = []
+    response.items.each do |item|
+      # 与えられたチャンネルの動画ではない場合はskip
+      next if new.channel.present? && new.channel.channel_id != item.snippet.channel_id
 
-    channel = Channel.find_by(channel_id: items[0].snippet.channel_id)
-    raise 'この動画のチャンネルはデータベースに存在しません' if channel.blank?
+      channel = Channel.find_by(channel_id: item.snippet.channel_id)
+      next if channel.blank? # チャンネルがDBに存在しない場合
 
-    kind = items[0].live_streaming_details.present? ? 'live' : 'video'
-    published_at = items[0].live_streaming_details&.scheduled_start_time \
-          || items[0].snippet.published_at
+      video = Video.find_or_initialize_by(video_id: item.id)
 
-    create!(
-      video_id:,
-      title: items[0].snippet.title,
-      response_json: items[0].to_h,
-      kind:,
-      channel_id: channel.id,
-      published_at:
-    )
+      kind = item.live_streaming_details.present? ? 'live' : 'video'
+      published_at = item.live_streaming_details&.actual_start_time \
+            || item.live_streaming_details&.scheduled_start_time \
+            || item.snippet.published_at
+
+      video.update!(
+        video_id: item.id,
+        title: item.snippet.title,
+        response_json: item.to_h,
+        kind:,
+        channel_id: channel.id,
+        published_at:
+      )
+      videos.push(video)
+    end
+    videos
   end
 
   # {

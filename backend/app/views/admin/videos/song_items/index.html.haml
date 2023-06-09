@@ -3,16 +3,18 @@
   %thead.table-light
     %tr
       %th Active
+      %th Time
       %th Title
       %th Author
       %th Links
 
   %tbody
     %tr
-      %td{colspan: 4}= link_to 'song_item新規作成', new_admin_video_song_item_path(@video), class: 'btn btn-primary w-100'
+      %td{colspan: 5}= link_to 'song_item新規作成', new_admin_video_song_item_path(@video), class: 'btn btn-primary w-100'
     - @song_items.each do |song_item|
       %tr
         %td= song_item.active?
+        %td= song_item.time
         %td= song_item.title
         %td= song_item.author
         %td

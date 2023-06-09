@@ -4,22 +4,21 @@ require 'open-uri'
 module Youtube
   extend ActiveSupport::Concern
 
-  def self.get_channel(channel_id)
-    service.list_channels('snippet', id: channel_id)
+  def self.get_channels(channel_ids, page_token: nil)
+    service.list_channels('snippet', id: channel_ids.join(','), page_token:)
   end
 
-  def self.get_video(video_id)
-    service.list_videos('liveStreamingDetails,snippet', id: video_id)
+  def self.get_videos(video_ids, page_token: nil)
+    service.list_videos('liveStreamingDetails,snippet', id: video_ids.join(','), page_token:)
   end
 
   RECENT_VIDEOS_ENDPOINT = 'https://www.youtube.com/feeds/videos.xml'.freeze
   def self.get_recent_video_ids(channel_id)
-    Rails.logger.debug channel_id
     xml = Nokogiri::XML(URI.open("#{RECENT_VIDEOS_ENDPOINT}?channel_id=#{channel_id}"))
     xml.css('feed entry id').map(&:text).pluck(9..)
   end
 
-  def self.get_comments_data(video_id, page_token: nil)
+  def self.get_video_comments(video_id, page_token: nil)
     service.list_comment_threads('snippet,replies', video_id:, page_token:)
   end
 

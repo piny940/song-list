@@ -3,18 +3,20 @@ class Channel < ApplicationRecord
   validates :channel_id, presence: true, uniqueness: true
   has_many :all_song_items, through: :videos, class_name: 'SongItem', source: :song_items
 
-  def self.fetch_and_create!(channel_id)
-    response = Youtube.get_channel(channel_id)
+  def self.fetch_and_create!(channel_ids)
+    response = Youtube.get_channel(channel_ids)
+    channels = []
 
-    items = response.items
-
-    return if items.blank?
-
-    create!(
-      channel_id:,
-      name: items[0].snippet.title,
-      response_json: items[0].to_h
-    )
+    response.items.each do |item|
+      channel = Channel.find_or_initialize_by(channel_id: item.id)
+      channel.update!(
+        channel_id: item.id,
+        name: item.snippet.title,
+        response_json: item.to_h
+      )
+      channels.push(channel)
+    end
+    channels
   end
 
   # {
@@ -47,14 +49,7 @@ class Channel < ApplicationRecord
   end
 
   def search_and_create_recent_videos
-    new_videos = []
     video_ids = Youtube.get_recent_video_ids(channel_id)
-    video_ids.each do |video_id|
-      next if Video.find_by(video_id:).present?
-
-      video = videos.fetch_and_create!(video_id)
-      new_videos.push(video)
-    end
-    new_videos
+    videos.fetch_and_create!(video_ids)
   end
 end
