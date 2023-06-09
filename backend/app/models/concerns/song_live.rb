@@ -26,7 +26,7 @@ module SongLive
 
     # completedではないコメントは再度調べる
     comments.where.not(status: 'completed').find_each do |comment|
-      song_items = comment.search_and_create_song_items
+      song_items = comment.search_and_create_song_items!
 
       # SongItemsが見つかったらそこで終了
       if song_items.present?
@@ -39,15 +39,19 @@ module SongLive
     page_token = nil
     loop do
       response = Youtube.get_comments_data(video_id, page_token:)
-
       break if response.items.nil?
 
       response.items.each do |item|
         # すでに調査済みのコメントはスルー
         next if Comment.find_by(comment_id: item.id).present?
 
-        comment = comments.create!(comment_id: item.id, response_json: item.to_h)
-        song_items = comment.search_and_create_song_items
+        comment = comments.create!(
+          comment_id: item.id,
+          response_json: item.to_h,
+          author: item.snippet.top_level_comment.snippet.author_display_name,
+          content: item.snippet.top_level_comment.snippet.text_original
+        )
+        song_items = comment.search_and_create_song_items!
 
         # SongItemsが見つかり次第終了
         if song_items.present?

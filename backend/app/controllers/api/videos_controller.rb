@@ -3,7 +3,7 @@ class Api::VideosController < Api::Base
   before_action :set_video, only: %i[show]
 
   def index
-    @videos = @channel.videos.page(params[:page]).per(params[:count])
+    @videos = @channel.videos.order(published_at: :desc).page(params[:page]).per(params[:count])
     @total_pages = @videos.total_pages
   end
 

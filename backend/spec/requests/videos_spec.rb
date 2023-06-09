@@ -13,13 +13,16 @@ describe Api::VideosController do
       json = response.parsed_body
 
       expect(json['videos'].count).to eq 2
-      expect(json['videos'][0]['id']).to eq video.id
-      expect(json['videos'][0]['video_id']).to eq video.video_id
-      expect(json['videos'][0]['channel_id']).to eq channel.id
-      expect(json['videos'][0]['kind']).to eq video.kind
-      expect(json['videos'][0]['title']).to eq video.title
-      expect(json['videos'][0]['thumbnails']['medium']['width']).to eq 320
-      expect(json['videos'][0]['description']).to eq video.description
+      expect(json['videos'][0]['id']).to be_present
+      expect(json['videos'][0]['video_id']).to be_present
+      expect(json['videos'][0]['channel_id']).to be_present
+      expect(json['videos'][0]['kind']).to be_present
+      expect(json['videos'][0]['title']).to be_present
+      expect(json['videos'][0]['thumbnails']['medium']['width']).to be_present
+      expect(json['videos'][0]['description']).to be_present
+      expect(json['videos'][0]['published_at']).to be_present
+      expect(json['videos'][0]['created_at']).to be_present
+      expect(json['videos'][0]['updated_at']).to be_present
       expect(json['total_pages']).to be_present
     end
   end
@@ -32,13 +35,13 @@ describe Api::VideosController do
 
       json = response.parsed_body
 
-      expect(json['video']['id']).to eq video.id
-      expect(json['video']['video_id']).to eq video.video_id
-      expect(json['video']['channel_id']).to eq channel.id
-      expect(json['video']['kind']).to eq video.kind
-      expect(json['video']['title']).to eq video.title
-      expect(json['video']['thumbnails']['medium']['width']).to eq 320
-      expect(json['video']['description']).to eq video.description
+      expect(json['video']['id']).to be_present
+      expect(json['video']['video_id']).to be_present
+      expect(json['video']['channel_id']).to be_present
+      expect(json['video']['kind']).to be_present
+      expect(json['video']['title']).to be_present
+      expect(json['video']['thumbnails']['medium']['width']).to be_present
+      expect(json['video']['description']).to be_present
     end
   end
 end

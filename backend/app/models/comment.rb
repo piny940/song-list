@@ -11,12 +11,4 @@ class Comment < ApplicationRecord
     fetched: 10,
     completed: 20
   }, _prefix: true
-
-  def content
-    response_json.dig('snippet', 'top_level_comment', 'snippet', 'text_original')
-  end
-
-  def author
-    response_json.dig('snippet', 'top_level_comment', 'snippet', 'author_display_name')
-  end
 end

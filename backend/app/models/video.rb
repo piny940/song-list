@@ -32,12 +32,16 @@ class Video < ApplicationRecord
     raise 'この動画のチャンネルはデータベースに存在しません' if channel.blank?
 
     kind = items[0].live_streaming_details.present? ? 'live' : 'video'
+    published_at = items[0].live_streaming_details&.scheduled_start_time \
+          || items[0].snippet.published_at
+
     create!(
       video_id:,
       title: items[0].snippet.title,
       response_json: items[0].to_h,
       kind:,
-      channel_id: channel.id
+      channel_id: channel.id,
+      published_at:
     )
   end
 
@@ -59,10 +63,14 @@ class Video < ApplicationRecord
   #   },
   # }
   def thumbnails
-    response_json['snippet']['thumbnails']
+    response_json.dig('snippet', 'thumbnails')
   end
 
   def description
-    response_json['snippet']['description']
+    response_json.dig('snippet', 'description')
+  end
+
+  def published_at
+    Time.zone.parse(response_json.dig('snippet', 'published_at'))
   end
 end

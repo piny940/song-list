@@ -7,12 +7,15 @@ class Api::SongItemsController < Api::Base
     scope = @channel.present? ? @channel.all_song_items : SongItem
     scope = @video.present? ? @video.song_items : scope
     scope = scope.joins(:latest_diff)
-    scope = params[:query].present? ?
-      scope.where('song_diffs.title ILIKE ?', "%#{params[:query]}%")
-        .or(scope.where('song_diffs.author ILIKE ?', "%#{params[:query]}%"))
-      : scope
+    scope = if params[:query].present?
+              scope.where('song_diffs.title ILIKE ?', "%#{params[:query]}%")
+                   .or(scope.where('song_diffs.author ILIKE ?', "%#{params[:query]}%"))
+            else
+              scope
+            end
+    scope = scope.active.order('videos.published_at desc, time asc')
     scope.select(:id, :video_id, :latest_diff_id, :created_at, :updated_at)
-    scope = scope.includes(:latest_diff, :video).active
+    scope = scope.includes(:latest_diff, :video)
     @song_items = scope.page(params[:page]).per(params[:count])
     @total_pages = @song_items.total_pages
   end

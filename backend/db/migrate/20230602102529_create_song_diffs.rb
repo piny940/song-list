@@ -12,5 +12,7 @@ class CreateSongDiffs < ActiveRecord::Migration[7.0]
       t.timestamps
     end
     add_foreign_key :song_diffs, :users, column: :made_by_id
+
+    add_column :song_items, :latest_diff_id, :integer, index: true
   end
 end

@@ -19,6 +19,8 @@ Documentation:
 # モジュール名::クラス名の定義を許可
 Style/ClassAndModuleChildren:
   Enabled: false
+Metrics/PerceivedComplexity:
+  Enabled: false
 
 Naming/HeredocDelimiterNaming:
   Enabled: false
