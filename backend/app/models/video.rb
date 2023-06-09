@@ -59,10 +59,14 @@ class Video < ApplicationRecord
   #   },
   # }
   def thumbnails
-    response_json['snippet']['thumbnails']
+    response_json.dig('snippet', 'thumbnails')
   end
 
   def description
-    response_json['snippet']['description']
+    response_json.dig('snippet', 'description')
+  end
+
+  def published_at
+    Time.zone.parse(response_json.dig('snippet', 'published_at'))
   end
 end
