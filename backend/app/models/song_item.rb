@@ -26,11 +26,11 @@ class SongItem < ApplicationRecord
     latest_diff&.time
   end
 
-  def self.create_from_json!(songs)
+  def self.create_from_json!(songs, comment_id:nil)
     song_items = []
     songs.each do |song|
       song_item = create!
-      song_item.song_diffs.create_from_json!(song)
+      song_item.song_diffs.create_from_json!(song, comment_id:)
       song_items.push(song_item)
     end
     song_items

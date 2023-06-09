@@ -17,22 +17,21 @@ class SongDiff < ApplicationRecord
     time.blank? && title.blank? && author.blank?
   end
 
-  def self.create_from_json!(song)
+  def self.create_from_json!(song, comment_id:nil)
     time = song['time'].length == 5 ? "00:#{song['time']}" : song['time']
     diff = create!(
       kind: 'auto',
       author: song['author'],
       time: Time.zone.parse(time),
-      title: song['title']
+      title: song['title'],
+      comment_id:
     )
-    diff.approve
+    diff.update_status!('approved')
   end
 
   def update_status!(new_status)
-    Rails.logger.debug new_status
     SongItem.transaction do
       update!(status: new_status)
-      Rails.logger.debug song_item.song_diffs.status_approved.last
       song_item.update!(latest_diff_id: song_item.song_diffs.status_approved.last.id)
     end
   end
