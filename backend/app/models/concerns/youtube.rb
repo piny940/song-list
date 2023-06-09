@@ -4,14 +4,12 @@ require 'open-uri'
 module Youtube
   extend ActiveSupport::Concern
   
-  # 21個以上は同時にgetできない
-  def self.get_channels(channel_ids)
-    service.list_channels('snippet', id: channel_ids.join(','))
+  def self.get_channels(channel_ids, page_token: nil)
+    service.list_channels('snippet', id: channel_ids.join(','), page_token:)
   end
 
-  # 21個以上は同時にgetできない
-  def self.get_videos(video_ids)
-    service.list_videos('liveStreamingDetails,snippet', id: video_ids.join(','))
+  def self.get_videos(video_ids, page_token: nil)
+    service.list_videos('liveStreamingDetails,snippet', id: video_ids.join(','), page_token:)
   end
 
   RECENT_VIDEOS_ENDPOINT = 'https://www.youtube.com/feeds/videos.xml'.freeze
@@ -20,7 +18,7 @@ module Youtube
     xml.css('feed entry id').map(&:text).pluck(9..)
   end
 
-  def self.get_comments_data(video_id, page_token: nil)
+  def self.get_video_comments(video_id, page_token: nil)
     service.list_comment_threads('snippet,replies', video_id:, page_token:)
   end
 
