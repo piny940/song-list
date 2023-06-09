@@ -32,7 +32,8 @@ class Video < ApplicationRecord
     raise 'この動画のチャンネルはデータベースに存在しません' if channel.blank?
 
     kind = items[0].live_streaming_details.present? ? 'live' : 'video'
-    published_at = items[0].live_streaming_details&.scheduled_start_time \
+    published_at = items[0].live_streaming_details&.actual_start_time \
+          || items[0].live_streaming_details&.scheduled_start_time \
           || items[0].snippet.published_at
 
     create!(
