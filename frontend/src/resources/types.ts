@@ -25,6 +25,8 @@ export type ChannelType = {
   twitter_id: string | null
   thumbnails: Thumbnails
   description: string
+  created_at: string
+  updated_at: string
 }
 
 export type VideoType = {
@@ -35,6 +37,9 @@ export type VideoType = {
   channel_id: string
   thumbnails: Thumbnails
   description: string
+  published_at: string
+  created_at: string
+  updated_at: string
 }
 
 export type SongItemType = {
@@ -43,4 +48,6 @@ export type SongItemType = {
   time: string
   title: string
   author: string
+  created_at: string
+  updated_at: string
 }
