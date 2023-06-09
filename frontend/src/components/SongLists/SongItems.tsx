@@ -18,12 +18,17 @@ const VideoTitleDiv = styled.div`
 `
 
 export type SongItemsProps = {
-  videoId?: string
+  channelId?: number
+  videoId?: number
   query?: string
 }
 
 const DEFAULT_PAGE = 1
-export const SongItems: React.FC<SongItemsProps> = ({ videoId, query }) => {
+export const SongItems: React.FC<SongItemsProps> = ({
+  channelId,
+  videoId,
+  query,
+}) => {
   const [page, setPage] = useState(DEFAULT_PAGE)
   const { data, error } = useSWR<{
     song_items: SongItemType[]
@@ -32,7 +37,8 @@ export const SongItems: React.FC<SongItemsProps> = ({ videoId, query }) => {
     '/song_items?' +
       new URLSearchParams({
         query: query || '',
-        video_id: videoId || '',
+        channel_id: channelId != null ? String(channelId) : '',
+        video_id: videoId != null ? String(videoId) : '',
         count: '15',
         page: String(page),
       }).toString(),

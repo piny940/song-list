@@ -41,7 +41,7 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
               />
             </div>
           </div>
-          <SongItems query={query} />
+          <SongItems channelId={data.channel.id} query={query} />
         </div>
         <div className="w-50 px-2">
           <div className="text-sm fw-bold w-100 text-center">配信から検索</div>
