@@ -20,8 +20,9 @@ class Video < ApplicationRecord
     completed: 20
   }, _prefix: true
 
-  def self.fetch_and_create!(video_id)
-    response = Youtube.get_videos([video_id])
+  def self.fetch_and_create!(video_ids)
+    response = Youtube.get_videos(video_ids)
+    videos = []
     response.items.each do |item|
       # 与えられたチャンネルの動画ではない場合はskip
       next if new.channel.present? && new.channel.channel_id != item.snippet.channel_id
@@ -29,7 +30,7 @@ class Video < ApplicationRecord
       channel = Channel.find_by(channel_id: item.snippet.channel_id)
       next if channel.blank? # チャンネルがDBに存在しない場合
 
-      video = Video.find_or_initialize_by(video_id:)
+      video = Video.find_or_initialize_by(video_id: item.id)
 
       kind = item.live_streaming_details.present? ? 'live' : 'video'
       published_at = item.live_streaming_details&.actual_start_time \
@@ -37,14 +38,16 @@ class Video < ApplicationRecord
             || item.snippet.published_at
 
       video.update!(
-        video_id:,
+        video_id: item.id,
         title: item.snippet.title,
         response_json: item.to_h,
         kind:,
         channel_id: channel.id,
         published_at:
       )
+      videos.push(video)
     end
+    videos
   end
 
   # {
