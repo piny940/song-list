@@ -21,6 +21,8 @@ describe Api::VideosController do
       expect(json['videos'][0]['thumbnails']['medium']['width']).to be_present
       expect(json['videos'][0]['description']).to be_present
       expect(json['videos'][0]['published_at']).to be_present
+      expect(json['videos'][0]['created_at']).to be_present
+      expect(json['videos'][0]['updated_at']).to be_present
       expect(json['total_pages']).to be_present
     end
   end
