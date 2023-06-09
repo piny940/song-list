@@ -3,7 +3,7 @@ require 'open-uri'
 
 module Youtube
   extend ActiveSupport::Concern
-  
+
   def self.get_channels(channel_ids, page_token: nil)
     service.list_channels('snippet', id: channel_ids.join(','), page_token:)
   end
