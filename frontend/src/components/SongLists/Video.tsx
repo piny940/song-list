@@ -52,7 +52,7 @@ export const Video: React.FC<VideoProps> = ({
       data-testid={TestID.VIDEO}
     >
       <a
-        className="d-flex text-body"
+        className="d-flex text-body w-100"
         onClick={toggleSongListOpened}
         role="button"
       >
@@ -63,7 +63,7 @@ export const Video: React.FC<VideoProps> = ({
           height={90}
           alt=""
         />
-        <div className="d-flex flex-column justify-content-between">
+        <div className="flex-grow-1 d-flex flex-column justify-content-between">
           <OneLineDiv className="p-2">
             <span>{video.title}</span>
           </OneLineDiv>
