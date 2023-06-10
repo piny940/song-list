@@ -7,6 +7,7 @@ import styles from '../../styles/song-lists.module.scss'
 import Link from 'next/link'
 import { YOUTUBE_URL } from '@/utils/constants'
 import { MouseEventHandler } from 'react'
+import { toVideoDate } from '@/utils/helpers'
 
 const OneLineDiv = styled.div`
   -webkit-line-clamp: 1;
@@ -37,11 +38,6 @@ export const Video: React.FC<VideoProps> = ({
   songListOpen,
   toggleSongListOpened,
 }) => {
-  const toVideoTime = (publishedAt: string) => {
-    const time = new Date(publishedAt)
-    if (!time) return ''
-    return `${time.getFullYear()}/${time.getMonth()}/${time.getDate()}`
-  }
   const stopPropagation: MouseEventHandler = (e) => {
     e.stopPropagation()
   }
@@ -77,7 +73,7 @@ export const Video: React.FC<VideoProps> = ({
                 <YoutubeIcon role="button" className="d-inline-block" />
               </Link>
             </div>
-            <span>{toVideoTime(video.published_at)}</span>
+            <span>{toVideoDate(video.published_at)}</span>
           </div>
         </div>
       </div>
