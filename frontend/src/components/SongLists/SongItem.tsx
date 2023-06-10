@@ -5,8 +5,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { styled } from 'styled-components'
 
-const SongItemDiv = styled.div`
-  /* height: 70px; */
+const OneLineDiv = styled.div`
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  overflow: hidden;
+  height: 23px;
 `
 
 export type SongItemProps = {
@@ -18,7 +22,7 @@ export const SongItem: React.FC<SongItemProps> = ({ songItem }) => {
 
   return (
     <Link href={toSongLink(songItem)} target="_blank" title="Youtubeで視聴">
-      <SongItemDiv
+      <div
         className="d-flex align-items-center border border-light rounded shadow-sm m-1 p-3"
         data-testid={TestID.SONG_ITEM}
       >
@@ -36,12 +40,16 @@ export const SongItem: React.FC<SongItemProps> = ({ songItem }) => {
           </span>
         </div>
         <div className="d-flex flex-wrap">
-          <div className="">
+          <OneLineDiv className="">
             <span className="ms-2">{songItem.title}</span>
-          </div>
-          {songItem.author && <span className="ms-3">/ {songItem.author}</span>}
+          </OneLineDiv>
+          {songItem.author && (
+            <OneLineDiv>
+              <span className="ms-3">/ {songItem.author}</span>
+            </OneLineDiv>
+          )}
         </div>
-      </SongItemDiv>
+      </div>
     </Link>
   )
 }
