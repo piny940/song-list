@@ -7,18 +7,20 @@ import { Video } from './Video'
 import { Loading } from '../Common/Loading'
 import { Paging } from '../Common/Paging'
 import { usePaginate } from '@/utils/hooks'
+import { useState } from 'react'
+import { queryToSearchParams } from '@/utils/helpers'
 
 export type VideosProps = {
   channel: ChannelType
-  type: 'large' | 'medium'
 }
 
-export const Videos: React.FC<VideosProps> = ({ channel, type }) => {
+export const Videos: React.FC<VideosProps> = ({ channel }) => {
   const { getPage, setPage } = usePaginate('videos-page')
+  const [openedVideo, setOpenedVideo] = useState<VideoType | null>(null)
 
   const { data, error } = useSWR<{ videos: VideoType[]; total_pages: number }>(
     `/channels/${channel.id}/videos?` +
-      new URLSearchParams({
+      queryToSearchParams({
         count: '10',
         page: String(getPage()),
       }).toString(),
@@ -29,26 +31,19 @@ export const Videos: React.FC<VideosProps> = ({ channel, type }) => {
 
   return data ? (
     <div className="">
-      {type === 'large' ? (
-        <div
-          className="videos row row-cols-lg-2 row-cols-xl-3 mb-4"
-          data-testid={TestID.VIDEOS}
-        >
-          {data.videos.map((video) => (
-            <div className="" key={video.id}>
-              <Video type={type} video={video} />
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div className="videos mb-4" data-testid={TestID.VIDEOS}>
-          {data.videos.map((video) => (
-            <div className="" key={video.id}>
-              <Video type={type} video={video} />
-            </div>
-          ))}
-        </div>
-      )}
+      <div className="videos mb-4" data-testid={TestID.VIDEOS}>
+        {data.videos.map((video) => (
+          <Video
+            songListOpen={openedVideo?.id === video.id}
+            video={video}
+            key={video.id}
+            toggleSongListOpened={() => {
+              if (openedVideo === video) setOpenedVideo(null)
+              else setOpenedVideo(video)
+            }}
+          />
+        ))}
+      </div>
       <Paging
         setPageNumber={setPage}
         totalPages={data.total_pages}

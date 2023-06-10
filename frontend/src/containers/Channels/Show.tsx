@@ -45,7 +45,7 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
         </div>
         <div className="w-50 px-2">
           <div className="text-sm fw-bold w-100 text-center">配信から検索</div>
-          <Videos type="medium" channel={data.channel} />
+          <Videos channel={data.channel} />
         </div>
       </div>
     </div>

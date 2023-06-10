@@ -1,0 +1,7 @@
+.collapsable {
+  transition: all 1s;
+  padding: 0 0;
+}
+.collapsable.active {
+  padding: 15px 0;
+}
