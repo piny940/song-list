@@ -5,9 +5,10 @@ import Error from 'next/error'
 import useSWR from 'swr'
 import { SongItem } from './SongItem'
 import { Loading } from '../Common/Loading'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Paging } from '../Common/Paging'
 import { styled } from 'styled-components'
+import { usePaginate } from '@/utils/hooks'
 
 const VideoTitleDiv = styled.div`
   height: 20px;
@@ -29,7 +30,7 @@ export const SongItems: React.FC<SongItemsProps> = ({
   videoId,
   query,
 }) => {
-  const [page, setPage] = useState(DEFAULT_PAGE)
+  const { getPage, setPage } = usePaginate('song-items-page', DEFAULT_PAGE)
   const { data, error } = useSWR<{
     song_items: SongItemType[]
     total_pages: number
@@ -40,10 +41,11 @@ export const SongItems: React.FC<SongItemsProps> = ({
         channel_id: channelId != null ? String(channelId) : '',
         video_id: videoId != null ? String(videoId) : '',
         count: '15',
-        page: String(page),
+        page: String(getPage()),
       }).toString(),
     getData
   )
+
   useEffect(() => {
     setPage(DEFAULT_PAGE)
   }, [query])
@@ -64,22 +66,28 @@ export const SongItems: React.FC<SongItemsProps> = ({
 
   return data ? (
     <div className="">
-      {Object.values(videos).map((video) => (
-        <div className="" key={video.video_id}>
-          <VideoTitleDiv className="w-75">
-            <span className="small text-muted">{video.title}</span>
-          </VideoTitleDiv>
-          <div className="mb-4 ps-3" data-testid={TestID.SONG_ITEMS}>
-            {songItems[video.video_id].map((songItem) => (
-              <div key={songItem.id}>
-                <SongItem songItem={songItem} />
-              </div>
-            ))}
+      {Object.keys(videos).length > 0 ? (
+        Object.values(videos).map((video) => (
+          <div className="" key={video.video_id}>
+            <VideoTitleDiv className="w-75">
+              <span className="small text-muted">{video.title}</span>
+            </VideoTitleDiv>
+            <div className="mb-4 ps-3" data-testid={TestID.SONG_ITEMS}>
+              {songItems[video.video_id].map((songItem) => (
+                <div key={songItem.id}>
+                  <SongItem songItem={songItem} />
+                </div>
+              ))}
+            </div>
           </div>
+        ))
+      ) : (
+        <div className="mb-4 text-center">
+          条件に合致する歌は見つかりませんでした。
         </div>
-      ))}
+      )}
       <Paging
-        currentPage={page}
+        currentPage={getPage()}
         totalPages={data.total_pages}
         setPageNumber={setPage}
       />
