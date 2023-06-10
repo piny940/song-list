@@ -7,6 +7,7 @@ import { Video } from './Video'
 import { Loading } from '../Common/Loading'
 import { Paging } from '../Common/Paging'
 import { usePaginate } from '@/utils/hooks'
+import { useState } from 'react'
 
 export type VideosProps = {
   channel: ChannelType
@@ -14,6 +15,7 @@ export type VideosProps = {
 
 export const Videos: React.FC<VideosProps> = ({ channel }) => {
   const { getPage, setPage } = usePaginate('videos-page')
+  const [openedVideo, setOpenedVideo] = useState<VideoType | null>(null)
 
   const { data, error } = useSWR<{ videos: VideoType[]; total_pages: number }>(
     `/channels/${channel.id}/videos?` +
@@ -30,9 +32,15 @@ export const Videos: React.FC<VideosProps> = ({ channel }) => {
     <div className="">
       <div className="videos mb-4" data-testid={TestID.VIDEOS}>
         {data.videos.map((video) => (
-          <div className="" key={video.id}>
-            <Video video={video} />
-          </div>
+          <Video
+            songListOpen={openedVideo?.id === video.id}
+            video={video}
+            key={video.id}
+            toggleSongListOpened={() => {
+              if (openedVideo === video) setOpenedVideo(null)
+              else setOpenedVideo(video)
+            }}
+          />
         ))}
       </div>
       <Paging

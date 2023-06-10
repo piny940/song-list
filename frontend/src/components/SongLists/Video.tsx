@@ -5,7 +5,6 @@ import { timeToString } from '@/utils/helpers'
 import Error from 'next/error'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
 import { styled } from 'styled-components'
 import useSWR from 'swr'
 
@@ -19,10 +18,15 @@ const OneLineDiv = styled.div`
 
 export type VideoProps = {
   video: VideoType
+  songListOpen: boolean
+  toggleSongListOpened: () => void
 }
 
-export const Video: React.FC<VideoProps> = ({ video }) => {
-  const [songListOpen, setSongListOpen] = useState(false)
+export const Video: React.FC<VideoProps> = ({
+  video,
+  songListOpen,
+  toggleSongListOpened,
+}) => {
   const { data, error } = useSWR<{ song_items: SongItemType[] }>(
     `/song_items?video_id=${video.id}`,
     getData
@@ -50,7 +54,7 @@ export const Video: React.FC<VideoProps> = ({ video }) => {
       className="video  border border-light shadow-sm m-1"
       data-testid={TestID.VIDEO}
     >
-      <div className="d-flex">
+      <div className="d-flex" onClick={toggleSongListOpened}>
         <Image
           src={video.thumbnails.medium.url}
           width={160}
@@ -66,7 +70,7 @@ export const Video: React.FC<VideoProps> = ({ video }) => {
           </div>
         </div>
       </div>
-      {data && (
+      {data && songListOpen && (
         <div className="song-items ps-4 mt-2">
           {data?.song_items.map((song) => (
             <OneLineDiv className="my-1" key={song.id}>
