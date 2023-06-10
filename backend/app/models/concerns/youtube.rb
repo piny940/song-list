@@ -9,12 +9,12 @@ module Youtube
   end
 
   CHANNEL_PAGE_ENDPOINT = 'https://www.youtube.com/'.freeze
-  def self.get_channels_by_custom_url(custom_urls, page_token: nil)
-    channel_ids = custom_urls.map do |custom_url|
-      html = Nokogiri::HTML(URI.open("#{CHANNEL_PAGE_ENDPOINT}#{custom_url}"))
-      html.at_css('meta[property="og:url"]')["content"].split('/')[-1]
-    end
-    get_channels(channel_ids, page_token:)
+  def self.get_channel_id(custom_url)
+    p custom_url
+    html = Nokogiri::HTML(URI.open("#{CHANNEL_PAGE_ENDPOINT}#{custom_url}"))
+    id = html.at_css('meta[property="og:url"]')["content"].split('/')[-1]
+    p id
+    id
   end
 
   def self.get_videos(video_ids, page_token: nil)

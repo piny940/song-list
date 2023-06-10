@@ -4,7 +4,7 @@ class Channel < ApplicationRecord
   has_many :all_song_items, through: :videos, class_name: 'SongItem', source: :song_items
 
   def self.fetch_and_create!(channel_ids)
-    response = Youtube.get_channel(channel_ids)
+    response = Youtube.get_channels(channel_ids)
     channels = []
 
     response.items.each do |item|
