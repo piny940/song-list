@@ -12,15 +12,26 @@ import { queryToSearchParams } from '@/utils/helpers'
 
 export type VideosProps = {
   channel: ChannelType
+  query?: string
+  since?: string
+  until?: string
 }
 
-export const Videos: React.FC<VideosProps> = ({ channel }) => {
+export const Videos: React.FC<VideosProps> = ({
+  channel,
+  query,
+  since,
+  until,
+}) => {
   const { getPage, setPage } = usePaginate('videos-page')
   const [openedVideo, setOpenedVideo] = useState<VideoType | null>(null)
 
   const { data, error } = useSWR<{ videos: VideoType[]; total_pages: number }>(
     `/channels/${channel.id}/videos?` +
       queryToSearchParams({
+        query: query || '',
+        since: since || '',
+        until: until || '',
         count: '10',
         page: String(getPage()),
       }).toString(),

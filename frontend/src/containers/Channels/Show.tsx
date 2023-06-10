@@ -66,7 +66,12 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
             until={videoUntil}
             setUntil={setVideoUntil}
           />
-          <Videos channel={data.channel} />
+          <Videos
+            channel={data.channel}
+            query={videoQuery}
+            since={videoSince}
+            until={videoUntil}
+          />
         </div>
       </div>
     </div>
