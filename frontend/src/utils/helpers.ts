@@ -21,6 +21,11 @@ export const toSongLink = (songItem: SongItemType) => {
     hour * 3600 + minute * 60 + second
   }`
 }
+export const toVideoDate = (publishedAt: string) => {
+  const time = new Date(publishedAt)
+  if (!time) return ''
+  return `${time.getFullYear()}/${time.getMonth()}/${time.getDate()}`
+}
 export const queryToSearchParams = (
   query: Record<string, string> | ParsedUrlQuery
 ) => {
