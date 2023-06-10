@@ -28,7 +28,7 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
   return data ? (
     <div className="channel">
       <h1>{data.channel.name}</h1>
-      <div className="row">
+      <div className="row p-0 m-0">
         <div className="col-lg-6 px-2">
           <div className="text-sm fw-bold w-100 text-center d-none d-lg-block">
             歌一覧

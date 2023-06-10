@@ -7,8 +7,16 @@ html {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+::-webkit-full-page-media,
+:future,
+:root body {
+  --vh100: 100svh;
+}
 body {
-  overflow-x: hidden;
+  --vh100: 100vh;
+  min-height: 100vh;
+  min-height: var(--vh100);
+  max-width: 100%;
 }
 
 a {
