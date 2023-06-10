@@ -1,7 +1,20 @@
-.collapsable {
-  transition: all 1s;
+.collapsableFast {
+  transition: padding 0.5s;
   padding: 0 0;
+  &.active {
+    padding: 10px 0;
+  }
 }
-.collapsable.active {
-  padding: 15px 0;
+.collapsable {
+  transition: padding 1s;
+  padding: 0 0;
+  &.active {
+    padding: 15px 0;
+  }
+}
+.animateFast {
+  transition: all 0.5s;
+}
+.rotate90 {
+  transform: rotate(90deg);
 }

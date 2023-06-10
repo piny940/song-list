@@ -44,12 +44,18 @@ export const SongItemsSearch: React.FC<SongItemsSearchProps> = ({
       </div>
       <div className="detail-search my-2 px-4">
         <a role="button" className="" onClick={toggleOpened}>
-          <span>&#9654;</span>
+          <div
+            className={`${styles.animateFast} ${
+              detailOpened ? styles.rotate90 : ''
+            } d-inline-block`}
+          >
+            &#9654;
+          </div>
           <span className="ms-1">詳細検索</span>
         </a>
         <div
-          className={`${styles.collapsable} ${
-            detailOpened ? styles.active + ' border border-light rounded' : ''
+          className={`${styles.collapsableFast} ${
+            detailOpened ? `${styles.active} border border-light rounded` : ''
           }`}
         >
           {detailOpened && (
