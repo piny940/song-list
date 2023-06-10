@@ -54,7 +54,11 @@ export const Video: React.FC<VideoProps> = ({
       className="video  border border-light shadow-sm m-1"
       data-testid={TestID.VIDEO}
     >
-      <div className="d-flex" onClick={toggleSongListOpened}>
+      <button
+        className="btn p-0 m-0 border-0 d-flex"
+        onClick={toggleSongListOpened}
+        type="button"
+      >
         <Image
           src={video.thumbnails.medium.url}
           width={160}
@@ -69,12 +73,16 @@ export const Video: React.FC<VideoProps> = ({
             <span>{toVideoTime(video.published_at)}</span>
           </div>
         </div>
-      </div>
+      </button>
       {data && songListOpen && (
         <div className="song-items ps-4 mt-2">
           {data?.song_items.map((song) => (
             <OneLineDiv className="my-1" key={song.id}>
-              <Link href={toSongLink(song)}>
+              <Link
+                href={toSongLink(song)}
+                target="_blank"
+                title="Youtubeで視聴"
+              >
                 <span className="">{timeToString(new Date(song.time))}</span>
                 <span className="mx-3">{song.title}</span>
                 {song.author && <span className="me-3">/ {song.author}</span>}
