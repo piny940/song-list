@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import { queryToSearchParams } from './helpers'
+import { useState } from 'react'
 
 export const usePaginate = (key: string, defaultPage = 1) => {
   const router = useRouter()
@@ -16,4 +17,22 @@ export const usePaginate = (key: string, defaultPage = 1) => {
   }
 
   return { getPage, setPage }
+}
+
+export const useHold = (timer: number) => {
+  const [isReady, setIsReady] = useState(false)
+  const [timeoutId, setTimeoutId] = useState<null | NodeJS.Timeout>(null)
+
+  const updateTimer = () => {
+    console.log(timeoutId)
+    if (timeoutId) clearTimeout(timeoutId)
+    setIsReady(false)
+
+    setTimeoutId(
+      setTimeout(() => {
+        setIsReady(true)
+      }, timer)
+    )
+  }
+  return { isReady, updateTimer }
 }
