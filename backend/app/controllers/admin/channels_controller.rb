@@ -14,7 +14,9 @@ class Admin::ChannelsController < Admin::Base
   def edit; end
 
   def create
-    @channel = Channel.fetch_and_create!([channel_params[:channel_id]])[0]
+    channel_id = channel_params[:channel_id].presence \
+      || Youtube.get_channel_id(channel_params[:channel_link].split('/')[3])
+    @channel = Channel.fetch_and_create!([channel_id])[0]
 
     if @channel.present?
       redirect_to admin_channels_path, notice: 'Channel が作成されました。'
@@ -43,6 +45,6 @@ class Admin::ChannelsController < Admin::Base
   end
 
   def channel_params
-    params.require(:channel).permit(:channel_id, :name, :twitter_id)
+    params.require(:channel).permit(:channel_id, :name, :twitter_id, :channel_link)
   end
 end

@@ -8,14 +8,23 @@ module Youtube
     service.list_channels('snippet', id: channel_ids.join(','), page_token:)
   end
 
+  CHANNEL_PAGE_ENDPOINT = 'https://www.youtube.com/'.freeze
+  def self.get_channel_id(custom_url)
+    p custom_url
+    html = Nokogiri::HTML(URI.open("#{CHANNEL_PAGE_ENDPOINT}#{custom_url}"))
+    id = html.at_css('meta[property="og:url"]')["content"].split('/')[-1]
+    p id
+    id
+  end
+
   def self.get_videos(video_ids, page_token: nil)
     service.list_videos('liveStreamingDetails,snippet', id: video_ids.join(','), page_token:)
   end
 
   RECENT_VIDEOS_ENDPOINT = 'https://www.youtube.com/feeds/videos.xml'.freeze
   def self.get_recent_video_ids(channel_id)
-    xml = Nokogiri::XML(URI.open("#{RECENT_VIDEOS_ENDPOINT}?channel_id=#{channel_id}"))
-    xml.css('feed entry id').map(&:text).pluck(9..)
+    html = Nokogiri::HTML.parse(URI.open("#{RECENT_VIDEOS_ENDPOINT}?channel_id=#{channel_id}"))
+    html.css('feed entry id').map(&:text).pluck(9..)
   end
 
   def self.get_video_comments(video_id, page_token: nil)
