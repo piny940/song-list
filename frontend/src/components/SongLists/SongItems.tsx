@@ -5,9 +5,10 @@ import Error from 'next/error'
 import useSWR from 'swr'
 import { SongItem } from './SongItem'
 import { Loading } from '../Common/Loading'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Paging } from '../Common/Paging'
 import { styled } from 'styled-components'
+import { useRouter } from 'next/router'
 
 const VideoTitleDiv = styled.div`
   height: 20px;
@@ -29,7 +30,7 @@ export const SongItems: React.FC<SongItemsProps> = ({
   videoId,
   query,
 }) => {
-  const [page, setPage] = useState(DEFAULT_PAGE)
+  const router = useRouter()
   const { data, error } = useSWR<{
     song_items: SongItemType[]
     total_pages: number
@@ -40,10 +41,14 @@ export const SongItems: React.FC<SongItemsProps> = ({
         channel_id: channelId != null ? String(channelId) : '',
         video_id: videoId != null ? String(videoId) : '',
         count: '15',
-        page: String(page),
+        page: String(router.query['song-items-page']),
       }).toString(),
     getData
   )
+  const setPage = (newPage: number) => {
+    router.query['song-items-page'] = String(newPage)
+    void router.push(router, undefined, { scroll: false })
+  }
   useEffect(() => {
     setPage(DEFAULT_PAGE)
   }, [query])
@@ -79,7 +84,7 @@ export const SongItems: React.FC<SongItemsProps> = ({
         </div>
       ))}
       <Paging
-        currentPage={page}
+        currentPage={Number(router.query['song-items-page'])}
         totalPages={data.total_pages}
         setPageNumber={setPage}
       />
