@@ -5,7 +5,7 @@ import Error from 'next/error'
 import useSWR from 'swr'
 import { SongItem } from './SongItem'
 import { Loading } from '../Common/Loading'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { Paging } from '../Common/Paging'
 import { styled } from 'styled-components'
 import { useHold, usePaginate } from '@/utils/hooks'
@@ -39,6 +39,7 @@ export const SongItems: React.FC<SongItemsProps> = ({
 }) => {
   const { getPage, setPage } = usePaginate('song-items-page', DEFAULT_PAGE)
   const { isReady, updateTimer } = useHold(500)
+  const isFirst = useRef(true)
   const { data, error } = useSWR<{
     song_items: SongItemType[]
     total_pages: number
@@ -58,6 +59,10 @@ export const SongItems: React.FC<SongItemsProps> = ({
   )
 
   useEffect(() => {
+    if (isFirst) {
+      isFirst.current = false
+      return
+    }
     setPage(DEFAULT_PAGE)
     updateTimer()
   }, [query, since, until, videoTitle])
