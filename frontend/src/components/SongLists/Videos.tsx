@@ -41,25 +41,31 @@ export const Videos: React.FC<VideosProps> = ({
   if (error) return <Error statusCode={404} />
 
   return data ? (
-    <div className="">
-      <div className="videos mb-4" data-testid={TestID.VIDEOS}>
-        {data.videos.map((video) => (
-          <Video
-            songListOpen={openedVideo?.id === video.id}
-            video={video}
-            key={video.id}
-            toggleSongListOpened={() => {
-              if (openedVideo === video) setOpenedVideo(null)
-              else setOpenedVideo(video)
-            }}
+    <div className="videos mb-4" data-testid={TestID.VIDEOS}>
+      {data.videos.length > 0 ? (
+        <>
+          {data.videos.map((video) => (
+            <Video
+              songListOpen={openedVideo?.id === video.id}
+              video={video}
+              key={video.id}
+              toggleSongListOpened={() => {
+                if (openedVideo === video) setOpenedVideo(null)
+                else setOpenedVideo(video)
+              }}
+            />
+          ))}
+          <Paging
+            setPageNumber={setPage}
+            totalPages={data.total_pages}
+            currentPage={getPage()}
           />
-        ))}
-      </div>
-      <Paging
-        setPageNumber={setPage}
-        totalPages={data.total_pages}
-        currentPage={getPage()}
-      />
+        </>
+      ) : (
+        <div className="mb-4 text-center">
+          条件に合致する歌は見つかりませんでした。
+        </div>
+      )}
     </div>
   ) : (
     <Loading />
