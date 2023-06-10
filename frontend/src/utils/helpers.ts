@@ -1,5 +1,6 @@
 import { SongItemType } from '@/resources/types'
 import { ParsedUrlQuery } from 'querystring'
+import { YOUTUBE_URL } from './constants'
 
 export const toClass = (...args: string[]) => {
   return args.join(' ')
@@ -16,7 +17,7 @@ export const toSongLink = (songItem: SongItemType) => {
   const minute = time.getMinutes()
   const second = time.getSeconds()
 
-  return `https://www.youtube.com/watch?v=${songItem.video.video_id}&t=${
+  return `${YOUTUBE_URL}/watch?v=${songItem.video.video_id}&t=${
     hour * 3600 + minute * 60 + second
   }`
 }
