@@ -61,7 +61,10 @@ describe Api::SongItemsController do
     end
 
     it('日付で検索できる') do
-      get endpoint, params: { since: '2023', until: '2023-06-14 11:00:00'}
+      get endpoint, params: { since: '2023-06-13 13:00:00', until: '2023-06-14 11:00:00'}
+      expect(response.status).to eq 200
+      json = response.parsed_body
+      expect(json['song_items'].count).to eq 2
     end
   end
 

@@ -18,9 +18,9 @@ class Api::SongItemsController < Api::Base
             end
     
     # 日付で絞り込み
-    # scope = scope.where(video_id:
-    #   Video.where(Time.zone.parse(params[:since]).beginng_of_day..Time.zone.parse(params[:until]))
-    # )
+    since_time = params[:since] && Time.zone.parse(params[:since]).beginning_of_day
+    until_time = params[:until] && Time.zone.parse(params[:until]).end_of_day
+    scope = scope.where(video_id: Video.where(published_at: since_time..until_time))
 
     scope = scope.active.order('videos.published_at desc, time asc')
     scope.select(:id, :video_id, :latest_diff_id, :created_at, :updated_at)
