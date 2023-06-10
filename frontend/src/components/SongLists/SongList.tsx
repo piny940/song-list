@@ -1,9 +1,13 @@
-import { SongItemType } from '@/resources/types'
+import { SongItemType, VideoType } from '@/resources/types'
+import { getData } from '@/utils/api'
 import { timeToString, toSongLink } from '@/utils/helpers'
 import Link from 'next/link'
 import { styled } from 'styled-components'
+import useSWR from 'swr'
+import { Loading } from '../Common/Loading'
+import Error from 'next/error'
 
-const OneLineDiv = styled.div`
+const OneLineLi = styled.li`
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   display: -webkit-box;
@@ -12,15 +16,21 @@ const OneLineDiv = styled.div`
 `
 
 export type SongListProps = {
-  songItems: SongItemType[]
+  video: VideoType
 }
 
-export const SongList: React.FC<SongListProps> = ({ songItems }) => {
-  return (
-    <ul>
-      {songItems.map((song) => (
-        <li key={song.id}>
-          <OneLineDiv className="my-1">
+export const SongList: React.FC<SongListProps> = ({ video }) => {
+  const { data, error } = useSWR<{ song_items: SongItemType[] }>(
+    `/song_items?video_id=${video.id}`,
+    getData
+  )
+
+  if (error) return <Error statusCode={400} />
+  return data ? (
+    <div className="song-items ps-4 mt-2">
+      {data.song_items.length > 0 ? (
+        data.song_items.map((song) => (
+          <OneLineLi className="my-1" key={song.id}>
             <Link href={toSongLink(song)} target="_blank" title="Youtubeで視聴">
               <span className="ms-1 me-3">
                 {timeToString(new Date(song.time))}
@@ -28,9 +38,15 @@ export const SongList: React.FC<SongListProps> = ({ songItems }) => {
               <span className="me-3">{song.title}</span>
               {song.author && <span className="me-3">/ {song.author}</span>}
             </Link>
-          </OneLineDiv>
-        </li>
-      ))}
-    </ul>
+          </OneLineLi>
+        ))
+      ) : (
+        <div className="text-center my-1">
+          この動画での歌情報は登録されていません。
+        </div>
+      )}
+    </div>
+  ) : (
+    <Loading />
   )
 }

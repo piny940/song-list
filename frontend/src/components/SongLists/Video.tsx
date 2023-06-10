@@ -1,10 +1,7 @@
 import { TestID } from '@/resources/TestID'
-import { SongItemType, VideoType } from '@/resources/types'
-import { getData } from '@/utils/api'
-import Error from 'next/error'
+import { VideoType } from '@/resources/types'
 import Image from 'next/image'
 import { styled } from 'styled-components'
-import useSWR from 'swr'
 import { SongList } from './SongList'
 
 const OneLineDiv = styled.div`
@@ -26,18 +23,12 @@ export const Video: React.FC<VideoProps> = ({
   songListOpen,
   toggleSongListOpened,
 }) => {
-  const { data, error } = useSWR<{ song_items: SongItemType[] }>(
-    `/song_items?video_id=${video.id}`,
-    getData
-  )
-
   const toVideoTime = (publishedAt: string) => {
     const time = new Date(publishedAt)
     if (!time) return ''
     return `${time.getFullYear()}/${time.getMonth()}/${time.getDate()}`
   }
 
-  if (error) return <Error statusCode={400} />
   return (
     <div
       className="video  border border-light shadow-sm m-1"
@@ -64,17 +55,7 @@ export const Video: React.FC<VideoProps> = ({
           </div>
         </div>
       </a>
-      {data && songListOpen && (
-        <div className="song-items ps-4 mt-2">
-          {data && data.song_items.length > 0 ? (
-            <SongList songItems={data.song_items} />
-          ) : (
-            <div className="text-center my-1">
-              この動画での歌情報は登録されていません。
-            </div>
-          )}
-        </div>
-      )}
+      {songListOpen && <SongList video={video} />}
     </div>
   )
 }
