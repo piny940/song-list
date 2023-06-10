@@ -1,22 +1,14 @@
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';
 
-html,
-body {
+html {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-::-webkit-full-page-media,
-:future,
-:root body {
-  --vh100: 100svh;
-}
 body {
-  --vh100: 100vh;
-  min-height: 100vh;
-  min-height: var(--vh100);
+  overflow-x: hidden;
 }
 
 a {
