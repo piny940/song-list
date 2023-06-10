@@ -4,8 +4,11 @@ class Api::SongItemsController < Api::Base
   before_action :set_song_item, only: %i[show]
 
   def index
+    # チャンネル・動画で絞り込み
     scope = @channel.present? ? @channel.all_song_items : SongItem
     scope = @video.present? ? @video.song_items : scope
+
+    # あいまい検索(タイトル・歌手名)
     scope = scope.joins(:latest_diff)
     scope = if params[:query].present?
               scope.where('song_diffs.title ILIKE ?', "%#{params[:query]}%")
@@ -13,6 +16,12 @@ class Api::SongItemsController < Api::Base
             else
               scope
             end
+    
+    # 日付で絞り込み
+    # scope = scope.where(video_id:
+    #   Video.where(Time.zone.parse(params[:since]).beginng_of_day..Time.zone.parse(params[:until]))
+    # )
+
     scope = scope.active.order('videos.published_at desc, time asc')
     scope.select(:id, :video_id, :latest_diff_id, :created_at, :updated_at)
     scope = scope.includes(:latest_diff, :video)

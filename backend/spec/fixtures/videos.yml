@@ -3,7 +3,7 @@ shairu1:
   video_id: video_one
   kind: live
   title: title_one
-  published_at: 2023-06-12 12:00:00
+  published_at: <%= Time.zone.parse('2023-06-12 12:00:00') %>
   response_json:
     {
       "etag": "zBjpHZUqH-SqgHP7thRRP07C0KI",
@@ -72,7 +72,7 @@ shairu2:
   channel: shairu
   video_id: CnyROu_ZfYk
   kind: video
-  published_at: 2023-06-13 12:00:00
+  published_at: <%= Time.zone.parse('2023-06-13 12:00:00') %>
   response_json:
     {
       "etag": "UxMS_lEPfTs3qrdfY14fy7_7_5k",
@@ -128,12 +128,12 @@ shairu2:
         },
     }
 
-three:
+mashiro1:
   channel: mashiro
   title: 【朝活ティアキン】雑談多めのゼルダの伝説 ティアーズ オブ ザ キングダム【#新人Vtuber#凪乃ましろ 】
   video_id: GQn1LkJ4X4o
   kind: live
-  published_at: 2023-06-14 12:00:00
+  published_at: <%= Time.zone.parse('2023-06-14 12:00:00') %>
   response_json:
     {
       "etag": "ixZHB5PCic0qzJ9nbgbHpr3Shr0",
@@ -215,7 +215,7 @@ mashiro2:
   video_id: X6tHDJbdmnw
   kind: live
   status: completed
-  published_at: 2023-06-15 12:00:00
+  published_at: <%= Time.zone.parse('2023-06-15 12:00:00') %>
   response_json:
     {
       "etag": "DFdYRoUIkqkuV-UR1BUMJRNwgjc",

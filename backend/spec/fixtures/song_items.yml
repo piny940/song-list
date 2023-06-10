@@ -17,6 +17,10 @@ four:
 five:
   video: shairu1
 
+mashiro1_one:
+  video: mashiro1
+  latest_diff: mashiro1_one1
+
 mashiro2_one:
   video: mashiro2
   latest_diff: mashiro2_one1
