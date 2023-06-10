@@ -18,8 +18,8 @@ class Api::SongItemsController < Api::Base
             end
     
     # 日付で絞り込み
-    since_time = params[:since] && Time.zone.parse(params[:since]).beginning_of_day
-    until_time = params[:until] && Time.zone.parse(params[:until]).end_of_day
+    since_time = params[:since].present? ? Time.zone.parse(params[:since]).beginning_of_day : nil
+    until_time = params[:until].present? ? Time.zone.parse(params[:until]).end_of_day : nil
     scope = scope.where(video_id: Video.where(published_at: since_time..until_time))
 
     # 枠名で絞り込み

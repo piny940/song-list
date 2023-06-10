@@ -43,7 +43,7 @@ export const SongItemsSearch: React.FC<SongItemsSearchProps> = ({
         </div>
       </div>
       <div className="detail-search my-2 px-4">
-        <a role="button" className="" onClick={toggleOpened}>
+        <a role="button" className="small" onClick={toggleOpened}>
           <div
             className={`${styles.animateFast} ${
               detailOpened ? styles.rotate90 : ''
