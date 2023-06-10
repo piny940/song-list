@@ -8,6 +8,7 @@ import { Loading } from '../Common/Loading'
 import { Paging } from '../Common/Paging'
 import { usePaginate } from '@/utils/hooks'
 import { useState } from 'react'
+import { queryToSearchParams } from '@/utils/helpers'
 
 export type VideosProps = {
   channel: ChannelType
@@ -19,7 +20,7 @@ export const Videos: React.FC<VideosProps> = ({ channel }) => {
 
   const { data, error } = useSWR<{ videos: VideoType[]; total_pages: number }>(
     `/channels/${channel.id}/videos?` +
-      new URLSearchParams({
+      queryToSearchParams({
         count: '10',
         page: String(getPage()),
       }).toString(),

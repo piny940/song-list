@@ -60,6 +60,7 @@ export const Video: React.FC<VideoProps> = ({
         role="button"
       >
         <Image
+          priority={true}
           src={video.thumbnails.medium.url}
           width={160}
           height={90}

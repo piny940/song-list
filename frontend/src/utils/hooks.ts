@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router'
+import { queryToSearchParams } from './helpers'
 
 export const usePaginate = (key: string, defaultPage = 1) => {
   const router = useRouter()
@@ -6,9 +7,12 @@ export const usePaginate = (key: string, defaultPage = 1) => {
     return Number(router.query[key] || defaultPage)
   }
   const setPage = (newPage: number) => {
-    if (!router.isReady) return
     router.query[key] = String(newPage)
-    void router.push(router, undefined, { scroll: false })
+    void router.push(
+      `${router.pathname}?${queryToSearchParams(router.query).toString()}`,
+      undefined,
+      { scroll: false }
+    )
   }
 
   return { getPage, setPage }

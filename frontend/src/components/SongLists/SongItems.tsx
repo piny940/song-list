@@ -9,6 +9,7 @@ import { useEffect } from 'react'
 import { Paging } from '../Common/Paging'
 import { styled } from 'styled-components'
 import { usePaginate } from '@/utils/hooks'
+import { queryToSearchParams } from '@/utils/helpers'
 
 const VideoTitleDiv = styled.div`
   height: 20px;
@@ -36,7 +37,7 @@ export const SongItems: React.FC<SongItemsProps> = ({
     total_pages: number
   }>(
     '/song_items?' +
-      new URLSearchParams({
+      queryToSearchParams({
         query: query || '',
         channel_id: channelId != null ? String(channelId) : '',
         video_id: videoId != null ? String(videoId) : '',
@@ -67,30 +68,32 @@ export const SongItems: React.FC<SongItemsProps> = ({
   return data ? (
     <div className="">
       {Object.keys(videos).length > 0 ? (
-        Object.values(videos).map((video) => (
-          <div className="" key={video.video_id}>
-            <VideoTitleDiv className="w-75">
-              <span className="small text-muted">{video.title}</span>
-            </VideoTitleDiv>
-            <div className="mb-4 ps-3" data-testid={TestID.SONG_ITEMS}>
-              {songItems[video.video_id].map((songItem) => (
-                <div key={songItem.id}>
-                  <SongItem songItem={songItem} />
-                </div>
-              ))}
+        <>
+          {Object.values(videos).map((video) => (
+            <div className="" key={video.video_id}>
+              <VideoTitleDiv className="w-75">
+                <span className="small text-muted">{video.title}</span>
+              </VideoTitleDiv>
+              <div className="mb-4 ps-3" data-testid={TestID.SONG_ITEMS}>
+                {songItems[video.video_id].map((songItem) => (
+                  <div key={songItem.id}>
+                    <SongItem songItem={songItem} />
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        ))
+          ))}
+          <Paging
+            currentPage={getPage()}
+            totalPages={data.total_pages}
+            setPageNumber={setPage}
+          />
+        </>
       ) : (
         <div className="mb-4 text-center">
           条件に合致する歌は見つかりませんでした。
         </div>
       )}
-      <Paging
-        currentPage={getPage()}
-        totalPages={data.total_pages}
-        setPageNumber={setPage}
-      />
     </div>
   ) : (
     <Loading />
