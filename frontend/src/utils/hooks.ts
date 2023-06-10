@@ -20,7 +20,7 @@ export const usePaginate = (key: string, defaultPage = 1) => {
 }
 
 export const useHold = (timer: number) => {
-  const [isReady, setIsReady] = useState(false)
+  const [isReady, setIsReady] = useState(true)
   const [timeoutId, setTimeoutId] = useState<null | NodeJS.Timeout>(null)
 
   const updateTimer = () => {
