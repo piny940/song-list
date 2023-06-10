@@ -54,10 +54,10 @@ export const Video: React.FC<VideoProps> = ({
       className="video  border border-light shadow-sm m-1"
       data-testid={TestID.VIDEO}
     >
-      <button
-        className="btn p-0 m-0 border-0 d-flex"
+      <a
+        className="d-flex text-body"
         onClick={toggleSongListOpened}
-        type="button"
+        role="button"
       >
         <Image
           src={video.thumbnails.medium.url}
@@ -73,23 +73,31 @@ export const Video: React.FC<VideoProps> = ({
             <span>{toVideoTime(video.published_at)}</span>
           </div>
         </div>
-      </button>
+      </a>
       {data && songListOpen && (
         <div className="song-items ps-4 mt-2">
           {data && data.song_items.length > 0 ? (
-            data.song_items.map((song) => (
-              <OneLineDiv className="my-1" key={song.id}>
-                <Link
-                  href={toSongLink(song)}
-                  target="_blank"
-                  title="Youtubeで視聴"
-                >
-                  <span className="">{timeToString(new Date(song.time))}</span>
-                  <span className="mx-3">{song.title}</span>
-                  {song.author && <span className="me-3">/ {song.author}</span>}
-                </Link>
-              </OneLineDiv>
-            ))
+            <ul>
+              {data.song_items.map((song) => (
+                <li key={song.id}>
+                  <OneLineDiv className="my-1">
+                    <Link
+                      href={toSongLink(song)}
+                      target="_blank"
+                      title="Youtubeで視聴"
+                    >
+                      <span className="ms-1 me-3">
+                        {timeToString(new Date(song.time))}
+                      </span>
+                      <span className="me-3">{song.title}</span>
+                      {song.author && (
+                        <span className="me-3">/ {song.author}</span>
+                      )}
+                    </Link>
+                  </OneLineDiv>
+                </li>
+              ))}
+            </ul>
           ) : (
             <div className="text-center my-1">
               この動画での歌情報は登録されていません。
