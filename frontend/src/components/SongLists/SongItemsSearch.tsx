@@ -28,6 +28,18 @@ export const SongItemsSearch: React.FC<SongItemsSearchProps> = ({
 
   return (
     <div className="song-search mb-3">
+      <div className="d-flex justify-content-end">
+        <a role="button" className="small me-4" onClick={toggleOpened}>
+          <div
+            className={`${styles.animateFast} ${
+              detailOpened ? styles.rotate90 : ''
+            } d-inline-block`}
+          >
+            &#9654;
+          </div>
+          <span className="ms-1">詳細検索</span>
+        </a>
+      </div>
       <div className="row px-4 mt-2 mb-2">
         <div className="fw-bold col-2 col-form-label">検索</div>
         <div className="col-10">
@@ -43,16 +55,6 @@ export const SongItemsSearch: React.FC<SongItemsSearchProps> = ({
         </div>
       </div>
       <div className="detail-search my-2 px-4">
-        <a role="button" className="small" onClick={toggleOpened}>
-          <div
-            className={`${styles.animateFast} ${
-              detailOpened ? styles.rotate90 : ''
-            } d-inline-block`}
-          >
-            &#9654;
-          </div>
-          <span className="ms-1">詳細検索</span>
-        </a>
         <div
           className={`${styles.collapsableFast} ${
             detailOpened ? `${styles.active} border border-light rounded` : ''
