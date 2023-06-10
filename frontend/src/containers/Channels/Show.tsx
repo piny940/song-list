@@ -2,6 +2,7 @@ import { Loading } from '@/components/Common/Loading'
 import { SongItems } from '@/components/SongLists/SongItems'
 import { SongItemsSearch } from '@/components/SongLists/SongItemsSearch'
 import { Videos } from '@/components/SongLists/Videos'
+import { VideosSearch } from '@/components/SongLists/VideosSearch'
 import { ChannelType } from '@/resources/types'
 import { getData } from '@/utils/api'
 import Error from 'next/error'
@@ -17,6 +18,10 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
   const [songSince, setSongSince] = useState('')
   const [songUntil, setSongUntil] = useState('')
   const [songVideoTitle, setSongVideoTitle] = useState('')
+
+  const [videoQuery, setVideoQuery] = useState('')
+  const [videoSince, setVideoSince] = useState('')
+  const [videoUntil, setVideoUntil] = useState('')
 
   const { data, error } = useSWR<{ channel: ChannelType }>(
     `/channels/${id}?`,
@@ -53,6 +58,14 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
         </div>
         <div className="col-lg-6 px-2 d-none d-lg-block">
           <div className="text-sm fw-bold w-100 text-center">配信から検索</div>
+          <VideosSearch
+            query={videoQuery}
+            setQuery={setVideoQuery}
+            since={videoSince}
+            setSince={setVideoSince}
+            until={videoUntil}
+            setUntil={setVideoUntil}
+          />
           <Videos channel={data.channel} />
         </div>
       </div>
