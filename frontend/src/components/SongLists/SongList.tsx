@@ -30,8 +30,13 @@ export const SongList: React.FC<SongListProps> = ({ video }) => {
     <div className="song-items ps-4 mt-2">
       {data.song_items.length > 0 ? (
         data.song_items.map((song) => (
-          <OneLineLi className="my-1" key={song.id}>
-            <Link href={toSongLink(song)} target="_blank" title="Youtubeで視聴">
+          <OneLineLi className="my-1 w-100" key={song.id}>
+            <Link
+              className="w-100 d-inline-block"
+              href={toSongLink(song)}
+              target="_blank"
+              title="Youtubeで視聴"
+            >
               <span className="ms-1 me-3">
                 {timeToString(new Date(song.time))}
               </span>
