@@ -5,8 +5,8 @@ import Error from 'next/error'
 import useSWR from 'swr'
 import { Video } from './Video'
 import { Loading } from '../Common/Loading'
-import { useState } from 'react'
 import { Paging } from '../Common/Paging'
+import { usePaginate } from '@/utils/hooks'
 
 export type VideosProps = {
   channel: ChannelType
@@ -14,15 +14,17 @@ export type VideosProps = {
 }
 
 export const Videos: React.FC<VideosProps> = ({ channel, type }) => {
-  const [page, setPage] = useState(1)
+  const { getPage, setPage } = usePaginate('videos-page')
+
   const { data, error } = useSWR<{ videos: VideoType[]; total_pages: number }>(
     `/channels/${channel.id}/videos?` +
       new URLSearchParams({
         count: '10',
-        page: String(page),
+        page: String(getPage()),
       }).toString(),
     getData
   )
+
   if (error) return <Error statusCode={404} />
 
   return data ? (
@@ -50,7 +52,7 @@ export const Videos: React.FC<VideosProps> = ({ channel, type }) => {
       <Paging
         setPageNumber={setPage}
         totalPages={data.total_pages}
-        currentPage={page}
+        currentPage={getPage()}
       />
     </div>
   ) : (
