@@ -76,19 +76,25 @@ export const Video: React.FC<VideoProps> = ({
       </button>
       {data && songListOpen && (
         <div className="song-items ps-4 mt-2">
-          {data?.song_items.map((song) => (
-            <OneLineDiv className="my-1" key={song.id}>
-              <Link
-                href={toSongLink(song)}
-                target="_blank"
-                title="Youtubeで視聴"
-              >
-                <span className="">{timeToString(new Date(song.time))}</span>
-                <span className="mx-3">{song.title}</span>
-                {song.author && <span className="me-3">/ {song.author}</span>}
-              </Link>
-            </OneLineDiv>
-          ))}
+          {data && data.song_items.length > 0 ? (
+            data.song_items.map((song) => (
+              <OneLineDiv className="my-1" key={song.id}>
+                <Link
+                  href={toSongLink(song)}
+                  target="_blank"
+                  title="Youtubeで視聴"
+                >
+                  <span className="">{timeToString(new Date(song.time))}</span>
+                  <span className="mx-3">{song.title}</span>
+                  {song.author && <span className="me-3">/ {song.author}</span>}
+                </Link>
+              </OneLineDiv>
+            ))
+          ) : (
+            <div className="text-center my-1">
+              この動画での歌情報は登録されていません。
+            </div>
+          )}
         </div>
       )}
     </div>
