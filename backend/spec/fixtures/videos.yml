@@ -2,7 +2,7 @@ shairu1:
   channel: shairu
   video_id: video_one
   kind: live
-  title: title_one
+  title: 【#歌枠 】初見さん大歓迎だよ～！！周年まであと３日！うたうぞおおおっ！【#新人vtuber/しゃいる】
   published_at: <%= Time.zone.parse('2023-06-12 12:00:00') %>
   response_json:
     {
@@ -130,7 +130,7 @@ shairu2:
 
 mashiro1:
   channel: mashiro
-  title: 【朝活ティアキン】雑談多めのゼルダの伝説 ティアーズ オブ ザ キングダム【#新人Vtuber#凪乃ましろ 】
+  title: singing【朝活ティアキン】雑談多めのゼルダの伝説 ティアーズ オブ ザ キングダム【#新人Vtuber#凪乃ましろ 】
   video_id: GQn1LkJ4X4o
   kind: live
   published_at: <%= Time.zone.parse('2023-06-14 12:00:00') %>

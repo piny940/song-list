@@ -22,6 +22,10 @@ class Api::SongItemsController < Api::Base
     until_time = params[:until] && Time.zone.parse(params[:until]).end_of_day
     scope = scope.where(video_id: Video.where(published_at: since_time..until_time))
 
+    # 枠名で絞り込み
+    scope = scope.where(video_id: Video.where('videos.title ILIKE ?', "%#{params[:video_title]}%")) \
+              if params[:video_title].present?
+
     scope = scope.active.order('videos.published_at desc, time asc')
     scope.select(:id, :video_id, :latest_diff_id, :created_at, :updated_at)
     scope = scope.includes(:latest_diff, :video)
