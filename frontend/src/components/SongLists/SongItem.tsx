@@ -1,6 +1,6 @@
 import { TestID } from '@/resources/TestID'
 import { SongItemType } from '@/resources/types'
-import { timeToString } from '@/utils/helpers'
+import { timeToString, toSongLink } from '@/utils/helpers'
 import Image from 'next/image'
 import Link from 'next/link'
 import { styled } from 'styled-components'
@@ -15,18 +15,9 @@ export type SongItemProps = {
 
 export const SongItem: React.FC<SongItemProps> = ({ songItem }) => {
   const time = new Date(songItem.time)
-  const hour = time.getHours()
-  const minute = time.getMinutes()
-  const second = time.getSeconds()
 
   return (
-    <Link
-      href={`https://www.youtube.com/watch?v=${songItem.video.video_id}&t=${
-        hour * 3600 + minute * 60 + second
-      }`}
-      target="_blank"
-      title="Youtubeで視聴"
-    >
+    <Link href={toSongLink(songItem)} target="_blank" title="Youtubeで視聴">
       <SongItemDiv
         className="d-flex align-items-center border border-light rounded shadow-sm m-1 p-3"
         data-testid={TestID.SONG_ITEM}

@@ -1,12 +1,11 @@
 import { TestID } from '@/resources/TestID'
 import { SongItemType, VideoType } from '@/resources/types'
 import { getData } from '@/utils/api'
-import { timeToString } from '@/utils/helpers'
 import Error from 'next/error'
 import Image from 'next/image'
-import Link from 'next/link'
 import { styled } from 'styled-components'
 import useSWR from 'swr'
+import { SongList } from './SongList'
 
 const OneLineDiv = styled.div`
   -webkit-line-clamp: 1;
@@ -36,16 +35,6 @@ export const Video: React.FC<VideoProps> = ({
     const time = new Date(publishedAt)
     if (!time) return ''
     return `${time.getFullYear()}/${time.getMonth()}/${time.getDate()}`
-  }
-  const toSongLink = (songItem: SongItemType) => {
-    const time = new Date(songItem.time)
-    const hour = time.getHours()
-    const minute = time.getMinutes()
-    const second = time.getSeconds()
-
-    return `https://www.youtube.com/watch?v=${video.video_id}&t=${
-      hour * 3600 + minute * 60 + second
-    }`
   }
 
   if (error) return <Error statusCode={400} />
@@ -78,27 +67,7 @@ export const Video: React.FC<VideoProps> = ({
       {data && songListOpen && (
         <div className="song-items ps-4 mt-2">
           {data && data.song_items.length > 0 ? (
-            <ul>
-              {data.song_items.map((song) => (
-                <li key={song.id}>
-                  <OneLineDiv className="my-1">
-                    <Link
-                      href={toSongLink(song)}
-                      target="_blank"
-                      title="Youtubeで視聴"
-                    >
-                      <span className="ms-1 me-3">
-                        {timeToString(new Date(song.time))}
-                      </span>
-                      <span className="me-3">{song.title}</span>
-                      {song.author && (
-                        <span className="me-3">/ {song.author}</span>
-                      )}
-                    </Link>
-                  </OneLineDiv>
-                </li>
-              ))}
-            </ul>
+            <SongList songItems={data.song_items} />
           ) : (
             <div className="text-center my-1">
               この動画での歌情報は登録されていません。
