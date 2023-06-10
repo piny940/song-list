@@ -10,10 +10,10 @@ module Youtube
 
   CHANNEL_PAGE_ENDPOINT = 'https://www.youtube.com/'.freeze
   def self.get_channel_id(custom_url)
-    p custom_url
+    Rails.logger.debug custom_url
     html = Nokogiri::HTML(URI.open("#{CHANNEL_PAGE_ENDPOINT}#{custom_url}"))
-    id = html.at_css('meta[property="og:url"]')["content"].split('/')[-1]
-    p id
+    id = html.at_css('meta[property="og:url"]')['content'].split('/')[-1]
+    Rails.logger.debug id
     id
   end
 
