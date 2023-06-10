@@ -24,7 +24,7 @@ export const toSongLink = (songItem: SongItemType) => {
 export const toVideoDate = (publishedAt: string) => {
   const time = new Date(publishedAt)
   if (!time) return ''
-  return `${time.getFullYear()}/${time.getMonth()}/${time.getDate()}`
+  return `${time.getFullYear()}/${time.getMonth() + 1}/${time.getDate()}`
 }
 export const queryToSearchParams = (
   query: Record<string, string> | ParsedUrlQuery
