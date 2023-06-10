@@ -20,8 +20,8 @@ export const SongItemsSearch: React.FC<SongItemsSearchProps> = ({
   setVideoTitle,
 }) => {
   return (
-    <div className="song-search">
-      <div className="row px-4 mt-2 mb-4">
+    <div className="song-search mb-3">
+      <div className="row px-4 mt-2 mb-2">
         <div className="fw-bold col-2 col-form-label">検索</div>
         <div className="col-10">
           <input
@@ -44,19 +44,37 @@ export const SongItemsSearch: React.FC<SongItemsSearchProps> = ({
           <label className="row my-1">
             <div className="col-3 fw-bold col-form-label">開始日</div>
             <div className="col-9">
-              <input type="date" name="since" className="form-control" />
+              <input
+                type="date"
+                name="since"
+                className="form-control"
+                value={since}
+                onChange={(e) => setSince(e.target.value)}
+              />
             </div>
           </label>
           <label className="row my-1">
             <div className="col-3 fw-bold col-form-label">終了日</div>
             <div className="col-9">
-              <input type="date" name="until" className="form-control" />
+              <input
+                type="date"
+                name="until"
+                className="form-control"
+                value={until}
+                onChange={(e) => setUntil(e.target.value)}
+              />
             </div>
           </label>
           <label className="row my-1">
             <div className="col-3 fw-bold col-form-label">枠名</div>
             <div className="col-9">
-              <input type="text" name="videoTitle" className="form-control" />
+              <input
+                type="text"
+                name="videoTitle"
+                className="form-control"
+                value={videoTitle}
+                onChange={(e) => setVideoTitle(e.target.value)}
+              />
             </div>
           </label>
         </div>

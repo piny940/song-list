@@ -15,7 +15,7 @@ const OneLineDiv = styled.div`
   overflow: hidden;
   height: 30px;
 `
-const YoutubeButton = styled.a`
+const YoutubeIcon = styled.span`
   width: 22px;
   height: 22px;
   background-image: url('/images/youtube.svg');
@@ -51,7 +51,7 @@ export const Video: React.FC<VideoProps> = ({
       className="video  border border-light shadow-sm m-1"
       data-testid={TestID.VIDEO}
     >
-      <a
+      <div
         className="d-flex text-body w-100"
         onClick={toggleSongListOpened}
         role="button"
@@ -74,13 +74,13 @@ export const Video: React.FC<VideoProps> = ({
                 target="_blank"
                 onClick={stopPropagation}
               >
-                <YoutubeButton role="button" className="d-inline-block" />
+                <YoutubeIcon role="button" className="d-inline-block" />
               </Link>
             </div>
             <span>{toVideoTime(video.published_at)}</span>
           </div>
         </div>
-      </a>
+      </div>
       <div
         className={`${styles.collapsable} ${songListOpen ? styles.active : ''}`}
       >

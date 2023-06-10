@@ -23,6 +23,9 @@ export type SongItemsProps = {
   channelId?: number
   videoId?: number
   query?: string
+  since?: string
+  until?: string
+  videoTitle?: string
 }
 
 const DEFAULT_PAGE = 1
@@ -30,6 +33,9 @@ export const SongItems: React.FC<SongItemsProps> = ({
   channelId,
   videoId,
   query,
+  since,
+  until,
+  videoTitle,
 }) => {
   const { getPage, setPage } = usePaginate('song-items-page', DEFAULT_PAGE)
   const { data, error } = useSWR<{
@@ -39,6 +45,9 @@ export const SongItems: React.FC<SongItemsProps> = ({
     '/song_items?' +
       queryToSearchParams({
         query: query || '',
+        since: since || '',
+        until: until || '',
+        videoTitle: videoTitle || '',
         channel_id: channelId != null ? String(channelId) : '',
         video_id: videoId != null ? String(videoId) : '',
         count: '15',
