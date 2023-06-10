@@ -24,5 +24,6 @@ module.exports = {
     '@typescript-eslint/prefer-nullish-coalescing': 'off',
     'react-hooks/exhaustive-deps': 'off',
     'object-shorthand': 'off',
+    '@typescript-eslint/no-confusing-void-expression': 'off',
   },
 }

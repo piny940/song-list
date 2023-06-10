@@ -8,7 +8,7 @@ import { Loading } from '../Common/Loading'
 import { useEffect } from 'react'
 import { Paging } from '../Common/Paging'
 import { styled } from 'styled-components'
-import { usePaginate } from '@/utils/hooks'
+import { useHold, usePaginate } from '@/utils/hooks'
 import { queryToSearchParams } from '@/utils/helpers'
 
 const VideoTitleDiv = styled.div`
@@ -23,6 +23,9 @@ export type SongItemsProps = {
   channelId?: number
   videoId?: number
   query?: string
+  since?: string
+  until?: string
+  videoTitle?: string
 }
 
 const DEFAULT_PAGE = 1
@@ -30,8 +33,12 @@ export const SongItems: React.FC<SongItemsProps> = ({
   channelId,
   videoId,
   query,
+  since,
+  until,
+  videoTitle,
 }) => {
   const { getPage, setPage } = usePaginate('song-items-page', DEFAULT_PAGE)
+  const { isReady, updateTimer } = useHold(500)
   const { data, error } = useSWR<{
     song_items: SongItemType[]
     total_pages: number
@@ -39,6 +46,9 @@ export const SongItems: React.FC<SongItemsProps> = ({
     '/song_items?' +
       queryToSearchParams({
         query: query || '',
+        since: since || '',
+        until: until || '',
+        video_title: videoTitle || '',
         channel_id: channelId != null ? String(channelId) : '',
         video_id: videoId != null ? String(videoId) : '',
         count: '15',
@@ -49,7 +59,8 @@ export const SongItems: React.FC<SongItemsProps> = ({
 
   useEffect(() => {
     setPage(DEFAULT_PAGE)
-  }, [query])
+    updateTimer()
+  }, [query, since, until, videoTitle])
 
   if (error) return <Error statusCode={404} />
 
@@ -65,7 +76,7 @@ export const SongItems: React.FC<SongItemsProps> = ({
     }
   }
 
-  return data ? (
+  return isReady && data ? (
     <div className="">
       {Object.keys(videos).length > 0 ? (
         <>

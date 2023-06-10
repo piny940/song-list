@@ -1,5 +1,6 @@
 import { Loading } from '@/components/Common/Loading'
 import { SongItems } from '@/components/SongLists/SongItems'
+import { SongItemsSearch } from '@/components/SongLists/SongItemsSearch'
 import { Videos } from '@/components/SongLists/Videos'
 import { ChannelType } from '@/resources/types'
 import { getData } from '@/utils/api'
@@ -12,7 +13,10 @@ export type ChannelsShowProps = {
 }
 
 export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
-  const [query, setQuery] = useState('')
+  const [songQuery, setSongQuery] = useState('')
+  const [songSince, setSongSince] = useState('')
+  const [songUntil, setSongUntil] = useState('')
+  const [songVideoTitle, setSongVideoTitle] = useState('')
 
   const { data, error } = useSWR<{ channel: ChannelType }>(
     `/channels/${id}?`,
@@ -27,21 +31,23 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
       <div className="d-flex">
         <div className="w-50 px-2">
           <div className="text-sm fw-bold w-100 text-center">歌一覧</div>
-          <div className="row px-4 mt-2 mb-4">
-            <div className="fw-bold col-2 col-form-label">検索</div>
-            <div className="col-10">
-              <input
-                type="text"
-                className="form-control"
-                value={query}
-                placeholder="曲名/歌手名を入力"
-                onChange={(e) => {
-                  setQuery(e.target.value)
-                }}
-              />
-            </div>
-          </div>
-          <SongItems channelId={data.channel.id} query={query} />
+          <SongItemsSearch
+            query={songQuery}
+            setQuery={setSongQuery}
+            since={songSince}
+            setSince={setSongSince}
+            until={songUntil}
+            setUntil={setSongUntil}
+            videoTitle={songVideoTitle}
+            setVideoTitle={setSongVideoTitle}
+          />
+          <SongItems
+            channelId={data.channel.id}
+            query={songQuery}
+            since={songSince}
+            until={songUntil}
+            videoTitle={songVideoTitle}
+          />
         </div>
         <div className="w-50 px-2">
           <div className="text-sm fw-bold w-100 text-center">配信から検索</div>
