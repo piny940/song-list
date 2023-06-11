@@ -30,7 +30,7 @@ export const SessionNew: React.FC = () => {
           </div>
         </div>
         <div className="">
-          <Link href="/" className="text-primary py-0">
+          <Link href="/user/new" className="text-primary py-0">
             &gt;アカウント新規作成
           </Link>
         </div>
