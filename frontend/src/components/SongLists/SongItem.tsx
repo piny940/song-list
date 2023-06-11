@@ -1,6 +1,7 @@
 import { TestID } from '@/resources/TestID'
 import { SongItemType } from '@/resources/types'
 import { stopPropagation, timeToString, toSongLink } from '@/utils/helpers'
+import Image from 'next/image'
 import Link from 'next/link'
 import { MouseEventHandler } from 'react'
 import { styled } from 'styled-components'
@@ -42,14 +43,23 @@ export const SongItem: React.FC<SongItemProps> = ({
         className="d-flex align-items-center border border-light rounded shadow-sm m-1 p-3"
         data-testid={TestID.SONG_ITEM}
       >
-        <Link
-          href={toSongLink(songItem)}
-          target="_blank"
-          onClick={stopPropagation}
-          className="d-flex align-items-center"
-        >
-          <YoutubeIcon role="button" className="d-inline-block" />
-        </Link>
+        {isLink ? (
+          <Image
+            src="/images/youtube.svg"
+            width={22}
+            height={22}
+            alt="Youtube icon"
+          />
+        ) : (
+          <Link
+            href={toSongLink(songItem)}
+            target="_blank"
+            onClick={stopPropagation}
+            className="d-flex align-items-center"
+          >
+            <YoutubeIcon role="button" className="d-inline-block" />
+          </Link>
+        )}
         <div className="">
           <span className="ms-2">{timeToString(time)}</span>
         </div>
