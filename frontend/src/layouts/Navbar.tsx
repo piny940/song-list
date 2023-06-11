@@ -38,7 +38,7 @@ export const Navbar: React.FC = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link href="/session/new" className="nav-link">
+              <Link href="/maintenance" className="nav-link">
                 メンテナンスに参加する
               </Link>
             </li>
