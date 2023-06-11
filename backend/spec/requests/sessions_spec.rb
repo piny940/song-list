@@ -23,5 +23,13 @@ describe Api::SessionsController do
       expect(json['user']).to be_nil
       expect(json['message']).to eq 'メールアドレスまたはパスワードが違います。'
     end
+
+    it('メールアドレスが違う場合はログインできない') do
+      post endpoint, params: { email: 'Alice@example.com', password: 'password' }
+      expect(response.status).to eq 400
+      json = response.parsed_body
+      expect(json['user']).to be_nil
+      expect(json['message']).to eq 'メールアドレスまたはパスワードが違います。'
+    end
   end
 end
