@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export const SessionNew: React.FC = () => {
   return (
     <div className="">
@@ -27,7 +29,12 @@ export const SessionNew: React.FC = () => {
             />
           </div>
         </div>
-        <div className="row my-3">
+        <div className="">
+          <Link href="/" className="text-primary py-0">
+            &gt;アカウント新規作成
+          </Link>
+        </div>
+        <div className="row mt-2">
           <button type="submit" className="btn btn-primary">
             ログイン
           </button>
