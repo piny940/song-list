@@ -4,8 +4,7 @@ class Api::SessionsController < Api::Base
     if user&.valid_password?(params[:password])
       sign_in user
       render json: { message: 'ログインしました。',
-                     user:
-                    }, status: :ok
+                     user: }, status: :ok
     else
       render json: { message: 'メールアドレスまたはパスワードが違います。' }, status: :bad_request
     end
