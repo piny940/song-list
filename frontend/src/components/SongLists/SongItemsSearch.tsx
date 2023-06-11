@@ -1,5 +1,19 @@
 import { useState } from 'react'
 import styles from '../../styles/song-lists.module.scss'
+import { styled } from 'styled-components'
+
+const DetailButton = styled.a`
+  --text-color: black;
+  &:hover {
+    --text-color: #0d6efd;
+  }
+`
+
+const Triangle = styled.div`
+  border-left: 10px solid var(--text-color);
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+`
 
 export type SongItemsSearchProps = {
   query: string
@@ -29,16 +43,18 @@ export const SongItemsSearch: React.FC<SongItemsSearchProps> = ({
   return (
     <div className="song-search mb-3">
       <div className="d-flex justify-content-end">
-        <a role="button" className="small me-4" onClick={toggleOpened}>
-          <div
+        <DetailButton
+          role="button"
+          className="small me-4"
+          onClick={toggleOpened}
+        >
+          <Triangle
             className={`${styles.animateFast} ${
               detailOpened ? styles.rotate90 : ''
             } d-inline-block`}
-          >
-            &#9654;
-          </div>
+          ></Triangle>
           <span className="ms-1">詳細検索</span>
-        </a>
+        </DetailButton>
       </div>
       <div className="row px-4 mt-2 mb-2">
         <div className="fw-bold col-2 col-form-label">検索</div>
