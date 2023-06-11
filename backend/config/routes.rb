@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     resource :csrf, only: %i[show]
+    resource :user, only: %i[show create]
     resources :channels, only: %i[index show] do
       resources :videos, only: %i[index show]
     end
