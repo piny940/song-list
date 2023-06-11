@@ -1,10 +1,34 @@
+import { fetchApi } from '@/utils/api'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 
 export const UserNew: React.FC = () => {
+  const [alert, setAlert] = useState('')
+  const router = useRouter()
+  const { register, handleSubmit } = useForm({
+    shouldUseNativeValidation: true,
+  })
+
+  const submit: SubmitHandler<FieldValues> = async (data) => {
+    const response = await fetchApi({
+      url: '/user',
+      method: 'POST',
+      data: data,
+    })
+    const json = await response.json()
+    if (response.status >= 400) {
+      setAlert(json.message)
+      return
+    }
+    void router.push('/') // TODO
+  }
+
   return (
     <div className="">
       <h1>アカウント作成</h1>
-      <form className="container">
+      <form className="container" onSubmit={handleSubmit(submit)}>
         <div className="row my-3">
           <div className="col-md-3 fw-bold col-form-label">
             メールアドレス
@@ -13,10 +37,8 @@ export const UserNew: React.FC = () => {
           <div className="col-md-9">
             <input
               type="email"
-              name="email"
-              id=""
+              {...register('email', { required: 'このフィールドは必須です。' })}
               className="form-control"
-              required
             />
           </div>
         </div>
@@ -28,10 +50,8 @@ export const UserNew: React.FC = () => {
           <div className="col-md-9">
             <input
               type="text"
-              name="name"
-              id=""
+              {...register('name', { required: 'このフィールドは必須です。' })}
               className="form-control"
-              required
             />
           </div>
         </div>
@@ -42,10 +62,10 @@ export const UserNew: React.FC = () => {
           <div className="col-md-9">
             <input
               type="password"
-              name="password"
-              id=""
               className="form-control"
-              required
+              {...register('password', {
+                required: 'このフィールドは必須です。',
+              })}
             />
           </div>
         </div>
@@ -56,10 +76,10 @@ export const UserNew: React.FC = () => {
           <div className="col-md-9">
             <input
               type="password"
-              name="password_confirmation"
-              id=""
               className="form-control"
-              required
+              {...register('password_confirmation', {
+                required: 'このフィールドは必須です。',
+              })}
             />
           </div>
         </div>
