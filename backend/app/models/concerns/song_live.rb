@@ -38,7 +38,11 @@ module SongLive
     # 新しいコメントを探しに行く
     page_token = nil
     loop do
-      response = Youtube.get_video_comments(video_id, page_token:)
+      begin
+        response = Youtube.get_video_comments(video_id, page_token:)
+      rescue Google::Apis::ClientError => e
+        break
+      end
       break if response.items.nil?
 
       response.items.each do |item|
