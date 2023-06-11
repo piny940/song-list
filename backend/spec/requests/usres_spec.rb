@@ -19,7 +19,7 @@ describe Api::UsersController do
       expect(response.status).to eq 400
       json = response.parsed_body
       expect(User.count).to eq (before_count)
-      expect(json['message']).to eq 'Eメールはすでに存在します'
+      expect(json['message']).to eq 'メールアドレスはすでに存在します'
     end
 
     it('メールアドレスは空欄ではいけない') do
@@ -28,7 +28,7 @@ describe Api::UsersController do
       expect(response.status).to eq 400
       json = response.parsed_body
       expect(User.count).to eq (before_count)
-      expect(json['message']).to eq 'Eメールを入力してください'
+      expect(json['message']).to eq 'メールアドレスを入力してください'
     end
 
     it('名前は空欄ではいけない') do
