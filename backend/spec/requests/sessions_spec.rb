@@ -13,7 +13,7 @@ describe Api::SessionsController do
       json = response.parsed_body
       expect(json['user']['email']).to eq user.email
       expect(json['user']['name']).to eq user.name
-      expect(json['message']).to eq 'ログインしました。'
+      expect(json['message']).to eq 'ログインしました'
     end
 
     it('パスワードが違う場合はログインできない') do
@@ -21,7 +21,7 @@ describe Api::SessionsController do
       expect(response.status).to eq 400
       json = response.parsed_body
       expect(json['user']).to be_nil
-      expect(json['message']).to eq 'メールアドレスまたはパスワードが違います。'
+      expect(json['message']).to eq 'メールアドレスまたはパスワードが違います'
     end
 
     it('メールアドレスが違う場合はログインできない') do
@@ -29,7 +29,16 @@ describe Api::SessionsController do
       expect(response.status).to eq 400
       json = response.parsed_body
       expect(json['user']).to be_nil
-      expect(json['message']).to eq 'メールアドレスまたはパスワードが違います。'
+      expect(json['message']).to eq 'メールアドレスまたはパスワードが違います'
+    end
+  end
+
+  describe('DELETE /api/session') do
+    it('正常にログアウトできる') do
+      delete endpoint
+      expect(response.status).to eq 200
+      json = response.parsed_body
+      expect(json['message']).to eq 'ログアウトしました'
     end
   end
 end
