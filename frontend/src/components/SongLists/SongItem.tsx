@@ -3,6 +3,7 @@ import { SongItemType } from '@/resources/types'
 import { timeToString, toSongLink } from '@/utils/helpers'
 import Image from 'next/image'
 import Link from 'next/link'
+import { MouseEventHandler } from 'react'
 import { styled } from 'styled-components'
 
 const OneLineDiv = styled.div`
@@ -15,13 +16,19 @@ const OneLineDiv = styled.div`
 
 export type SongItemProps = {
   songItem: SongItemType
+  isLink: boolean
+  onClick?: MouseEventHandler
 }
 
-export const SongItem: React.FC<SongItemProps> = ({ songItem }) => {
+export const SongItem: React.FC<SongItemProps> = ({
+  songItem,
+  isLink,
+  onClick,
+}) => {
   const time = new Date(songItem.time)
 
-  return (
-    <Link href={toSongLink(songItem)} target="_blank" title="Youtubeで視聴">
+  const renderContent = () => {
+    return (
       <div
         className="d-flex align-items-center border border-light rounded shadow-sm m-1 p-3"
         data-testid={TestID.SONG_ITEM}
@@ -50,6 +57,15 @@ export const SongItem: React.FC<SongItemProps> = ({ songItem }) => {
           )}
         </div>
       </div>
+    )
+  }
+  return isLink ? (
+    <Link href={toSongLink(songItem)} target="_blank" title="Youtubeで視聴">
+      {renderContent()}
     </Link>
+  ) : (
+    <div className="" onClick={onClick}>
+      {renderContent()}
+    </div>
   )
 }

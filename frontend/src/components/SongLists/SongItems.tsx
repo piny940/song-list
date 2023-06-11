@@ -26,6 +26,8 @@ export type SongItemsProps = {
   since?: string
   until?: string
   videoTitle?: string
+  isLink: boolean
+  onClick?: (songItem: SongItemType) => void
 }
 
 const DEFAULT_PAGE = 1
@@ -36,6 +38,8 @@ export const SongItems: React.FC<SongItemsProps> = ({
   since,
   until,
   videoTitle,
+  isLink,
+  onClick,
 }) => {
   const { getPage, setPage } = usePaginate('song-items-page', DEFAULT_PAGE)
   const { isReady, updateTimer } = useHold(500)
@@ -82,7 +86,7 @@ export const SongItems: React.FC<SongItemsProps> = ({
   }
 
   return isReady && data ? (
-    <div className="">
+    <div className="pb-4">
       {Object.keys(videos).length > 0 ? (
         <>
           {Object.values(videos).map((video) => (
@@ -94,7 +98,11 @@ export const SongItems: React.FC<SongItemsProps> = ({
               <div className="mb-4 ps-3" data-testid={TestID.SONG_ITEMS}>
                 {songItems[video.video_id].map((songItem) => (
                   <div key={songItem.id}>
-                    <SongItem songItem={songItem} />
+                    <SongItem
+                      isLink={isLink}
+                      songItem={songItem}
+                      onClick={onClick && (() => onClick(songItem))}
+                    />
                   </div>
                 ))}
               </div>
