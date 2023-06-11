@@ -1,4 +1,4 @@
-import { MaintenanceHome } from '@/containers/maintenance/Home'
+import { MaintenanceHome } from '@/containers/Maintenance/Home'
 
 const Home: React.FC = () => {
   return <MaintenanceHome />
