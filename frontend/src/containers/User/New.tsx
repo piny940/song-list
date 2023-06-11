@@ -12,6 +12,7 @@ export const UserNew: React.FC = () => {
   })
 
   const submit: SubmitHandler<FieldValues> = async (data) => {
+    setAlert('')
     const response = await fetchApi({
       url: '/user',
       method: 'POST',
@@ -29,6 +30,7 @@ export const UserNew: React.FC = () => {
 
   return (
     <div className="">
+      {alert && <div className="alert alert-danger">{alert}</div>}
       <h1>アカウント作成</h1>
       <form className="container" onSubmit={handleSubmit(submit)}>
         <div className="row my-3">
