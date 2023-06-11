@@ -1,4 +1,6 @@
 class Api::UsersController < Api::Base
+  def show; end
+
   def create
     @user = User.new(user_params)
     unless @user.save

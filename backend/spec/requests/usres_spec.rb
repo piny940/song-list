@@ -1,6 +1,24 @@
 describe Api::UsersController do
   let(:endpoint) { '/api/user' }
 
+  describe('GET /api/user') do
+    it('ログイン中のユーザーを取得できる') do
+      user = User.create!(email: 'alice@example.com', name: 'Alice', password: 'password', password_confirmation: 'password')
+      sign_in user
+      get endpoint
+      expect(response.status).to eq 200
+      json = response.parsed_body
+      expect(json['user']['email']).to eq 'alice@example.com'
+    end
+
+    it('ログインしていないときはuserはnilで返ってくる') do
+      get endpoint
+      expect(response.status).to eq 200
+      json = response.parsed_body
+      expect(json['user']).to be_nil
+    end
+  end
+
   describe('POST /api/user') do
     it('正常にユーザーを作成できる') do
       before_count = User.count
