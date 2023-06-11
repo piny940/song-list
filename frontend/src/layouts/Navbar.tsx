@@ -50,7 +50,7 @@ export const Navbar: React.FC = () => {
             </li>
             <li className="nav-item">
               {isMaintenance() ? (
-                <MaintenanceModeDiv className="d-none d-lg-block border border-primary border-3 rounded nav-link fw-bold">
+                <MaintenanceModeDiv className="border border-primary border-3 rounded nav-link fw-bold d-none d-lg-block">
                   メンテナンスモード
                 </MaintenanceModeDiv>
               ) : (

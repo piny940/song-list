@@ -12,7 +12,7 @@ export const MaintenanceHome: React.FC = () => {
   if (!isLoading && !data) void router.push('/session/new')
   return (
     <div className="">
-      <h1 className="sub">歌情報を修正する</h1>
+      <h1 className="sub">チャンネル一覧</h1>
       <div className="">
         <Channels link="/maintenance/channels" />
       </div>
