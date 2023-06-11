@@ -16,7 +16,7 @@ class Api::SongItemsController < Api::Base
             else
               scope
             end
-    
+
     # 日付で絞り込み
     since_time = params[:since].present? ? Time.zone.parse(params[:since]).beginning_of_day : nil
     until_time = params[:until].present? ? Time.zone.parse(params[:until]).end_of_day : nil

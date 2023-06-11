@@ -40,7 +40,7 @@ module SongLive
     loop do
       begin
         response = Youtube.get_video_comments(video_id, page_token:)
-      rescue Google::Apis::ClientError => e
+      rescue Google::Apis::ClientError
         break
       end
       break if response.items.nil?
