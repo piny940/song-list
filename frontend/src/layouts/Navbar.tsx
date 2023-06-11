@@ -31,13 +31,18 @@ export const Navbar: React.FC = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbar-collapse-target">
-          <div className="navbar-nav w-100 mx-3">
-            <div className="nav-item">
+          <ul className="d-flex justify-content-between navbar-nav w-100 mx-3">
+            <li className="nav-item">
               <Link href="/channels" className="nav-link">
                 チャンネル一覧
               </Link>
-            </div>
-          </div>
+            </li>
+            <li className="nav-item">
+              <Link href="/session/new" className="nav-link">
+                メンテナンスに参加する
+              </Link>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>
