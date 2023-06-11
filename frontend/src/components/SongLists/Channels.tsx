@@ -6,9 +6,10 @@ import { Loading } from '../Common/Loading'
 
 export type ChannelsListProps = {
   testID?: string
+  link: string
 }
 
-export const ChannelsList: React.FC<ChannelsListProps> = ({ testID }) => {
+export const Channels: React.FC<ChannelsListProps> = ({ testID, link }) => {
   const { data } = useSWR<{ channels: ChannelType[] }>('/channels', getData)
 
   return data ? (
@@ -18,7 +19,7 @@ export const ChannelsList: React.FC<ChannelsListProps> = ({ testID }) => {
     >
       {data.channels.map((channel) => (
         <div className="col" key={channel.id}>
-          <Channel channel={channel} />
+          <Channel link={link} channel={channel} />
         </div>
       ))}
     </div>

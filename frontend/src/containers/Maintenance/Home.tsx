@@ -1,3 +1,4 @@
+import { Channels } from '@/components/SongLists/Channels'
 import { getData } from '@/utils/api'
 import Error from 'next/error'
 import { useRouter } from 'next/router'
@@ -11,7 +12,10 @@ export const MaintenanceHome: React.FC = () => {
   if (!isLoading && !data) void router.push('/session/new')
   return (
     <div className="">
-      <h1 className="sub">メンテナンス</h1>
+      <h1 className="sub">歌情報を修正する</h1>
+      <div className="">
+        <Channels link="/maintenance/channels" />
+      </div>
     </div>
   )
 }

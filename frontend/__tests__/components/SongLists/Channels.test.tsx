@@ -1,9 +1,6 @@
 import { render, waitFor } from '@testing-library/react'
 import { expect } from '@jest/globals'
-import {
-  ChannelsList,
-  ChannelsListProps,
-} from '@/components/SongLists/Channels'
+import { Channels, ChannelsListProps } from '@/components/SongLists/Channels'
 import { Mock } from 'ts-mockery'
 import { ChannelType } from '@/resources/types'
 
@@ -41,7 +38,7 @@ describe('<Channels />', () => {
       testID: 'testid',
     })
 
-    const { getByTestId } = render(<ChannelsList {...props} />)
+    const { getByTestId } = render(<Channels {...props} />)
     await waitFor(() => {
       expect(getByTestId('testid')).toBeTruthy()
       expect(getByTestId('testid').children.length).toBe(2)
