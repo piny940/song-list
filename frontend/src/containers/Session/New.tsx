@@ -1,16 +1,36 @@
 import { FormGroup } from '@/components/Common/FormGroup'
+import { fetchApi } from '@/utils/api'
 import Link from 'next/link'
-import { useForm } from 'react-hook-form'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 
 export const SessionNew: React.FC = () => {
-  const { register } = useForm({
+  const router = useRouter()
+  const [alert, setAlert] = useState('')
+  const { register, handleSubmit } = useForm({
     shouldUseNativeValidation: true,
   })
 
+  const submit: SubmitHandler<FieldValues> = async (data) => {
+    const response = await fetchApi({
+      url: '/session',
+      method: 'POST',
+      data: data,
+    })
+    const json = await response.json()
+    if (response.status >= 400) {
+      setAlert(json.message)
+      return
+    }
+    void router.push('/') // TODO
+  }
+
   return (
     <div className="">
+      {alert && <div className="alert alert-danger">{alert}</div>}
       <h1>ログイン</h1>
-      <form className="container">
+      <form className="container" onSubmit={handleSubmit(submit)}>
         <FormGroup
           register={register}
           label="メールアドレス"
