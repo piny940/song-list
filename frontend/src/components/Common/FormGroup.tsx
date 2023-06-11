@@ -1,9 +1,10 @@
+import { HTMLInputTypeAttribute } from 'react'
 import { FieldValues, UseFormRegister } from 'react-hook-form'
 
 export type FormGroupProps = {
   label: string
   register: UseFormRegister<FieldValues>
-  type: string
+  type: HTMLInputTypeAttribute
   name: string
   required?: boolean
 }

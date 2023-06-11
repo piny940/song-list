@@ -1,34 +1,30 @@
+import { FormGroup } from '@/components/Common/FormGroup'
 import Link from 'next/link'
+import { useForm } from 'react-hook-form'
 
 export const SessionNew: React.FC = () => {
+  const { register } = useForm({
+    shouldUseNativeValidation: true,
+  })
+
   return (
     <div className="">
       <h1>ログイン</h1>
       <form className="container">
-        <div className="row my-3">
-          <div className="col-md-3 fw-bold col-form-label">メールアドレス</div>
-          <div className="col-md-9">
-            <input
-              type="email"
-              name="email"
-              id=""
-              className="form-control"
-              required
-            />
-          </div>
-        </div>
-        <div className="row my-3">
-          <div className="col-md-3 fw-bold col-form-label">パスワード</div>
-          <div className="col-md-9">
-            <input
-              type="password"
-              name="password"
-              id=""
-              className="form-control"
-              required
-            />
-          </div>
-        </div>
+        <FormGroup
+          register={register}
+          label="メールアドレス"
+          type="email"
+          required
+          name="email"
+        />
+        <FormGroup
+          register={register}
+          label="パスワード"
+          type="password"
+          required
+          name="password"
+        />
         <div className="">
           <Link href="/user/new" className="text-primary py-0">
             &gt;アカウント新規作成
