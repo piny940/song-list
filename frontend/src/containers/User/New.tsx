@@ -26,7 +26,7 @@ export const UserNew: React.FC = () => {
       setAlert(json.message)
       return
     }
-    void router.push('/') // TODO
+    void router.push('/maintenance')
   }
 
   return (
