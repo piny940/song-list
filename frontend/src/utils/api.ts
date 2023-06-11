@@ -7,7 +7,7 @@ const getToken = async (): Promise<string> => {
   })
   const json = await response.json()
 
-  return json.data.token
+  return json.token
 }
 
 export const fetchApi = async (params: {

@@ -15,7 +15,9 @@ export const UserNew: React.FC = () => {
     const response = await fetchApi({
       url: '/user',
       method: 'POST',
-      data: data,
+      data: {
+        user: data,
+      },
     })
     const json = await response.json()
     if (response.status >= 400) {
