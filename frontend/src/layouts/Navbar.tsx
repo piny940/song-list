@@ -65,14 +65,22 @@ export const Navbar: React.FC = () => {
         <div className="collapse navbar-collapse" id="navbar-collapse-target">
           <ul className="d-flex justify-content-between navbar-nav w-100 mx-3">
             <li className="nav-item">
-              <Link href="/channels" className="nav-link">
-                チャンネル一覧
-              </Link>
+              {isMaintenance() ? (
+                <Link href="/maintenance" className="nav-link">
+                  チャンネル一覧
+                </Link>
+              ) : (
+                <Link href="/channels" className="nav-link">
+                  チャンネル一覧
+                </Link>
+              )}
             </li>
             <li className="nav-item">
               {isMaintenance() ? (
-                <MaintenanceModeDiv className="border border-primary border-3 rounded nav-link fw-bold d-none d-lg-block">
-                  メンテナンスモード
+                <MaintenanceModeDiv className="d-none d-lg-block border border-primary border-3 rounded nav-link fw-bold">
+                  <Link href="/" className="text-dark">
+                    メンテナンスモード
+                  </Link>
                 </MaintenanceModeDiv>
               ) : (
                 <Link href="/maintenance" className="nav-link">
