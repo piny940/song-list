@@ -1,8 +1,12 @@
 import { TestID } from '@/resources/TestID'
+import { UserType } from '@/resources/types'
+import { getData } from '@/utils/api'
+import Error from 'next/error'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { styled } from 'styled-components'
+import useSWR from 'swr'
 
 const MaintenanceModeDiv = styled.div`
   height: 40px;
@@ -16,8 +20,10 @@ const SpannerButton = styled.button`
 
 export const Navbar: React.FC = () => {
   const router = useRouter()
+  const { data, error } = useSWR<{ user: UserType }>('/user', getData)
 
   const isMaintenance = () => router.asPath.includes('maintenance')
+  if (error) return <Error statusCode={400} />
   return (
     <nav
       data-testid={TestID.NAVBAR}
@@ -84,7 +90,9 @@ export const Navbar: React.FC = () => {
                 </MaintenanceModeDiv>
               ) : (
                 <Link href="/maintenance" className="nav-link">
-                  メンテナンスに参加する
+                  {!!data && !!data.user
+                    ? 'メンテナンスする'
+                    : 'メンテナンスに参加する'}
                 </Link>
               )}
             </li>
