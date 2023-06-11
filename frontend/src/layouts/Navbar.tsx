@@ -1,8 +1,19 @@
 import { TestID } from '@/resources/TestID'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { styled } from 'styled-components'
+
+const MaintenanceModeDiv = styled.div`
+  height: 40px;
+  padding-top: 6px;
+  background-color: rgb(188, 229, 255);
+`
 
 export const Navbar: React.FC = () => {
+  const router = useRouter()
+
+  const isMaintenance = () => router.asPath.includes('maintenance')
   return (
     <nav
       data-testid={TestID.NAVBAR}
@@ -38,9 +49,15 @@ export const Navbar: React.FC = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link href="/maintenance" className="nav-link">
-                メンテナンスに参加する
-              </Link>
+              {isMaintenance() ? (
+                <MaintenanceModeDiv className="d-none d-lg-block border border-primary border-3 rounded nav-link fw-bold">
+                  メンテナンスモード
+                </MaintenanceModeDiv>
+              ) : (
+                <Link href="/maintenance" className="nav-link">
+                  メンテナンスに参加する
+                </Link>
+              )}
             </li>
           </ul>
         </div>
