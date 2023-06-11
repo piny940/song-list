@@ -10,6 +10,10 @@ const MaintenanceModeDiv = styled.div`
   background-color: rgb(188, 229, 255);
 `
 
+const SpannerButton = styled.button`
+  background-color: rgb(188, 229, 255);
+`
+
 export const Navbar: React.FC = () => {
   const router = useRouter()
 
@@ -33,14 +37,31 @@ export const Navbar: React.FC = () => {
           />
           <span className="ms-2">Song Lists</span>
         </Link>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbar-collapse-target"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
+        {isMaintenance() ? (
+          <SpannerButton
+            className="navbar-toggler border border-3 border-primary"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbar-collapse-target"
+          >
+            <Image
+              src="/images/spanner.png"
+              width={34}
+              height={34}
+              alt="Spanner"
+            />
+          </SpannerButton>
+        ) : (
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbar-collapse-target"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+        )}
+
         <div className="collapse navbar-collapse" id="navbar-collapse-target">
           <ul className="d-flex justify-content-between navbar-nav w-100 mx-3">
             <li className="nav-item">
