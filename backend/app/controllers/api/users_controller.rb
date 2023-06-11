@@ -8,6 +8,7 @@ class Api::UsersController < Api::Base
         message: @user.errors.full_messages[0]
       }, status: :bad_request
     end
+    sign_in @user
     render status: :created
   end
 
