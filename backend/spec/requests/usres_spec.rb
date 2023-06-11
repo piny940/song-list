@@ -1,8 +1,26 @@
 describe Api::UsersController do
   let(:endpoint) { '/api/user' }
 
+  describe('GET /api/user') do
+    it('ログイン中のユーザーを取得できる') do
+      user = User.create!(email: 'alice@example.com', name: 'Alice', password: 'password', password_confirmation: 'password')
+      sign_in user
+      get endpoint
+      expect(response.status).to eq 200
+      json = response.parsed_body
+      expect(json['user']['email']).to eq 'alice@example.com'
+    end
+
+    it('ログインしていないときはuserはnilで返ってくる') do
+      get endpoint
+      expect(response.status).to eq 200
+      json = response.parsed_body
+      expect(json['user']).to be_nil
+    end
+  end
+
   describe('POST /api/user') do
-    it('正常にユーザーを作成できる') do
+    it('正常にユーザーを作成してログインできる') do
       before_count = User.count
       post endpoint, params: { user: { email: 'alice@example.com', name: 'Alice', password: 'password', password_confirmation: 'password' } }
       expect(response.status).to eq 201
@@ -10,6 +28,11 @@ describe Api::UsersController do
       expect(User.count).to eq(before_count + 1)
       expect(json['user']['email']).to eq 'alice@example.com'
       expect(json['user']['name']).to eq 'Alice'
+
+      get endpoint
+      expect(response.status).to eq 200
+      json = response.parsed_body
+      expect(json['user']['email']).to eq 'alice@example.com'
     end
 
     it('メールアドレスが同じユーザーは複数作れない') do
@@ -20,6 +43,11 @@ describe Api::UsersController do
       json = response.parsed_body
       expect(User.count).to eq(before_count)
       expect(json['message']).to eq 'メールアドレスはすでに存在します'
+
+      get endpoint
+      expect(response.status).to eq 200
+      json = response.parsed_body
+      expect(json['user']).to be_nil
     end
 
     it('メールアドレスは空欄ではいけない') do
@@ -29,6 +57,11 @@ describe Api::UsersController do
       json = response.parsed_body
       expect(User.count).to eq(before_count)
       expect(json['message']).to eq 'メールアドレスを入力してください'
+
+      get endpoint
+      expect(response.status).to eq 200
+      json = response.parsed_body
+      expect(json['user']).to be_nil
     end
 
     it('名前は空欄ではいけない') do
@@ -38,6 +71,11 @@ describe Api::UsersController do
       json = response.parsed_body
       expect(User.count).to eq(before_count)
       expect(json['message']).to eq '名前を入力してください'
+
+      get endpoint
+      expect(response.status).to eq 200
+      json = response.parsed_body
+      expect(json['user']).to be_nil
     end
 
     it('passwordは空欄ではいけない') do
@@ -47,6 +85,11 @@ describe Api::UsersController do
       json = response.parsed_body
       expect(User.count).to eq(before_count)
       expect(json['message']).to eq 'パスワードを入力してください'
+
+      get endpoint
+      expect(response.status).to eq 200
+      json = response.parsed_body
+      expect(json['user']).to be_nil
     end
 
     it('passwordは6字以上で無いといけないいけない') do
@@ -56,6 +99,11 @@ describe Api::UsersController do
       json = response.parsed_body
       expect(User.count).to eq(before_count)
       expect(json['message']).to eq 'パスワードは6文字以上で入力してください'
+
+      get endpoint
+      expect(response.status).to eq 200
+      json = response.parsed_body
+      expect(json['user']).to be_nil
     end
 
     it('passwordとpassword_confirmationは同じではいけない') do
@@ -65,6 +113,11 @@ describe Api::UsersController do
       json = response.parsed_body
       expect(User.count).to eq(before_count)
       expect(json['message']).to eq 'パスワード（確認用）とパスワードの入力が一致しません'
+
+      get endpoint
+      expect(response.status).to eq 200
+      json = response.parsed_body
+      expect(json['user']).to be_nil
     end
   end
 end
