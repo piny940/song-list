@@ -57,3 +57,17 @@ namespace :deploy do
     invoke 'unicorn:restart'
   end
 end
+
+# ワーキングディレクトリをbackendに移す
+after "deploy:set_current_revision", "deploy:checkout_subdir"
+namespace :deploy do
+  desc "Checkout subdirectory and delete all the other stuff"
+  task :checkout_subdir do
+    subdir = "backend"
+    on roles(:app) do
+      last_release = capture(:ls, "-xt", releases_path).split.first
+      last_release_path = releases_path.join(last_release)
+      execute "rm -rf /tmp/#{subdir} && mv #{last_release_path}/#{subdir}/ /tmp && rm -rf #{last_release_path}/* && mv /tmp/#{subdir}/* #{last_release_path}"
+    end
+  end
+end
