@@ -86,4 +86,4 @@ production:
   <<: *default
   database: backend_song_list_production
   username: backend_song_list
-  password: <%= ENV["backend_song_list_DATABASE_PASSWORD"] %>
+  password: <%= ENV["BACKEND_SONG_LIST_DATABASE_PASSWORD"] %>
