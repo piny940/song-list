@@ -91,7 +91,7 @@ gem 'haml'
 gem 'haml-rails'
 
 # ENV
-gem 'dotenv-rails', groups: %i[development test]
+gem 'dotenv-rails'
 
 # CORS
 gem 'rack-cors'
