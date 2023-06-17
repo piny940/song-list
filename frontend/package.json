@@ -20,6 +20,7 @@
     "react-cssfx-loading": "^2.1.0",
     "react-dom": "18.2.0",
     "react-paginate": "^8.2.0",
+    "sharp": "^0.32.1",
     "styled-components": "^6.0.0-rc.3",
     "swr": "^2.1.5"
   },
