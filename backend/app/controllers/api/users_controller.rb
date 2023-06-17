@@ -1,12 +1,12 @@
 class Api::UsersController < Api::Base
   def create
     @user = User.new(user_params)
-    if !@user.save
+    unless @user.save
       return render json: {
         message: @user.errors.full_messages[0]
-      }, status: 400
+      }, status: :bad_request
     end
-    render status: 201
+    render status: :created
   end
 
   private
