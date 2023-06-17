@@ -11,7 +11,7 @@ working_directory root_path.to_s
 pid '/var/www/backend_song_list/shared/tmp/pids/unicorn.pid'
 
 # ポート番号を指定
-listen '/var/www/backend_song_list/shared/tmp/sockets/unicorn.sock'
+listen 8010
 
 # エラーのログを記録するファイルを指定
 stderr_path '/var/www/backend_song_list/shared/log/unicorn.stderr.log'

@@ -4,7 +4,6 @@ lock '~> 3.17.3'
 set :application, 'backend_song_list'
 set :repo_url, 'git@github.com:piny940/song-list.git'
 set :branch, 'main'
-set :subdir, "backend"
 
 # sharedディレクトリに入れるファイルを指定
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads'
@@ -60,10 +59,15 @@ namespace :deploy do
 end
 
 # ワーキングディレクトリをbackendに移す
-after "deploy:updated", "deploy:checkout_subdir"
+after "deploy:set_current_revision", "deploy:checkout_subdir"
 namespace :deploy do
-    desc "Checkout subdirectory and delete all the other stuff"
-    task :checkout_subdir do
-        run "mv #{current_release}/#{subdir}/ /tmp && rm -rf #{current_release}/* && mv /tmp/#{subdir}/* #{current_release}"
+  desc "Checkout subdirectory and delete all the other stuff"
+  task :checkout_subdir do
+    subdir = "backend"
+    on roles(:app) do
+      last_release = capture(:ls, "-xt", releases_path).split.first
+      last_release_path = releases_path.join(last_release)
+      execute "rm -rf /tmp/#{subdir} && mv #{last_release_path}/#{subdir}/ /tmp && rm -rf #{last_release_path}/* && mv /tmp/#{subdir}/* #{last_release_path}"
     end
+  end
 end
