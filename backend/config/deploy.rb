@@ -60,7 +60,7 @@ namespace :deploy do
 end
 
 # ワーキングディレクトリをbackendに移す
-after "deploy:update_code", "deploy:checkout_subdir"
+after "deploy:updated", "deploy:checkout_subdir"
 namespace :deploy do
     desc "Checkout subdirectory and delete all the other stuff"
     task :checkout_subdir do
