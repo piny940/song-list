@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev -p 3001",
     "build": "next build",
-    "start": "next start -p $PORT",
+    "start": "next start -p 4010",
     "lint": "npx prettier --write . && npx eslint . --fix",
     "lint-check": "npx prettier -c . & npx eslint .",
     "test": "jest"
