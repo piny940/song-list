@@ -4,6 +4,7 @@ lock '~> 3.17.3'
 set :application, 'backend_song_list'
 set :repo_url, 'git@github.com:piny940/song-list.git'
 set :branch, 'main'
+set :subdir, "backend"
 
 # sharedディレクトリに入れるファイルを指定
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads'
@@ -56,4 +57,13 @@ namespace :deploy do
   task :restart do
     invoke 'unicorn:restart'
   end
+end
+
+# ワーキングディレクトリをbackendに移す
+after "deploy:update_code", "deploy:checkout_subdir"
+namespace :deploy do
+    desc "Checkout subdirectory and delete all the other stuff"
+    task :checkout_subdir do
+        run "mv #{current_release}/#{subdir}/ /tmp && rm -rf #{current_release}/* && mv /tmp/#{subdir}/* #{current_release}"
+    end
 end
