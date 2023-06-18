@@ -67,7 +67,6 @@ group :development do
   gem 'capistrano'
   gem 'capistrano3-unicorn'
   gem 'capistrano-bundler'
-  gem 'capistrano-dotenv', require: false
   gem 'capistrano-postgresql', '~> 6.2'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
@@ -91,7 +90,7 @@ gem 'haml'
 gem 'haml-rails'
 
 # ENV
-gem 'dotenv-rails'
+gem 'dotenv-rails', groups: %i[development, test]
 
 # CORS
 gem 'rack-cors'

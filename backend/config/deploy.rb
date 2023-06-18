@@ -38,10 +38,13 @@ set :pg_extensions, %w[citext hstore]
 set :pg_encoding, 'UTF-8'
 set :pg_pool, '100'
 
-# Dotenv
-invoke 'dotenv:read'
-invoke 'dotenv:check'
-invoke 'dotenv:setup'
+# 環境変数
+set :default_env, {
+  GOOGLE_JSON: ENV['GOOGLE_JSON'],
+  GOOGLE_BUCKET: ENV['GOOGLE_BUCKET'],
+  GOOGLE_API_KEY: ENV['GOOGLE_API_KEY'],
+  OPENAI_API_KEY: ENV['OPENAI_API_KEY']
+}
 
 # ここからUnicornの設定
 # Unicornのプロセスの指定
