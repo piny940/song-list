@@ -6,12 +6,12 @@ export type NewSongDiffProps = {
 }
 
 export const NewSongDiff: React.FC<NewSongDiffProps> = ({ songItem }) => {
-  const [time, setTime] = useState(songItem.time)
+  const [time, setTime] = useState(songItem.time.slice(11, 19))
   const [title, setTitle] = useState(songItem.title)
   const [author, setAuthor] = useState(songItem.author)
 
   useEffect(() => {
-    setTime(songItem.time)
+    setTime(songItem.time.slice(11, 19))
     setTitle(songItem.title)
     setAuthor(songItem.author)
   }, [songItem])
@@ -22,8 +22,9 @@ export const NewSongDiff: React.FC<NewSongDiffProps> = ({ songItem }) => {
         <div className="col-3 fw-bold col-form-label">時間</div>
         <div className="col-9">
           <input
-            type="date"
+            type="time"
             name="time"
+            step={1}
             className="form-control"
             value={time}
             onChange={(e) => setTime(e.target.value)}
@@ -54,6 +55,9 @@ export const NewSongDiff: React.FC<NewSongDiffProps> = ({ songItem }) => {
           />
         </div>
       </label>
+      <div className="row mt-2 mb-1 px-3">
+        <button className="btn btn-primary w-100 d-inline-box">送信</button>
+      </div>
     </form>
   )
 }
