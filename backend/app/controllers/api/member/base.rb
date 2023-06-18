@@ -4,8 +4,10 @@ class Api::Member::Base < Api::Base
   private
 
   def authenticate_member!
-    render json: {
-      message: 'アクセスするにはログインが必要です'
-    }, status: 400 if current_user.blank?
+    if current_user.blank?
+      render json: {
+        message: 'アクセスするにはログインが必要です'
+      }, status: :bad_request
+    end
   end
 end

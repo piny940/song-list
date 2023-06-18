@@ -6,16 +6,17 @@ class Api::Member::SongDiffsController < Api::Member::Base
   end
 
   def create
-    @song_diff = @song_item.song_diffs.new(**song_diff_params.merge({
-      made_by_id: current_user.id
-    }))
+    data = song_diff_params.merge({
+                                    made_by_id: current_user.id
+                                  })
+    @song_diff = @song_item.song_diffs.new(data)
 
     if @song_diff.save
       render status: :created
     else
       render json: {
         message: '歌情報を修正できませんでした。'
-      }, status: 400
+      }, status: :bad_request
     end
   end
 
