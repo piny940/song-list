@@ -27,10 +27,20 @@ export const MaintenanceChannelsShow: React.FC<
   return data ? (
     <div className="">
       <h1 className="sub">{data.channel.name}</h1>
-      <div className="row">
-        <SongItems isLink={false} channelId={id} />
+      <div className="d-flex p-0 m-0">
+        <div className="w-100 flex-shrink-1 px-2">
+          <div className="text-sm fw-bold w-100 text-center d-none d-lg-block">
+            歌一覧
+          </div>
+          <SongItems
+            isLink={false}
+            channelId={id}
+            onClick={(songItem) => setCurrentSongItem(songItem)}
+          />
+        </div>
         {currentSongItem && (
-          <div className="">
+          <div className="col-lg-6 flex-shrink-0 px-2 d-none d-lg-block">
+            <div className="text-sm fw-bold w-100 text-center">修正</div>
             <NewSongDiff songItem={currentSongItem} />
           </div>
         )}
