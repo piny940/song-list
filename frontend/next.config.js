@@ -3,7 +3,7 @@
 const BACKEND =
   process.env.NODE_ENV === 'development'
     ? 'http://localhost:3000'
-    : 'https://example.com'
+    : 'https://backend_song_list.piny940.com'
 
 const nextConfig = {
   reactStrictMode: true,

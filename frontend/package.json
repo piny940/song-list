@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev -p 3001",
     "build": "next build",
-    "start": "next start -p $PORT",
+    "start": "next start -p 4010",
     "lint": "npx prettier --write . && npx eslint . --fix",
     "lint-check": "npx prettier -c . & npx eslint .",
     "test": "jest"
@@ -21,6 +21,7 @@
     "react-dom": "18.2.0",
     "react-hook-form": "^7.44.3",
     "react-paginate": "^8.2.0",
+    "sharp": "^0.32.1",
     "styled-components": "^6.0.0-rc.3",
     "swr": "^2.1.5"
   },
