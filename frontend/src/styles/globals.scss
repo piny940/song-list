@@ -69,3 +69,34 @@ h1 {
   padding: 4px 16px;
   margin-bottom: 16px !important;
 }
+
+// サブカラー
+// メインカラー
+$sub: rgb(20, 91, 214);
+.text-sub {
+  color: $sub !important;
+}
+.bg-sub {
+  background-color: $sub !important;
+}
+.border-sub {
+  border-color: $sub !important;
+}
+.btn-sub {
+  background-color: $sub !important;
+  border-color: $sub !important;
+  color: white !important;
+}
+.btn-outline-sub {
+  color: $sub !important;
+  border-color: $sub !important;
+  background-color: white !important;
+}
+
+.title-border-sub,
+h1.sub {
+  border-left: 8px solid $sub;
+  border-bottom: 2px solid $sub;
+  padding: 4px 16px;
+  margin-bottom: 16px !important;
+}

@@ -7,7 +7,7 @@ const getToken = async (): Promise<string> => {
   })
   const json = await response.json()
 
-  return json.data.token
+  return json.token
 }
 
 export const fetchApi = async (params: {
@@ -30,33 +30,6 @@ export const getData = async (url: string) => {
   const response = await fetchApi({
     url: url,
     method: 'GET',
-  })
-  return await response.json()
-}
-
-export const postData = async (params: {
-  url: string
-  data: object
-  scope?: string
-}) => {
-  const response = await fetchApi({
-    url: params.url,
-    method: 'POST',
-    data: params.scope ? { [params.scope]: params.data } : params.data,
-  })
-
-  return await response.json()
-}
-
-export const updateData = async (params: {
-  url: string
-  data: object
-  scope?: string
-}) => {
-  const response = await fetchApi({
-    url: params.url,
-    method: 'PATCH',
-    data: params.scope ? { [params.scope]: params.data } : params.data,
   })
   return await response.json()
 }

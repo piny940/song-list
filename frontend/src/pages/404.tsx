@@ -6,7 +6,7 @@ const Custom404: React.FC = () => {
     <div className="container" data-testid={TestID.CUSTOM404}>
       <h1>ページが見つかりませんでした。(404)</h1>
       <p>
-        <Link href="/">ホームへ戻る</Link>
+        <Link href="/">ホームに戻る</Link>
       </p>
     </div>
   )
