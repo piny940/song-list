@@ -1,7 +1,3 @@
 json.user do
-  if current_user.present?
-    json.partial! current_user
-  else
-    nil
-  end
+  json.partial! current_user if current_user.present?
 end
