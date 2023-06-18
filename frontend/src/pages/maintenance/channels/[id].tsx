@@ -10,7 +10,7 @@ const Show: React.FC = () => {
   if (typeof id === 'object' || !id || isNaN(parseInt(id))) {
     return <Error statusCode={404} />
   }
-  return <MaintenanceChannelsShow />
+  return <MaintenanceChannelsShow id={parseInt(id)} />
 }
 
 export default Show
