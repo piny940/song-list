@@ -38,6 +38,7 @@ describe Api::Member::SongDiffsController do
       json = response.parsed_body
       expect(json['song_diff']['title']).to eq 'コネクト'
       expect(json['song_diff']['author']).to eq 'ClariS'
+      expect(json['song_diff']['made_by']['id']).to eq user.id
     end
 
     it('ログインしてない状態ではエラーになる') do
