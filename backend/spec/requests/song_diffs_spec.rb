@@ -29,6 +29,23 @@ describe Api::Member::SongDiffsController do
   end
 
   describe 'POST /api/member/song_items/:id/song_diffs' do
+    it('song_diffを正常に作成できる') do
+      sign_in user
+      before_count = song_item.song_diffs.count
+      post "/api/member/song_items/#{song_item.id}/song_diffs", params: { song_diff: { time: '00:12:34', title: 'コネクト', author: 'ClariS' }}
+      expect(response.status).to eq 201
+      expect(song_item.song_diffs.count).to eq before_count+1
+      json = response.parsed_body
+      expect(json['song_diff']['title']).to eq 'コネクト'
+      expect(json['song_diff']['author']).to eq 'ClariS'
+    end
 
+    it('ログインしてない状態ではエラーになる') do
+      before_count = song_item.song_diffs.count
+      post "/api/member/song_items/#{song_item.id}/song_diffs", params: { song_diff: { time: '00:12:34', title: 'コネクト', author: 'ClariS' }}
+      expect(response.status).to eq 400
+      json = response.parsed_body
+      expect(json['song_diffs']).to be_nil
+    end
   end
 end
