@@ -38,10 +38,13 @@ set :pg_extensions, %w[citext hstore]
 set :pg_encoding, 'UTF-8'
 set :pg_pool, '100'
 
-# Dotenv
-invoke 'dotenv:read'
-invoke 'dotenv:check'
-invoke 'dotenv:setup'
+# 環境変数
+set :default_env, {
+  GOOGLE_JSON: ENV.fetch('GOOGLE_JSON', nil),
+  GOOGLE_BUCKET: ENV.fetch('GOOGLE_BUCKET', nil),
+  GOOGLE_API_KEY: ENV.fetch('GOOGLE_API_KEY', nil),
+  OPENAI_API_KEY: ENV.fetch('OPENAI_API_KEY', nil)
+}
 
 # ここからUnicornの設定
 # Unicornのプロセスの指定
@@ -59,13 +62,13 @@ namespace :deploy do
 end
 
 # ワーキングディレクトリをbackendに移す
-after "deploy:set_current_revision", "deploy:checkout_subdir"
+after 'deploy:set_current_revision', 'deploy:checkout_subdir'
 namespace :deploy do
-  desc "Checkout subdirectory and delete all the other stuff"
+  desc 'Checkout subdirectory and delete all the other stuff'
   task :checkout_subdir do
-    subdir = "backend"
+    subdir = 'backend'
     on roles(:app) do
-      last_release = capture(:ls, "-xt", releases_path).split.first
+      last_release = capture(:ls, '-xt', releases_path).split.first
       last_release_path = releases_path.join(last_release)
       execute "rm -rf /tmp/#{subdir} && mv #{last_release_path}/#{subdir}/ /tmp && rm -rf #{last_release_path}/* && mv /tmp/#{subdir}/* #{last_release_path}"
     end
