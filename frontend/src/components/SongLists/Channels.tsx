@@ -4,12 +4,12 @@ import useSWR from 'swr'
 import { Channel } from './Channel'
 import { Loading } from '../Common/Loading'
 
-export type ChannelsListProps = {
+export type ChannelsProps = {
   testID?: string
   link: string
 }
 
-export const Channels: React.FC<ChannelsListProps> = ({ testID, link }) => {
+export const Channels: React.FC<ChannelsProps> = ({ testID, link }) => {
   const { data } = useSWR<{ channels: ChannelType[] }>('/channels', getData)
 
   return data ? (
