@@ -1,6 +1,7 @@
 import { SongItemType } from '@/resources/types'
 import { ParsedUrlQuery } from 'querystring'
 import { YOUTUBE_URL } from './constants'
+import { MouseEventHandler } from 'react'
 
 export const toClass = (...args: string[]) => {
   return args.join(' ')
@@ -31,3 +32,4 @@ export const queryToSearchParams = (
 ) => {
   return new URLSearchParams(query as Record<string, string>)
 }
+export const stopPropagation: MouseEventHandler = (e) => e.stopPropagation()

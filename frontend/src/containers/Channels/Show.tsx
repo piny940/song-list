@@ -54,6 +54,7 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
             since={songSince}
             until={songUntil}
             videoTitle={songVideoTitle}
+            isLink={true}
           />
         </div>
         <div className="col-lg-6 px-2 d-none d-lg-block">

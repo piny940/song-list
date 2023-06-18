@@ -41,7 +41,7 @@ export const Videos: React.FC<VideosProps> = ({
   if (error) return <Error statusCode={404} />
 
   return data ? (
-    <div className="videos" data-testid={TestID.VIDEOS}>
+    <div className="videos pb-4" data-testid={TestID.VIDEOS}>
       {data.videos.length > 0 ? (
         <>
           <div className="mb-4">

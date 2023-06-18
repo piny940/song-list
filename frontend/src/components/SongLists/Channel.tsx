@@ -10,11 +10,12 @@ const ChannelDiv = styled.div`
 
 export type ChannelProps = {
   channel: ChannelType
+  link: string
 }
 
-export const Channel: React.FC<ChannelProps> = ({ channel }) => {
+export const Channel: React.FC<ChannelProps> = ({ channel, link }) => {
   return (
-    <Link href={`/channels/${channel.id}`}>
+    <Link href={`${link}/${channel.id}`}>
       <ChannelDiv
         className="d-flex flex-grow-1 border border-light rounded m-1 p-2 shadow-sm"
         data-testid={TestID.CHANNEL}

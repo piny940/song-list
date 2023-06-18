@@ -11,6 +11,12 @@ const nextConfig = {
   images: {
     domains: ['storage.googleapis.com', 'yt3.ggpht.com', 'i.ytimg.com'],
   },
+  experimental: {
+    appDir: true,
+  },
+  compiler: {
+    styledComponents: true,
+  },
   async rewrites() {
     return [
       {
