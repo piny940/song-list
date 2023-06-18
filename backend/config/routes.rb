@@ -27,5 +27,11 @@ Rails.application.routes.draw do
       resources :videos, only: %i[index show]
     end
     resources :song_items, only: %i[index show]
+
+    namespace :member do
+      resources :song_items, only: %i[] do
+        resources :song_diffs, only: %i[index create]
+      end
+    end
   end
 end
