@@ -20,7 +20,7 @@ describe Api::SongItemsController do
       # activeでないsong_itemは取得しない
       expect(json['song_items'].count).to eq 5
       expect(json['song_items'][0]['title']).to eq 'ウンディーネ'
-      expect(Time.zone.parse(json['song_items'][0]['time'])).to eq Time.zone.parse('2023-06-02 00:09:10')
+      expect(json['song_items'][0]['time']).to eq '00:09:10'
       expect(json['song_items'][0]['author']).to be_nil
       expect(json['song_items'][1]['author']).to eq '木村弓'
       expect(json['song_items'][0]['created_at']).to be_present
