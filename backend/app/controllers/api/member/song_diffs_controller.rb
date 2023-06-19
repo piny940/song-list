@@ -12,6 +12,7 @@ class Api::Member::SongDiffsController < Api::Member::Base
     @song_diff = @song_item.song_diffs.new(data)
 
     if @song_diff.save
+      @song_diff.update_status!('approved') if @song_diff.made_by.kind == 'admin'
       render status: :created
     else
       render json: {
