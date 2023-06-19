@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { queryToSearchParams } from './helpers'
 import { useEffect, useRef, useState } from 'react'
 import useSWR from 'swr'
-import { SongItemType } from '@/resources/types'
+import { ChannelType, SongItemType, VideoType } from '@/resources/types'
 import { getData } from './api'
 
 export const usePaginate = (key: string, defaultPage = 1) => {
@@ -40,6 +40,44 @@ export const useHold = (timer: number) => {
   return { isReady, updateTimer }
 }
 
+export const useChannels = () => {
+  const { data, error, mutate } = useSWR<{ channels: ChannelType[] }>(
+    '/channels',
+    getData
+  )
+  return { data, error, mutate }
+}
+
+export const useVideos = ({
+  channel,
+  query,
+  since,
+  until,
+}: {
+  channel: ChannelType
+  query: string
+  since: string
+  until: string
+}) => {
+  const { getPage, setPage } = usePaginate('videos-page')
+
+  const { data, error, mutate } = useSWR<{
+    videos: VideoType[]
+    total_pages: number
+  }>(
+    `/channels/${channel.id}/videos?` +
+      queryToSearchParams({
+        query: query || '',
+        since: since || '',
+        until: until || '',
+        count: '10',
+        page: String(getPage()),
+      }).toString(),
+    getData
+  )
+  return { setPage, getPage, data, error, mutate }
+}
+
 export const useSongItems = ({
   query,
   channelId,
@@ -59,7 +97,7 @@ export const useSongItems = ({
   const { getPage, setPage } = usePaginate('song-items-page', DEFAULT_PAGE)
   const { isReady, updateTimer } = useHold(500)
   const isFirst = useRef(true)
-  const { data, error } = useSWR<{
+  const { data, error, mutate } = useSWR<{
     song_items: SongItemType[]
     total_pages: number
   }>(
@@ -86,5 +124,5 @@ export const useSongItems = ({
     updateTimer()
   }, [query, since, until, videoTitle])
 
-  return { data: isReady ? data : undefined, error }
+  return { data: isReady ? data : undefined, error, setPage, getPage, mutate }
 }
