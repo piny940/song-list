@@ -5,6 +5,7 @@ import { Videos } from '@/components/SongLists/Videos'
 import { VideosSearch } from '@/components/SongLists/VideosSearch'
 import { ChannelType } from '@/resources/types'
 import { getData } from '@/utils/api'
+import { useVideos } from '@/utils/hooks'
 import Error from 'next/error'
 import { useState } from 'react'
 import useSWR from 'swr'
@@ -23,12 +24,24 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
   const [videoSince, setVideoSince] = useState('')
   const [videoUntil, setVideoUntil] = useState('')
 
-  const { data, error } = useSWR<{ channel: ChannelType }>(
+  const { data, error: channelError } = useSWR<{ channel: ChannelType }>(
     `/channels/${id}?`,
     getData
   )
 
-  if (error) return <Error statusCode={404} />
+  const {
+    data: videoData,
+    error: videoError,
+    setPage,
+    getPage,
+  } = useVideos({
+    query: videoQuery,
+    since: videoSince,
+    until: videoUntil,
+    channel: data?.channel,
+  })
+
+  if (channelError || videoError) return <Error statusCode={404} />
 
   return data ? (
     <div className="channel">
@@ -68,10 +81,10 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
             setUntil={setVideoUntil}
           />
           <Videos
-            channel={data.channel}
-            query={videoQuery}
-            since={videoSince}
-            until={videoUntil}
+            videos={videoData?.videos}
+            totalPages={videoData?.total_pages || 0}
+            setPage={setPage}
+            getPage={getPage}
           />
         </div>
       </div>

@@ -27,7 +27,6 @@ export const useHold = (timer: number) => {
   const [timeoutId, setTimeoutId] = useState<null | NodeJS.Timeout>(null)
 
   const updateTimer = () => {
-    console.log(timeoutId)
     if (timeoutId) clearTimeout(timeoutId)
     setIsReady(false)
 
@@ -54,10 +53,10 @@ export const useVideos = ({
   since,
   until,
 }: {
-  channel: ChannelType
-  query: string
-  since: string
-  until: string
+  channel?: ChannelType
+  query?: string
+  since?: string
+  until?: string
 }) => {
   const { getPage, setPage } = usePaginate('videos-page')
 
@@ -65,7 +64,7 @@ export const useVideos = ({
     videos: VideoType[]
     total_pages: number
   }>(
-    `/channels/${channel.id}/videos?` +
+    `/channels/${channel?.id || ''}/videos?` +
       queryToSearchParams({
         query: query || '',
         since: since || '',
@@ -73,7 +72,10 @@ export const useVideos = ({
         count: '10',
         page: String(getPage()),
       }).toString(),
-    getData
+    getData,
+    {
+      isPaused: () => channel == null,
+    }
   )
   return { setPage, getPage, data, error, mutate }
 }
@@ -86,12 +88,12 @@ export const useSongItems = ({
   until,
   videoTitle,
 }: {
-  query: string
-  channelId: string
-  videoId: string
-  since: string
-  until: string
-  videoTitle: string
+  query?: string
+  channelId?: number
+  videoId?: number
+  since?: string
+  until?: string
+  videoTitle?: string
 }) => {
   const DEFAULT_PAGE = 1
   const { getPage, setPage } = usePaginate('song-items-page', DEFAULT_PAGE)
