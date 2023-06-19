@@ -1,15 +1,10 @@
 import { TestID } from '@/resources/TestID'
 import { SongItemType, VideoType } from '@/resources/types'
-import { getData } from '@/utils/api'
-import Error from 'next/error'
-import useSWR from 'swr'
 import { SongItem } from './SongItem'
 import { Loading } from '../Common/Loading'
-import { useEffect, useRef } from 'react'
 import { Paging } from '../Common/Paging'
 import { styled } from 'styled-components'
-import { useHold, usePaginate } from '@/hooks/common'
-import { queryToSearchParams, toVideoDate } from '@/utils/helpers'
+import { toVideoDate } from '@/utils/helpers'
 
 const VideoTitleDiv = styled.div`
   height: 20px;
@@ -20,72 +15,35 @@ const VideoTitleDiv = styled.div`
 `
 
 export type SongItemsProps = {
-  channelId?: number
-  videoId?: number
-  query?: string
-  since?: string
-  until?: string
-  videoTitle?: string
+  songItems: SongItemType[] | undefined
+  getPage: () => number
+  setPage: (page: number) => void
+  totalPages: number
   isLink: boolean
   onClick?: (songItem: SongItemType) => void
 }
 
-const DEFAULT_PAGE = 1
 export const SongItems: React.FC<SongItemsProps> = ({
-  channelId,
-  videoId,
-  query,
-  since,
-  until,
-  videoTitle,
+  songItems,
+  getPage,
+  setPage,
+  totalPages,
   isLink,
   onClick,
 }) => {
-  const { getPage, setPage } = usePaginate('song-items-page', DEFAULT_PAGE)
-  const { isReady, updateTimer } = useHold(500)
-  const isFirst = useRef(true)
-  const { data, error } = useSWR<{
-    song_items: SongItemType[]
-    total_pages: number
-  }>(
-    '/song_items?' +
-      queryToSearchParams({
-        query: query || '',
-        since: since || '',
-        until: until || '',
-        video_title: videoTitle || '',
-        channel_id: channelId != null ? String(channelId) : '',
-        video_id: videoId != null ? String(videoId) : '',
-        count: '15',
-        page: String(getPage()),
-      }).toString(),
-    getData
-  )
-
-  useEffect(() => {
-    if (isFirst) {
-      isFirst.current = false
-      return
-    }
-    setPage(DEFAULT_PAGE)
-    updateTimer()
-  }, [query, since, until, videoTitle])
-
-  if (error) return <Error statusCode={404} />
-
   const videos: { [videoId in string]: VideoType } = {}
-  const songItems: { [videoId in string]: SongItemType[] } = {}
-  for (const song of data?.song_items || []) {
+  const songItemsDict: { [videoId in string]: SongItemType[] } = {}
+  for (const song of songItems || []) {
     const videoId = song.video.video_id
     if (!Object.keys(videos).includes(videoId)) {
       videos[videoId] = song.video
-      songItems[videoId] = [song]
+      songItemsDict[videoId] = [song]
     } else {
-      songItems[videoId].push(song)
+      songItemsDict[videoId].push(song)
     }
   }
 
-  return isReady && data ? (
+  return songItems ? (
     <div className="pb-4">
       {Object.keys(videos).length > 0 ? (
         <>
@@ -96,7 +54,7 @@ export const SongItems: React.FC<SongItemsProps> = ({
                 <span className="">{video.title}</span>
               </VideoTitleDiv>
               <div className="mb-4 ps-3" data-testid={TestID.SONG_ITEMS}>
-                {songItems[video.video_id].map((songItem) => (
+                {songItemsDict[video.video_id].map((songItem) => (
                   <div key={songItem.id}>
                     <SongItem
                       isLink={isLink}
@@ -110,7 +68,7 @@ export const SongItems: React.FC<SongItemsProps> = ({
           ))}
           <Paging
             currentPage={getPage()}
-            totalPages={data.total_pages}
+            totalPages={totalPages}
             setPageNumber={setPage}
           />
         </>

@@ -3,6 +3,7 @@ import { SongItems } from '@/components/SongLists/SongItems'
 import { SongItemsSearch } from '@/components/SongLists/SongItemsSearch'
 import { Videos } from '@/components/SongLists/Videos'
 import { VideosSearch } from '@/components/SongLists/VideosSearch'
+import { useSongItems } from '@/hooks/songItem'
 import { useVideos } from '@/hooks/video'
 import { ChannelType } from '@/resources/types'
 import { getData } from '@/utils/api'
@@ -30,6 +31,19 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
   )
 
   const {
+    data: songItemData,
+    error: songItemError,
+    setPage: setSongItemPage,
+    getPage: getSongItemPage,
+  } = useSongItems({
+    channelId: data?.channel?.id,
+    query: songQuery,
+    since: songSince,
+    until: songUntil,
+    videoTitle: songVideoTitle,
+  })
+
+  const {
     data: videoData,
     error: videoError,
     setPage,
@@ -41,7 +55,8 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
     channel: data?.channel,
   })
 
-  if (channelError || videoError) return <Error statusCode={404} />
+  if (channelError || videoError || songItemError)
+    return <Error statusCode={404} />
 
   return data ? (
     <div className="channel">
@@ -62,11 +77,10 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
             setVideoTitle={setSongVideoTitle}
           />
           <SongItems
-            channelId={data.channel.id}
-            query={songQuery}
-            since={songSince}
-            until={songUntil}
-            videoTitle={songVideoTitle}
+            songItems={songItemData?.song_items}
+            totalPages={songItemData?.total_pages || 0}
+            setPage={setSongItemPage}
+            getPage={getSongItemPage}
             isLink={true}
           />
         </div>

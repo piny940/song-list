@@ -21,18 +21,16 @@ export const useVideos = ({
     videos: VideoType[]
     total_pages: number
   }>(
-    `/channels/${channel?.id || ''}/videos?` +
-      queryToSearchParams({
-        query: query || '',
-        since: since || '',
-        until: until || '',
-        count: '10',
-        page: String(getPage()),
-      }).toString(),
-    getData,
-    {
-      isPaused: () => channel == null,
-    }
+    channel &&
+      `/channels/${channel.id || ''}/videos?` +
+        queryToSearchParams({
+          query: query || '',
+          since: since || '',
+          until: until || '',
+          count: '10',
+          page: String(getPage()),
+        }).toString(),
+    getData
   )
   return { setPage, getPage, data, error, mutate }
 }
