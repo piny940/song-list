@@ -5,9 +5,13 @@ import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 
 export type NewSongDiffProps = {
   songItem: SongItemType
+  onSubmit?: (response: Response) => void
 }
 
-export const NewSongDiff: React.FC<NewSongDiffProps> = ({ songItem }) => {
+export const NewSongDiff: React.FC<NewSongDiffProps> = ({
+  songItem,
+  onSubmit = () => undefined,
+}) => {
   const { register, setValue, watch, handleSubmit } = useForm({
     defaultValues: {
       time: songItem.time.slice(11, 19),
@@ -24,13 +28,13 @@ export const NewSongDiff: React.FC<NewSongDiffProps> = ({ songItem }) => {
 
   const submit: SubmitHandler<FieldValues> = async (data) => {
     const response = await fetchApi({
-      url: `song_items/${songItem.id}/song_diffs`,
+      url: `/member/song_items/${songItem.id}/song_diffs`,
       method: 'POST',
       data: {
-        songDiff: data,
+        song_diff: data,
       },
     })
-    await response.json()
+    onSubmit(response)
   }
 
   return (
