@@ -8,7 +8,7 @@ import { Loading } from '../Common/Loading'
 import { useEffect, useRef } from 'react'
 import { Paging } from '../Common/Paging'
 import { styled } from 'styled-components'
-import { useHold, usePaginate } from '@/utils/hooks'
+import { useHold, usePaginate } from '@/hooks/common'
 import { queryToSearchParams, toVideoDate } from '@/utils/helpers'
 
 const VideoTitleDiv = styled.div`
