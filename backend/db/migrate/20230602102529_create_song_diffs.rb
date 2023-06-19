@@ -3,7 +3,7 @@ class CreateSongDiffs < ActiveRecord::Migration[7.0]
     create_table :song_diffs do |t|
       t.references :song_item, null: false, foreign_key: true
       t.integer :made_by_id, index: true
-      t.datetime :time
+      t.string :time
       t.string :title
       t.string :author
       t.integer :status, null: false, default: 0
