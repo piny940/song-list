@@ -5,12 +5,12 @@ import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 
 export type NewSongDiffProps = {
   songItem: SongItemType
-  onSubmit?: (response: Response) => void
+  afterSubmit?: (response: Response) => void
 }
 
 export const NewSongDiff: React.FC<NewSongDiffProps> = ({
   songItem,
-  onSubmit = () => undefined,
+  afterSubmit = () => undefined,
 }) => {
   const { register, setValue, watch, handleSubmit } = useForm({
     defaultValues: {
@@ -34,7 +34,7 @@ export const NewSongDiff: React.FC<NewSongDiffProps> = ({
         song_diff: data,
       },
     })
-    onSubmit(response)
+    afterSubmit(response)
   }
 
   return (

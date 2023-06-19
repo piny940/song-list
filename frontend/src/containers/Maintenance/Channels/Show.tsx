@@ -6,6 +6,7 @@ import { getData } from '@/utils/api'
 import Error from 'next/error'
 import { useState } from 'react'
 import useSWR from 'swr'
+import styles from '../../../styles/song-lists.module.scss'
 
 export type MaintenanceChannelsShowProps = {
   id: number
@@ -28,7 +29,12 @@ export const MaintenanceChannelsShow: React.FC<
     <div className="">
       <h1 className="sub">{data.channel.name}</h1>
       <div className="d-flex p-0 m-0">
-        <div className="w-100 flex-shrink-1 px-2">
+        <div
+          className={
+            `w-100 flex-shrink-1 ps-2 ${styles.shrinkLeft} ` +
+            (currentSongItem ? styles.active : '')
+          }
+        >
           <div className="text-sm fw-bold w-100 text-center d-none d-lg-block">
             歌一覧
           </div>
@@ -38,12 +44,19 @@ export const MaintenanceChannelsShow: React.FC<
             onClick={(songItem) => setCurrentSongItem(songItem)}
           />
         </div>
-        {currentSongItem && (
-          <div className="col-lg-6 flex-shrink-0 px-2 d-none d-lg-block">
-            <div className="text-sm fw-bold w-100 text-center">修正</div>
-            <NewSongDiff songItem={currentSongItem} />
-          </div>
-        )}
+        <div
+          className={
+            styles.collapsableRight +
+            (currentSongItem ? ` ${styles.active} col-lg-6 flex-shrink-0` : '')
+          }
+        >
+          {currentSongItem && (
+            <>
+              <div className="text-sm fw-bold w-100 text-center">修正</div>
+              <NewSongDiff songItem={currentSongItem} />
+            </>
+          )}
+        </div>
       </div>
     </div>
   ) : (
