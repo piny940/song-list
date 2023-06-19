@@ -1,6 +1,6 @@
 import { SongItemType, VideoType } from '@/resources/types'
 import { getData } from '@/utils/api'
-import { timeToString, toSongLink } from '@/utils/helpers'
+import { toSongLink } from '@/utils/helpers'
 import Link from 'next/link'
 import { styled } from 'styled-components'
 import useSWR from 'swr'
@@ -37,9 +37,7 @@ export const SongList: React.FC<SongListProps> = ({ video }) => {
               target="_blank"
               title="Youtubeで視聴"
             >
-              <span className="ms-1 me-3">
-                {timeToString(new Date(song.time))}
-              </span>
+              <span className="ms-1 me-3">{song.time}</span>
               <span className="me-3">{song.title}</span>
               {song.author && <span className="me-3">/ {song.author}</span>}
             </Link>

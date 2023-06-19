@@ -1,6 +1,6 @@
 import { TestID } from '@/resources/TestID'
 import { SongItemType } from '@/resources/types'
-import { stopPropagation, timeToString, toSongLink } from '@/utils/helpers'
+import { stopPropagation, toSongLink } from '@/utils/helpers'
 import Image from 'next/image'
 import Link from 'next/link'
 import { MouseEventHandler } from 'react'
@@ -35,8 +35,6 @@ export const SongItem: React.FC<SongItemProps> = ({
   isLink,
   onClick,
 }) => {
-  const time = new Date(songItem.time)
-
   const renderContent = () => {
     return (
       <div
@@ -61,7 +59,7 @@ export const SongItem: React.FC<SongItemProps> = ({
           </Link>
         )}
         <div className="">
-          <span className="ms-2">{timeToString(time)}</span>
+          <span className="ms-2">{songItem.time}</span>
         </div>
         <div className="d-flex flex-wrap">
           <OneLineDiv className="">
