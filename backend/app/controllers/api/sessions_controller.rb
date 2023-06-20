@@ -12,8 +12,6 @@ class Api::SessionsController < Api::Base
 
   def destroy
     sign_out current_user
-    render json: { message: 'ログアウトしました', data: {
-      user: nil
-    } }, status: :ok
+    render json: { message: 'ログアウトしました', user: nil }, status: :ok
   end
 end
