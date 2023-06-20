@@ -14,14 +14,14 @@ export const NewSongDiff: React.FC<NewSongDiffProps> = ({
 }) => {
   const { register, setValue, watch, handleSubmit } = useForm({
     defaultValues: {
-      time: songItem.time.slice(11, 19),
+      time: songItem.time,
       title: songItem.title,
       author: songItem.author,
     },
   })
 
   useEffect(() => {
-    setValue('time', songItem.time.slice(11, 19))
+    setValue('time', songItem.time)
     setValue('title', songItem.title)
     setValue('author', songItem.author)
   }, [songItem])

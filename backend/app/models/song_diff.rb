@@ -22,7 +22,7 @@ class SongDiff < ApplicationRecord
     diff = create!(
       kind: 'auto',
       author: song['author'],
-      time: Time.zone.parse(time),
+      time: time,
       title: song['title'],
       comment_id:
     )

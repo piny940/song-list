@@ -1,5 +1,5 @@
 import { TestID } from '@/resources/TestID'
-import { VideoType } from '@/resources/types'
+import { SongItemType, VideoType } from '@/resources/types'
 import Image from 'next/image'
 import { styled } from 'styled-components'
 import { SongList } from './SongList'
@@ -31,12 +31,14 @@ export type VideoProps = {
   video: VideoType
   songListOpen: boolean
   toggleSongListOpened: () => void
+  songItems: SongItemType[] | undefined
 }
 
 export const Video: React.FC<VideoProps> = ({
   video,
   songListOpen,
   toggleSongListOpened,
+  songItems,
 }) => {
   const stopPropagation: MouseEventHandler = (e) => {
     e.stopPropagation()
@@ -80,7 +82,7 @@ export const Video: React.FC<VideoProps> = ({
       <div
         className={`${styles.collapsable} ${songListOpen ? styles.active : ''}`}
       >
-        {songListOpen && <SongList video={video} />}
+        {songListOpen && <SongList songItems={songItems} />}
       </div>
     </div>
   )
