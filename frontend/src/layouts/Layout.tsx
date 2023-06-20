@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { ReactNode } from 'react'
 import { Navbar } from './Navbar'
 import { useTheme } from '@/context/ThemeProvider'
+import { Footer } from '@/components/Common/Footer'
 
 interface LayoutProps {
   children: ReactNode
@@ -19,6 +20,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         <Navbar />
       </header>
       <main className="container mt-3">{children}</main>
+      <Footer />
     </div>
   )
 }

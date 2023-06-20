@@ -89,11 +89,11 @@ export const Navbar: React.FC = () => {
                   </Link>
                 </MaintenanceModeDiv>
               ) : (
-                <Link href="/maintenance" className="nav-link">
-                  {!!data && !!data.user
-                    ? 'メンテナンスする'
-                    : 'メンテナンスに参加する'}
-                </Link>
+                data?.user && (
+                  <Link href="/maintenance" className="nav-link">
+                    メンテナンスする
+                  </Link>
+                )
               )}
             </li>
           </ul>
