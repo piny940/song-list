@@ -2,7 +2,7 @@ import { Channels } from '@/components/SongLists/Channels'
 import { useChannels } from '@/hooks/channel'
 
 export const ChannelsIndex: React.FC = () => {
-  const { data } = useChannels()
+  const { data } = useChannels({})
 
   return (
     <div className="">

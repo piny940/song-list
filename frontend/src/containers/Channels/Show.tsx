@@ -5,7 +5,7 @@ import { Videos } from '@/components/SongLists/Videos'
 import { VideosSearch } from '@/components/SongLists/VideosSearch'
 import { useSongItems } from '@/hooks/songItem'
 import { useVideos } from '@/hooks/video'
-import { ChannelType } from '@/resources/types'
+import { ChannelType, VideoType } from '@/resources/types'
 import { getData } from '@/utils/api'
 import Error from 'next/error'
 import { useState } from 'react'
@@ -30,6 +30,7 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
     getData
   )
 
+  // 歌一覧データ
   const {
     data: songItemData,
     error: songItemError,
@@ -43,6 +44,7 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
     videoTitle: songVideoTitle,
   })
 
+  // 動画一覧データ
   const {
     data: videoData,
     error: videoError,
@@ -55,7 +57,15 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
     channel: data?.channel,
   })
 
-  if (channelError || videoError || songItemError)
+  // 歌を確認中の動画
+  const [openVideo, setOpenVideo] = useState<VideoType | null>(null)
+
+  const { data: videoSongsData, error: videoSongsError } = useSongItems({
+    videoId: openVideo?.id,
+    isPaused: !openVideo,
+  })
+
+  if (channelError || videoError || songItemError || videoSongsError)
     return <Error statusCode={404} />
 
   return data ? (
@@ -99,6 +109,9 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
             totalPages={videoData?.total_pages || 0}
             setPage={setPage}
             getPage={getPage}
+            openedVideo={openVideo}
+            setOpenedVideo={setOpenVideo}
+            songItems={videoSongsData?.song_items}
           />
         </div>
       </div>

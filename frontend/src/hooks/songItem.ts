@@ -12,6 +12,7 @@ export const useSongItems = ({
   since,
   until,
   videoTitle,
+  isPaused,
 }: {
   query?: string
   channelId?: number
@@ -19,6 +20,7 @@ export const useSongItems = ({
   since?: string
   until?: string
   videoTitle?: string
+  isPaused?: boolean
 }) => {
   const DEFAULT_PAGE = 1
   const { getPage, setPage } = usePaginate('song-items-page', DEFAULT_PAGE)
@@ -28,17 +30,18 @@ export const useSongItems = ({
     song_items: SongItemType[]
     total_pages: number
   }>(
-    '/song_items?' +
-      queryToSearchParams({
-        query: query || '',
-        since: since || '',
-        until: until || '',
-        video_title: videoTitle || '',
-        channel_id: channelId != null ? String(channelId) : '',
-        video_id: videoId != null ? String(videoId) : '',
-        count: '15',
-        page: String(getPage()),
-      }).toString(),
+    !isPaused &&
+      '/song_items?' +
+        queryToSearchParams({
+          query: query || '',
+          since: since || '',
+          until: until || '',
+          video_title: videoTitle || '',
+          channel_id: channelId != null ? String(channelId) : '',
+          video_id: videoId != null ? String(videoId) : '',
+          count: '15',
+          page: String(getPage()),
+        }).toString(),
     getData
   )
 
