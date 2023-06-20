@@ -20,7 +20,9 @@ export const fetchApi = async (params: {
     headers: {
       'X-CSRF-Token': params.method === 'GET' ? '' : await getToken(),
     },
-    body: params.method === 'GET' ? null : serialize(params.data),
+    body: ['GET', 'DELETE'].includes(params.method)
+      ? null
+      : serialize(params.data),
     credentials: 'include',
   })
   return response

@@ -1,6 +1,7 @@
 import { UserType } from '@/resources/types'
-import { getData } from '@/utils/api'
+import { fetchApi, getData } from '@/utils/api'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { styled } from 'styled-components'
 import useSWR from 'swr'
 
@@ -12,12 +13,31 @@ const FooterTag = styled.footer`
 
 export const Footer: React.FC = () => {
   const { data } = useSWR<{ user: UserType }>('/user', getData)
+  const router = useRouter()
+  const logout = async () => {
+    const response = await fetchApi({
+      url: '/session',
+      method: 'DELETE',
+    })
+    if (response.status >= 400) return
+
+    void router.push('/')
+  }
 
   return (
     <FooterTag className="footer text-center bg-secondary text-white p-4">
       <Link href="/maintenance" className="text-white">
-        {!!data && !!data.user ? 'メンテナンスする' : 'メンテナンスに参加する'}
+        {data?.user ? 'メンテナンスする' : 'メンテナンスに参加する'}
       </Link>
+
+      {data?.user && (
+        <>
+          ｜
+          <a type="button" onClick={logout}>
+            ログアウト
+          </a>
+        </>
+      )}
       <br />
       <small>&copy;2023 piny940</small>
     </FooterTag>
