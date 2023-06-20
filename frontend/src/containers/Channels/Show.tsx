@@ -60,9 +60,11 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
   // 歌を確認中の動画
   const [openVideo, setOpenVideo] = useState<VideoType | null>(null)
 
+  // 選択中の動画の歌一覧
   const { data: videoSongsData, error: videoSongsError } = useSongItems({
     videoId: openVideo?.id,
     isPaused: !openVideo,
+    count: 1000,
   })
 
   if (channelError || videoError || songItemError || videoSongsError)

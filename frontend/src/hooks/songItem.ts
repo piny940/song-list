@@ -13,6 +13,7 @@ export const useSongItems = ({
   until,
   videoTitle,
   isPaused,
+  count,
 }: {
   query?: string
   channelId?: number
@@ -21,6 +22,7 @@ export const useSongItems = ({
   until?: string
   videoTitle?: string
   isPaused?: boolean
+  count?: number
 }) => {
   const DEFAULT_PAGE = 1
   const { getPage, setPage } = usePaginate('song-items-page', DEFAULT_PAGE)
@@ -39,7 +41,7 @@ export const useSongItems = ({
           video_title: videoTitle || '',
           channel_id: channelId != null ? String(channelId) : '',
           video_id: videoId != null ? String(videoId) : '',
-          count: '15',
+          count: count?.toString() || '15',
           page: String(getPage()),
         }).toString(),
     getData
