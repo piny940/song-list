@@ -5,6 +5,7 @@ export enum TestID {
   CHANNELS_INDEX = 'channels-index',
   CHANNELS_SHOW = 'channels-show',
   MAINTENANCE_CHANNELS_SHOW = 'maintenance-channels-show',
+  MAINTENANCE_HOME = 'maintenance-home',
   HOME_CHANNELS_BUTTON = 'home-channels-button',
   CUSTOM404 = 'custom404',
   CUSTOM500 = 'custom500',
