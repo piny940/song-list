@@ -22,7 +22,7 @@ export const Videos: React.FC<VideosProps> = ({
 }) => {
   const [openedVideo, setOpenedVideo] = useState<VideoType | null>(null)
   const { data, error, getPage, setPage } = useVideos({
-    channel,
+    channelId: channel.id,
     query,
     since,
     until,
