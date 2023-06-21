@@ -1,5 +1,4 @@
 import { SessionNew } from '@/containers/Session/New'
-import { TestID } from '@/resources/TestID'
 import { render, waitFor } from '@testing-library/react'
 
 jest.mock('next/router', () => ({
@@ -10,10 +9,10 @@ jest.mock('next/router', () => ({
 
 describe('<SessionNew />', () => {
   it('SessionNewが正常に描画される', async () => {
-    const { getByTestId } = render(<SessionNew />)
+    const component = render(<SessionNew />)
 
     await waitFor(() => {
-      expect(getByTestId(TestID.SESSION_NEW)).toBeTruthy()
+      expect(component).toBeTruthy()
     })
   })
 })

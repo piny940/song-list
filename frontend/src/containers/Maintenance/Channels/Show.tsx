@@ -5,7 +5,6 @@ import { SongItemType } from '@/resources/types'
 import Error from 'next/error'
 import { useState } from 'react'
 import styles from '../../../styles/song-lists.module.scss'
-import { TestID } from '@/resources/TestID'
 import { useChannel } from '@/hooks/channel'
 
 export type MaintenanceChannelsShowProps = {
@@ -23,7 +22,7 @@ export const MaintenanceChannelsShow: React.FC<
   if (error) return <Error statusCode={404} />
 
   return data ? (
-    <div className="" data-testid={TestID.MAINTENANCE_CHANNELS_SHOW}>
+    <div className="">
       <h1 className="sub">{data.channel.name}</h1>
       <div className="d-flex p-0 m-0">
         <div

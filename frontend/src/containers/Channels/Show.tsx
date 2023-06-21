@@ -4,7 +4,6 @@ import { SongItemsSearch } from '@/components/SongLists/SongItemsSearch'
 import { Videos } from '@/components/SongLists/Videos'
 import { VideosSearch } from '@/components/SongLists/VideosSearch'
 import { useChannel } from '@/hooks/channel'
-import { TestID } from '@/resources/TestID'
 import Error from 'next/error'
 import { useState } from 'react'
 
@@ -27,7 +26,7 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
   if (error) return <Error statusCode={404} />
 
   return data ? (
-    <div className="channel" data-testid={TestID.CHANNELS_SHOW}>
+    <div className="channel">
       <h1>{data.channel.name}</h1>
       <div className="row p-0 m-0">
         <div className="col-lg-6 px-2">

@@ -1,6 +1,5 @@
 import { FormGroup } from '@/components/Common/FormGroup'
 import { useUser } from '@/hooks/user'
-import { TestID } from '@/resources/TestID'
 import { fetchApi } from '@/utils/api'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -32,7 +31,7 @@ export const SessionNew: React.FC = () => {
   }
 
   return (
-    <div className="session-new" data-testid={TestID.SESSION_NEW}>
+    <div className="session-new">
       {alert && <div className="alert alert-danger">{alert}</div>}
       <h1>ログイン</h1>
       <form className="container" onSubmit={handleSubmit(submit)}>
