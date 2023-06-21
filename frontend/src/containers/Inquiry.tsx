@@ -10,6 +10,7 @@ export const Inquiry: React.FC = () => {
           <Link
             className="text-primary text-decoration-underline"
             href="https://twitter.com/IchigoMacaronnn"
+            target="_blank"
           >
             いちごまかろん
           </Link>
