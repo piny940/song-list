@@ -29,7 +29,10 @@ export const Footer: React.FC = () => {
       <Link href="/maintenance" className="text-white">
         {data?.user ? 'メンテナンスする' : 'メンテナンスに参加する'}
       </Link>
-
+      ｜
+      <Link href="/inquiry" className="text-white">
+        お問い合わせ
+      </Link>
       {data?.user && (
         <>
           ｜
