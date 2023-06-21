@@ -3,7 +3,7 @@ import { Alert as AlertType } from '../../resources/types'
 import { AlertState } from '../../resources/enums'
 import styles from '../../styles/common.module.scss'
 import { toClass } from '../../utils/helpers'
-import { MouseEventHandler } from 'react'
+import { MouseEventHandler, useEffect } from 'react'
 import { MaterialIcon } from './MaterialIcon'
 
 export interface AlertProps {
@@ -13,6 +13,8 @@ export interface AlertProps {
 }
 
 export const Alert: React.FC<AlertProps> = ({ alert, margin, removeAlert }) => {
+  const CLOSE_TIME = 3000
+
   let className = ''
   switch (alert.state) {
     case AlertState.DANGER:
@@ -29,6 +31,12 @@ export const Alert: React.FC<AlertProps> = ({ alert, margin, removeAlert }) => {
   const close: MouseEventHandler = (e) => {
     removeAlert(alert.id)
   }
+
+  useEffect(() => {
+    setTimeout(() => {
+      removeAlert(alert.id)
+    }, CLOSE_TIME)
+  }, [])
 
   return (
     <div

@@ -35,4 +35,23 @@ describe('<Alert />', () => {
       expect(removeAlert).toBeCalled()
     })
   })
+  it('時間経過で正常にAlertが削除される', async () => {
+    const removeAlert = jest.fn()
+
+    const props = Mock.of<AlertProps>({
+      margin: 'm-0',
+      removeAlert: removeAlert,
+      alert: Mock.all(),
+    })
+
+    render(<Alert {...props} />)
+
+    await waitFor(() => {
+      expect(removeAlert).not.toBeCalled()
+    })
+
+    jest.advanceTimersByTime(5001)
+
+    expect(removeAlert).toBeCalled()
+  })
 })

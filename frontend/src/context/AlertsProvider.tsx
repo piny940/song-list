@@ -24,20 +24,9 @@ interface AlertsProviderProps {
   children: ReactNode
 }
 
-const CLOSE_TIME = 3000
 const AlertsProvider: React.FC<AlertsProviderProps> = ({ children }) => {
   const [alerts, setAlerts] = useState<Alert[]>([])
   const [nextAlertId, setNextAlertId] = useState(0)
-
-  const removeAlert = (id: number) => {
-    setAlerts(alerts.filter((alert) => alert.id !== id))
-  }
-
-  const _reserveRemoval = (id: number) => {
-    setTimeout(() => {
-      removeAlert(id)
-    }, CLOSE_TIME)
-  }
 
   const addAlert = (alert: AlertInput) => {
     const newAlert: Alert = {
@@ -45,7 +34,6 @@ const AlertsProvider: React.FC<AlertsProviderProps> = ({ children }) => {
       id: nextAlertId,
     }
     setAlerts([...alerts, newAlert])
-    _reserveRemoval(nextAlertId)
     setNextAlertId(nextAlertId + 1)
   }
 
@@ -58,11 +46,14 @@ const AlertsProvider: React.FC<AlertsProviderProps> = ({ children }) => {
         state: alert.state,
         id: nextId,
       })
-      _reserveRemoval(nextId)
       nextId++
     }
     setAlerts(newAlerts)
     setNextAlertId(nextId)
+  }
+
+  const removeAlert = (id: number) => {
+    setAlerts(alerts.filter((alert) => alert.id !== id))
   }
 
   const value: AlertsContextInterface = {
