@@ -3,12 +3,10 @@ import { SongItems } from '@/components/SongLists/SongItems'
 import { SongItemsSearch } from '@/components/SongLists/SongItemsSearch'
 import { Videos } from '@/components/SongLists/Videos'
 import { VideosSearch } from '@/components/SongLists/VideosSearch'
+import { useChannel } from '@/hooks/channel'
 import { TestID } from '@/resources/TestID'
-import { ChannelType } from '@/resources/types'
-import { getData } from '@/utils/api'
 import Error from 'next/error'
 import { useState } from 'react'
-import useSWR from 'swr'
 
 export type ChannelsShowProps = {
   id: number
@@ -24,10 +22,7 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
   const [videoSince, setVideoSince] = useState('')
   const [videoUntil, setVideoUntil] = useState('')
 
-  const { data, error } = useSWR<{ channel: ChannelType }>(
-    `/channels/${id}?`,
-    getData
-  )
+  const { data, error } = useChannel(id)
 
   if (error) return <Error statusCode={404} />
 
