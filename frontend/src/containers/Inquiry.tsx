@@ -9,10 +9,10 @@ export const Inquiry: React.FC = () => {
           お問い合わせは
           <Link
             className="text-primary text-decoration-underline"
-            href="https://twitter.com/IchigoMacaronnn"
+            href="https://twitter.com/An__twit"
             target="_blank"
           >
-            いちごまかろん
+            みかん
           </Link>
           まで
         </p>
