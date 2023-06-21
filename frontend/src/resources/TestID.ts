@@ -12,4 +12,5 @@ export enum TestID {
   VIDEO = 'video',
   SONG_ITEMS = 'song-items',
   SONG_ITEM = 'song-item',
+  SONG_LIST_ITEM = 'song-list-item',
 }
