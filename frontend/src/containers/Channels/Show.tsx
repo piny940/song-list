@@ -3,6 +3,7 @@ import { SongItems } from '@/components/SongLists/SongItems'
 import { SongItemsSearch } from '@/components/SongLists/SongItemsSearch'
 import { Videos } from '@/components/SongLists/Videos'
 import { VideosSearch } from '@/components/SongLists/VideosSearch'
+import { TestID } from '@/resources/TestID'
 import { ChannelType } from '@/resources/types'
 import { getData } from '@/utils/api'
 import Error from 'next/error'
@@ -31,7 +32,7 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
   if (error) return <Error statusCode={404} />
 
   return data ? (
-    <div className="channel">
+    <div className="channel" data-testid={TestID.CHANNELS_SHOW}>
       <h1>{data.channel.name}</h1>
       <div className="row p-0 m-0">
         <div className="col-lg-6 px-2">
