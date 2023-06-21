@@ -4,6 +4,7 @@ export enum TestID {
   INQUIRY = 'inquiry',
   CHANNELS_INDEX = 'channels-index',
   CHANNELS_SHOW = 'channels-show',
+  MAINTENANCE_CHANNELS_SHOW = 'maintenance-channels-show',
   HOME_CHANNELS_BUTTON = 'home-channels-button',
   CUSTOM404 = 'custom404',
   CUSTOM500 = 'custom500',
