@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { ReactNode } from 'react'
 import { Navbar } from './Navbar'
 import { useTheme } from '@/context/ThemeProvider'
-import { Footer } from '@/components/Common/Footer'
+import { Footer } from '@/layouts/Footer'
 
 interface LayoutProps {
   children: ReactNode
