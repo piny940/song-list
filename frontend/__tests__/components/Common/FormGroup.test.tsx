@@ -5,10 +5,15 @@ import { Mock } from 'ts-mockery'
 
 describe('<FormGroup />', () => {
   it('正常に描画される', async () => {
-    const props = Mock.all<FormGroupProps>()
+    const register = jest.fn()
+
+    const props = Mock.from<FormGroupProps>({
+      register: register,
+    })
     const component = render(<FormGroup {...props} />)
     await waitFor(() => {
       expect(component).toBeTruthy()
+      expect(register).toBeCalled()
     })
   })
 })
