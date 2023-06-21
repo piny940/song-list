@@ -1,12 +1,10 @@
+import { useUser } from '@/hooks/user'
 import { TestID } from '@/resources/TestID'
-import { UserType } from '@/resources/types'
-import { getData } from '@/utils/api'
 import Error from 'next/error'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { styled } from 'styled-components'
-import useSWR from 'swr'
 
 const MaintenanceModeDiv = styled.div`
   height: 40px;
@@ -20,7 +18,7 @@ const SpannerButton = styled.button`
 
 export const Navbar: React.FC = () => {
   const router = useRouter()
-  const { data, error } = useSWR<{ user: UserType }>('/user', getData)
+  const { data, error } = useUser()
 
   const isMaintenance = () => router.asPath.includes('maintenance')
   if (error) return <Error statusCode={400} />

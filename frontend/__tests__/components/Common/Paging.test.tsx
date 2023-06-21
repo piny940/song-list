@@ -5,7 +5,7 @@ import { Mock } from 'ts-mockery'
 
 describe('<Paging />', () => {
   it('正常に描画される', async () => {
-    const props = Mock.from<PagingProps>({})
+    const props = Mock.from<PagingProps>({ totalPages: 0 })
     const component = render(<Paging {...props} />)
 
     await waitFor(() => {

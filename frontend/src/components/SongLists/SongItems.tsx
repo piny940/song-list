@@ -1,15 +1,12 @@
 import { TestID } from '@/resources/TestID'
 import { SongItemType, VideoType } from '@/resources/types'
-import { getData } from '@/utils/api'
 import Error from 'next/error'
-import useSWR from 'swr'
 import { SongItem } from './SongItem'
 import { Loading } from '../Common/Loading'
-import { useEffect, useRef } from 'react'
 import { Paging } from '../Common/Paging'
 import { styled } from 'styled-components'
-import { useHold, usePaginate } from '@/utils/hooks'
-import { queryToSearchParams, toVideoDate } from '@/utils/helpers'
+import { toVideoDate } from '@/utils/helpers'
+import { useSongItems } from '@/hooks/songItem'
 
 const VideoTitleDiv = styled.div`
   height: 20px;
@@ -30,7 +27,6 @@ export type SongItemsProps = {
   onClick?: (songItem: SongItemType) => void
 }
 
-const DEFAULT_PAGE = 1
 export const SongItems: React.FC<SongItemsProps> = ({
   channelId,
   videoId,
@@ -41,35 +37,14 @@ export const SongItems: React.FC<SongItemsProps> = ({
   isLink,
   onClick,
 }) => {
-  const { getPage, setPage } = usePaginate('song-items-page', DEFAULT_PAGE)
-  const { isReady, updateTimer } = useHold(500)
-  const isFirst = useRef(true)
-  const { data, error } = useSWR<{
-    song_items: SongItemType[]
-    total_pages: number
-  }>(
-    '/song_items?' +
-      queryToSearchParams({
-        query: query || '',
-        since: since || '',
-        until: until || '',
-        video_title: videoTitle || '',
-        channel_id: channelId != null ? String(channelId) : '',
-        video_id: videoId != null ? String(videoId) : '',
-        count: '15',
-        page: String(getPage()),
-      }).toString(),
-    getData
-  )
-
-  useEffect(() => {
-    if (isFirst) {
-      isFirst.current = false
-      return
-    }
-    setPage(DEFAULT_PAGE)
-    updateTimer()
-  }, [query, since, until, videoTitle])
+  const { data, error, getPage, setPage } = useSongItems({
+    query,
+    channelId,
+    videoId,
+    since,
+    until,
+    videoTitle,
+  })
 
   if (error) return <Error statusCode={404} />
 
@@ -85,8 +60,8 @@ export const SongItems: React.FC<SongItemsProps> = ({
     }
   }
 
-  return isReady && data ? (
-    <div className="pb-4">
+  return data ? (
+    <div className="pb-4" data-testid={TestID.SONG_ITEMS}>
       {Object.keys(videos).length > 0 ? (
         <>
           {Object.values(videos).map((video) => (
@@ -95,7 +70,7 @@ export const SongItems: React.FC<SongItemsProps> = ({
                 <span>{toVideoDate(video.published_at)}</span>
                 <span className="">{video.title}</span>
               </VideoTitleDiv>
-              <div className="mb-4 ps-3" data-testid={TestID.SONG_ITEMS}>
+              <div className="mb-4 ps-3">
                 {songItems[video.video_id].map((songItem) => (
                   <div key={songItem.id}>
                     <SongItem

@@ -1,3 +1,4 @@
+import { useSongItems } from '@/hooks/songItem'
 import { SongItemType } from '@/resources/types'
 import { fetchApi } from '@/utils/api'
 import { useEffect } from 'react'
@@ -5,13 +6,9 @@ import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 
 export type NewSongDiffProps = {
   songItem: SongItemType
-  afterSubmit?: (response: Response) => void
 }
 
-export const NewSongDiff: React.FC<NewSongDiffProps> = ({
-  songItem,
-  afterSubmit = () => undefined,
-}) => {
+export const NewSongDiff: React.FC<NewSongDiffProps> = ({ songItem }) => {
   const { register, setValue, watch, handleSubmit } = useForm({
     defaultValues: {
       time: songItem.time,
@@ -19,6 +16,7 @@ export const NewSongDiff: React.FC<NewSongDiffProps> = ({
       author: songItem.author,
     },
   })
+  const { mutateAll } = useSongItems({}, { isPaused: () => true })
 
   useEffect(() => {
     setValue('time', songItem.time)
@@ -27,14 +25,14 @@ export const NewSongDiff: React.FC<NewSongDiffProps> = ({
   }, [songItem])
 
   const submit: SubmitHandler<FieldValues> = async (data) => {
-    const response = await fetchApi({
+    await fetchApi({
       url: `/member/song_items/${songItem.id}/song_diffs`,
       method: 'POST',
       data: {
         song_diff: data,
       },
     })
-    afterSubmit(response)
+    void mutateAll()
   }
 
   return (

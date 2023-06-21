@@ -1,11 +1,10 @@
-import { SongItemType, VideoType } from '@/resources/types'
-import { getData } from '@/utils/api'
+import { VideoType } from '@/resources/types'
 import { toSongLink } from '@/utils/helpers'
 import Link from 'next/link'
 import { styled } from 'styled-components'
-import useSWR from 'swr'
 import { Loading } from '../Common/Loading'
 import Error from 'next/error'
+import { useSongItems } from '@/hooks/songItem'
 
 const OneLineLi = styled.li`
   -webkit-line-clamp: 1;
@@ -20,10 +19,10 @@ export type SongListProps = {
 }
 
 export const SongList: React.FC<SongListProps> = ({ video }) => {
-  const { data, error } = useSWR<{ song_items: SongItemType[] }>(
-    `/song_items?video_id=${video.id}`,
-    getData
-  )
+  const { data, error } = useSongItems({
+    videoId: video.id,
+    count: 1000, // すべての歌を1ページに表示する
+  })
 
   if (error) return <Error statusCode={400} />
   return data ? (

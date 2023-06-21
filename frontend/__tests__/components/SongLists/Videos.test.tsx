@@ -5,6 +5,11 @@ import { Mock } from 'ts-mockery'
 import { ChannelType, VideoType } from '@/resources/types'
 import { TestID } from '@/resources/TestID'
 
+jest.mock('next/router', () => ({
+  useRouter: () => ({
+    query: {},
+  }),
+}))
 jest.mock('next/image')
 jest.mock('swr', () =>
   jest.fn(() => ({
@@ -27,6 +32,7 @@ jest.mock('swr', () =>
           },
         }),
       ],
+      total_pages: 1,
     },
   }))
 )

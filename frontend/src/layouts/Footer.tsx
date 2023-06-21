@@ -1,9 +1,8 @@
-import { UserType } from '@/resources/types'
-import { fetchApi, getData } from '@/utils/api'
+import { useUser } from '@/hooks/user'
+import { fetchApi } from '@/utils/api'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { styled } from 'styled-components'
-import useSWR from 'swr'
 
 const FooterTag = styled.footer`
   margin-top: 20px;
@@ -12,7 +11,7 @@ const FooterTag = styled.footer`
 `
 
 export const Footer: React.FC = () => {
-  const { data } = useSWR<{ user: UserType }>('/user', getData)
+  const { data, mutate } = useUser()
   const router = useRouter()
   const logout = async () => {
     const response = await fetchApi({
@@ -22,6 +21,8 @@ export const Footer: React.FC = () => {
     if (response.status >= 400) return
 
     void router.push('/')
+    // mutateはrouter.push後でないといけない(ログイン画面にリダイレクトされていまう)
+    await mutate()
   }
 
   return (

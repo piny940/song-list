@@ -1,8 +1,6 @@
-import { ChannelType } from '@/resources/types'
-import { getData } from '@/utils/api'
-import useSWR from 'swr'
 import { Channel } from './Channel'
 import { Loading } from '../Common/Loading'
+import { useChannels } from '@/hooks/channel'
 
 export type ChannelsProps = {
   testID?: string
@@ -10,7 +8,7 @@ export type ChannelsProps = {
 }
 
 export const Channels: React.FC<ChannelsProps> = ({ testID, link }) => {
-  const { data } = useSWR<{ channels: ChannelType[] }>('/channels', getData)
+  const { data } = useChannels({})
 
   return data ? (
     <div
