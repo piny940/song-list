@@ -10,6 +10,8 @@ export enum TestID {
   CHANNEL = 'channel',
   VIDEOS = 'videos',
   VIDEO = 'video',
+  VIDEOS_SEARCH = 'videos-search',
+  VIDEO_SEARCH_DETAIL_BUTTON = 'video-search-detail-button',
   SONG_ITEMS = 'song-items',
   SONG_ITEM = 'song-item',
   SONG_LIST_ITEM = 'song-list-item',

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import styles from '../../styles/song-lists.module.scss'
 import { styled } from 'styled-components'
+import { TestID } from '@/resources/TestID'
 
 const DetailButton = styled.a`
   --text-color: black;
@@ -37,12 +38,13 @@ export const VideosSearch: React.FC<VideosSearchProps> = ({
   const toggleOpened = () => setDetailOpened(!detailOpened)
 
   return (
-    <div className="song-search mb-3">
+    <div className="song-search mb-3" data-testid={TestID.VIDEOS_SEARCH}>
       <div className="d-flex justify-content-end">
         <DetailButton
           role="button"
           className="small me-4"
           onClick={toggleOpened}
+          data-testid={TestID.VIDEO_SEARCH_DETAIL_BUTTON}
         >
           <Triangle
             className={`${styles.animateFast} ${
