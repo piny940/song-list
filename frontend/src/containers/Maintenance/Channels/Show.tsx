@@ -1,12 +1,11 @@
 import { Loading } from '@/components/Common/Loading'
 import { NewSongDiff } from '@/components/SongLists/NewSongDiff'
 import { SongItems } from '@/components/SongLists/SongItems'
-import { ChannelType, SongItemType } from '@/resources/types'
-import { getData } from '@/utils/api'
+import { SongItemType } from '@/resources/types'
 import Error from 'next/error'
 import { useState } from 'react'
-import useSWR from 'swr'
 import styles from '../../../styles/song-lists.module.scss'
+import { useChannel } from '@/hooks/channel'
 
 export type MaintenanceChannelsShowProps = {
   id: number
@@ -15,10 +14,7 @@ export type MaintenanceChannelsShowProps = {
 export const MaintenanceChannelsShow: React.FC<
   MaintenanceChannelsShowProps
 > = ({ id }) => {
-  const { data, error } = useSWR<{ channel: ChannelType }>(
-    `/channels/${id}`,
-    getData
-  )
+  const { data, error } = useChannel(id)
   const [currentSongItem, setCurrentSongItem] = useState<SongItemType | null>(
     null
   )

@@ -31,7 +31,7 @@ export const SessionNew: React.FC = () => {
   }
 
   return (
-    <div className="">
+    <div className="session-new">
       {alert && <div className="alert alert-danger">{alert}</div>}
       <h1>ログイン</h1>
       <form className="container" onSubmit={handleSubmit(submit)}>

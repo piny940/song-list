@@ -9,3 +9,7 @@ export const useChannels = ({ isPaused }: { isPaused?: boolean }) => {
   )
   return { data, error, mutate }
 }
+
+export const useChannel = (id: number) => {
+  return useSWR<{ channel: ChannelType }>(`/channels/${id}?`, getData)
+}

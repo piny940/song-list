@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import styles from '../../styles/song-lists.module.scss'
 import { styled } from 'styled-components'
+import { TestID } from '@/resources/TestID'
 
 const DetailButton = styled.a`
   --text-color: black;
@@ -47,6 +48,7 @@ export const SongItemsSearch: React.FC<SongItemsSearchProps> = ({
           role="button"
           className="small me-4"
           onClick={toggleOpened}
+          data-testid={TestID.SONG_ITEMS_SEARCH_DETAIL_BUTTON}
         >
           <Triangle
             className={`${styles.animateFast} ${

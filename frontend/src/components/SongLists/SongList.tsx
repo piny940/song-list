@@ -5,6 +5,7 @@ import { styled } from 'styled-components'
 import { Loading } from '../Common/Loading'
 import Error from 'next/error'
 import { useSongItems } from '@/hooks/songItem'
+import { TestID } from '@/resources/TestID'
 
 const OneLineLi = styled.li`
   -webkit-line-clamp: 1;
@@ -29,7 +30,11 @@ export const SongList: React.FC<SongListProps> = ({ video }) => {
     <div className="song-items ps-4 mt-2">
       {data.song_items.length > 0 ? (
         data.song_items.map((song) => (
-          <OneLineLi className="my-1 w-100" key={song.id}>
+          <OneLineLi
+            className="my-1 w-100"
+            key={song.id}
+            data-testid={TestID.SONG_LIST_ITEM}
+          >
             <Link
               className="w-100 d-inline-block"
               href={toSongLink(song)}
