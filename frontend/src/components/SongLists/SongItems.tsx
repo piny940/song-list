@@ -61,7 +61,7 @@ export const SongItems: React.FC<SongItemsProps> = ({
   }
 
   return data ? (
-    <div className="pb-4">
+    <div className="pb-4" data-testid={TestID.SONG_ITEMS}>
       {Object.keys(videos).length > 0 ? (
         <>
           {Object.values(videos).map((video) => (
@@ -70,7 +70,7 @@ export const SongItems: React.FC<SongItemsProps> = ({
                 <span>{toVideoDate(video.published_at)}</span>
                 <span className="">{video.title}</span>
               </VideoTitleDiv>
-              <div className="mb-4 ps-3" data-testid={TestID.SONG_ITEMS}>
+              <div className="mb-4 ps-3">
                 {songItems[video.video_id].map((songItem) => (
                   <div key={songItem.id}>
                     <SongItem
