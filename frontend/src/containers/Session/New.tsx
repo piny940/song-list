@@ -1,4 +1,5 @@
 import { FormGroup } from '@/components/Common/FormGroup'
+import { useUser } from '@/hooks/user'
 import { fetchApi } from '@/utils/api'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -6,6 +7,7 @@ import { useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 
 export const SessionNew: React.FC = () => {
+  const { mutate } = useUser()
   const router = useRouter()
   const [alert, setAlert] = useState('')
   const { register, handleSubmit } = useForm({
@@ -23,6 +25,8 @@ export const SessionNew: React.FC = () => {
       setAlert(json.message)
       return
     }
+    // mutateはpush前でないといけない
+    await mutate()
     void router.push('/maintenance')
   }
 

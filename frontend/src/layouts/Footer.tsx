@@ -11,7 +11,7 @@ const FooterTag = styled.footer`
 `
 
 export const Footer: React.FC = () => {
-  const { data } = useUser()
+  const { data, mutate } = useUser()
   const router = useRouter()
   const logout = async () => {
     const response = await fetchApi({
@@ -21,6 +21,8 @@ export const Footer: React.FC = () => {
     if (response.status >= 400) return
 
     void router.push('/')
+    // mutateはrouter.push後でないといけない(ログイン画面にリダイレクトされていまう)
+    await mutate()
   }
 
   return (
