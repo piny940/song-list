@@ -1,12 +1,10 @@
 import { Channels } from '@/components/SongLists/Channels'
-import { UserType } from '@/resources/types'
-import { getData } from '@/utils/api'
+import { useUser } from '@/hooks/user'
 import Error from 'next/error'
 import { useRouter } from 'next/router'
-import useSWR from 'swr'
 
 export const MaintenanceHome: React.FC = () => {
-  const { data, error } = useSWR<{ user: UserType }>('/user', getData)
+  const { data, error } = useUser()
   const router = useRouter()
 
   if (error) return <Error statusCode={400} />
