@@ -62,13 +62,13 @@ export type SongItemType = {
   updated_at: string
 }
 
-export interface Alert {
+export type Alert = {
   id: number
   content: string
   state: AlertState
 }
 
-export interface AlertInput {
+export type AlertInput = {
   content: string
   state: AlertState
 }

@@ -1,7 +1,6 @@
+import { useLogout } from '@/hooks/session'
 import { useUser } from '@/hooks/user'
-import { fetchApi } from '@/utils/api'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { styled } from 'styled-components'
 
 const FooterTag = styled.footer`
@@ -11,19 +10,8 @@ const FooterTag = styled.footer`
 `
 
 export const Footer: React.FC = () => {
-  const { data, mutate } = useUser()
-  const router = useRouter()
-  const logout = async () => {
-    const response = await fetchApi({
-      url: '/session',
-      method: 'DELETE',
-    })
-    if (response.status >= 400) return
-
-    void router.push('/')
-    // mutateはrouter.push後でないといけない(ログイン画面にリダイレクトされていまう)
-    await mutate()
-  }
+  const { data } = useUser()
+  const { logout } = useLogout()
 
   return (
     <FooterTag className="footer text-center bg-secondary text-white p-4">
