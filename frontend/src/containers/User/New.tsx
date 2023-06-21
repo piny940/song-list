@@ -1,5 +1,7 @@
 import { FormGroup } from '@/components/Common/FormGroup'
+import { useAlerts } from '@/context/AlertsProvider'
 import { useUser } from '@/hooks/user'
+import { AlertState } from '@/resources/enums'
 import { fetchApi } from '@/utils/api'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -7,6 +9,7 @@ import { useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 
 export const UserNew: React.FC = () => {
+  const { addAlert } = useAlerts()
   const { mutate } = useUser()
   const [alert, setAlert] = useState('')
   const router = useRouter()
@@ -30,7 +33,11 @@ export const UserNew: React.FC = () => {
     }
     // mutateはpush前でないといけない
     await mutate()
-    void router.push('/maintenance')
+    await router.push('/maintenance')
+    addAlert({
+      state: AlertState.NOTICE,
+      content: 'アカウントを作成しました。',
+    })
   }
 
   return (
@@ -56,7 +63,7 @@ export const UserNew: React.FC = () => {
           label="パスワード"
           register={register}
           type="password"
-          name="password_confirmation"
+          name="password"
           required
         />
         <FormGroup
