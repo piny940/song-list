@@ -42,7 +42,16 @@ export const Footer: React.FC = () => {
         </>
       )}
       <br />
-      <small>&copy;2023 piny940</small>
+      <small>
+        &copy;2023
+        <Link
+          className="text-white"
+          href="https://github.com/piny940"
+          target="_blank"
+        >
+          piny940
+        </Link>
+      </small>
     </FooterTag>
   )
 }
