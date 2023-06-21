@@ -1,5 +1,5 @@
 import { RefObject } from 'react'
-import { toClass } from '../../utils/helpers'
+import { toClass } from '@/utils/helpers'
 
 export interface MaterialIconProps {
   color?: string

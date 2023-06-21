@@ -1,0 +1,15 @@
+$header-height: 56px;
+
+#alerts {
+  position: absolute;
+  z-index: 800;
+  right: 10px;
+  bottom: 40px;
+  min-width: 230px;
+  max-width: 90%;
+}
+@media (min-width: 768px) {
+  #alerts {
+    top: $header-height + 10px;
+  }
+}

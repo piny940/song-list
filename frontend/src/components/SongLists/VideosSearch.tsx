@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import styles from '../../styles/song-lists.module.scss'
+import styles from '@/styles/song-lists.module.scss'
 import { styled } from 'styled-components'
 import { TestID } from '@/resources/TestID'
 

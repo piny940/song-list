@@ -4,7 +4,7 @@ import { SongItems } from '@/components/SongLists/SongItems'
 import { SongItemType } from '@/resources/types'
 import Error from 'next/error'
 import { useState } from 'react'
-import styles from '../../../styles/song-lists.module.scss'
+import styles from '@/styles/song-lists.module.scss'
 import { useChannel } from '@/hooks/channel'
 
 export type MaintenanceChannelsShowProps = {

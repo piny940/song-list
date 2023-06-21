@@ -3,6 +3,7 @@ import { ReactNode } from 'react'
 import { Navbar } from './Navbar'
 import { useTheme } from '@/context/ThemeProvider'
 import { Footer } from '@/layouts/Footer'
+import { Alerts } from '@/components/Common/Alerts'
 
 interface LayoutProps {
   children: ReactNode
@@ -19,6 +20,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       <header>
         <Navbar />
       </header>
+      <Alerts />
       <main className="container mt-3">{children}</main>
       <Footer />
     </div>
