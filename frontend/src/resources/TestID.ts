@@ -1,6 +1,7 @@
 export enum TestID {
   TEST = 'test',
   HOME = 'home',
+  INQUIRY = 'inquiry',
   HOME_CHANNELS_BUTTON = 'home-channels-button',
   CUSTOM404 = 'custom404',
   CUSTOM500 = 'custom500',
