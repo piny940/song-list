@@ -7,7 +7,6 @@ import Error from 'next/error'
 import { useState } from 'react'
 import useSWR from 'swr'
 import styles from '../../../styles/song-lists.module.scss'
-import { useSongItems } from '@/hooks/songItem'
 
 export type MaintenanceChannelsShowProps = {
   id: number
@@ -20,19 +19,11 @@ export const MaintenanceChannelsShow: React.FC<
     `/channels/${id}`,
     getData
   )
-  const {
-    data: songItemsData,
-    error: songItemsError,
-    getPage,
-    setPage,
-  } = useSongItems({
-    channelId: id,
-  })
   const [currentSongItem, setCurrentSongItem] = useState<SongItemType | null>(
     null
   )
 
-  if (error || songItemsError) return <Error statusCode={404} />
+  if (error) return <Error statusCode={404} />
 
   return data ? (
     <div className="">
@@ -49,11 +40,8 @@ export const MaintenanceChannelsShow: React.FC<
           </div>
           <SongItems
             isLink={false}
-            songItems={songItemsData?.song_items}
+            channelId={id}
             onClick={(songItem) => setCurrentSongItem(songItem)}
-            getPage={getPage}
-            setPage={setPage}
-            totalPages={songItemsData?.total_pages || 0}
           />
         </div>
         <div
