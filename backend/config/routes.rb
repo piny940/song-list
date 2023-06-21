@@ -23,9 +23,8 @@ Rails.application.routes.draw do
     resource :user, only: %i[show create]
     resource :session, only: %i[create destroy]
 
-    resources :channels, only: %i[index show] do
-      resources :videos, only: %i[index show]
-    end
+    resources :channels, only: %i[index show]
+    resources :videos, only: %i[index show]
     resources :song_items, only: %i[index show]
 
     namespace :member do
