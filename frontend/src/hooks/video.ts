@@ -15,7 +15,7 @@ export const useVideos = ({
   since?: string
   until?: string
 }) => {
-  const { getPage, setPage } = usePaginate('videos-page')
+  const { getPage, setPage } = usePaginate()
 
   const { data, error, mutate } = useSWR<{
     videos: VideoType[]

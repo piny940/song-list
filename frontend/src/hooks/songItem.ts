@@ -25,7 +25,7 @@ export const useSongItems = ({
   count?: number
 }) => {
   const DEFAULT_PAGE = 1
-  const { getPage, setPage } = usePaginate('song-items-page', DEFAULT_PAGE)
+  const { getPage, setPage } = usePaginate(DEFAULT_PAGE)
   const { isReady, updateTimer } = useHold(500)
   const isFirst = useRef(true)
   const { data, error, mutate } = useSWR<{

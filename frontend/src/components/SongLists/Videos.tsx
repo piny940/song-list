@@ -1,14 +1,11 @@
 import { TestID } from '@/resources/TestID'
 import { ChannelType, VideoType } from '@/resources/types'
-import { getData } from '@/utils/api'
 import Error from 'next/error'
-import useSWR from 'swr'
 import { Video } from './Video'
 import { Loading } from '../Common/Loading'
 import { Paging } from '../Common/Paging'
-import { usePaginate } from '@/hooks/common'
 import { useState } from 'react'
-import { queryToSearchParams } from '@/utils/helpers'
+import { useVideos } from '@/hooks/video'
 
 export type VideosProps = {
   channel: ChannelType
@@ -23,20 +20,13 @@ export const Videos: React.FC<VideosProps> = ({
   since,
   until,
 }) => {
-  const { getPage, setPage } = usePaginate('videos-page')
   const [openedVideo, setOpenedVideo] = useState<VideoType | null>(null)
-
-  const { data, error } = useSWR<{ videos: VideoType[]; total_pages: number }>(
-    `/channels/${channel.id}/videos?` +
-      queryToSearchParams({
-        query: query || '',
-        since: since || '',
-        until: until || '',
-        count: '10',
-        page: String(getPage()),
-      }).toString(),
-    getData
-  )
+  const { data, error, getPage, setPage } = useVideos({
+    channel,
+    query,
+    since,
+    until,
+  })
 
   if (error) return <Error statusCode={404} />
 

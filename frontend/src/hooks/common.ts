@@ -1,14 +1,15 @@
 import { useRouter } from 'next/router'
 import { queryToSearchParams } from '../utils/helpers'
-import { useState } from 'react'
+import { useId, useState } from 'react'
 
-export const usePaginate = (key: string, defaultPage = 1) => {
+export const usePaginate = (defaultPage = 1) => {
+  const id = useId()
   const router = useRouter()
   const getPage = () => {
-    return Number(router.query[key] || defaultPage)
+    return Number(router.query[id] || defaultPage)
   }
   const setPage = (newPage: number) => {
-    router.query[key] = String(newPage)
+    router.query[id] = String(newPage)
     void router.push(
       `${router.pathname}?${queryToSearchParams(router.query).toString()}`,
       undefined,
