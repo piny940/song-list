@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { queryToSearchParams } from './helpers'
+import { queryToSearchParams } from '../utils/helpers'
 import { useState } from 'react'
 
 export const usePaginate = (key: string, defaultPage = 1) => {

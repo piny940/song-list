@@ -6,7 +6,7 @@ import useSWR from 'swr'
 import { Video } from './Video'
 import { Loading } from '../Common/Loading'
 import { Paging } from '../Common/Paging'
-import { usePaginate } from '@/utils/hooks'
+import { usePaginate } from '@/hooks/hooks'
 import { useState } from 'react'
 import { queryToSearchParams } from '@/utils/helpers'
 
