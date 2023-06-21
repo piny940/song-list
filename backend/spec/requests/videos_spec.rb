@@ -27,6 +27,13 @@ describe Api::VideosController do
       expect(json['total_pages']).to be_present
     end
 
+    it('channelで絞り込みができる') do
+      get endpoint, params: { channel_id: channel.id}
+      expect(response.status).to eq 200
+      json = response.parsed_body
+      expect(json['videos'].count).to eq 2
+    end
+
     it('あいまい検索できる') do
       get endpoint, params: { query: '歌枠' }
       expect(response.status).to eq 200
