@@ -72,3 +72,15 @@ export function useSWRWithQuery<T = any>(
   }
   return [data, mutateAll] as const
 }
+
+export const usePageChange = (handler: () => void) => {
+  const router = useRouter()
+
+  useEffect(() => {
+    router.events.on('routeChangeComplete', handler)
+
+    return () => {
+      router.events.off('routeChangeComplete', handler)
+    }
+  })
+}
