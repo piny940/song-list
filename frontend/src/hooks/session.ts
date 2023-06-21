@@ -15,13 +15,8 @@ export const useLogout = () => {
     })
     if (response.status >= 400) return
 
-    addAlert({
-      content: 'ログアウトしました。',
-      state: AlertState.NOTICE,
-    })
-
     // push, mutate, addAlertはこの順じゃないと上手く行かない
-    void router.push('/')
+    await router.push('/')
     await mutate()
     addAlert({
       content: 'ログアウトしました。',
