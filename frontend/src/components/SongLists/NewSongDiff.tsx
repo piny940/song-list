@@ -16,7 +16,7 @@ export const NewSongDiff: React.FC<NewSongDiffProps> = ({ songItem }) => {
       author: songItem.author,
     },
   })
-  const { mutate } = useSongItems({})
+  const { mutateAll } = useSongItems({}, { isPaused: () => true })
 
   useEffect(() => {
     setValue('time', songItem.time)
@@ -32,7 +32,7 @@ export const NewSongDiff: React.FC<NewSongDiffProps> = ({ songItem }) => {
         song_diff: data,
       },
     })
-    await mutate()
+    void mutateAll()
   }
 
   return (
