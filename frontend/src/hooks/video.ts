@@ -1,19 +1,21 @@
-import { ChannelType, VideoType } from '@/resources/types'
+import { VideoType } from '@/resources/types'
 import { getData } from '@/utils/api'
 import useSWR from 'swr'
 import { queryToSearchParams } from '@/utils/helpers'
 import { usePaginate } from './common'
 
 export const useVideos = ({
-  channel,
+  channelId,
   query,
   since,
   until,
+  isPaused,
 }: {
-  channel?: ChannelType
+  channelId?: number
   query?: string
   since?: string
   until?: string
+  isPaused?: boolean
 }) => {
   const { getPage, setPage } = usePaginate()
 
@@ -21,9 +23,10 @@ export const useVideos = ({
     videos: VideoType[]
     total_pages: number
   }>(
-    channel &&
-      `/channels/${channel.id || ''}/videos?` +
+    !isPaused &&
+      `/videos?` +
         queryToSearchParams({
+          channel_id: channelId ? String(channelId) : '',
           query: query || '',
           since: since || '',
           until: until || '',

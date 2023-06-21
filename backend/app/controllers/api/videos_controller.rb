@@ -3,7 +3,7 @@ class Api::VideosController < Api::Base
   before_action :set_video, only: %i[show]
 
   def index
-    scope = @channel.videos
+    scope = @channel.present? ? @channel.videos : Video
     # あいまい検索(タイトル・歌手名)
     scope = scope.where('videos.title ILIKE ?', "%#{params[:query]}%") \
               if params[:query].present?
@@ -21,10 +21,17 @@ class Api::VideosController < Api::Base
   private
 
   def set_channel
-    @channel = Channel.find(params[:channel_id])
+    return if params[:channel_id].blank?
+
+    @channel = Channel.find_by(id: params[:channel_id])
+    if @channel.blank?
+      render json: {
+        message: 'Channel not found'
+      }, status: :bad_request
+    end
   end
 
   def set_video
-    @video = @channel.videos.find(params[:id])
+    @video = Video.find(params[:id])
   end
 end
