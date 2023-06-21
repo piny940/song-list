@@ -18,6 +18,14 @@ body {
   min-height: var(--vh100);
   max-width: 100%;
 }
+.root {
+  height: var(--vh100);
+}
+footer {
+  margin-top: 20px;
+  position: sticky;
+  top: calc(100vh - 20px);
+}
 
 a {
   color: inherit;

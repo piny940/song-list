@@ -13,7 +13,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { theme } = useTheme()
 
   return (
-    <div data-bs-theme={theme} className="vh-100 bg-body text-body">
+    <div data-bs-theme={theme} className="bg-body text-body root">
       <Head>
         <title>歌枠データベース</title>
       </Head>
