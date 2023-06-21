@@ -1,32 +1,13 @@
+import { useLogout } from '@/hooks/session'
 import { useUser } from '@/hooks/user'
-import { fetchApi } from '@/utils/api'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { styled } from 'styled-components'
-
-const FooterTag = styled.footer`
-  margin-top: 20px;
-  position: sticky;
-  top: 100vh;
-`
 
 export const Footer: React.FC = () => {
-  const { data, mutate } = useUser()
-  const router = useRouter()
-  const logout = async () => {
-    const response = await fetchApi({
-      url: '/session',
-      method: 'DELETE',
-    })
-    if (response.status >= 400) return
-
-    void router.push('/')
-    // mutateはrouter.push後でないといけない(ログイン画面にリダイレクトされていまう)
-    await mutate()
-  }
+  const { data } = useUser()
+  const { logout } = useLogout()
 
   return (
-    <FooterTag className="footer text-center bg-secondary text-white p-4">
+    <footer className="footer text-center bg-secondary text-white p-4">
       <Link href="/maintenance" className="text-white">
         {data?.user ? 'メンテナンスする' : 'メンテナンスに参加する'}
       </Link>
@@ -53,6 +34,6 @@ export const Footer: React.FC = () => {
           piny940
         </Link>
       </small>
-    </FooterTag>
+    </footer>
   )
 }

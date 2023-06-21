@@ -1,3 +1,5 @@
+import { AlertState } from './enums'
+
 export type Theme = 'dark' | 'light'
 
 export type Thumbnails = {
@@ -58,4 +60,15 @@ export type SongItemType = {
   author: string
   created_at: string
   updated_at: string
+}
+
+export type Alert = {
+  id: number
+  content: string
+  state: AlertState
+}
+
+export type AlertInput = {
+  content: string
+  state: AlertState
 }
