@@ -25,7 +25,7 @@ export const SongDiff: React.FC<SongDiffProps> = ({ songDiff }) => {
         <span>
           {`${createdAt.getFullYear()}年${
             createdAt.getMonth() + 1
-          }月${createdAt.getDate()}日`}
+          }月${createdAt.getDate()}日${createdAt.getHours()}時${createdAt.getMinutes()}分`}
         </span>
         <span className="ms-2">{songDiff.made_by?.name}</span>
       </small>
