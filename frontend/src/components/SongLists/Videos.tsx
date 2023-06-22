@@ -12,6 +12,7 @@ export type VideosProps = {
   query?: string
   since?: string
   until?: string
+  onlySongLives?: boolean
 }
 
 export const Videos: React.FC<VideosProps> = ({
@@ -19,6 +20,7 @@ export const Videos: React.FC<VideosProps> = ({
   query,
   since,
   until,
+  onlySongLives,
 }) => {
   const [openedVideo, setOpenedVideo] = useState<VideoType | null>(null)
   const { data, error, getPage, setPage } = useVideos({
@@ -26,6 +28,7 @@ export const Videos: React.FC<VideosProps> = ({
     query,
     since,
     until,
+    onlySongLives,
   })
 
   if (error) return <Error statusCode={404} />

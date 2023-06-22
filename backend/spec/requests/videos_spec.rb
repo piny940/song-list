@@ -7,7 +7,7 @@ describe Api::VideosController do
 
   describe 'GET /api/videos' do
     it('正常に取得できる') do
-      get endpoint
+      get endpoint, params: { only_song_lives: '0' }
 
       expect(response.status).to eq 200
 
@@ -53,6 +53,13 @@ describe Api::VideosController do
       expect(response.status).to eq 200
       json = response.parsed_body
       expect(json['videos'].count).to eq 1
+    end
+
+    it('歌枠で絞り込みできる') do
+      get endpoint, params: { only_song_lives: '1' }
+      expect(response.status).to eq 200
+      json = response.parsed_body
+      expect(json['videos'].count).to eq 2
     end
   end
   describe 'GET /api/videos/:id' do

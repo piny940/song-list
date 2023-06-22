@@ -23,6 +23,8 @@ export type VideosSearchProps = {
   setSince: (since: string) => void
   until: string
   setUntil: (until: string) => void
+  onlySongLives: boolean
+  setOnlySongLives: (onlySongLives: boolean) => void
 }
 
 export const VideosSearch: React.FC<VideosSearchProps> = ({
@@ -32,6 +34,8 @@ export const VideosSearch: React.FC<VideosSearchProps> = ({
   setSince,
   until,
   setUntil,
+  onlySongLives,
+  setOnlySongLives,
 }) => {
   const [detailOpened, setDetailOpened] = useState(false)
 
@@ -39,10 +43,20 @@ export const VideosSearch: React.FC<VideosSearchProps> = ({
 
   return (
     <div className="song-search mb-3" data-testid={TestID.VIDEOS_SEARCH}>
-      <div className="d-flex justify-content-end">
+      <div className="d-flex justify-content-between">
+        <label className="ms-4 me-2 form-check">
+          <input
+            type="checkbox"
+            name="only-song-lives"
+            className="form-check-input"
+            checked={onlySongLives}
+            onChange={(e) => setOnlySongLives(e.target.checked)}
+          />
+          <div className="form-check-label">歌枠のみ表示</div>
+        </label>
         <DetailButton
           role="button"
-          className="small me-4"
+          className="small ms-2 me-4"
           onClick={toggleOpened}
           data-testid={TestID.VIDEO_SEARCH_DETAIL_BUTTON}
         >

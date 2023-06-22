@@ -28,7 +28,7 @@ export const useSongItems = (
 ) => {
   const DEFAULT_PAGE = 1
   const { getPage, setPage } = usePaginate(DEFAULT_PAGE)
-  const { isReady, updateTimer } = useHold(500)
+  const { isReady, updateTimer } = useHold(300)
   const isFirst = useRef(true)
 
   const queryParams = useMemo(() => {
@@ -50,7 +50,7 @@ export const useSongItems = (
   }>(isPaused ? undefined : '/song_items?', queryParams, swrConfig)
 
   useEffect(() => {
-    if (isFirst) {
+    if (isFirst.current) {
       isFirst.current = false
       return
     }
