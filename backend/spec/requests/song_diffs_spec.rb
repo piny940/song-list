@@ -18,6 +18,7 @@ describe Api::Member::SongDiffsController do
       expect(json['song_diffs'].count).to eq 2
       expect(json['song_diffs'][0]['id']).to eq latest_diff.id # 新しい順で取得
       expect(json['song_diffs'][0]['made_by']['email']).to eq 'test1@example.com'
+      expect(json['total_pages']).to be_present
     end
 
     it('ログインしていない状態ではエラーになる') do
