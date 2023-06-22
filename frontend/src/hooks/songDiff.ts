@@ -2,6 +2,8 @@ import { SongDiffType } from '@/resources/types'
 import { getData } from '@/utils/api'
 import useSWR from 'swr'
 import { BareFetcher, PublicConfiguration } from 'swr/_internal'
+import { usePaginate } from './common'
+import { queryToSearchParams } from '@/utils/helpers'
 
 export const useSongDiffs = (
   {
@@ -13,10 +15,18 @@ export const useSongDiffs = (
   },
   swrConfig?: Partial<PublicConfiguration<any, any, BareFetcher<any>>>
 ) => {
-  const { data, error, mutate } = useSWR<{ song_diffs: SongDiffType[] }>(
-    !isPaused && `/member/song_items/${songItemId}/song_diffs`,
+  const { getPage, setPage } = usePaginate()
+  const { data, error, mutate } = useSWR<{
+    song_diffs: SongDiffType[]
+    total_pages: number
+  }>(
+    !isPaused &&
+      `/member/song_items/${songItemId}/song_diffs?` +
+        queryToSearchParams({
+          count: '7',
+        }).toString(),
     getData,
     swrConfig
   )
-  return { data, error, mutate }
+  return { data, error, mutate, getPage, setPage }
 }
