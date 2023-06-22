@@ -53,7 +53,7 @@ export const MaintenanceChannelsShow: React.FC<
                 <div className="text-sm fw-bold w-100 text-center">修正</div>
                 <NewSongDiff songItem={currentSongItem} />
               </div>
-              <div className="mt-4">
+              <div className="mt-5">
                 <div className="text-sm fw-bold w-100 text-center mb-2">
                   修正履歴
                 </div>
