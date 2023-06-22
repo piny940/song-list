@@ -1,4 +1,7 @@
+import { useAlerts } from '@/context/AlertsProvider'
+import { useSongDiffs } from '@/hooks/songDiff'
 import { useSongItems } from '@/hooks/songItem'
+import { AlertState } from '@/resources/enums'
 import { SongItemType } from '@/resources/types'
 import { fetchApi } from '@/utils/api'
 import { useEffect } from 'react'
@@ -17,6 +20,8 @@ export const NewSongDiff: React.FC<NewSongDiffProps> = ({ songItem }) => {
     },
   })
   const { mutateAll } = useSongItems({}, { isPaused: () => true })
+  const { mutate } = useSongDiffs({ songItemId: songItem.id })
+  const { addAlert } = useAlerts()
 
   useEffect(() => {
     setValue('time', songItem.time)
@@ -25,6 +30,13 @@ export const NewSongDiff: React.FC<NewSongDiffProps> = ({ songItem }) => {
   }, [songItem])
 
   const submit: SubmitHandler<FieldValues> = async (data) => {
+    if (
+      songItem.time === data.time &&
+      songItem.title === data.title &&
+      songItem.author === data.author
+    )
+      return
+
     await fetchApi({
       url: `/member/song_items/${songItem.id}/song_diffs`,
       method: 'POST',
@@ -33,6 +45,11 @@ export const NewSongDiff: React.FC<NewSongDiffProps> = ({ songItem }) => {
       },
     })
     void mutateAll()
+    void mutate()
+    addAlert({
+      state: AlertState.NOTICE,
+      content: '歌情報を更新しました。',
+    })
   }
 
   return (
