@@ -3,6 +3,6 @@ json.made_by do
   if song_diff.made_by.present?
     json.partial! 'api/users/user', user: song_diff.made_by
   else
-    json.user nil
+    nil
   end
 end
