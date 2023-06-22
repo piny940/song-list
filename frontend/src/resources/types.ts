@@ -62,6 +62,19 @@ export type SongItemType = {
   updated_at: string
 }
 
+export type SongDiffType = {
+  id: number
+  song_item_id: number
+  time: string
+  title: string
+  author: string
+  status: string
+  kind: string
+  created_at: string
+  updated_at: string
+  made_by: UserType
+}
+
 export type Alert = {
   id: number
   content: string
