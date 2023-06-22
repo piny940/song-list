@@ -13,7 +13,7 @@ class Api::VideosController < Api::Base
     scope = scope.where(published_at: since_time..until_time)
 
     # 歌枠のみに絞り込み
-    scope = scope.song_lives if params[:only_song_lives].present?
+    scope = scope.song_lives if params[:only_song_lives].to_i > 0
 
     @videos = scope.order(published_at: :desc).page(params[:page]).per(params[:count])
     @total_pages = @videos.total_pages
