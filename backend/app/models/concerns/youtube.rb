@@ -27,6 +27,11 @@ module Youtube
     html.css('feed entry id').map(&:text).pluck(9..)
   end
 
+  def self.get_all_video_ids(custom_url)
+    driver = WebDriver.get_driver
+    driver.get("https://www.youtube.com/#{custom_url}/streams")
+  end
+
   def self.get_video_comments(video_id, page_token: nil)
     service.list_comment_threads('snippet,replies', video_id:, page_token:)
   end

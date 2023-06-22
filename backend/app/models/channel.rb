@@ -45,7 +45,7 @@ class Channel < ApplicationRecord
   end
 
   def custom_id
-    response_json['snippet']['customUrl']
+    response_json['snippet']['custom_url']
   end
 
   def search_and_create_recent_videos
