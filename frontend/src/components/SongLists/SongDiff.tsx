@@ -12,9 +12,13 @@ const CircleSpan = styled.span`
 
 export type SongDiffProps = {
   songDiff: SongDiffType
+  lastSongDiff?: SongDiffType
 }
 
-export const SongDiff: React.FC<SongDiffProps> = ({ songDiff }) => {
+export const SongDiff: React.FC<SongDiffProps> = ({
+  songDiff,
+  lastSongDiff,
+}) => {
   const createdAt = new Date(songDiff.created_at)
   return (
     <div
@@ -29,14 +33,18 @@ export const SongDiff: React.FC<SongDiffProps> = ({ songDiff }) => {
         </span>
         <span className="ms-2">{songDiff.made_by?.name}</span>
       </small>
+
+      {lastSongDiff && (
+        <div className="d-flex">
+          <CircleSpan className="bg-danger ms-3"></CircleSpan>
+          <span className="ms-1">{lastSongDiff.time}</span>
+          <span className="ms-3">{lastSongDiff.title}</span>
+          <span className="mx-3">{lastSongDiff.author}</span>
+        </div>
+      )}
+
       <div className="d-flex">
-        <CircleSpan className="bg-danger ms-3"></CircleSpan>
-        <span className="ms-1">{songDiff.time}</span>
-        <span className="ms-3">{songDiff.title}</span>
-        <span className="mx-3">{songDiff.author}</span>
-      </div>
-      <div className="d-flex">
-        <span>&rarr;</span>
+        {lastSongDiff && <span>&rarr;</span>}
         <CircleSpan className="bg-success ms-3"></CircleSpan>
         <span className="ms-1">{songDiff.time}</span>
         <span className="ms-3">{songDiff.title}</span>

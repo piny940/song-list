@@ -18,9 +18,16 @@ export const SongDiffs: React.FC<SongDiffsProps> = ({ songItem }) => {
   return data ? (
     <div className="song-diffs">
       <div className="mb-4">
-        {data.song_diffs.map((songDiff) => (
+        {data.song_diffs.map((songDiff, i) => (
           <div className="" key={songDiff.id}>
-            <SongDiff songDiff={songDiff} />
+            <SongDiff
+              songDiff={songDiff}
+              lastSongDiff={
+                i < data.song_diffs.length - 1
+                  ? data.song_diffs[i + 1]
+                  : data.next_song_diff
+              }
+            />
           </div>
         ))}
       </div>

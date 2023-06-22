@@ -18,12 +18,14 @@ export const useSongDiffs = (
   const { getPage, setPage } = usePaginate()
   const { data, error, mutate } = useSWR<{
     song_diffs: SongDiffType[]
+    next_song_diff: SongDiffType
     total_pages: number
   }>(
     !isPaused &&
       `/member/song_items/${songItemId}/song_diffs?` +
         queryToSearchParams({
           count: '7',
+          page: String(getPage()),
         }).toString(),
     getData,
     swrConfig
