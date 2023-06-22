@@ -31,11 +31,13 @@ export const SongDiffs: React.FC<SongDiffsProps> = ({ songItem }) => {
           </div>
         ))}
       </div>
-      <Paging
-        totalPages={data.total_pages}
-        currentPage={getPage()}
-        setPageNumber={setPage}
-      />
+      {data.total_pages > 1 && (
+        <Paging
+          totalPages={data.total_pages}
+          currentPage={getPage()}
+          setPageNumber={setPage}
+        />
+      )}
     </div>
   ) : (
     <Loading />
