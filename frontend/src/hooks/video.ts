@@ -12,6 +12,7 @@ export const useVideos = ({
   until,
   onlySongLives,
   isPaused,
+  holdTime = 0,
 }: {
   channelId?: number
   query?: string
@@ -19,10 +20,11 @@ export const useVideos = ({
   until?: string
   onlySongLives?: boolean
   isPaused?: boolean
+  holdTime?: number
 }) => {
   const DEFAULT_PAGE = 1
   const { getPage, setPage } = usePaginate(DEFAULT_PAGE)
-  const { isReady, updateTimer } = useHold(300)
+  const { isReady, updateTimer } = useHold(holdTime)
   const isFirst = useRef(true)
 
   const { data, error, mutate } = useSWR<{
