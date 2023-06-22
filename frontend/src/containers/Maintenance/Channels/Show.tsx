@@ -7,6 +7,7 @@ import { useState } from 'react'
 import styles from '@/styles/song-lists.module.scss'
 import { useChannel } from '@/hooks/channel'
 import { SongDiffs } from '@/components/SongLists/SongDiffs'
+import { SongItemsSearch } from '@/components/SongLists/SongItemsSearch'
 
 export type MaintenanceChannelsShowProps = {
   id: number
@@ -15,6 +16,10 @@ export type MaintenanceChannelsShowProps = {
 export const MaintenanceChannelsShow: React.FC<
   MaintenanceChannelsShowProps
 > = ({ id }) => {
+  const [query, setQuery] = useState('')
+  const [since, setSince] = useState('')
+  const [until, setUntil] = useState('')
+  const [videoTitle, setVideoTitle] = useState('')
   const { data, error } = useChannel(id)
   const [currentSongItem, setCurrentSongItem] = useState<SongItemType | null>(
     null
@@ -35,10 +40,24 @@ export const MaintenanceChannelsShow: React.FC<
           <div className="text-sm fw-bold w-100 text-center d-none d-lg-block">
             歌一覧
           </div>
+          <SongItemsSearch
+            query={query}
+            setQuery={setQuery}
+            since={since}
+            setSince={setSince}
+            until={until}
+            setUntil={setUntil}
+            videoTitle={videoTitle}
+            setVideoTitle={setVideoTitle}
+          />
           <SongItems
             isLink={false}
             channelId={id}
             onClick={(songItem) => setCurrentSongItem(songItem)}
+            query={query}
+            since={since}
+            until={until}
+            videoTitle={videoTitle}
           />
         </div>
         <div
