@@ -20,6 +20,7 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
   const [videoQuery, setVideoQuery] = useState('')
   const [videoSince, setVideoSince] = useState('')
   const [videoUntil, setVideoUntil] = useState('')
+  const [onlySongLives, setOnlySongLives] = useState(false)
 
   const { data, error } = useChannel(id)
 
@@ -61,6 +62,8 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
             setSince={setVideoSince}
             until={videoUntil}
             setUntil={setVideoUntil}
+            onlySongLives={onlySongLives}
+            setOnlySongLives={setOnlySongLives}
           />
           <Videos
             channel={data.channel}

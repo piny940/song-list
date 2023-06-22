@@ -9,12 +9,14 @@ export const useVideos = ({
   query,
   since,
   until,
+  onlySongLives,
   isPaused,
 }: {
   channelId?: number
   query?: string
   since?: string
   until?: string
+  onlySongLives?: boolean
   isPaused?: boolean
 }) => {
   const { getPage, setPage } = usePaginate()
@@ -30,6 +32,7 @@ export const useVideos = ({
           query: query || '',
           since: since || '',
           until: until || '',
+          only_song_lives: onlySongLives ? '1' : '0',
           count: '10',
           page: String(getPage()),
         }).toString(),
