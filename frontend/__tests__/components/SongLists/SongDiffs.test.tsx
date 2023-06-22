@@ -12,7 +12,9 @@ jest.mock('@/hooks/songDiff', () => ({
         Mock.from<SongDiffType>({ id: 1000 }),
         Mock.from<SongDiffType>({ id: 1001 }),
       ],
+      total_pages: 1,
     },
+    getPage: () => 1,
   }),
 }))
 

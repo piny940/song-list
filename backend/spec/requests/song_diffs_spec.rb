@@ -6,6 +6,7 @@ describe Api::Member::SongDiffsController do
   fixtures :song_diffs
 
   let(:song_item) { song_items(:one) }
+  let(:first_diff) { song_diffs(:one1) }
   let(:latest_diff) { song_diffs(:one2) }
   let(:user) { users(:one) }
 
@@ -18,6 +19,16 @@ describe Api::Member::SongDiffsController do
       expect(json['song_diffs'].count).to eq 2
       expect(json['song_diffs'][0]['id']).to eq latest_diff.id # 新しい順で取得
       expect(json['song_diffs'][0]['made_by']['email']).to eq 'test1@example.com'
+      expect(json['total_pages']).to be_present
+    end
+
+    it('ページングが正しく行われる') do
+      sign_in user
+      get "/api/member/song_items/#{song_item.id}/song_diffs", params: { count: 1 }
+      expect(response.status).to eq 200
+      json = response.parsed_body
+      expect(json['song_diffs'].count).to eq 1
+      expect(json['next_song_diff']['id']).to eq first_diff.id
     end
 
     it('ログインしていない状態ではエラーになる') do
