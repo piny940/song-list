@@ -21,7 +21,7 @@ export const useVideos = ({
   isPaused?: boolean
 }) => {
   const DEFAULT_PAGE = 1
-  const { getPage, setPage } = usePaginate()
+  const { getPage, setPage } = usePaginate(DEFAULT_PAGE)
   const { isReady, updateTimer } = useHold(300)
   const isFirst = useRef(true)
 
