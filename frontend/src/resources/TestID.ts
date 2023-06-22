@@ -18,4 +18,5 @@ export enum TestID {
   SONG_ITEMS_SEARCH = 'song-items-search',
   SONG_ITEMS_SEARCH_DETAIL_BUTTON = 'song-items-search-detail-button',
   SONG_LIST_ITEM = 'song-list-item',
+  SONG_DIFF = 'song-diff',
 }
