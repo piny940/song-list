@@ -10,7 +10,7 @@ export type SongDiffsProps = {
 
 export const SongDiffs: React.FC<SongDiffsProps> = ({ songItem }) => {
   const { data, error } = useSongDiffs({
-    songItem: songItem,
+    songItemId: songItem.id,
   })
 
   if (error) return <Error statusCode={400} />

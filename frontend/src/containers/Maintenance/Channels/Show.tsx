@@ -6,6 +6,7 @@ import Error from 'next/error'
 import { useState } from 'react'
 import styles from '@/styles/song-lists.module.scss'
 import { useChannel } from '@/hooks/channel'
+import { SongDiffs } from '@/components/SongLists/SongDiffs'
 
 export type MaintenanceChannelsShowProps = {
   id: number
@@ -48,8 +49,16 @@ export const MaintenanceChannelsShow: React.FC<
         >
           {currentSongItem && (
             <>
-              <div className="text-sm fw-bold w-100 text-center">修正</div>
-              <NewSongDiff songItem={currentSongItem} />
+              <div>
+                <div className="text-sm fw-bold w-100 text-center">修正</div>
+                <NewSongDiff songItem={currentSongItem} />
+              </div>
+              <div className="mt-4">
+                <div className="text-sm fw-bold w-100 text-center mb-2">
+                  修正履歴
+                </div>
+                <SongDiffs songItem={currentSongItem} />
+              </div>
             </>
           )}
         </div>
