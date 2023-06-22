@@ -1,9 +1,8 @@
-import { TestID } from '@/resources/TestID'
 import Link from 'next/link'
 
 export const Home: React.FC = () => {
   return (
-    <div className="" data-testid={TestID.HOME}>
+    <div className="">
       <h1>歌枠データベース</h1>
       <div className="list-group">
         <Link
