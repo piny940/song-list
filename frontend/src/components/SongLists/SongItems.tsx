@@ -44,6 +44,7 @@ export const SongItems: React.FC<SongItemsProps> = ({
     since,
     until,
     videoTitle,
+    holdTime: 300,
   })
 
   if (error) return <Error statusCode={404} />

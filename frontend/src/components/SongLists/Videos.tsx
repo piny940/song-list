@@ -29,6 +29,7 @@ export const Videos: React.FC<VideosProps> = ({
     since,
     until,
     onlySongLives,
+    holdTime: 300,
   })
 
   if (error) return <Error statusCode={404} />

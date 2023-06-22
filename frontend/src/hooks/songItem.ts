@@ -14,6 +14,7 @@ export const useSongItems = (
     videoTitle,
     isPaused,
     count,
+    holdTime = 0,
   }: {
     query?: string
     channelId?: number
@@ -23,12 +24,13 @@ export const useSongItems = (
     videoTitle?: string
     isPaused?: boolean
     count?: number
+    holdTime?: number
   },
   swrConfig?: Partial<PublicConfiguration<any, any, BareFetcher<any>>>
 ) => {
   const DEFAULT_PAGE = 1
   const { getPage, setPage } = usePaginate(DEFAULT_PAGE)
-  const { isReady, updateTimer } = useHold(300)
+  const { isReady, updateTimer } = useHold(holdTime)
   const isFirst = useRef(true)
 
   const queryParams = useMemo(() => {
