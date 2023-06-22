@@ -44,7 +44,7 @@ export const VideosSearch: React.FC<VideosSearchProps> = ({
   return (
     <div className="song-search mb-3" data-testid={TestID.VIDEOS_SEARCH}>
       <div className="d-flex justify-content-between">
-        <label className="ms-4 form-check">
+        <label className="ms-4 me-2 form-check">
           <input
             type="checkbox"
             name="only-song-lives"
@@ -56,7 +56,7 @@ export const VideosSearch: React.FC<VideosSearchProps> = ({
         </label>
         <DetailButton
           role="button"
-          className="small me-4"
+          className="small ms-2 me-4"
           onClick={toggleOpened}
           data-testid={TestID.VIDEO_SEARCH_DETAIL_BUTTON}
         >
