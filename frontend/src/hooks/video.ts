@@ -2,7 +2,8 @@ import { VideoType } from '@/resources/types'
 import { getData } from '@/utils/api'
 import useSWR from 'swr'
 import { queryToSearchParams } from '@/utils/helpers'
-import { usePaginate } from './common'
+import { useHold, usePaginate } from './common'
+import { useEffect, useRef } from 'react'
 
 export const useVideos = ({
   channelId,
@@ -19,7 +20,10 @@ export const useVideos = ({
   onlySongLives?: boolean
   isPaused?: boolean
 }) => {
+  const DEFAULT_PAGE = 1
   const { getPage, setPage } = usePaginate()
+  const { isReady, updateTimer } = useHold(300)
+  const isFirst = useRef(true)
 
   const { data, error, mutate } = useSWR<{
     videos: VideoType[]
@@ -38,5 +42,15 @@ export const useVideos = ({
         }).toString(),
     getData
   )
-  return { setPage, getPage, data, error, mutate }
+
+  useEffect(() => {
+    if (isFirst.current) {
+      isFirst.current = false
+      return
+    }
+    setPage(DEFAULT_PAGE)
+    updateTimer()
+  }, [query, since, until, onlySongLives])
+
+  return { setPage, getPage, data: isReady ? data : null, error, mutate }
 }
