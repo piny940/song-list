@@ -17,6 +17,7 @@ module Youtube
     id
   end
 
+  # 一度に取得できるのは50個まで
   def self.get_videos(video_ids, page_token: nil)
     service.list_videos('liveStreamingDetails,snippet', id: video_ids.join(','), page_token:)
   end
