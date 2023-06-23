@@ -73,3 +73,5 @@ yarn-debug.log*
 /public/uploads
 
 # End of https://www.toptal.com/developers/gitignore/api/rails
+
+selenium.log

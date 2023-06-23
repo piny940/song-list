@@ -45,11 +45,21 @@ class Channel < ApplicationRecord
   end
 
   def custom_id
-    response_json['snippet']['customUrl']
+    response_json['snippet']['custom_url']
   end
 
   def search_and_create_recent_videos
     video_ids = Youtube.get_recent_video_ids(channel_id)
     videos.fetch_and_create!(video_ids)
+  end
+
+  def search_and_create_all_videos
+    video_ids = Youtube.get_all_video_ids(custom_id)
+    i = 0
+    while i * 50 < video_ids.length
+      # 50個ずつ見に行く
+      videos.fetch_and_create!(video_ids[i * 50...(i+1) * 50])
+      i += 1
+    end
   end
 end

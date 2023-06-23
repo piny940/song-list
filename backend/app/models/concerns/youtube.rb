@@ -17,6 +17,7 @@ module Youtube
     id
   end
 
+  # 一度に取得できるのは50個まで
   def self.get_videos(video_ids, page_token: nil)
     service.list_videos('liveStreamingDetails,snippet', id: video_ids.join(','), page_token:)
   end
@@ -25,6 +26,25 @@ module Youtube
   def self.get_recent_video_ids(channel_id)
     html = Nokogiri::HTML.parse(URI.open("#{RECENT_VIDEOS_ENDPOINT}?channel_id=#{channel_id}"))
     html.css('feed entry id').map(&:text).pluck(9..)
+  end
+
+  def self.get_all_video_ids(custom_url)
+    video_ids = Set.new
+    counts = [nil, nil, nil, nil]
+    driver = WebDriver.get_driver
+    driver.get("https://www.youtube.com/#{custom_url}/streams")
+
+    begin
+      while video_ids.count != counts[0]
+        counts.push(video_ids.count)
+        counts.shift
+        video_ids.merge driver.find_elements(:css, '#video-title-link').map{|el| el.attribute('href').split('=')[1]}
+        driver.action.scroll_by(0, 10000).perform
+      end
+    ensure
+      driver.quit
+    end
+    video_ids.to_a
   end
 
   def self.get_video_comments(video_id, page_token: nil)

@@ -7,7 +7,7 @@ module SongLive
     end
 
     def search_and_create_song_items!
-      all.each(&:search_and_create_song_items!)
+      order(published_at: :desc).all.each(&:search_and_create_song_items!)
     end
   end
 
