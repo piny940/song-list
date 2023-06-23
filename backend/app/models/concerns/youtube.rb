@@ -28,8 +28,22 @@ module Youtube
   end
 
   def self.get_all_video_ids(custom_url)
+    video_ids = Set.new
+    counts = [nil, nil, nil, nil]
     driver = WebDriver.get_driver
     driver.get("https://www.youtube.com/#{custom_url}/streams")
+
+    begin
+      while video_ids.count != counts[0]
+        counts.push(video_ids.count)
+        counts.shift
+        video_ids.merge driver.find_elements(:css, '#video-title-link').map{|el| el.attribute('href').split('=')[1]}
+        driver.action.scroll_by(0, 10000).perform
+      end
+    ensure
+      driver.quit
+    end
+    video_ids.to_a
   end
 
   def self.get_video_comments(video_id, page_token: nil)
