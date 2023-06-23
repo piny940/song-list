@@ -17,6 +17,8 @@ class Admin::Videos::SongItemsController < Admin::Videos::Base
     @song_item = @video.song_items.new(song_item_params)
 
     if @song_item.save
+      comment = params[:comment]
+      @song_item.
       redirect_to admin_video_song_items_path(@video), notice: 'Song itemが作成されました。'
     else
       render :new, status: :unprocessable_entity

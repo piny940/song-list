@@ -8,6 +8,11 @@ module SongComment
       return
     end
 
+    force_search_and_create_song_items!
+  end
+
+  # セトリが含まれると判断されない場合でもsong_itemsを作成
+  def force_search_and_create_song_items!
     update!(status: 'fetched')
     songs = parse_setlist
 
