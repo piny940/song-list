@@ -54,7 +54,7 @@ module SongComment
     end
   end
 
-  SETLIST_REGEX = /セトリ|セットリスト|せっとりすと|(s|S)et(\s|_)?(l|L)ist|ｓｏｎｇ/
+  SETLIST_REGEX = /セトリ|セットリスト|せっとりすと|(s|S)et(\s|_)?(l|L)ist|ｓｏｎｇ|(s|S)ong(\ |_)?(l|L)ist/
   def setlist?(text)
     !!text.match(SETLIST_REGEX)
   end
