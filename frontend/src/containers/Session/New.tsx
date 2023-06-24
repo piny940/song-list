@@ -44,10 +44,10 @@ export const SessionNew: React.FC = () => {
       <form className="container" onSubmit={handleSubmit(submit)}>
         <FormGroup
           register={register}
-          label="メールアドレス"
-          type="email"
+          label="ニックネーム"
+          type="text"
           required
-          name="email"
+          name="name"
         />
         <FormGroup
           register={register}
