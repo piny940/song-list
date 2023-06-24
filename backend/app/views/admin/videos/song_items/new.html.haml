@@ -1,6 +1,26 @@
 %h1 SongItem新規作成
 .row.mt-3.mb-5= link_to 'コメントから一括作成', new_admin_video_song_items_bulk_path(@video), class: 'btn btn-primary'
 
-= render "form", song_item: @song_item
+= form_with(model: [:admin, @video, @song_item]) do |form|
+  - if @song_item.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@song_item.errors.count, "error")} prohibited this song_item from being saved:"
+      %ul
+        - @song_item.errors.full_messages.each do |message|
+          %li= message
+  = form.fields_for :song_diff do |song_diff_form|
+    .row.mb-3
+      .col-md-3.col-form-label.fw-bold Time
+      .col-md-9= song_diff_form.time_field :time, step: 1, class: 'form-control'
+    .row.mb-3
+      .col-md-3.col-form-label.fw-bold Title
+      .col-md-9= song_diff_form.text_field :title, class: 'form-control'
+    .row.mb-3
+      .col-md-3.col-form-label.fw-bold Author
+      .col-md-9= song_diff_form.text_field :author, class: 'form-control'
+  .row
+    .col
+      = form.submit '保存', class: 'btn btn-primary d-block w-100'
+
 
 = link_to '戻る', admin_video_song_items_path(@video)

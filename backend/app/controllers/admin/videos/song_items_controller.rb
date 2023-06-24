@@ -15,8 +15,11 @@ class Admin::Videos::SongItemsController < Admin::Videos::Base
 
   def create
     @song_item = @video.song_items.new(song_item_params)
+    return render :new, status: :unprocessable_entity if !@song_item.save
 
-    if @song_item.save
+    @song_diff = @song_item.song_diffs.new(song_diff_params.merge({ kind: 'auto' }))
+    if @song_diff.save
+      @song_diff.update_status!('approved')
       redirect_to admin_video_song_items_path(@video), notice: 'Song itemが作成されました。'
     else
       render :new, status: :unprocessable_entity
@@ -44,5 +47,9 @@ class Admin::Videos::SongItemsController < Admin::Videos::Base
 
   def song_item_params
     params.require(:song_item).permit(:video_id)
+  end
+
+  def song_diff_params
+    params.require(:song_item).require(:song_diff).permit(:time, :title, :author)
   end
 end
