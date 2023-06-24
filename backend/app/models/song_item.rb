@@ -26,6 +26,44 @@ class SongItem < ApplicationRecord
     latest_diff&.time
   end
 
+  def self.create_from_comment_content!(content)
+    songs = parse_setlist(content)
+    return unless songs.is_a?(Enumerable)
+
+    create_from_json!(songs)
+  end
+
+  def self.parse_setlist(comment_content)
+    instruction = <<~EOS
+      以下はYoutubeの動画のコメントです。これが曲のセットリストであるかを判定し、セットリストであるならばこれを時間と曲名と作曲者名のリストに変換してください。
+
+      フォーマットは
+      [{"title": "","time": "","author": ""}]
+      というフォーマットで書いてください。内容が不明な箇所には'unknown'と書いてください。
+
+      セットリストでない場合はfalseと返してください。
+    EOS
+    messages = [
+      {
+        role: 'system',
+        content: instruction
+      },
+      {
+        role: 'assistant',
+        content: comment_content
+      }
+    ]
+    content = OpenAi.complete_chat(messages)
+    content = content.gsub(/unknown|UNKNOWN|/, '')
+    content = content.gsub(/"-"/, '""')
+
+    begin
+      JSON.parse(content)
+    rescue StandardError
+      []
+    end
+  end
+
   def self.create_from_json!(songs, comment_id: nil)
     song_items = []
     songs.each do |song|
