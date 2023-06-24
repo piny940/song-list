@@ -20,6 +20,9 @@ module BreadcrumbsHelper
       ['admin/homes#show', 'admin/videos#index', 'admin/videos#show',
        'admin/videos/song_items#index', 'admin/videos/song_items#new'],
       ['admin/homes#show', 'admin/videos#index', 'admin/videos#show',
+       'admin/videos/song_items#index', 'admin/videos/song_items#new',
+       'admin/videos/song_items/bulks#new'],
+      ['admin/homes#show', 'admin/videos#index', 'admin/videos#show',
        'admin/videos/song_items#index', 'admin/videos/song_items#show',
        'admin/videos/song_diffs#index', 'admin/videos/song_diffs#show',
        'admin/videos/song_diffs#edit'],
@@ -62,6 +65,8 @@ module BreadcrumbsHelper
       { name: '編集', url: edit_admin_video_song_item_path(@video, @song_item) }
     when 'admin/videos/song_items#new'
       { name: '新規作成', url: new_admin_video_song_item_path(@video) }
+    when 'admin/videos/song_items/bulks#new'
+      { name: '一括作成', url: new_admin_video_bulk_path(@video) }
     when 'admin/videos/song_diffs#index'
       { name: '差分一覧', url: admin_video_song_item_song_diffs_path(@video, @song_item) }
     when 'admin/videos/song_diffs#show'
