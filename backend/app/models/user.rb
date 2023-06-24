@@ -4,7 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :created_song_diffs, class_name: 'SongDiff', inverse_of: 'made_by', dependent: :nullify, foreign_key: :made_by_id
-  validates :email, presence: true, uniqueness: true
   validates :name, presence: true
 
   enum kind: {
@@ -12,4 +11,8 @@ class User < ApplicationRecord
     banned: 5,
     admin: 10
   }, _prefix: true
+
+  def email_required?
+    false
+  end
 end
