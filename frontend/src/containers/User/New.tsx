@@ -46,14 +46,7 @@ export const UserNew: React.FC = () => {
       <h1>アカウント作成</h1>
       <form className="container" onSubmit={handleSubmit(submit)}>
         <FormGroup
-          label="メールアドレス"
-          register={register}
-          type="email"
-          name="email"
-          required
-        />
-        <FormGroup
-          label="名前"
+          label="ニックネーム"
           register={register}
           type="text"
           name="name"

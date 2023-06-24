@@ -11,7 +11,7 @@
     .col-md-9= form.select :kind, SongDiff.kinds_i18n.invert, {}, class: 'form-control'
   .row.mb-3
     .col-md-3.col-form-label.fw-bold made_by
-    .col-md-9= form.collection_select :made_by_id, User.all, :id, :email, { include_blank: true }, class: 'form-control'
+    .col-md-9= form.collection_select :made_by_id, User.all, :id, :name, { include_blank: true }, class: 'form-control'
   .row.mb-3
     .col-md-3.col-form-label.fw-bold 開始時間
     .col-md-9= form.time_field :time, class: 'form-control', step: 1

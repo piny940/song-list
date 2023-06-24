@@ -4,5 +4,5 @@ ja:
       user: ユーザー
     attributes:
       user:
-        name: 名前
+        name: ユーザー名
         email: メールアドレス

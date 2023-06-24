@@ -22,7 +22,6 @@ export type Thumbnails = {
 
 export type UserType = {
   id: number
-  email: string
   name: string
   created_at: string
   updated_at: string
