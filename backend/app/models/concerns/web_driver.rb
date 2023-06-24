@@ -2,7 +2,7 @@ module WebDriver
   extend ActiveSupport::Concern
 
   def self.get_driver
-    Selenium::WebDriver.logger.output = File.join("./", "selenium.log")
+    Selenium::WebDriver.logger.output = File.join('./', 'selenium.log')
     Selenium::WebDriver.logger.level = :warn
 
     options = Selenium::WebDriver::Chrome::Options.new
@@ -13,6 +13,6 @@ module WebDriver
     ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36'
     options.add_argument("--user-agent=#{ua}")
 
-    Selenium::WebDriver.for :chrome, options: options
+    Selenium::WebDriver.for :chrome, options:
   end
 end

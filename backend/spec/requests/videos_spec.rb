@@ -3,7 +3,7 @@ describe Api::VideosController do
   let(:channel) { channels(:shairu) }
   let(:video) { videos(:shairu1) }
   let(:last_video) { videos(:mashiro2) }
-  let(:endpoint) { "/api/videos" }
+  let(:endpoint) { '/api/videos' }
 
   describe 'GET /api/videos' do
     it('正常に取得できる') do
@@ -28,7 +28,7 @@ describe Api::VideosController do
     end
 
     it('channelで絞り込みができる') do
-      get endpoint, params: { channel_id: channel.id}
+      get endpoint, params: { channel_id: channel.id }
       expect(response.status).to eq 200
       json = response.parsed_body
       expect(json['videos'].count).to eq 2

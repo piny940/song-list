@@ -19,19 +19,19 @@ class SongDiff < ApplicationRecord
 
   def self.create_from_json!(song, comment_id: nil)
     time = case song['time'].length
-    when 4
-      "00:0#{song['time']}"
-    when 5
-      "00:#{song['time']}"
-    when 7
-      "0#{song['time']}"
-    else
-      song['time']
-    end
+           when 4
+             "00:0#{song['time']}"
+           when 5
+             "00:#{song['time']}"
+           when 7
+             "0#{song['time']}"
+           else
+             song['time']
+           end
     diff = create!(
       kind: 'auto',
       author: song['author'],
-      time: time,
+      time:,
       title: song['title'],
       comment_id:
     )
