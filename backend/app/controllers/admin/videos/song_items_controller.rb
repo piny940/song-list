@@ -15,7 +15,7 @@ class Admin::Videos::SongItemsController < Admin::Videos::Base
 
   def create
     @song_item = @video.song_items.new(song_item_params)
-    return render :new, status: :unprocessable_entity if !@song_item.save
+    return render :new, status: :unprocessable_entity unless @song_item.save
 
     @song_diff = @song_item.song_diffs.new(song_diff_params.merge({ kind: 'auto' }))
     if @song_diff.save
