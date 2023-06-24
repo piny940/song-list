@@ -3,7 +3,13 @@ class Admin::VideosController < Admin::Base
   before_action :set_channel
 
   def index
+    @only_song_lives = params[:only_song_lives].to_i > 0
+    @only_incompleted = params[:only_incompleted].to_i > 0
+
     scope = @channel.present? ? @channel.videos : Video
+    scope = scope.song_lives if @only_song_lives
+    scope = scope.where.not(status: 'completed') if @only_incompleted
+    
     @videos = scope.order(published_at: :desc).all
   end
 
@@ -41,6 +47,7 @@ class Admin::VideosController < Admin::Base
   private
 
   def set_channel
+    p params[:channel_id]
     @channel = Channel.find_by(id: params[:channel_id] || @video&.channel_id)
   end
 
