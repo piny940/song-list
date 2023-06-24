@@ -33,7 +33,9 @@ module BreadcrumbsHelper
        'admin/videos/comments#index', 'admin/videos/comments#show',
        'admin/videos/comments#edit'],
       ['admin/homes#show', 'admin/videos#index', 'admin/videos#show',
-       'admin/videos/comments#index', 'admin/videos/comments#new']
+       'admin/videos/comments#index', 'admin/videos/comments#new'],
+       ['admin/homes#show', 'admin/users#index', 'admin/users#new'],
+      ['admin/homes#show', 'admin/users#index', 'admin/users#show', 'admin/users#edit']
     ]
   end
 
@@ -83,6 +85,14 @@ module BreadcrumbsHelper
       { name: '編集', url: edit_admin_video_comment_path(@video, @comment) }
     when 'admin/videos/comments#new'
       { name: '新規作成', url: new_admin_video_comment_path(@video) }
+    when 'admin/users#index'
+      { name: 'ユーザー一覧', url: admin_users_path }
+    when 'admin/users#show'
+      { name: @user.name, url: admin_user_path(@user) }
+    when 'admin/users#new'
+      { name: '新規作成', url: new_admin_user_path }
+    when 'admin/users#edit'
+      { name: '編集', url: edit_admin_user_path(@user) }
     else
       raise "breadcrumbs_url に #{name} が定義されていません！"
     end
