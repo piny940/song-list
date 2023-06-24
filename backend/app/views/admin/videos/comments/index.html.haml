@@ -5,16 +5,21 @@
       %th Status
       %th Content
       %th Author
+      %th Action
       %th
 
   %tbody
     %tr
-      %td{colspan: 4}= link_to 'comment新規作成', new_admin_video_comment_path(@video), class: 'btn btn-primary w-100'
+      %td{colspan: 5}= link_to 'comment新規作成', new_admin_video_comment_path(@video), class: 'btn btn-primary w-100'
     - @comments.each do |comment|
       %tr
         %td= comment.status_i18n
         %td= comment.content
         %td= comment.author
+        %td
+          = form_with(url: admin_video_song_items_bulk_path(@video)) do |form|
+            = form.hidden_field :comment, { value: comment.content }
+            = form.submit 'セトリ作成', class: 'btn btn-outline-primary btn-sm'
         %td
           = link_to '閲覧', admin_video_comment_path(@video, comment), class: 'btn btn-sm btn-outline-primary'
           = link_to '編集', edit_admin_video_comment_path(@video, comment), class: 'btn btn-sm btn-outline-primary'
