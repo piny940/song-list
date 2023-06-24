@@ -1,4 +1,6 @@
 %h1 SongItem新規作成
+.row.mt-3.mb-5= link_to 'コメントから一括作成', new_admin_video_bulk_path(@video), class: 'btn btn-primary'
+
 = render "form", song_item: @song_item
 
 = link_to '戻る', admin_video_song_items_path(@video)

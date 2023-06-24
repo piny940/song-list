@@ -9,9 +9,6 @@
   .row.mb-3
     .col-md-3.col-form-label.fw-bold Video
     .col-md-9= form.collection_select :video_id, Video.all, :id, :title, {}, class: 'form-control'
-  .row.mb-3
-    .col-md-3.col-form-label.fw-bold コメント
-    .col-md-9= text_area_tag :comment, '', size: '20x10', class: 'form-control'
   .row
     .col
       = form.submit '保存', class: 'btn btn-primary d-block w-100'
