@@ -18,7 +18,7 @@
         %td= comment.author
         %td
           = form_with(url: admin_video_song_items_bulk_path(@video)) do |form|
-            = form.hidden_field :comment, { value: comment.content }
+            = form.hidden_field :comment_id, { value: comment.id }
             = form.submit 'セトリ作成', class: 'btn btn-outline-primary btn-sm'
         %td
           = link_to '閲覧', admin_video_comment_path(@video, comment), class: 'btn btn-sm btn-outline-primary'
