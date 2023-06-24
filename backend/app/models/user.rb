@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
   enum kind: {
     member: 0,
+    banned: 5,
     admin: 10
   }, _prefix: true
 end

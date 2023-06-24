@@ -1,0 +1,6 @@
+%h1 User編集
+= render "form", user: @user
+
+= link_to '閲覧', admin_user_path(@user)
+\|
+= link_to '戻る', admin_users_path
