@@ -3,10 +3,10 @@
 %h1 Video一覧
 .px-2.my-3
   %label.form-check
-    = check_box_tag :only_song_lives, '1', @only_song_lives, { class: 'form-check-input' }
+    = check_box_tag :only_song_lives, '1', @only_song_lives, { class: 'form-check-input', id: 'only-song-lives' }
     .check_box_label 歌枠のみ表示
   %label.form-check
-    = check_box_tag :only_incompleted, '1', @only_incompleted, { class: 'form-check-input' }
+    = check_box_tag :only_incompleted, '1', @only_incompleted, { class: 'form-check-input', id: 'only-incompleted' }
     .check_box_label completeでない配信のみ表示
 
 %table.table
