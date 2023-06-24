@@ -1,9 +1,9 @@
 class Admin::VideosController < Admin::Base
   before_action :set_video, only: %i[show edit update destroy]
+  before_action :set_channel
 
   def index
-    channel = Channel.find_by(id: params[:channel_id])
-    scope = channel.present? ? channel.videos : Video
+    scope = @channel.present? ? @channel.videos : Video
     @videos = scope.order(published_at: :desc).all
   end
 
@@ -39,6 +39,10 @@ class Admin::VideosController < Admin::Base
   end
 
   private
+
+  def set_channel
+    @channel = Channel.find_by(id: params[:channel_id] || @video&.channel_id)
+  end
 
   def set_video
     @video = Video.find(params[:id])

@@ -8,11 +8,12 @@
       %th PublishedAt
       %th Status
       %th Title
+      %th Action
       %th Links
 
   %tbody
     %tr
-      %td{colspan: 7}= link_to 'video新規作成', new_admin_video_path, class: 'btn btn-primary w-100'
+      %td{colspan: 8}= link_to 'video新規作成', new_admin_video_path, class: 'btn btn-primary w-100'
     - @videos.each do |video|
       %tr
         %th= image_tag video.thumbnails["high"]["url"], width: 200
@@ -21,6 +22,9 @@
         %td= video.published_at
         %td= video.status
         %td= video.title
+        %td
+          = form_with(url: admin_video_song_items_bulk_path(video)) do |form|
+            = form.submit 'セトリ作成', class: 'btn btn-sm btn-outline-primary'
         %td
           = link_to '歌リスト', admin_video_song_items_path(video), class: 'btn btn-sm btn-outline-primary'
           = link_to 'コメント一覧', admin_video_comments_path(video), class: 'btn btn-sm btn-outline-primary'

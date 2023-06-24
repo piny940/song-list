@@ -38,8 +38,8 @@ module Youtube
       while video_ids.count != counts[0]
         counts.push(video_ids.count)
         counts.shift
-        video_ids.merge driver.find_elements(:css, '#video-title-link').map{|el| el.attribute('href').split('=')[1]}
-        driver.action.scroll_by(0, 10000).perform
+        video_ids.merge(driver.find_elements(:css, '#video-title-link').map { |el| el.attribute('href').split('=')[1] })
+        driver.action.scroll_by(0, 10_000).perform
       end
     ensure
       driver.quit
