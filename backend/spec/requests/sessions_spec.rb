@@ -4,30 +4,29 @@ describe Api::SessionsController do
   let(:user) { User.last }
 
   before do
-    User.create!(email: 'alice@example.com', name: 'Alice', password: 'password', password_confirmation: 'password')
+    User.create!(name: 'Alice', password: 'password', password_confirmation: 'password')
   end
 
   describe('POST /api/session') do
     it('正常にログインできる') do
-      post endpoint, params: { email: user.email, password: 'password' }
+      post endpoint, params: { name: user.name, password: 'password' }
       expect(response.status).to eq 200
       json = response.parsed_body
-      expect(json['user']['email']).to eq user.email
       expect(json['user']['name']).to eq user.name
       expect(json['message']).to eq 'ログインしました'
 
       get user_endpoint
       expect(response.status).to eq 200
       json = response.parsed_body
-      expect(json['user']['email']).to eq 'alice@example.com'
+      expect(json['user']['name']).to eq user.name
     end
 
     it('パスワードが違う場合はログインできない') do
-      post endpoint, params: { email: user.email, password: 'Password' }
+      post endpoint, params: { name: user.name, password: 'Password' }
       expect(response.status).to eq 400
       json = response.parsed_body
       expect(json['user']).to be_nil
-      expect(json['message']).to eq 'メールアドレスまたはパスワードが違います'
+      expect(json['message']).to eq 'ユーザー名またはパスワードが違います'
 
       get user_endpoint
       expect(response.status).to eq 200
@@ -36,11 +35,11 @@ describe Api::SessionsController do
     end
 
     it('メールアドレスが違う場合はログインできない') do
-      post endpoint, params: { email: 'Alice@example.com', password: 'password' }
+      post endpoint, params: { name: 'Tets', password: 'password' }
       expect(response.status).to eq 400
       json = response.parsed_body
       expect(json['user']).to be_nil
-      expect(json['message']).to eq 'メールアドレスまたはパスワードが違います'
+      expect(json['message']).to eq 'ユーザー名またはパスワードが違います'
 
       get user_endpoint
       expect(response.status).to eq 200

@@ -1,12 +1,12 @@
 class Api::SessionsController < Api::Base
   def create
-    user = User.find_by(email: params[:email])
+    user = User.find_by(name: params[:name])
     if user&.valid_password?(params[:password])
       sign_in user
       render json: { message: 'ログインしました',
                      user: }, status: :ok
     else
-      render json: { message: 'メールアドレスまたはパスワードが違います' }, status: :bad_request
+      render json: { message: 'ユーザー名またはパスワードが違います' }, status: :bad_request
     end
   end
 
