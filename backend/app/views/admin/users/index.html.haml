@@ -1,0 +1,21 @@
+%h1 User一覧
+%table.table
+  %thead.table-light
+    %tr
+      %th ID
+      %th Kind
+      %th Name
+      %th
+
+  %tbody
+    %tr
+      %td{colspan: 8}= link_to 'user新規作成', new_admin_user_path, class: 'btn btn-primary w-100'
+    - @users.each do |user|
+      %tr
+        %td= user.id
+        %td= user.kind_i18n
+        %td= user.name
+        %td
+          = link_to '閲覧', admin_user_path(user), class: 'btn btn-sm btn-outline-primary'
+          = link_to '編集', edit_admin_user_path(user), class: 'btn btn-sm btn-outline-primary'
+          = link_to '削除', admin_user_path(user), method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: 'btn btn-sm btn-outline-danger'
