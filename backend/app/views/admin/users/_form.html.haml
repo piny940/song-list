@@ -9,6 +9,12 @@
     .col-md-3.col-form-label.fw-bold Name
     .col-md-9= form.text_field :name, class: 'form-control'
   .row.mb-3
+    .col-md-3.col-form-label.fw-bold Password
+    .col-md-9= form.password_field :password, class: 'form-control'
+  .row.mb-3
+    .col-md-3.col-form-label.fw-bold Password confirmation
+    .col-md-9= form.password_field :password_confirmation, class: 'form-control'
+  .row.mb-3
     .col-md-3.col-form-label.fw-bold Kind
     .col-md-9= form.select :kind, User.kinds_i18n.invert, {}, class: 'form-control'
   .row
