@@ -11,7 +11,7 @@ Rails.application.routes.draw do
         resources :song_items do
           resources :song_diffs
         end
-        scope module: :song_items do
+        namespace :song_items do
           resource :bulk, only: %i[new create]
         end
         resources :comments
