@@ -50,7 +50,7 @@ module BreadcrumbsHelper
     when 'admin/channels#edit'
       { name: '編集', url: edit_admin_channel_path(@channel) }
     when 'admin/videos#index'
-      { name: '動画一覧', url: admin_videos_path }
+      { name: '動画一覧', url: admin_videos_path(channel_id: @channel&.id) }
     when 'admin/videos#show'
       { name: @video.title[0, 10], url: admin_video_path(@video) }
     when 'admin/videos#edit'

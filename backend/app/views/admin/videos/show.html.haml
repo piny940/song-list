@@ -1,5 +1,10 @@
 %h1 Video
 .row.py-1
+  .col-md-3.fw-bold リンク
+  .col-md-9.row
+    .col-6.px-1= link_to '歌一覧', admin_video_song_items_path(@video), class: 'btn btn-outline-primary w-100'
+    .col-6.px-1= link_to 'コメント一覧', admin_video_comments_path(@video), class: 'btn btn-outline-primary w-100'
+.row.py-1
   .col-md-3.fw-bold Title
   .col-md-9= @video.title
 .row.py-1
