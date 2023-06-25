@@ -15,6 +15,9 @@
     .col-md-3.col-form-label.fw-bold name
     .col-md-9= form.text_field :name, class: 'form-control'
   .row.mb-3
+    .col-md-3.col-form-label.fw-bold kind
+    .col-md-9= form.select :kind, Channel.kinds_i18n.invert, {}, class: 'form-control'
+  .row.mb-3
     .col-md-3.col-form-label.fw-bold twitter_id
     .col-md-9= form.text_field :twitter_id, class: 'form-control'
   .row

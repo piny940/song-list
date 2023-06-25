@@ -5,17 +5,19 @@
       %th アイコン
       %th Channel id
       %th 名前
+      %th Kind
       %th Twitter
       %th リンク
 
   %tbody
     %tr
-      %td{colspan: 5}= link_to 'channel新規作成', new_admin_channel_path, class: 'btn btn-primary w-100'
+      %td{colspan: 6}= link_to 'channel新規作成', new_admin_channel_path, class: 'btn btn-primary w-100'
     - @channels.each do |channel|
       %tr
         %td= image_tag channel.thumbnails["default"]["url"], width: 100
         %td= channel.channel_id
         %td= channel.name
+        %td= channel.kind
         %td= channel.twitter_id
         %td
           = link_to '動画一覧', admin_videos_path(channel_id: channel.id), class: 'btn btn-sm btn-outline-primary'
