@@ -7,4 +7,9 @@ namespace :videos do
     Video.search_and_create_song_items!
     p 'Completed searching setlist'
   end
+
+  desc '過去の歌情報からauthorカラムを埋める'
+  task update_songs_author_from_history: :environment do
+    Video.update_songs_author_from_history!
+  end
 end

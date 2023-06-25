@@ -35,14 +35,7 @@ class SongItem < ApplicationRecord
       SongDiff.where.not(title: ['', nil]).where.not(author: ['', nil]).where.not(time: ['', nil]))
   end
 
-  def update_author_from_spotify!(spotify_token = nil)
-    return self if title.blank?
-
-    song_data = Spotify.get_songs_data(title, limit: 1, token: spotify_token).first
-    return self if song_data.blank?
-
-    author = song_data['artists'].pluck('name').join(', ')
-
+  def update_author!(author)
     if latest_diff&.kind == 'auto'
       latest_diff.update!(author:)
     else
@@ -54,6 +47,28 @@ class SongItem < ApplicationRecord
       )
       diff.update_status!('approved')
     end
+  end
+
+  def update_author_from_histroy!
+    return self if title.blank?
+
+    # 同一タイトルのSongItemの中で最も採用されているauthor名
+    author = SongDiff.where(
+      id: SongItem.includes(:latest_diff).where(latest_diff: { title: }).pluck(:latest_diff_id)
+    ).group(:author).count.max{|x, y| x[1] <=> y[1]}&.first
+    update_author!(author)
+  end
+
+  # 多分使わない
+  def update_author_from_spotify!(spotify_token = nil)
+    return self if title.blank?
+
+    song_data = Spotify.get_song_data(title, token: spotify_token)
+    return self if song_data.blank?
+
+    author = song_data['artists'].pluck('name').join(', ')
+
+    update_author!(author)
   end
 
   def self.create_from_comment_content!(content)
@@ -83,11 +98,11 @@ class SongItem < ApplicationRecord
         content: comment_content
       }
     ]
-    content = OpenAi.complete_chat(messages)
-    content = content.gsub(/unknown|UNKNOWN|/, '')
-    content = content.gsub(/"-"/, '""')
 
     begin
+      content = OpenAi.complete_chat(messages)
+      content = content.gsub(/(u|U)nknown|UNKNOWN|/, '')
+      content = content.gsub(/"-"/, '""')
       JSON.parse(content)
     rescue StandardError
       []
