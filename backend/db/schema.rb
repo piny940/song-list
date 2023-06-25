@@ -21,7 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_25_102518) do
     t.json "response_json"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "published", default: false, null: false
+    t.integer "kind", default: 0, null: false
     t.index ["channel_id"], name: "index_channels_on_channel_id", unique: true
   end
 
