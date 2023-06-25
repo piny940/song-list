@@ -52,8 +52,8 @@ class SongItem < ApplicationRecord
 
     # 同一タイトルのSongItemの中で最も採用されているauthor名
     author = SongDiff.where(
-      id: SongItem.includes(:latest_diff).where(latest_diff: { title: }).where.not(latest_diff: { author: [nil, ''] }).pluck(:latest_diff_id)
-    ).group(:author).count.max{|x, y| x[1] <=> y[1]}&.first
+      id: SongItem.includes(:latest_diff).where(latest_diff: { title: }).where.not(latest_diff: { author: [nil, ''] }).select(:latest_diff_id)
+    ).group(:author).count.max { |x, y| x[1] <=> y[1] }&.first
     update_author!(author)
   end
 
@@ -109,7 +109,7 @@ class SongItem < ApplicationRecord
   def self.create_from_json!(songs, comment_id: nil)
     if all.present?
       # SongItemが既に存在する場合はセトリ・コメントをすべて削除して1から確認する
-      all.each(&:destroy)
+      all.find_each(&:destroy)
       new.video.comments.status_completed.each(&:destroy)
     end
 

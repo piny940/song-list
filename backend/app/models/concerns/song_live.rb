@@ -8,11 +8,11 @@ module SongLive
 
     def search_and_create_song_items!
       where(status: %w[ready fetched]) \
-           .order(published_at: :desc).all.each(&:search_and_create_song_items!)
+        .order(published_at: :desc).all.each(&:search_and_create_song_items!)
     end
 
     def update_songs_author_from_history!
-      where(status: %w[song_items_created fetched_history spotify_fetched spotify_completed])\
+      where(status: %w[song_items_created fetched_history spotify_fetched spotify_completed]) \
         .each(&:update_songs_author_from_history!)
     end
 
@@ -44,7 +44,7 @@ module SongLive
       # SongItemsが見つかったらそこで終了
       if song_items.present?
         if song_items.filter(&:completed?).count == song_items.count
-          update!(status: 'completed') 
+          update!(status: 'completed')
         else
           update!(status: 'song_items_created')
         end
@@ -75,14 +75,14 @@ module SongLive
         song_items = comment.search_and_create_song_items!
 
         # SongItemsが見つかり次第終了
-        if song_items.present?
-          if song_items.filter(&:completed?).count == song_items.count
-            update!(status: 'completed') 
-          else
-            update!(status: 'song_items_created')
-          end
-          return song_items
+        next if song_items.blank?
+
+        if song_items.filter(&:completed?).count == song_items.count
+          update!(status: 'completed')
+        else
+          update!(status: 'song_items_created')
         end
+        return song_items
       end
 
       page_token = response.next_page_token
