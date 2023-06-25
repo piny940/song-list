@@ -2,7 +2,7 @@ class Admin::Videos::SongItemsController < Admin::Videos::Base
   before_action :set_song_item, only: %i[show edit update destroy]
 
   def index
-    @song_items = @video.song_items.includes(:latest_diff).all
+    @song_items = @video.song_items.includes(:latest_diff).order('song_diffs.time asc')
   end
 
   def show; end
