@@ -21,4 +21,9 @@ namespace :videos do
   task update_songs_author_from_history: :environment do
     Video.update_songs_author_from_history!
   end
+
+  desc 'Spotifyからauthorカラムを埋める'
+  task update_songs_author_from_spotify: :environment do
+    Video.update_songs_author_from_spotify!
+  end
 end

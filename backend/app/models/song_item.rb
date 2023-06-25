@@ -57,7 +57,6 @@ class SongItem < ApplicationRecord
     update_author!(author)
   end
 
-  # 多分使わない
   def update_author_from_spotify!(spotify_token = nil)
     return self if title.blank?
 

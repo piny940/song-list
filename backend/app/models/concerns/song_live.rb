@@ -19,10 +19,6 @@ module SongLive
     def update_songs_author_from_spotify!
       token = Spotify.get_token
       where(status: %w[song_items_created fetched_history spotify_fetched]).each do |video|
-        if video.song_items.completed.count == video.song_items.count
-          update!(status: 'completed')
-          next
-        end
         video.update_songs_author_from_spotify!(token)
       end
     end
@@ -106,9 +102,9 @@ module SongLive
   def update_songs_author_from_spotify!(spotify_token = nil)
     spotify_token ||= Spotify.get_token
     update!(status: 'spotify_fetched')
-    song_items.includes(:latest_diff).where(latest_diff_id: { author: [nil, ''] }).find_each do |song_item|
+    song_items.includes(:latest_diff).where(latest_diff: { author: [nil, ''] }).find_each do |song_item|
       song_item.update_author_from_spotify!(spotify_token)
     end
-    update!(status: 'completed') if song_items.completed.count == song_items.count
+    update!(status: 'spotify_completed') if song_items.completed.count == song_items.count
   end
 end
