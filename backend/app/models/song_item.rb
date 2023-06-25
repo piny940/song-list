@@ -98,11 +98,11 @@ class SongItem < ApplicationRecord
         content: comment_content
       }
     ]
-    content = OpenAi.complete_chat(messages)
-    content = content.gsub(/(u|U)nknown|UNKNOWN|/, '')
-    content = content.gsub(/"-"/, '""')
 
     begin
+      content = OpenAi.complete_chat(messages)
+      content = content.gsub(/(u|U)nknown|UNKNOWN|/, '')
+      content = content.gsub(/"-"/, '""')
       JSON.parse(content)
     rescue StandardError
       []
