@@ -17,7 +17,9 @@ class Video < ApplicationRecord
   enum status: {
     ready: 0,
     fetched: 10,
-    completed: 20
+    song_items_created: 20,
+    spotify_fetched: 30,
+    completed: 40
   }, _prefix: true
 
   def self.fetch_and_create!(video_ids)

@@ -11,6 +11,8 @@ class Admin::UsersController < Admin::Base
     @user = User.new
   end
 
+  def edit; end
+
   def create
     @user = User.new(user_params)
     if @user.save
@@ -19,8 +21,6 @@ class Admin::UsersController < Admin::Base
       render :new, :unprocessable_entity
     end
   end
-
-  def edit; end
 
   def update
     if @user.update(user_params)
