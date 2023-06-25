@@ -14,7 +14,7 @@
     .col-md-9= form.collection_select :made_by_id, User.all, :id, :name, { include_blank: true }, class: 'form-control'
   .row.mb-3
     .col-md-3.col-form-label.fw-bold 開始時間
-    .col-md-9= form.time_field :time, class: 'form-control', step: 1
+    .col-md-9= form.text_field :time, class: 'form-control', step: 1
   .row.mb-3
     .col-md-3.col-form-label.fw-bold タイトル
     .col-md-9= form.text_field :title, class: 'form-control'
