@@ -16,10 +16,11 @@ class Video < ApplicationRecord
   # セトリが確定したら(= セトリが見つかった or 歌枠ではなかったら)completed
   enum status: {
     ready: 0,
-    fetched: 10,
-    song_items_created: 20,
-    spotify_fetched: 30,
-    completed: 40
+    fetched: 10, # コメントにセトリを探しに行った
+    song_items_created: 20, # セトリ(SongItem)を作成した
+    fetched_history: 25, # 過去のSongDiffを見てauthorの空白部分で埋められる部分を埋めた
+    spotify_fetched: 30, # spotifyのデータからauthorの空白部分で埋められる部分を埋めた
+    completed: 40 # time, title, authorが埋まった
   }, _prefix: true
 
   def self.fetch_and_create!(video_ids)
