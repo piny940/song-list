@@ -7,7 +7,7 @@ module SongLive
     end
 
     def search_and_create_song_items!
-      where.not(status: %w[song_items_created spotify_fetched completed]) \
+      where(status: %w[ready fetched]) \
            .order(published_at: :desc).all.each(&:search_and_create_song_items!)
     end
 
@@ -18,7 +18,7 @@ module SongLive
 
     def update_songs_author_from_spotify!
       token = Spotify.get_token
-      where(status: %w[song_items_created spotify_fetched]).each do |video|
+      where(status: %w[song_items_created fetched_history spotify_fetched]).each do |video|
         if video.song_items.completed.count == video.song_items.count
           update!(status: 'completed')
           next
@@ -39,6 +39,11 @@ module SongLive
       return []
     end
 
+    if song_items.present?
+      # SongItemが存在する場合はセトリ・コメントをすべて削除して1から確認する
+      song_items.each(&:destroy)
+      comments.status_completed.each(&:destroy)
+    end
     update!(status: 'fetched')
 
     # completedではないコメントは再度調べる
@@ -47,7 +52,7 @@ module SongLive
 
       # SongItemsが見つかったらそこで終了
       if song_items.present?
-        if song_items.completed.count == song_items.count
+        if song_items.filter(&:completed?).count == song_items.count
           update!(status: 'completed') 
         else
           update!(status: 'song_items_created')
@@ -80,7 +85,7 @@ module SongLive
 
         # SongItemsが見つかり次第終了
         if song_items.present?
-          if song_items.completed.count == song_items.count
+          if song_items.filter(&:completed?).count == song_items.count
             update!(status: 'completed') 
           else
             update!(status: 'song_items_created')
