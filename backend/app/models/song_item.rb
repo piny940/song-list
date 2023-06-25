@@ -8,7 +8,7 @@ class SongItem < ApplicationRecord
   end
 
   def self.active
-    diffs = SongDiff.status_approved.where.not(title: [nil, '']).where.not(author: [nil, ''])
+    diffs = SongDiff.status_approved.where.not(title: [nil, '']).where.not(time: [nil, ''])
     where(latest_diff_id: diffs.select(:id))
   end
 
