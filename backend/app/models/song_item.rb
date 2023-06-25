@@ -26,6 +26,16 @@ class SongItem < ApplicationRecord
     latest_diff&.time
   end
 
+  def completed?
+    title.present? && author.present? && time.present?
+  end
+
+  def self.completed
+    where(latest_diff_id:
+      SongDiff.where.not(title: ['', nil]).where.not(author: ['', nil]).where.not(time: ['', nil])
+    )
+  end
+
   def update_author_from_spotify!(spotify_token=nil)
     return self if title.blank?
 

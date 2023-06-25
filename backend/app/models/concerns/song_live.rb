@@ -72,4 +72,13 @@ module SongLive
     # SongItemsが見つからなかったらここに来る
     []
   end
+
+  def self.update_songs_author_from_spotify!
+    token = Spotify.get_token
+    where(status: %w[song_items_created spotify_fetched]).each do |video|
+      video.update!(status: 'spotify_fetched')
+      video.song_items.update_author_from_spotify!(token)
+      video.update!(status: 'completed') if (video.song_items.completed.count == video.song_items.count)
+    end
+  end
 end
