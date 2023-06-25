@@ -39,11 +39,6 @@ module SongLive
       return []
     end
 
-    if song_items.present?
-      # SongItemが存在する場合はセトリ・コメントをすべて削除して1から確認する
-      song_items.each(&:destroy)
-      comments.status_completed.each(&:destroy)
-    end
     update!(status: 'fetched')
 
     # completedではないコメントは再度調べる

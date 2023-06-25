@@ -108,6 +108,12 @@ class SongItem < ApplicationRecord
   end
 
   def self.create_from_json!(songs, comment_id: nil)
+    if all.present?
+      # SongItemが既に存在する場合はセトリ・コメントをすべて削除して1から確認する
+      all.each(&:destroy)
+      new.video.comments.status_completed.each(&:destroy)
+    end
+
     song_items = []
     songs.each do |song|
       song_item = create!
