@@ -12,14 +12,15 @@ class Video < ApplicationRecord
     short: 20
   }, _prefix: true
 
-  # コメントにセトリを探しに行ったらfetched
-  # セトリが確定したら(= セトリが見つかった or 歌枠ではなかったら)completed
+  # 方針: コメントを探しに行く→セトリ作成→過去のSongDiffからauthorを埋める→Spotifyを使用
+  # ただしSpotifyは精度が低いためspotify_completedの場合も適宜過去のSongDiffからauthorを更新する
   enum status: {
     ready: 0,
     fetched: 10, # コメントにセトリを探しに行った
     song_items_created: 20, # セトリ(SongItem)を作成した
     fetched_history: 25, # 過去のSongDiffを見てauthorの空白部分で埋められる部分を埋めた
     spotify_fetched: 30, # spotifyのデータからauthorの空白部分で埋められる部分を埋めた
+    spotify_completed: 35, # spotifyのデータからauthorの空白部分を埋めた
     completed: 40 # time, title, authorが埋まった
   }, _prefix: true
 
