@@ -15,7 +15,7 @@ module Spotify
   end
 
   SEARCH_ENDPOINT = 'https://api.spotify.com/v1/search'.freeze
-  def self.get_songs_data(title, token: nil)
+  def self.get_song_data(title, token: nil)
     token ||= get_token
     headers = {
       Authorization: "Bearer #{token}"
@@ -43,7 +43,6 @@ module Spotify
     response = Net::HTTP.get_response(uri, headers)
     json = JSON.parse(response.body)
     item2 = json.dig('tracks', 'items')&.first
-
-    item2&.dig('popularity')&.< item1&.dig('popularity') ? item1 : item2
+    (item2&.dig('popularity').to_i || 0) < (item1&.dig('popularity').to_i || 0) ? item1 : item2
   end
 end

@@ -63,7 +63,7 @@ class SongItem < ApplicationRecord
   def update_author_from_spotify!(spotify_token = nil)
     return self if title.blank?
 
-    song_data = Spotify.get_songs_data(title, limit: 1, token: spotify_token).first
+    song_data = Spotify.get_song_data(title, token: spotify_token)
     return self if song_data.blank?
 
     author = song_data['artists'].pluck('name').join(', ')
