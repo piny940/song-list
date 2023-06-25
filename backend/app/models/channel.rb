@@ -8,6 +8,11 @@ class Channel < ApplicationRecord
     published: 100
   }, _prefix: true
 
+  enum status: {
+    ready: 0,
+    videos_fetched: 50
+  }, _prefix: true
+
   def self.fetch_and_create!(channel_ids)
     response = Youtube.get_channels(channel_ids)
     channels = []
@@ -66,5 +71,6 @@ class Channel < ApplicationRecord
       videos.fetch_and_create!(video_ids[i * 50...(i + 1) * 50])
       i += 1
     end
+    update!(status: 'videos_fetched')
   end
 end
