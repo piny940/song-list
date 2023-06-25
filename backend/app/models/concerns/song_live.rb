@@ -31,7 +31,11 @@ module SongLive
 
       # SongItemsが見つかったらそこで終了
       if song_items.present?
-        update!(status: 'song_items_created')
+        if song_items.completed.count == song_items.count
+          update!(status: 'completed') 
+        else
+          update!(status: 'song_items_created')
+        end
         return song_items
       end
     end
@@ -60,7 +64,11 @@ module SongLive
 
         # SongItemsが見つかり次第終了
         if song_items.present?
-          update!(status: 'song_items_created')
+          if song_items.completed.count == song_items.count
+            update!(status: 'completed') 
+          else
+            update!(status: 'song_items_created')
+          end
           return song_items
         end
       end
@@ -85,6 +93,10 @@ module SongLive
   def self.update_songs_author_from_spotify!
     token = Spotify.get_token
     where(status: %w[song_items_created spotify_fetched]).each do |video|
+      if song_items.completed.count == song_items.count
+        update!(status: 'completed')
+        next
+      end
       video.update_author_from_spotify!(token)
     end
   end
