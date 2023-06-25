@@ -128,6 +128,9 @@ GEM
     enum_help (0.0.19)
       activesupport (>= 3.0.0)
     erubi (1.12.0)
+    exception_notification (4.5.0)
+      actionmailer (>= 5.2, < 8)
+      activesupport (>= 5.2, < 8)
     faraday (2.7.5)
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
@@ -401,6 +404,7 @@ DEPENDENCIES
   devise-i18n
   dotenv-rails
   enum_help
+  exception_notification
   google-apis-youtube_v3
   google-cloud-storage
   haml
