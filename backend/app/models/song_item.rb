@@ -27,7 +27,6 @@ class SongItem < ApplicationRecord
   end
 
   def update_author_from_spotify!(spotify_token=nil)
-    return self if author.present?
     return self if title.blank?
 
     song_data = Spotify.get_songs_data(title, limit: 1, token: spotify_token).first
@@ -93,5 +92,12 @@ class SongItem < ApplicationRecord
       song_items.push(song_item)
     end
     song_items
+  end
+
+  def self.update_author_from_spotify!(spotify_token=nil)
+    spotify_token ||= Spotify.get_token
+    where(latest_diff_id: SongDiff.where(author: [nil, ""])).each do |song_item|
+      song_item.update_author_from_spotify!(spotify_token)
+    end
   end
 end
