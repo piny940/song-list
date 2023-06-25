@@ -118,3 +118,6 @@ gem 'google-cloud-storage'
 
 # スクレイピング
 gem 'selenium-webdriver'
+
+# slackエラー通知
+gem 'exception_notification'

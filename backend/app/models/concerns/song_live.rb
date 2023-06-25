@@ -35,6 +35,10 @@ module SongLive
       return []
     end
 
+    # 一旦セトリ・コメントをすべて削除して1から確認する
+    song_items.find_each(&:destroy)
+    comments.status_completed.each(&:destroy)
+
     update!(status: 'fetched')
 
     # completedではないコメントは再度調べる
