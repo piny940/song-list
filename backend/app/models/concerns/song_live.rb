@@ -10,6 +10,22 @@ module SongLive
       where.not(status: %w[song_items_created spotify_fetched completed]) \
            .order(published_at: :desc).all.each(&:search_and_create_song_items!)
     end
+
+    def update_songs_author_from_history!
+      where(status: %w[song_items_created fetched_history spotify_fetched spotify_completed])\
+        .each(&:update_songs_author_from_history!)
+    end
+
+    def update_songs_author_from_spotify!
+      token = Spotify.get_token
+      where(status: %w[song_items_created spotify_fetched]).each do |video|
+        if video.song_items.completed.count == video.song_items.count
+          update!(status: 'completed')
+          next
+        end
+        video.update_author_from_spotify!(token)
+      end
+    end
   end
 
   def song_live?
@@ -87,11 +103,6 @@ module SongLive
     update!(status: 'completed') if song_items.completed.count == song_items.count
   end
 
-  def self.update_songs_author_from_history!
-    where(status: %w[song_items_created fetched_history spotify_fetched spotify_completed])\
-      .each(&:update_songs_author_from_history!)
-  end
-
   def update_songs_author_from_spotify!(spotify_token = nil)
     spotify_token ||= Spotify.get_token
     update!(status: 'spotify_fetched')
@@ -99,16 +110,5 @@ module SongLive
       song_item.update_author_from_spotify!(spotify_token)
     end
     update!(status: 'completed') if song_items.completed.count == song_items.count
-  end
-
-  def self.update_songs_author_from_spotify!
-    token = Spotify.get_token
-    where(status: %w[song_items_created spotify_fetched]).each do |video|
-      if video.song_items.completed.count == video.song_items.count
-        update!(status: 'completed')
-        next
-      end
-      video.update_author_from_spotify!(token)
-    end
   end
 end
