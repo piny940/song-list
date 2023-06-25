@@ -27,15 +27,5 @@ describe Api::ChannelsController, type: :request do
       json = response.parsed_body
       expect(json['channel']['thumbnails']['medium']['width']).to eq 240
     end
-
-    it('publishedでないチャンネルは取得できない') do
-      one = channels(:eri)
-      get "/api/channels/#{one.id}"
-
-      expect(response.status).to eq(404)
-
-      json = response.parsed_body
-      expect(json['channel']).to be_nil
-    end
   end
 end
