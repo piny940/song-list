@@ -54,7 +54,7 @@ class SongItem < ApplicationRecord
 
     # 同一タイトルのSongItemの中で最も採用されているauthor名
     author = SongDiff.where(
-      id: SongItem.includes(:latest_diff).where(latest_diff: { title: }).pluck(:latest_diff_id)
+      id: SongItem.includes(:latest_diff).where(latest_diff: { title: }).where.not(latest_diff: { author: [nil, ''] }).pluck(:latest_diff_id)
     ).group(:author).count.max{|x, y| x[1] <=> y[1]}&.first
     update_author!(author)
   end
