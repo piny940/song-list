@@ -26,7 +26,7 @@ class Api::VideosController < Api::Base
   def set_channel
     return if params[:channel_id].blank?
 
-    @channel = Channel.find_by(id: params[:channel_id])
+    @channel = Channel.kind_published.find_by(id: params[:channel_id])
     if @channel.blank?
       render json: {
         message: 'Channel not found'

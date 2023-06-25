@@ -2,6 +2,7 @@ shairu:
   name: Shairu.chしゃいる
   channel_id: UCe_8qM8Wk4cU5oD3WO07gZg
   twitter_id: hoge
+  kind: published
   response_json:
     {
       "etag": "HAaxd7j8Ol22PWVfnayFkJS1DAc",
@@ -42,6 +43,7 @@ mashiro:
   channel_id: UCewRhO43UmIohSBzW2HMheA
   name: 凪乃ましろ / Nagino Mashiro
   twitter_id:
+  kind: published
   response_json:
     {
       "etag": "TG0f9n0NYrGrjEifK7_bvNN-qYQ",
@@ -80,5 +82,49 @@ mashiro:
                 },
             },
           "title": "凪乃ましろ / Nagino Mashiro",
+        },
+    }
+
+eri:
+  channel_id: UCQYzqKdEiWfyYU1IAnN2S
+  name: Eri Ch.紅記えり
+  response_json:
+    {
+      "etag": "NCy4ms4P_ELZ0Nn1xN6RpE_Gm5g",
+      "id": "UCQYzqKdEiWfyYU1IAnN2S-Q",
+      "kind": "youtube#channel",
+      "snippet":
+        {
+          "country": "JP",
+          "custom_url": "@kurenagieri",
+          "description": "わんわん、こんえり～！\n個人勢VtuberグループGuildCQ所属のナース担当！　紅記えり（Kurenagi Eri）だよ～❣️\n\n絵を描く事と、お話することが大好きです💉🐾\n\n\nあなたと一緒に、私も成長したい。\nあたたかく見守っていてね(*`×´*)☆*.\n\n\nチャンネル登録や高評価、コメント等を頂けましたらとても励みになります💕\n気軽に話しかけてね🐶わんわん！\n\n\n\n━━━━━━━━━━━━━━━━━━\n\n◎定期シチュエーションボイス投稿　金曜日20:00～\n\n━━━━━━━━━━━━━━━━━━\n\n\n◎Link\nTwitter : @Kurenagieri\nhttps://twitter.com/Kurenagieri\n\nSkeb : \nhttps://skeb.jp/@Kurenagieri\n\nFANBOX : \nhttps://kurenagieri.fanbox.cc/\n\nご連絡先 :\nhttps://lit.link/kurenagieri\n\nMemberShip : \nhttps://www.youtube.com/channel/UCQYzqKdEiWfyYU1IAnN2S-Q/join\n\n♥週1回のメンバー限定配信！\n♥えりが描いたオリジナルスタンプ✨\n♥メンバー限定コミュニティ投稿(週1ペース!)など....💕\n\n\n━━━━━━━━━━━━━━━━━━\n\n総合 #紅記えり\n配信 #くれな記録\n切り抜き　　 #切りぬ記えり\nファンアート #えりのイラスト帳 \nファンネーム えり民\nファンマーク 💉♥\n\n━━━━━━━━━━━━━━━━━━\n\n2022/02/11 初配信\n2022/02/28 収益化＆メンバーシップ開始\n2022/05/16 登録者7777人達成\n2022/07/11 登録者10000人達成\n2023/01/02 登録者20000人達成\n",
+          "localized":
+            {
+              "description": "わんわん、こんえり～！\n個人勢VtuberグループGuildCQ所属のナース担当！　紅記えり（Kurenagi Eri）だよ～❣️\n\n絵を描く事と、お話することが大好きです💉🐾\n\n\nあなたと一緒に、私も成長したい。\nあたたかく見守っていてね(*`×´*)☆*.\n\n\nチャンネル登録や高評価、コメント等を頂けましたらとても励みになります💕\n気軽に話しかけてね🐶わんわん！\n\n\n\n━━━━━━━━━━━━━━━━━━\n\n◎定期シチュエーションボイス投稿　金曜日20:00～\n\n━━━━━━━━━━━━━━━━━━\n\n\n◎Link\nTwitter : @Kurenagieri\nhttps://twitter.com/Kurenagieri\n\nSkeb : \nhttps://skeb.jp/@Kurenagieri\n\nFANBOX : \nhttps://kurenagieri.fanbox.cc/\n\nご連絡先 :\nhttps://lit.link/kurenagieri\n\nMemberShip : \nhttps://www.youtube.com/channel/UCQYzqKdEiWfyYU1IAnN2S-Q/join\n\n♥週1回のメンバー限定配信！\n♥えりが描いたオリジナルスタンプ✨\n♥メンバー限定コミュニティ投稿(週1ペース!)など....💕\n\n\n━━━━━━━━━━━━━━━━━━\n\n総合 #紅記えり\n配信 #くれな記録\n切り抜き　　 #切りぬ記えり\nファンアート #えりのイラスト帳 \nファンネーム えり民\nファンマーク 💉♥\n\n━━━━━━━━━━━━━━━━━━\n\n2022/02/11 初配信\n2022/02/28 収益化＆メンバーシップ開始\n2022/05/16 登録者7777人達成\n2022/07/11 登録者10000人達成\n2023/01/02 登録者20000人達成\n",
+              "title": "Eri Ch.紅記えり",
+            },
+          "published_at": "2022-01-01T08:20:29.250+00:00",
+          "thumbnails":
+            {
+              "default":
+                {
+                  "height": 88,
+                  "url": "https://yt3.ggpht.com/ne4waxSJXIK3Ko-mFZndTpZfOsZRX0vjmRCyIyxbTIxUr2wmT-_PjAK88psnYyLziC9x5Nzn=s88-c-k-c0x00ffffff-no-rj",
+                  "width": 88,
+                },
+              "high":
+                {
+                  "height": 800,
+                  "url": "https://yt3.ggpht.com/ne4waxSJXIK3Ko-mFZndTpZfOsZRX0vjmRCyIyxbTIxUr2wmT-_PjAK88psnYyLziC9x5Nzn=s800-c-k-c0x00ffffff-no-rj",
+                  "width": 800,
+                },
+              "medium":
+                {
+                  "height": 240,
+                  "url": "https://yt3.ggpht.com/ne4waxSJXIK3Ko-mFZndTpZfOsZRX0vjmRCyIyxbTIxUr2wmT-_PjAK88psnYyLziC9x5Nzn=s240-c-k-c0x00ffffff-no-rj",
+                  "width": 240,
+                },
+            },
+          "title": "Eri Ch.紅記えり",
         },
     }
