@@ -8,9 +8,7 @@ class SongItem < ApplicationRecord
   end
 
   def self.active
-    diffs = SongDiff.status_approved.where.not(title: nil)
-                    .or(SongDiff.status_approved.where.not(author: nil))
-                    .or(SongDiff.status_approved.where.not(time: nil))
+    diffs = SongDiff.status_approved.where.not(title: [nil, '']).where.not(author: [nil, ''])
     where(latest_diff_id: diffs.select(:id))
   end
 
@@ -54,12 +52,11 @@ class SongItem < ApplicationRecord
 
     # 同一タイトルのSongItemの中で最も採用されているauthor名
     author = SongDiff.where(
-      id: SongItem.includes(:latest_diff).where(latest_diff: { title: }).pluck(:latest_diff_id)
-    ).group(:author).count.max{|x, y| x[1] <=> y[1]}&.first
+      id: SongItem.includes(:latest_diff).where(latest_diff: { title: }).where.not(latest_diff: { author: [nil, ''] }).select(:latest_diff_id)
+    ).group(:author).count.max { |x, y| x[1] <=> y[1] }&.first
     update_author!(author)
   end
 
-  # 多分使わない
   def update_author_from_spotify!(spotify_token = nil)
     return self if title.blank?
 
@@ -110,6 +107,12 @@ class SongItem < ApplicationRecord
   end
 
   def self.create_from_json!(songs, comment_id: nil)
+    if all.present?
+      # SongItemが既に存在する場合はセトリ・コメントをすべて削除して1から確認する
+      all.find_each(&:destroy)
+      new.video.comments.status_completed.each(&:destroy)
+    end
+
     song_items = []
     songs.each do |song|
       song_item = create!

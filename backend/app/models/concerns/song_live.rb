@@ -7,23 +7,19 @@ module SongLive
     end
 
     def search_and_create_song_items!
-      where.not(status: %w[song_items_created spotify_fetched completed]) \
-           .order(published_at: :desc).all.each(&:search_and_create_song_items!)
+      where(status: %w[ready fetched]) \
+        .order(published_at: :desc).all.each(&:search_and_create_song_items!)
     end
 
     def update_songs_author_from_history!
-      where(status: %w[song_items_created fetched_history spotify_fetched spotify_completed])\
+      where(status: %w[song_items_created fetched_history spotify_fetched spotify_completed]) \
         .each(&:update_songs_author_from_history!)
     end
 
     def update_songs_author_from_spotify!
       token = Spotify.get_token
-      where(status: %w[song_items_created spotify_fetched]).each do |video|
-        if video.song_items.completed.count == video.song_items.count
-          update!(status: 'completed')
-          next
-        end
-        video.update_author_from_spotify!(token)
+      where(status: %w[song_items_created fetched_history spotify_fetched]).each do |video|
+        video.update_songs_author_from_spotify!(token)
       end
     end
   end
@@ -47,8 +43,8 @@ module SongLive
 
       # SongItemsが見つかったらそこで終了
       if song_items.present?
-        if song_items.completed.count == song_items.count
-          update!(status: 'completed') 
+        if song_items.filter(&:completed?).count == song_items.count
+          update!(status: 'completed')
         else
           update!(status: 'song_items_created')
         end
@@ -79,14 +75,14 @@ module SongLive
         song_items = comment.search_and_create_song_items!
 
         # SongItemsが見つかり次第終了
-        if song_items.present?
-          if song_items.completed.count == song_items.count
-            update!(status: 'completed') 
-          else
-            update!(status: 'song_items_created')
-          end
-          return song_items
+        next if song_items.blank?
+
+        if song_items.filter(&:completed?).count == song_items.count
+          update!(status: 'completed')
+        else
+          update!(status: 'song_items_created')
         end
+        return song_items
       end
 
       page_token = response.next_page_token
@@ -106,9 +102,9 @@ module SongLive
   def update_songs_author_from_spotify!(spotify_token = nil)
     spotify_token ||= Spotify.get_token
     update!(status: 'spotify_fetched')
-    song_items.includes(:latest_diff).where(latest_diff_id: { author: [nil, ''] }).find_each do |song_item|
+    song_items.includes(:latest_diff).where(latest_diff: { author: [nil, ''] }).find_each do |song_item|
       song_item.update_author_from_spotify!(spotify_token)
     end
-    update!(status: 'completed') if song_items.completed.count == song_items.count
+    update!(status: 'spotify_completed') if song_items.completed.count == song_items.count
   end
 end

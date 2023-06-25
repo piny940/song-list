@@ -14,7 +14,7 @@ class SongDiff < ApplicationRecord
   }, _prefix: true
 
   def deletion?
-    time.blank? && title.blank? && author.blank?
+    time.blank? || title.blank?
   end
 
   def self.create_from_json!(song, comment_id: nil)
