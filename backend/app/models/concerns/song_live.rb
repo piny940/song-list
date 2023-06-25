@@ -23,7 +23,7 @@ module SongLive
           update!(status: 'completed')
           next
         end
-        video.update_author_from_spotify!(token)
+        video.update_songs_author_from_spotify!(token)
       end
     end
   end
