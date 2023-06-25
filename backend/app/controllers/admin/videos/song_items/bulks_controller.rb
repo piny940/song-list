@@ -9,7 +9,7 @@ class Admin::Videos::SongItems::BulksController < Admin::Videos::Base
                  else
                    @video.search_and_create_song_items!
                  end
-    if song_items.filter(&:completed?).count == song_items.count
+    if song_items.present? && song_items.filter(&:completed?).count == song_items.count
       @video.update!(status: 'completed')
     elsif song_items.present?
       @video.update!(status: 'song_items_created')

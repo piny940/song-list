@@ -81,7 +81,8 @@ class SongItem < ApplicationRecord
 
       フォーマットは
       [{"title": "","time": "","author": ""}]
-      というフォーマットで書いてください。内容が不明な箇所には'unknown'と書いてください。
+      というJSONフォーマットで書いてください。内容が不明な箇所には'unknown'と書いてください。
+      JSON以外のことは書かないでください。
 
       セットリストでない場合はfalseと返してください。
     EOS
@@ -102,6 +103,7 @@ class SongItem < ApplicationRecord
       content = content.gsub(/"-"/, '""')
       JSON.parse(content)
     rescue StandardError
+      SlackNotifier.send("セトリは作成されませんでした。\nコメント: #{comment_content}\nOpenAI出力: #{content}")
       []
     end
   end
