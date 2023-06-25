@@ -103,11 +103,4 @@ class SongItem < ApplicationRecord
     end
     song_items
   end
-
-  def self.update_author_from_spotify!(spotify_token=nil)
-    spotify_token ||= Spotify.get_token
-    where(latest_diff_id: SongDiff.where(author: [nil, ""])).each do |song_item|
-      song_item.update_author_from_spotify!(spotify_token)
-    end
-  end
 end
