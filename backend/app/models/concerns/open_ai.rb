@@ -19,6 +19,7 @@ module OpenAi
     }
     response = Net::HTTP.post(uri, query.to_json, header)
     body = response.body.to_s
+    SlackNotifier.send("OpenAIエラー\n#{body}") if response.status >= 400
     content = JSON.parse(body).dig('choices', 0, 'message', 'content')
     raise body if content.blank?
 

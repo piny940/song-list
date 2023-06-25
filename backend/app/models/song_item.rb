@@ -119,6 +119,18 @@ class SongItem < ApplicationRecord
       song_item.song_diffs.create_from_json!(song, comment_id:)
       song_items.push(song_item)
     end
+    song_items = where(id: song_items.map(&:id))
+    notify_creation(song_items)
     song_items
+  end
+
+  def self.notify_creation(song_items)
+    return if song_items.blank?
+    message = "セトリが作成されました。\n"
+    message << "URL: #{Rails.application.routes.url_helpers.admin_video_song_items_url(new.video_id)}\n"
+    song_items.each do |song_item|
+      message << "時間: #{song_item.time}, タイトル: #{song_item.title}, 歌手名: #{song_item.author}\n"
+    end
+    SlackNotifier.send(message)
   end
 end
