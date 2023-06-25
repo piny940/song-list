@@ -99,7 +99,7 @@ class SongItem < ApplicationRecord
       }
     ]
     content = OpenAi.complete_chat(messages)
-    content = content.gsub(/unknown|UNKNOWN|/, '')
+    content = content.gsub(/(u|U)nknown|UNKNOWN|/, '')
     content = content.gsub(/"-"/, '""')
 
     begin
