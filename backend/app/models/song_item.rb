@@ -32,16 +32,16 @@ class SongItem < ApplicationRecord
 
   def self.completed
     where(latest_diff_id:
-      SongDiff.where.not(title: ['', nil]).where.not(author: ['', nil]).where.not(time: ['', nil])
-    )
+      SongDiff.where.not(title: ['', nil]).where.not(author: ['', nil]).where.not(time: ['', nil]))
   end
 
-  def update_author_from_spotify!(spotify_token=nil)
+  def update_author_from_spotify!(spotify_token = nil)
     return self if title.blank?
 
     song_data = Spotify.get_songs_data(title, limit: 1, token: spotify_token).first
     return self if song_data.blank?
-    author = song_data.dig('artists').map{|data| data['name']}.join(', ')
+
+    author = song_data['artists'].pluck('name').join(', ')
 
     if latest_diff&.kind == 'auto'
       latest_diff.update!(author:)

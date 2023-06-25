@@ -7,8 +7,8 @@ module SongLive
     end
 
     def search_and_create_song_items!
-      where.not(status: %w[song_items_created spotify_fetched completed])\
-        .order(published_at: :desc).all.each(&:search_and_create_song_items!)
+      where.not(status: %w[song_items_created spotify_fetched completed]) \
+           .order(published_at: :desc).all.each(&:search_and_create_song_items!)
     end
   end
 
@@ -73,13 +73,13 @@ module SongLive
     []
   end
 
-  def update_songs_author_from_spotify!(spotify_token=nil)
+  def update_songs_author_from_spotify!(spotify_token = nil)
     spotify_token ||= Spotify.get_token
     update!(status: 'spotify_fetched')
-    song_items.where(latest_diff_id: SongDiff.where(author: [nil, ""])).each do |song_item|
+    song_items.where(latest_diff_id: SongDiff.where(author: [nil, ''])).find_each do |song_item|
       song_item.update_author_from_spotify!(spotify_token)
     end
-    update!(status: 'completed') if (song_items.completed.count == song_items.count)
+    update!(status: 'completed') if song_items.completed.count == song_items.count
   end
 
   def self.update_songs_author_from_spotify!

@@ -34,7 +34,7 @@ module BreadcrumbsHelper
        'admin/videos/comments#edit'],
       ['admin/homes#show', 'admin/videos#index', 'admin/videos#show',
        'admin/videos/comments#index', 'admin/videos/comments#new'],
-       ['admin/homes#show', 'admin/users#index', 'admin/users#new'],
+      ['admin/homes#show', 'admin/users#index', 'admin/users#new'],
       ['admin/homes#show', 'admin/users#index', 'admin/users#show', 'admin/users#edit']
     ]
   end
