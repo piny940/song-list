@@ -7,7 +7,8 @@ module SongLive
     end
 
     def search_and_create_song_items!
-      order(published_at: :desc).all.each(&:search_and_create_song_items!)
+      where.not(status: %w[song_items_created spotify_fetched completed])\
+        .order(published_at: :desc).all.each(&:search_and_create_song_items!)
     end
   end
 
@@ -30,7 +31,7 @@ module SongLive
 
       # SongItemsが見つかったらそこで終了
       if song_items.present?
-        update!(status: 'completed')
+        update!(status: 'song_items_created')
         return song_items
       end
     end
@@ -59,7 +60,7 @@ module SongLive
 
         # SongItemsが見つかり次第終了
         if song_items.present?
-          update!(status: 'completed')
+          update!(status: 'song_items_created')
           return song_items
         end
       end

@@ -4,7 +4,7 @@ namespace :videos do
     p 'Start searching recent videos'
     Channel.all.each(&:search_and_create_recent_videos)
     p 'Start searching setlist'
-    Video.where.not(status: 'completed').search_and_create_song_items!
+    Video.search_and_create_song_items!
     p 'Completed searching setlist'
   end
 end

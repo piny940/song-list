@@ -26,6 +26,27 @@ class SongItem < ApplicationRecord
     latest_diff&.time
   end
 
+  def update_author_from_spotify!(spotify_token=nil)
+    return self if author.present?
+    return self if title.blank?
+
+    song_data = Spotify.get_songs_data(title, limit: 1, token: spotify_token).first
+    return self if song_data.blank?
+    author = song_data.dig('artists').map{|data| data['name']}.join(', ')
+
+    if latest_diff&.kind == 'auto'
+      latest_diff.update!(author:)
+    else
+      diff = song_diffs.create!(
+        time:,
+        title:,
+        author:,
+        kind: 'auto'
+      )
+      diff.update_status!('approved')
+    end
+  end
+
   def self.create_from_comment_content!(content)
     songs = parse_setlist(content)
     return unless songs.is_a?(Enumerable)
