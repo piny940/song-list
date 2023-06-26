@@ -16,27 +16,27 @@ export type ChannelProps = {
 
 export const Channel: React.FC<ChannelProps> = ({ channel, link }) => {
   return (
-    <Link href={`${link}/${channel.id}`}>
-      <ChannelDiv
-        className="d-flex flex-grow-1 border border-light rounded m-1 p-2 shadow-sm"
-        data-testid={TestID.CHANNEL}
-      >
-        <div className="d-flex align-items-center">
-          <Image
-            alt="channel icon"
-            src={channel.thumbnails.default.url}
-            width={80}
-            height={80}
-            className="rounded-circle"
-          />
-        </div>
-        <div className="d-flex flex-column ms-3">
+    <ChannelDiv
+      className="d-flex flex-grow-1 border border-light rounded m-1 p-2 shadow-sm"
+      data-testid={TestID.CHANNEL}
+    >
+      <div className="d-flex align-items-center">
+        <Image
+          alt="channel icon"
+          src={channel.thumbnails.default.url}
+          width={80}
+          height={80}
+          className="rounded-circle"
+        />
+      </div>
+      <div className="d-flex flex-column ms-3">
+        <Link href={`${link}/${channel.id}`}>
           <span className="fw-bold mt-2 ms-2">{channel.name}</span>
-          <span>
-            <Link href={`${YOUTUBE_URL}/${channel.custom_id}`}>ほげ</Link>
-          </span>
-        </div>
-      </ChannelDiv>
-    </Link>
+        </Link>
+        <Link href={`${YOUTUBE_URL}/${channel.custom_id}`}>
+          <span>ほげ</span>
+        </Link>
+      </div>
+    </ChannelDiv>
   )
 }
