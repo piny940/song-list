@@ -9,12 +9,20 @@ export const Inquiry: React.FC = () => {
           お問い合わせは
           <Link
             className="text-primary text-decoration-underline"
-            href="https://twitter.com/An__twit"
+            href="https://marshmallow-qa.com/piny940?utm_medium=url_text&utm_source=promotion"
             target="_blank"
           >
-            みかん
+            マシュマロ
           </Link>
-          まで
+          か
+          <Link
+            className="text-primary text-decoration-underline"
+            href="https://twitter.com/songlist940"
+            target="_blank"
+          >
+            Twitter
+          </Link>
+          へ！
         </p>
         <p className="text-danger">
           このサイトはファンが非公式に運営しているものです。

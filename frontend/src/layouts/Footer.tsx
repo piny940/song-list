@@ -16,7 +16,10 @@ export const Footer: React.FC = () => {
           ｜
         </>
       )}
-
+      <Link href="/about" className="text-white">
+        このサイトについて
+      </Link>
+      ｜
       <Link href="/inquiry" className="text-white">
         お問い合わせ
       </Link>
