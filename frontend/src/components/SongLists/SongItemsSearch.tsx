@@ -2,6 +2,8 @@ import { useState } from 'react'
 import styles from '@/styles/song-lists.module.scss'
 import { styled } from 'styled-components'
 import { TestID } from '@/resources/TestID'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 
 const DetailButton = styled.a`
   --text-color: black;
@@ -19,10 +21,10 @@ const Triangle = styled.div`
 export type SongItemsSearchProps = {
   query: string
   setQuery: (query: string) => void
-  since: string
-  setSince: (since: string) => void
-  until: string
-  setUntil: (until: string) => void
+  since: Date | null
+  setSince: (since: Date | null) => void
+  until: Date | null
+  setUntil: (until: Date | null) => void
   videoTitle: string
   setVideoTitle: (videoTitle: string) => void
 }
@@ -83,24 +85,24 @@ export const SongItemsSearch: React.FC<SongItemsSearchProps> = ({
               <label className="row my-1">
                 <div className="col-3 fw-bold col-form-label">開始日</div>
                 <div className="col-9">
-                  <input
-                    type="date"
-                    name="since"
+                  <DatePicker
+                    selected={since}
+                    onChange={(date) => setSince(date)}
                     className="form-control"
-                    value={since}
-                    onChange={(e) => setSince(e.target.value)}
+                    dateFormat="yyyy/MM/dd"
+                    placeholderText=" 年/月/日 "
                   />
                 </div>
               </label>
               <label className="row my-1">
                 <div className="col-3 fw-bold col-form-label">終了日</div>
                 <div className="col-9">
-                  <input
-                    type="date"
-                    name="until"
+                  <DatePicker
+                    selected={until}
+                    onChange={(date) => setUntil(date)}
                     className="form-control"
-                    value={until}
-                    onChange={(e) => setUntil(e.target.value)}
+                    dateFormat="yyyy/MM/dd"
+                    placeholderText=" 年/月/日 "
                   />
                 </div>
               </label>
