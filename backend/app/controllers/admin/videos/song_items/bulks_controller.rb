@@ -2,7 +2,9 @@ class Admin::Videos::SongItems::BulksController < Admin::Videos::Base
   def new; end
 
   def create
-    song_items = if params[:comment_id].present?
+    song_items = if params[:json].present?
+                   @video.song_items.create_from_json!(JSON.parse(params[:json]))
+                 elsif params[:comment_id].present?
                    Comment.find(params[:comment_id]).force_search_and_create_song_items!
                  elsif params[:comment].present?
                    @video.song_items.create_from_comment_content!(params[:comment])

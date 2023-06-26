@@ -80,7 +80,7 @@ class SongItem < ApplicationRecord
       以下はYoutubeの動画のコメントです。これが曲のセットリストであるかを判定し、セットリストであるならばこれを時間と曲名と作曲者名のリストに変換してください。
 
       フォーマットは
-      [{"title": "","time": "","author": ""}]
+      [{"time": "","title": "","author": ""}]
       というJSONフォーマットで書いてください。内容が不明な箇所には'unknown'と書いてください。
       JSON以外のことは書かないでください。
 
@@ -128,6 +128,7 @@ class SongItem < ApplicationRecord
 
   def self.notify_creation(song_items)
     return if song_items.blank?
+
     message = "セトリが作成されました。\n"
     message << "URL: #{Rails.application.routes.url_helpers.admin_video_song_items_url(new.video_id)}\n"
     song_items.each do |song_item|

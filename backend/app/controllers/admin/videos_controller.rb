@@ -3,8 +3,8 @@ class Admin::VideosController < Admin::Base
   before_action :set_channel
 
   def index
-    @only_song_lives = params[:only_song_lives].to_i.positive?
-    @only_incompleted = params[:only_incompleted].to_i.positive?
+    @only_song_lives = (params[:only_song_lives] || 1).to_i.positive?
+    @only_incompleted = (params[:only_incompleted] || 1).to_i.positive?
 
     scope = @channel.present? ? @channel.videos : Video
     scope = scope.song_lives if @only_song_lives
