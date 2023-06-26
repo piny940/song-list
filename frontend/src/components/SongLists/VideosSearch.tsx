@@ -2,6 +2,7 @@ import { useState } from 'react'
 import styles from '@/styles/song-lists.module.scss'
 import { styled } from 'styled-components'
 import { TestID } from '@/resources/TestID'
+import { DateField } from '../Common/DateField'
 
 const DetailButton = styled.a`
   --text-color: black;
@@ -19,10 +20,10 @@ const Triangle = styled.div`
 export type VideosSearchProps = {
   query: string
   setQuery: (query: string) => void
-  since: string
-  setSince: (since: string) => void
-  until: string
-  setUntil: (until: string) => void
+  since: Date | null
+  setSince: (since: Date | null) => void
+  until: Date | null
+  setUntil: (until: Date | null) => void
   onlySongLives: boolean
   setOnlySongLives: (onlySongLives: boolean) => void
 }
@@ -79,25 +80,13 @@ export const VideosSearch: React.FC<VideosSearchProps> = ({
               <label className="row my-1">
                 <div className="col-3 fw-bold col-form-label">開始日</div>
                 <div className="col-9">
-                  <input
-                    type="date"
-                    name="since"
-                    className="form-control"
-                    value={since}
-                    onChange={(e) => setSince(e.target.value)}
-                  />
+                  <DateField value={since} setValue={setSince} />
                 </div>
               </label>
               <label className="row my-1">
                 <div className="col-3 fw-bold col-form-label">終了日</div>
                 <div className="col-9">
-                  <input
-                    type="date"
-                    name="until"
-                    className="form-control"
-                    value={until}
-                    onChange={(e) => setUntil(e.target.value)}
-                  />
+                  <DateField value={until} setValue={setUntil} />
                 </div>
               </label>
               <label className="row my-1">

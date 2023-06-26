@@ -17,13 +17,17 @@ export const MaintenanceChannelsShow: React.FC<
   MaintenanceChannelsShowProps
 > = ({ id }) => {
   const [query, setQuery] = useState('')
-  const [since, setSince] = useState('')
-  const [until, setUntil] = useState('')
+  const [since, setSince] = useState<Date | null>(null)
+  const [until, setUntil] = useState<Date | null>(null)
   const [videoTitle, setVideoTitle] = useState('')
   const { data, error } = useChannel(id)
   const [currentSongItem, setCurrentSongItem] = useState<SongItemType | null>(
     null
   )
+  const onSongItemClick = (songItem: SongItemType) => {
+    window.scroll(0, 0)
+    setCurrentSongItem(songItem)
+  }
 
   if (error) return <Error statusCode={404} />
 
@@ -53,7 +57,7 @@ export const MaintenanceChannelsShow: React.FC<
           <SongItems
             isLink={false}
             channelId={id}
-            onClick={(songItem) => setCurrentSongItem(songItem)}
+            onClick={onSongItemClick}
             query={query}
             since={since}
             until={until}

@@ -16,8 +16,8 @@ export const useVideos = ({
 }: {
   channelId?: number
   query?: string
-  since?: string
-  until?: string
+  since?: Date | null
+  until?: Date | null
   onlySongLives?: boolean
   isPaused?: boolean
   holdTime?: number
@@ -36,8 +36,8 @@ export const useVideos = ({
         queryToSearchParams({
           channel_id: channelId ? String(channelId) : '',
           query: query || '',
-          since: since || '',
-          until: until || '',
+          since: since?.toString() || '',
+          until: until?.toString() || '',
           only_song_lives: onlySongLives ? '1' : '0',
           count: '10',
           page: String(getPage()),

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import styles from '@/styles/song-lists.module.scss'
 import { styled } from 'styled-components'
 import { TestID } from '@/resources/TestID'
+import { DateField } from '../Common/DateField'
 
 const DetailButton = styled.a`
   --text-color: black;
@@ -19,10 +20,10 @@ const Triangle = styled.div`
 export type SongItemsSearchProps = {
   query: string
   setQuery: (query: string) => void
-  since: string
-  setSince: (since: string) => void
-  until: string
-  setUntil: (until: string) => void
+  since: Date | null
+  setSince: (since: Date | null) => void
+  until: Date | null
+  setUntil: (until: Date | null) => void
   videoTitle: string
   setVideoTitle: (videoTitle: string) => void
 }
@@ -80,31 +81,27 @@ export const SongItemsSearch: React.FC<SongItemsSearchProps> = ({
         >
           {detailOpened && (
             <div className="mx-2" id="song-detail-search">
-              <label className="row my-1">
+              <div className="row my-1">
                 <div className="col-3 fw-bold col-form-label">開始日</div>
                 <div className="col-9">
-                  <input
-                    type="date"
-                    name="since"
-                    className="form-control"
+                  <DateField
                     value={since}
-                    onChange={(e) => setSince(e.target.value)}
+                    setValue={setSince}
+                    maxDate={new Date()}
                   />
                 </div>
-              </label>
-              <label className="row my-1">
+              </div>
+              <div className="row my-1">
                 <div className="col-3 fw-bold col-form-label">終了日</div>
                 <div className="col-9">
-                  <input
-                    type="date"
-                    name="until"
-                    className="form-control"
+                  <DateField
                     value={until}
-                    onChange={(e) => setUntil(e.target.value)}
+                    setValue={setUntil}
+                    maxDate={new Date()}
                   />
                 </div>
-              </label>
-              <label className="row my-1">
+              </div>
+              <div className="row my-1">
                 <div className="col-3 fw-bold col-form-label">枠名</div>
                 <div className="col-9">
                   <input
@@ -115,7 +112,7 @@ export const SongItemsSearch: React.FC<SongItemsSearchProps> = ({
                     onChange={(e) => setVideoTitle(e.target.value)}
                   />
                 </div>
-              </label>
+              </div>
             </div>
           )}
         </div>
