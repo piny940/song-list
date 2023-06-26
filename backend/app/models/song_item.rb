@@ -128,6 +128,7 @@ class SongItem < ApplicationRecord
 
   def self.notify_creation(song_items)
     return if song_items.blank?
+
     message = "セトリが作成されました。\n"
     message << "URL: #{Rails.application.routes.url_helpers.admin_video_song_items_url(new.video_id)}\n"
     song_items.each do |song_item|

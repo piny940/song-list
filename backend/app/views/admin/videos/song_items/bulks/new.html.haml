@@ -1,6 +1,9 @@
-%h1 コメントから一括作成
+%h1 一括作成
 
 = form_with(url: admin_video_song_items_bulk_path(@video)) do |form|
+  .row.mb-3
+    .col-md-3.col-form-label.fw-bold JSON
+    .col-md-9= text_area_tag :json, '', size: '20x10', class: 'form-control'
   .row.mb-3
     .col-md-3.col-form-label.fw-bold コメント
     .col-md-9= text_area_tag :comment, '', size: '20x10', class: 'form-control'

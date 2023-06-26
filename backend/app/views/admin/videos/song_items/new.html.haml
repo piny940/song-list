@@ -1,5 +1,5 @@
 %h1 SongItem新規作成
-.row.mt-3.mb-5= link_to 'コメントから一括作成', new_admin_video_song_items_bulk_path(@video), class: 'btn btn-primary'
+.row.mt-3.mb-5= link_to '一括作成', new_admin_video_song_items_bulk_path(@video), class: 'btn btn-primary'
 
 = form_with(model: [:admin, @video, @song_item]) do |form|
   - if @song_item.errors.any?

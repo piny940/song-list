@@ -11,6 +11,6 @@ module SlackNotifier
     headers = {
       'Content-Type' => 'application/json'
     }
-    resopnse = Net::HTTP.post(uri, data.to_json, headers)
+    Net::HTTP.post(uri, data.to_json, headers)
   end
 end
