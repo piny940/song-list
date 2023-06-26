@@ -1,8 +1,11 @@
 import { TestID } from '@/resources/TestID'
+import { TWITTER_URL, YOUTUBE_URL } from '@/resources/constants'
 import { ChannelType } from '@/resources/types'
 import Image from 'next/image'
 import Link from 'next/link'
 import styled from 'styled-components'
+import { YoutubeIcon } from '../Common/YoutubeIcon'
+import { TwitterIcon } from '../Common/TwitterIcon'
 
 const ChannelDiv = styled.div`
   height: 90px;
@@ -15,12 +18,12 @@ export type ChannelProps = {
 
 export const Channel: React.FC<ChannelProps> = ({ channel, link }) => {
   return (
-    <Link href={`${link}/${channel.id}`}>
-      <ChannelDiv
-        className="d-flex flex-grow-1 border border-light rounded m-1 p-2 shadow-sm"
-        data-testid={TestID.CHANNEL}
-      >
-        <div className="d-flex align-items-center">
+    <ChannelDiv
+      className="d-flex flex-grow-1 border border-light rounded m-1 p-2 shadow-sm"
+      data-testid={TestID.CHANNEL}
+    >
+      <div className="d-flex align-items-center">
+        <Link href={`${link}/${channel.id}`}>
           <Image
             alt="channel icon"
             src={channel.thumbnails.default.url}
@@ -28,11 +31,31 @@ export const Channel: React.FC<ChannelProps> = ({ channel, link }) => {
             height={80}
             className="rounded-circle"
           />
-        </div>
-        <div className="d-flex flex-column ms-3">
+        </Link>
+      </div>
+      <div className="d-flex flex-column ms-3 justify-content-between">
+        <Link href={`${link}/${channel.id}`}>
           <span className="fw-bold mt-2 ms-2">{channel.name}</span>
+        </Link>
+        <div className="ms-2">
+          <Link
+            href={`${YOUTUBE_URL}/${channel.custom_id}`}
+            className="p-2"
+            target="_blank"
+          >
+            <YoutubeIcon />
+          </Link>
+          {channel.twitter_id && (
+            <Link
+              href={`${TWITTER_URL}/${channel.twitter_id}`}
+              className="p-2"
+              target="_blank"
+            >
+              <TwitterIcon />
+            </Link>
+          )}
         </div>
-      </ChannelDiv>
-    </Link>
+      </div>
+    </ChannelDiv>
   )
 }

@@ -12,7 +12,7 @@ export const Channels: React.FC<ChannelsProps> = ({ testID, link }) => {
 
   return data ? (
     <div
-      className="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4"
+      className="row row-cols-1 row-cols-md-2 row-cols-lg-3"
       data-testid={testID}
     >
       {data.channels.map((channel) => (
