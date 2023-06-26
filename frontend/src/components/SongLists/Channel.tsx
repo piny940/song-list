@@ -1,4 +1,5 @@
 import { TestID } from '@/resources/TestID'
+import { YOUTUBE_URL } from '@/resources/constants'
 import { ChannelType } from '@/resources/types'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -31,6 +32,9 @@ export const Channel: React.FC<ChannelProps> = ({ channel, link }) => {
         </div>
         <div className="d-flex flex-column ms-3">
           <span className="fw-bold mt-2 ms-2">{channel.name}</span>
+          <span>
+            <Link href={`${YOUTUBE_URL}/${channel.custom_id}`}>ほげ</Link>
+          </span>
         </div>
       </ChannelDiv>
     </Link>

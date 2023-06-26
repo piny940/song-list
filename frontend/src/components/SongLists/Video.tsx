@@ -5,7 +5,7 @@ import { styled } from 'styled-components'
 import { SongList } from './SongList'
 import styles from '@/styles/song-lists.module.scss'
 import Link from 'next/link'
-import { YOUTUBE_URL } from '@/utils/constants'
+import { YOUTUBE_URL } from '@/resources/constants'
 import { MouseEventHandler } from 'react'
 import { toVideoDate } from '@/utils/helpers'
 

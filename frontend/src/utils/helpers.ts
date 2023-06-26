@@ -1,6 +1,6 @@
 import { SongItemType } from '@/resources/types'
 import { ParsedUrlQuery } from 'querystring'
-import { YOUTUBE_URL } from './constants'
+import { YOUTUBE_URL } from '../resources/constants'
 import { MouseEventHandler } from 'react'
 
 export const toClass = (...args: string[]) => {

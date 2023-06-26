@@ -34,6 +34,7 @@ export type ChannelType = {
   twitter_id: string | null
   thumbnails: Thumbnails
   description: string
+  custom_id: string
   created_at: string
   updated_at: string
 }
