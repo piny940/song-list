@@ -8,8 +8,16 @@ export const Footer: React.FC = () => {
 
   return (
     <footer className="footer text-center bg-secondary text-white p-4">
-      <Link href="/maintenance" className="text-white">
-        {data?.user ? 'メンテナンスする' : 'メンテナンスに参加する'}
+      {data?.user && (
+        <>
+          <Link href="/maintenance" className="text-white">
+            メンテナンスする
+          </Link>
+          ｜
+        </>
+      )}
+      <Link href="/about" className="text-white">
+        このサイトについて
       </Link>
       ｜
       <Link href="/inquiry" className="text-white">
