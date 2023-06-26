@@ -19,8 +19,8 @@ export const useSongItems = (
     query?: string
     channelId?: number
     videoId?: number
-    since?: string
-    until?: string
+    since?: Date | null
+    until?: Date | null
     videoTitle?: string
     isPaused?: boolean
     count?: number
@@ -36,8 +36,8 @@ export const useSongItems = (
   const queryParams = useMemo(() => {
     return queryToSearchParams({
       query: query || '',
-      since: since || '',
-      until: until || '',
+      since: since?.toString() || '',
+      until: until?.toString() || '',
       video_title: videoTitle || '',
       channel_id: channelId != null ? String(channelId) : '',
       video_id: videoId != null ? String(videoId) : '',

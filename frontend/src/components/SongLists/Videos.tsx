@@ -10,8 +10,8 @@ import { useVideos } from '@/hooks/video'
 export type VideosProps = {
   channel: ChannelType
   query?: string
-  since?: string
-  until?: string
+  since?: Date | null
+  until?: Date | null
   onlySongLives?: boolean
 }
 

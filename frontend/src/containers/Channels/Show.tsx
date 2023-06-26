@@ -13,13 +13,13 @@ export type ChannelsShowProps = {
 
 export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
   const [songQuery, setSongQuery] = useState('')
-  const [songSince, setSongSince] = useState('')
-  const [songUntil, setSongUntil] = useState('')
+  const [songSince, setSongSince] = useState<Date | null>(null)
+  const [songUntil, setSongUntil] = useState<Date | null>(null)
   const [songVideoTitle, setSongVideoTitle] = useState('')
 
   const [videoQuery, setVideoQuery] = useState('')
-  const [videoSince, setVideoSince] = useState('')
-  const [videoUntil, setVideoUntil] = useState('')
+  const [videoSince, setVideoSince] = useState<Date | null>(null)
+  const [videoUntil, setVideoUntil] = useState<Date | null>(null)
   const [onlySongLives, setOnlySongLives] = useState(true)
 
   const { data, error } = useChannel(id)

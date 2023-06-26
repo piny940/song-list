@@ -20,8 +20,8 @@ export type SongItemsProps = {
   channelId?: number
   videoId?: number
   query?: string
-  since?: string
-  until?: string
+  since?: Date | null
+  until?: Date | null
   videoTitle?: string
   isLink: boolean
   onClick?: (songItem: SongItemType) => void
