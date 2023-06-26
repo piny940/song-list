@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { styled } from 'styled-components'
 
 const YoutubeIconSpan = styled.span`
@@ -13,14 +12,6 @@ const YoutubeIconSpan = styled.span`
   }
 `
 
-export type YoutubeIconProps = {
-  link: string
-}
-
-export const YoutubeIcon: React.FC<YoutubeIconProps> = ({ link }) => {
-  return (
-    <Link href={link}>
-      <YoutubeIconSpan role="button" />
-    </Link>
-  )
+export const YoutubeIcon: React.FC = () => {
+  return <YoutubeIconSpan role="button" />
 }

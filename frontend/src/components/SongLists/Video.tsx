@@ -8,6 +8,7 @@ import Link from 'next/link'
 import { YOUTUBE_URL } from '@/resources/constants'
 import { MouseEventHandler } from 'react'
 import { toVideoDate } from '@/utils/helpers'
+import { YoutubeIcon } from '../Common/YoutubeIcon'
 
 const OneLineDiv = styled.div`
   -webkit-line-clamp: 1;
@@ -15,17 +16,6 @@ const OneLineDiv = styled.div`
   display: -webkit-box;
   overflow: hidden;
   height: 30px;
-`
-const YoutubeIcon = styled.span`
-  width: 22px;
-  height: 22px;
-  background-image: url('/images/youtube.svg');
-  background-size: contain;
-  display: inline-block;
-
-  &:hover {
-    background-image: url('/images/youtube-red.svg');
-  }
 `
 
 export type VideoProps = {
@@ -71,7 +61,7 @@ export const Video: React.FC<VideoProps> = ({
                 target="_blank"
                 onClick={stopPropagation}
               >
-                <YoutubeIcon role="button" />
+                <YoutubeIcon />
               </Link>
             </div>
             <span>{toVideoDate(video.published_at)}</span>

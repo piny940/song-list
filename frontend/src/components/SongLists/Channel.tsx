@@ -4,20 +4,10 @@ import { ChannelType } from '@/resources/types'
 import Image from 'next/image'
 import Link from 'next/link'
 import styled from 'styled-components'
+import { YoutubeIcon } from '../Common/YoutubeIcon'
 
 const ChannelDiv = styled.div`
   height: 90px;
-`
-const YoutubeIcon = styled.span`
-  width: 22px;
-  height: 22px;
-  background-image: url('/images/youtube.svg');
-  background-size: contain;
-  display: inline-block;
-
-  &:hover {
-    background-image: url('/images/youtube-red.svg');
-  }
 `
 
 export type ChannelProps = {
@@ -48,7 +38,7 @@ export const Channel: React.FC<ChannelProps> = ({ channel, link }) => {
         </Link>
         <div className="ms-2">
           <Link href={`${YOUTUBE_URL}/${channel.custom_id}`}>
-            <YoutubeIcon role="button" />
+            <YoutubeIcon />
           </Link>
         </div>
       </div>
