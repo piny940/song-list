@@ -78,8 +78,4 @@ class Video < ApplicationRecord
   def description
     response_json.dig('snippet', 'description')
   end
-
-  def published_at
-    Time.zone.parse(response_json.dig('snippet', 'published_at'))
-  end
 end
