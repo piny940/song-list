@@ -32,13 +32,15 @@ export const Channel: React.FC<ChannelProps> = ({ channel, link }) => {
       data-testid={TestID.CHANNEL}
     >
       <div className="d-flex align-items-center">
-        <Image
-          alt="channel icon"
-          src={channel.thumbnails.default.url}
-          width={80}
-          height={80}
-          className="rounded-circle"
-        />
+        <Link href={`${link}/${channel.id}`}>
+          <Image
+            alt="channel icon"
+            src={channel.thumbnails.default.url}
+            width={80}
+            height={80}
+            className="rounded-circle"
+          />
+        </Link>
       </div>
       <div className="d-flex flex-column ms-3 justify-content-between">
         <Link href={`${link}/${channel.id}`}>
