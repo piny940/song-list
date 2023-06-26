@@ -1,10 +1,11 @@
 import { TestID } from '@/resources/TestID'
-import { YOUTUBE_URL } from '@/resources/constants'
+import { TWITTER_URL, YOUTUBE_URL } from '@/resources/constants'
 import { ChannelType } from '@/resources/types'
 import Image from 'next/image'
 import Link from 'next/link'
 import styled from 'styled-components'
 import { YoutubeIcon } from '../Common/YoutubeIcon'
+import { TwitterIcon } from '../Common/TwitterIcon'
 
 const ChannelDiv = styled.div`
   height: 90px;
@@ -37,9 +38,22 @@ export const Channel: React.FC<ChannelProps> = ({ channel, link }) => {
           <span className="fw-bold mt-2 ms-2">{channel.name}</span>
         </Link>
         <div className="ms-2">
-          <Link href={`${YOUTUBE_URL}/${channel.custom_id}`}>
+          <Link
+            href={`${YOUTUBE_URL}/${channel.custom_id}`}
+            className="p-2"
+            target="_blank"
+          >
             <YoutubeIcon />
           </Link>
+          {channel.twitter_id && (
+            <Link
+              href={`${TWITTER_URL}/${channel.twitter_id}`}
+              className="p-2"
+              target="_blank"
+            >
+              <TwitterIcon />
+            </Link>
+          )}
         </div>
       </div>
     </ChannelDiv>
