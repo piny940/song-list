@@ -81,7 +81,7 @@ export const SongItemsSearch: React.FC<SongItemsSearchProps> = ({
         >
           {detailOpened && (
             <div className="mx-2" id="song-detail-search">
-              <label className="row my-1">
+              <div className="row my-1">
                 <div className="col-3 fw-bold col-form-label">開始日</div>
                 <div className="col-9">
                   <DateField
@@ -90,8 +90,8 @@ export const SongItemsSearch: React.FC<SongItemsSearchProps> = ({
                     maxDate={new Date()}
                   />
                 </div>
-              </label>
-              <label className="row my-1">
+              </div>
+              <div className="row my-1">
                 <div className="col-3 fw-bold col-form-label">終了日</div>
                 <div className="col-9">
                   <DateField
@@ -100,8 +100,8 @@ export const SongItemsSearch: React.FC<SongItemsSearchProps> = ({
                     maxDate={new Date()}
                   />
                 </div>
-              </label>
-              <label className="row my-1">
+              </div>
+              <div className="row my-1">
                 <div className="col-3 fw-bold col-form-label">枠名</div>
                 <div className="col-9">
                   <input
@@ -112,7 +112,7 @@ export const SongItemsSearch: React.FC<SongItemsSearchProps> = ({
                     onChange={(e) => setVideoTitle(e.target.value)}
                   />
                 </div>
-              </label>
+              </div>
             </div>
           )}
         </div>
