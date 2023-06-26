@@ -8,6 +8,17 @@ import styled from 'styled-components'
 const ChannelDiv = styled.div`
   height: 90px;
 `
+const YoutubeIcon = styled.span`
+  width: 22px;
+  height: 22px;
+  background-image: url('/images/youtube.svg');
+  background-size: contain;
+  display: inline-block;
+
+  &:hover {
+    background-image: url('/images/youtube-red.svg');
+  }
+`
 
 export type ChannelProps = {
   channel: ChannelType
@@ -29,13 +40,15 @@ export const Channel: React.FC<ChannelProps> = ({ channel, link }) => {
           className="rounded-circle"
         />
       </div>
-      <div className="d-flex flex-column ms-3">
+      <div className="d-flex flex-column ms-3 justify-content-between">
         <Link href={`${link}/${channel.id}`}>
           <span className="fw-bold mt-2 ms-2">{channel.name}</span>
         </Link>
-        <Link href={`${YOUTUBE_URL}/${channel.custom_id}`}>
-          <span>ほげ</span>
-        </Link>
+        <div className="ms-2">
+          <Link href={`${YOUTUBE_URL}/${channel.custom_id}`}>
+            <YoutubeIcon role="button" />
+          </Link>
+        </div>
       </div>
     </ChannelDiv>
   )

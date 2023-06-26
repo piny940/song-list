@@ -21,6 +21,7 @@ const YoutubeIcon = styled.span`
   height: 22px;
   background-image: url('/images/youtube.svg');
   background-size: contain;
+  display: inline-block;
 
   &:hover {
     background-image: url('/images/youtube-red.svg');
@@ -70,7 +71,7 @@ export const Video: React.FC<VideoProps> = ({
                 target="_blank"
                 onClick={stopPropagation}
               >
-                <YoutubeIcon role="button" className="d-inline-block" />
+                <YoutubeIcon role="button" />
               </Link>
             </div>
             <span>{toVideoDate(video.published_at)}</span>
