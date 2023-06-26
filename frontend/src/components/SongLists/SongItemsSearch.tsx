@@ -2,8 +2,7 @@ import { useState } from 'react'
 import styles from '@/styles/song-lists.module.scss'
 import { styled } from 'styled-components'
 import { TestID } from '@/resources/TestID'
-import DatePicker from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
+import { DateField } from '../Common/DateField'
 
 const DetailButton = styled.a`
   --text-color: black;
@@ -85,24 +84,20 @@ export const SongItemsSearch: React.FC<SongItemsSearchProps> = ({
               <label className="row my-1">
                 <div className="col-3 fw-bold col-form-label">開始日</div>
                 <div className="col-9">
-                  <DatePicker
-                    selected={since}
-                    onChange={(date) => setSince(date)}
-                    className="form-control"
-                    dateFormat="yyyy/MM/dd"
-                    placeholderText=" 年/月/日 "
+                  <DateField
+                    value={since}
+                    setValue={setSince}
+                    maxDate={new Date()}
                   />
                 </div>
               </label>
               <label className="row my-1">
                 <div className="col-3 fw-bold col-form-label">終了日</div>
                 <div className="col-9">
-                  <DatePicker
-                    selected={until}
-                    onChange={(date) => setUntil(date)}
-                    className="form-control"
-                    dateFormat="yyyy/MM/dd"
-                    placeholderText=" 年/月/日 "
+                  <DateField
+                    value={until}
+                    setValue={setUntil}
+                    maxDate={new Date()}
                   />
                 </div>
               </label>
