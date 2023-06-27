@@ -26,6 +26,10 @@ function Document() {
           name="og:image"
           content="https://i.gyazo.com/c8e2b19407a1d46e3cf0441b3748ee57.png"
         />
+        <meta
+          name="twitter:image"
+          content="https://i.gyazo.com/af8cc7069a6fa8f6473b23f84a79bfa0.png"
+        />
         <meta name="twitter:card" content="summary" />
         <link rel="shortcut icon" href="/favicon.io" type="image/x-icon"></link>
         <link rel="icon" href="/favicon.ico" />
