@@ -11,10 +11,12 @@ jest.mock('@/hooks/songItem', () => ({
       song_items: [
         Mock.from<SongItemType>({
           id: 1001,
+          time: '00:22:33',
           video: Mock.all<VideoType>(),
         }),
         Mock.from<SongItemType>({
           id: 1002,
+          time: '00:22:33',
           video: Mock.all<VideoType>(),
         }),
       ],
