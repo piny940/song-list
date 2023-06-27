@@ -7,10 +7,10 @@ export const toClass = (...args: string[]) => {
   return args.join(' ')
 }
 export const toSongLink = (songItem: SongItemType) => {
-  const time = new Date(songItem.time)
-  const hour = time.getHours()
-  const minute = time.getMinutes()
-  const second = time.getSeconds()
+  const time = songItem.time
+  const hour = parseInt(time.slice(0, 2))
+  const minute = parseInt(time.slice(3, 5))
+  const second = parseInt(time.slice(6, 8))
 
   return `${YOUTUBE_URL}/watch?v=${songItem.video.video_id}&t=${
     hour * 3600 + minute * 60 + second
