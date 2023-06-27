@@ -65,7 +65,6 @@ group :development do
   gem 'web-console'
 
   gem 'capistrano'
-  gem 'capistrano3-unicorn'
   gem 'capistrano-bundler'
   gem 'capistrano-postgresql', '~> 6.2'
   gem 'capistrano-rails'
