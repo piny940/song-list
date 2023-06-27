@@ -14,6 +14,8 @@ function Document() {
           name="keywords"
         />
         <meta name="twitter:site" content="@songlist940" />
+        <meta name="og:site_name" content="歌枠データベース SongList" />
+        <meta name="og:url" content="https://song_list.piny940.com" />
         <meta
           name="og:title"
           content="歌枠データベース Vtuberが歌った歌を検索"
