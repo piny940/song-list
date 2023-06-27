@@ -3,7 +3,7 @@ module SongLive
 
   module ClassMethods
     def song_lives
-      where('title LIKE ?', '%歌枠%')
+      where('title LIKE ?', '%歌枠%').or(where('title LIKE ?', '%弾き語り%'))
     end
 
     def search_and_create_song_items!
