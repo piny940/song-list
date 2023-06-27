@@ -24,10 +24,10 @@ function Document() {
           name="og:description"
           content="Vtuberの歌枠で歌われた曲を簡単に検索できるサイトです。豊富な歌唱コンテンツからお気に入りの楽曲を見つけましょう。高度な検索機能と使いやすいインターフェースで、あなたのお気に入りのVtuberの歌をすばやく見つけることができます。楽曲タイトル、アーティスト名など、様々な条件で絞り込んで探せます。是非、Vtuberの素晴らしい歌声をお楽しみください！"
         />
-        <meta
+        {/* <meta
           name="og:image"
           content="https://i.gyazo.com/c8e2b19407a1d46e3cf0441b3748ee57.png"
-        />
+        /> */}
         <meta
           name="twitter:image"
           content="https://i.gyazo.com/af8cc7069a6fa8f6473b23f84a79bfa0.png"
