@@ -22,7 +22,7 @@ body {
   font-family: var(--bs-body-font-family);
 }
 .root {
-  height: var(--vh100);
+  min-height: var(--vh100);
 }
 main {
   max-width: 1320px;
@@ -41,7 +41,7 @@ a {
   text-decoration: none;
 
   &:hover {
-    color: #0e6dfd;
+    color: var(--bs-link-color);
   }
 }
 

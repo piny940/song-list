@@ -1,3 +1,4 @@
+import { useTheme } from '@/context/ThemeProvider'
 import { useUser } from '@/hooks/user'
 import { TestID } from '@/resources/TestID'
 import Error from 'next/error'
@@ -19,18 +20,22 @@ const SpannerButton = styled.button`
 export const Navbar: React.FC = () => {
   const router = useRouter()
   const { data, error } = useUser()
+  const { theme } = useTheme()
 
   const isMaintenance = () => router.asPath.includes('maintenance')
   if (error) return <Error statusCode={400} />
   return (
     <nav
       data-testid={TestID.NAVBAR}
-      className="navbar navbar-expand-lg navbar-light bg-light"
+      className={
+        'navbar navbar-expand-lg ' +
+        (theme === 'light' ? 'navbar-light bg-light ' : 'navbar-dark bg-dark')
+      }
     >
       <div className="container-fluid px-5">
         <Link
           href="/"
-          className="navbar-brand title fw-bold d-flex align-items-center"
+          className="title fw-bold d-flex align-items-center text-body"
         >
           <Image
             src="/images/icon.png"
