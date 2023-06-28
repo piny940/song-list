@@ -27,11 +27,17 @@ jobs:
           echo `ls`
           path=`pwd`
           mv $path/$SUB_DIR /tmp
-          for dir in `find path -maxdepth 0`
+          for dir in `find $path -maxdepth 0`
+          do
+            echo $path/$dir
+            rm -rf $path/$dir
+          done
+          for dir in `find /tmp/$SUB_DIR -maxdepth 0`
           do
             echo $dir
-            rm -rf $dir
+            mv /tmp/$SUB_DIR/$dir $path
           done
+          echo `ls`
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.1.2
