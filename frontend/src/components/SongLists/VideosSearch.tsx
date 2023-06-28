@@ -1,21 +1,8 @@
 import { useState } from 'react'
 import styles from '@/styles/song-lists.module.scss'
-import { styled } from 'styled-components'
 import { TestID } from '@/resources/TestID'
 import { DateField } from '../Common/DateField'
-
-const DetailButton = styled.a`
-  --text-color: var(--bs-body-color);
-  &:hover {
-    --text-color: var(--bs-link-color);
-  }
-`
-
-const Triangle = styled.div`
-  border-left: 10px solid var(--text-color);
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid transparent;
-`
+import { ContentOpener } from './ContentOpener'
 
 export type VideosSearchProps = {
   query: string
@@ -55,19 +42,12 @@ export const VideosSearch: React.FC<VideosSearchProps> = ({
           />
           <div className="form-check-label">歌枠のみ表示</div>
         </label>
-        <DetailButton
-          role="button"
-          className="small ms-2 me-4"
+        <ContentOpener
+          testID={TestID.VIDEO_SEARCH_DETAIL_BUTTON}
           onClick={toggleOpened}
-          data-testid={TestID.VIDEO_SEARCH_DETAIL_BUTTON}
-        >
-          <Triangle
-            className={`${styles.animateFast} ${
-              detailOpened ? styles.rotate90 : ''
-            } d-inline-block`}
-          ></Triangle>
-          <span className="ms-1">詳細検索</span>
-        </DetailButton>
+          contentOpen={detailOpened}
+          label="詳細検索"
+        />
       </div>
       <div className="detail-search my-2 px-4">
         <div
