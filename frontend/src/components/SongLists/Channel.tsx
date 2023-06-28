@@ -43,7 +43,7 @@ export const Channel: React.FC<ChannelProps> = ({ channel, link }) => {
         <LinksDiv>
           <Link
             href={`${YOUTUBE_URL}/${channel.custom_id}`}
-            className="p-2"
+            className="m-2"
             target="_blank"
           >
             <YoutubeIcon />
@@ -51,7 +51,7 @@ export const Channel: React.FC<ChannelProps> = ({ channel, link }) => {
           {channel.twitter_id && (
             <Link
               href={`${TWITTER_URL}/${channel.twitter_id}`}
-              className="p-2"
+              className="m-2"
               target="_blank"
             >
               <TwitterIcon />
