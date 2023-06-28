@@ -16,6 +16,10 @@ const SpannerButton = styled.button`
   background-color: rgb(188, 229, 255);
 `
 
+const NavTitleSpan = styled.span`
+  font-family: var(--bs-body-font-family);
+`
+
 export const Navbar: React.FC = () => {
   const router = useRouter()
   const { data, error } = useUser()
@@ -39,7 +43,7 @@ export const Navbar: React.FC = () => {
             width={35}
             height={35}
           />
-          <span className="ms-2">Song Lists</span>
+          <NavTitleSpan className="ms-2">Song Lists</NavTitleSpan>
         </Link>
         {isMaintenance() ? (
           <SpannerButton
