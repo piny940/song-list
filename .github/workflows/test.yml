@@ -51,3 +51,41 @@ jobs:
         run: bundle exec rspec
       - name: Run rubocop
         run: if (bundle exec rubocop -A) | grep -E "(corrected|\ W:\ )"; then exit 1; fi
+
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Move to top directory
+        env:
+          SUB_DIR: frontend
+        run: |
+          path=`pwd`
+          mv $path/$SUB_DIR /tmp
+          for dir in `find $path -maxdepth 0`
+          do
+            rm -rf $dir
+          done
+          for dir in `find /tmp/$SUB_DIR -maxdepth 0`
+          do
+            mv $dir $path
+          done
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          # npm キャッシュファイルは Linux/macOS の「~/.npm」に保存される
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Yarn install
+        run: yarn --cwd frontend install
+      - name: Prettier && ESLint
+        run: yarn --cwd frontend next lint
