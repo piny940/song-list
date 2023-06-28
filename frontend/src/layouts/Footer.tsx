@@ -1,3 +1,4 @@
+import { useTheme } from '@/context/ThemeProvider'
 import { useLogout } from '@/hooks/session'
 import { useUser } from '@/hooks/user'
 import Link from 'next/link'
@@ -5,9 +6,15 @@ import Link from 'next/link'
 export const Footer: React.FC = () => {
   const { data } = useUser()
   const { logout } = useLogout()
+  const { theme } = useTheme()
 
   return (
-    <footer className="footer text-center bg-secondary text-white p-4">
+    <footer
+      className={
+        'footer text-center text-white p-4 ' +
+        (theme === 'light' ? 'bg-secondary' : 'bg-body-secondary')
+      }
+    >
       {data?.user && (
         <>
           <Link href="/maintenance" className="text-white">
