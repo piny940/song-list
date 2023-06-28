@@ -4,7 +4,7 @@ export const About: React.FC = () => {
   return (
     <div className="about">
       <h1>このサイトについて</h1>
-      <div className="container">
+      <div className="px-3">
         <p>
           このサイトはファンが非公式に運営しているものです。
           <br />
