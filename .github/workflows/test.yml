@@ -23,7 +23,13 @@ jobs:
         env:
           SUB_DIR: backend
         run: |
-          pwd
+          mv $SUB_DIR /tmp
+          path=`pwd`
+          for dir in `find path -maxdepth 0`
+          do
+            echo $dir
+            rm -rf $dir
+          done
       - uses: actions/checkout@v2
       - uses: ruby/setup-ruby@v1
         with:
