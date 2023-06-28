@@ -1,10 +1,10 @@
 import { TestID } from '@/resources/TestID'
 import { SongItemType } from '@/resources/types'
 import { stopPropagation, toSongLink } from '@/utils/helpers'
-import Image from 'next/image'
 import Link from 'next/link'
 import { MouseEventHandler } from 'react'
 import { styled } from 'styled-components'
+import { YoutubeIcon } from '../Common/YoutubeIcon'
 
 const OneLineDiv = styled.div`
   -webkit-line-clamp: 1;
@@ -12,16 +12,6 @@ const OneLineDiv = styled.div`
   display: -webkit-box;
   overflow: hidden;
   height: 23px;
-`
-const YoutubeIcon = styled.span`
-  width: 22px;
-  height: 22px;
-  background-image: url('/images/youtube.svg');
-  background-size: contain;
-
-  &:hover {
-    background-image: url('/images/youtube-red.svg');
-  }
 `
 
 export type SongItemProps = {
@@ -42,12 +32,7 @@ export const SongItem: React.FC<SongItemProps> = ({
         data-testid={TestID.SONG_ITEM}
       >
         {isLink ? (
-          <Image
-            src="/images/youtube.svg"
-            width={22}
-            height={22}
-            alt="Youtube icon"
-          />
+          <YoutubeIcon />
         ) : (
           <Link
             href={toSongLink(songItem)}
@@ -55,7 +40,7 @@ export const SongItem: React.FC<SongItemProps> = ({
             onClick={stopPropagation}
             className="d-flex align-items-center"
           >
-            <YoutubeIcon role="button" className="d-inline-block" />
+            <YoutubeIcon />
           </Link>
         )}
         <div className="">
