@@ -10,6 +10,11 @@ import { TwitterIcon } from '../Common/TwitterIcon'
 const ChannelDiv = styled.div`
   height: 90px;
 `
+const LinksDiv = styled.div`
+  position: absolute;
+  bottom: 5px;
+  z-index: 3;
+`
 
 export type ChannelProps = {
   channel: ChannelType
@@ -19,25 +24,23 @@ export type ChannelProps = {
 export const Channel: React.FC<ChannelProps> = ({ channel, link }) => {
   return (
     <ChannelDiv
-      className="d-flex flex-grow-1 border border-light rounded m-1 p-2 shadow-sm"
+      className="d-flex flex-grow-1 border border-light rounded m-1 p-2 shadow-sm position-relative"
       data-testid={TestID.CHANNEL}
     >
       <div className="d-flex align-items-center">
-        <Link href={`${link}/${channel.id}`}>
-          <Image
-            alt="channel icon"
-            src={channel.thumbnails.default.url}
-            width={80}
-            height={80}
-            className="rounded-circle"
-          />
-        </Link>
+        <Image
+          alt="channel icon"
+          src={channel.thumbnails.default.url}
+          width={80}
+          height={80}
+          className="rounded-circle"
+        />
       </div>
-      <div className="d-flex flex-column ms-3 justify-content-between">
-        <Link href={`${link}/${channel.id}`}>
-          <span className="fw-bold mt-2 ms-2">{channel.name}</span>
+      <div className="ms-3">
+        <Link href={`${link}/${channel.id}`} className="stretched-link">
+          <span className="fw-bold p-2 pt-3">{channel.name}</span>
         </Link>
-        <div className="ms-2">
+        <LinksDiv>
           <Link
             href={`${YOUTUBE_URL}/${channel.custom_id}`}
             className="p-2"
@@ -54,7 +57,7 @@ export const Channel: React.FC<ChannelProps> = ({ channel, link }) => {
               <TwitterIcon />
             </Link>
           )}
-        </div>
+        </LinksDiv>
       </div>
     </ChannelDiv>
   )
