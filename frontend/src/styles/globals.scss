@@ -129,3 +129,44 @@ h1.sub {
 .react-datepicker-popper {
   z-index: 10 !important;
 }
+
+.youtube-icon {
+  width: 22px;
+  height: 22px;
+  background-image: url('/images/youtube.svg');
+  background-size: contain;
+  display: inline-block;
+
+  &:hover {
+    background-image: url('/images/youtube-red.svg');
+  }
+}
+@include color-mode(dark) {
+  .youtube-icon {
+    background-image: url('/images/youtube-gray.svg');
+
+    &:hover {
+      background-image: url('/images/youtube-red.svg');
+    }
+  }
+}
+.twitter-icon {
+  width: 22px;
+  height: 22px;
+  background-image: url('/images/twitter.svg');
+  background-size: contain;
+  display: inline-block;
+
+  &:hover {
+    background-image: url('/images/twitter-red.svg');
+  }
+}
+@include color-mode(dark) {
+  .twitter-icon {
+    background-image: url('/images/twitter-gray.svg');
+
+    &:hover {
+      background-image: url('/images/twitter-blue.svg');
+    }
+  }
+}
