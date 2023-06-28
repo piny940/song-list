@@ -1,4 +1,4 @@
-import { SongItemType } from '@/resources/types'
+import { SongItemType, VideoType } from '@/resources/types'
 import { ParsedUrlQuery } from 'querystring'
 import { YOUTUBE_URL } from '../resources/constants'
 import { MouseEventHandler } from 'react'
@@ -16,6 +16,9 @@ export const toSongLink = (songItem: SongItemType) => {
     hour * 3600 + minute * 60 + second
   }`
 }
+export const toVideoLink = (video: VideoType) =>
+  `${YOUTUBE_URL}/watch?v=${video.video_id}`
+
 export const toVideoDate = (publishedAt: string) => {
   const time = new Date(publishedAt)
   if (!time) return ''

@@ -5,9 +5,8 @@ import { styled } from 'styled-components'
 import { SongList } from './SongList'
 import styles from '@/styles/song-lists.module.scss'
 import Link from 'next/link'
-import { YOUTUBE_URL } from '@/resources/constants'
 import { MouseEventHandler } from 'react'
-import { toVideoDate } from '@/utils/helpers'
+import { toVideoDate, toVideoLink } from '@/utils/helpers'
 import { YoutubeIcon } from '../Common/YoutubeIcon'
 
 const OneLineDiv = styled.div`
@@ -57,7 +56,7 @@ export const Video: React.FC<VideoProps> = ({
           <div className="pe-2 text-muted d-flex justify-content-between align-items-end">
             <div className="px-4 pb-1">
               <Link
-                href={`${YOUTUBE_URL}/watch?v=${video.video_id}`}
+                href={toVideoLink(video)}
                 target="_blank"
                 onClick={stopPropagation}
               >
