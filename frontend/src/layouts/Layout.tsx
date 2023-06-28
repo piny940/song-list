@@ -15,7 +15,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div data-bs-theme={theme} className="bg-body text-body root">
       <Head>
-        <title>歌枠データベース</title>
+        <title>歌枠データベース Vtuberが歌った歌を検索</title>
       </Head>
       <header>
         <Navbar />
