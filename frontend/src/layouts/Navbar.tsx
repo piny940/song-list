@@ -1,3 +1,4 @@
+import { ThemeToggler } from '@/components/Common/ThemeToggler'
 import { useTheme } from '@/context/ThemeProvider'
 import { useUser } from '@/hooks/user'
 import { TestID } from '@/resources/TestID'
@@ -72,8 +73,8 @@ export const Navbar: React.FC = () => {
         )}
 
         <div className="collapse navbar-collapse" id="navbar-collapse-target">
-          <ul className="d-flex justify-content-between navbar-nav w-100 mx-3">
-            <li className="nav-item">
+          <div className="d-flex justify-content-between navbar-nav w-100 mx-3">
+            <div className="nav-item">
               {isMaintenance() ? (
                 <Link href="/maintenance" className="nav-link">
                   チャンネル一覧
@@ -83,23 +84,30 @@ export const Navbar: React.FC = () => {
                   チャンネル一覧
                 </Link>
               )}
-            </li>
-            <li className="nav-item">
-              {isMaintenance() ? (
-                <MaintenanceModeDiv className="d-none d-lg-block border border-primary border-3 rounded nav-link fw-bold">
-                  <Link href="/" className="text-dark">
-                    メンテナンスモード
-                  </Link>
-                </MaintenanceModeDiv>
-              ) : (
-                data?.user && (
-                  <Link href="/maintenance" className="nav-link">
-                    メンテナンスする
-                  </Link>
-                )
-              )}
-            </li>
-          </ul>
+            </div>
+            <div className="d-flex">
+              <div className="nav-item">
+                {isMaintenance() ? (
+                  <MaintenanceModeDiv className="d-none d-lg-block border border-primary border-3 rounded nav-link fw-bold">
+                    <Link href="/" className="text-dark">
+                      メンテナンスモード
+                    </Link>
+                  </MaintenanceModeDiv>
+                ) : (
+                  data?.user && (
+                    <Link href="/maintenance" className="nav-link">
+                      メンテナンスする
+                    </Link>
+                  )
+                )}
+              </div>
+              <div className="nav-item">
+                <div className="nav-link">
+                  <ThemeToggler />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </nav>
