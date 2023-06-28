@@ -5,8 +5,9 @@ import { SongItem } from './SongItem'
 import { Loading } from '../Common/Loading'
 import { Paging } from '../Common/Paging'
 import { styled } from 'styled-components'
-import { toVideoDate } from '@/utils/helpers'
+import { toVideoDate, toVideoLink } from '@/utils/helpers'
 import { useSongItems } from '@/hooks/songItem'
+import Link from 'next/link'
 
 const VideoTitleDiv = styled.div`
   height: 20px;
@@ -67,10 +68,12 @@ export const SongItems: React.FC<SongItemsProps> = ({
         <>
           {Object.values(videos).map((video) => (
             <div className="" key={video.video_id}>
-              <VideoTitleDiv className="w-75 small text-muted">
-                <span>{toVideoDate(video.published_at)}</span>
-                <span className="">{video.title}</span>
-              </VideoTitleDiv>
+              <Link href={toVideoLink(video)} target="_blank">
+                <VideoTitleDiv className="w-75 small text-muted">
+                  <span>{toVideoDate(video.published_at)}</span>
+                  <span className="">{video.title}</span>
+                </VideoTitleDiv>
+              </Link>
               <div className="mb-4 ps-3">
                 {songItems[video.video_id].map((songItem) => (
                   <div key={songItem.id}>
