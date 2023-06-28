@@ -118,7 +118,7 @@ h1.sub {
 }
 @include color-mode(dark) {
   .border-light {
-    border-color: var(--bs-light-border-subtle) !important;
+    border-color: var(--bs-secondary-border-subtle) !important;
   }
 }
 
