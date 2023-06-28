@@ -18,10 +18,12 @@ jest.mock('swr', () =>
         Mock.from<SongItemType>({
           id: 1000,
           video: Mock.from<VideoType>({ video_id: 'hoge' }),
+          time: '00:22:33',
         }),
         Mock.from<SongItemType>({
           id: 1001,
           video: Mock.from<VideoType>({ video_id: 'fuga' }),
+          time: '00:22:33',
         }),
       ],
       total_pages: 1,

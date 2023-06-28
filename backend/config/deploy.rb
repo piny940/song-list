@@ -31,35 +31,10 @@ set :pg_without_sudo, false
 set :pg_host, 'db.piny940.com'
 set :pg_database, 'backend_song_list_production'
 set :pg_username, 'ansai'
-# set :pg_generate_random_password, true
-# set :pg_ask_for_password, true
 set :pg_generate_random_password, true
 set :pg_extensions, %w[citext hstore]
 set :pg_encoding, 'UTF-8'
 set :pg_pool, '100'
-
-# 環境変数
-set :default_env, {
-  GOOGLE_JSON: ENV.fetch('GOOGLE_JSON', nil),
-  GOOGLE_BUCKET: ENV.fetch('GOOGLE_BUCKET', nil),
-  GOOGLE_API_KEY: ENV.fetch('GOOGLE_API_KEY', nil),
-  OPENAI_API_KEY: ENV.fetch('OPENAI_API_KEY', nil)
-}
-
-# ここからUnicornの設定
-# Unicornのプロセスの指定
-set :unicorn_pid, -> { "#{shared_path}/tmp/pids/unicorn.pid" }
-
-# Unicornの設定ファイルの指定
-set :unicorn_config_path, -> { "#{current_path}/config/unicorn.rb" }
-
-# Unicornを再起動するための記述
-after 'deploy:publishing', 'deploy:restart'
-namespace :deploy do
-  task :restart do
-    invoke 'unicorn:restart'
-  end
-end
 
 # ワーキングディレクトリをbackendに移す
 after 'deploy:set_current_revision', 'deploy:checkout_subdir'

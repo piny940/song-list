@@ -1,8 +1,8 @@
 import type { NextPage } from 'next'
-import { Home } from '../containers/Home'
+import { ChannelsIndex } from '@/containers/Channels/Index'
 
 const Index: NextPage = () => {
-  return <Home />
+  return <ChannelsIndex />
 }
 
 export default Index

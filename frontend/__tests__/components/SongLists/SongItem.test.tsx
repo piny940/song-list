@@ -11,6 +11,7 @@ describe('<SongItem />', () => {
       songItem: Mock.from<SongItemType>({
         id: 1010,
         video: Mock.all<VideoType>(),
+        time: '00:22:33',
       }),
     })
     const { getByTestId } = render(<SongItem {...props} />)
