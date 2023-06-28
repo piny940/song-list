@@ -2,7 +2,7 @@ import { useState } from 'react'
 import styles from '@/styles/song-lists.module.scss'
 import { TestID } from '@/resources/TestID'
 import { DateField } from '../Common/DateField'
-import { ContentOpener } from './ContentOpener'
+import { ContentOpener } from '../Common/ContentOpener'
 
 export type VideosSearchProps = {
   query: string

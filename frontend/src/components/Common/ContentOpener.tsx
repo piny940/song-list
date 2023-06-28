@@ -1,5 +1,5 @@
 import { MouseEventHandler } from 'react'
-import styles from '../../styles/song-lists.module.scss'
+import styles from '../../styles/common.module.scss'
 import { styled } from 'styled-components'
 
 const DetailButton = styled.a`
