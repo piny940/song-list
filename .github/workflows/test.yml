@@ -23,6 +23,7 @@ jobs:
         env:
           SUB_DIR: backend
         run: |
+          ls
           path=`pwd`
           mv $path/$SUB_DIR /tmp
           for dir in `find path -maxdepth 0`
