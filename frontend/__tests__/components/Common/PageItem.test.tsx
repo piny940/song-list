@@ -1,13 +1,12 @@
 import { render, waitFor } from '@testing-library/react'
 import { expect } from '@jest/globals'
-import { Paging, PagingProps } from '@/components/Common/Paging'
+import { PageItem, PageItemProps } from '@/components/Common/PageItem'
 import { Mock } from 'ts-mockery'
 
-describe('<Paging />', () => {
+describe('<PageItem />', () => {
   it('正常に描画される', async () => {
-    const props = Mock.from<PagingProps>({ totalPages: 30, currentPage: 10 })
-    const component = render(<Paging {...props} />)
-
+    const props = Mock.from<PageItemProps>({})
+    const component = render(<PageItem {...props} />)
     await waitFor(() => {
       expect(component).toBeTruthy()
     })
