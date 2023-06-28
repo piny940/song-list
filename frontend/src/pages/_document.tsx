@@ -3,7 +3,7 @@ import { Head, Html, Main, NextScript } from 'next/document'
 function Document() {
   return (
     <Html>
-      <Head title="歌枠データベース Vtuberが歌った歌を検索">
+      <Head>
         <meta
           content="Vtuberの歌枠で歌われた曲を簡単に検索できるサイトです。豊富な歌唱コンテンツからお気に入りの楽曲を見つけましょう。高度な検索機能と使いやすいインターフェースで、あなたのお気に入りのVtuberの歌をすばやく見つけることができます。楽曲タイトル、アーティスト名など、様々な条件で絞り込んで探せます。是非、Vtuberの素晴らしい歌声をお楽しみください！"
           name="description"
