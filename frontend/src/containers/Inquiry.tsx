@@ -4,7 +4,7 @@ export const Inquiry: React.FC = () => {
   return (
     <div className="inquiry">
       <h1>お問い合わせ</h1>
-      <div className="container">
+      <div className="px-3">
         <p>
           お問い合わせは
           <Link
