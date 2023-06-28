@@ -5,9 +5,9 @@ import { TestID } from '@/resources/TestID'
 import { DateField } from '../Common/DateField'
 
 const DetailButton = styled.a`
-  --text-color: black;
+  --text-color: var(--bs-body-color);
   &:hover {
-    --text-color: #0d6efd;
+    --text-color: var(--bs-link-color);
   }
 `
 
