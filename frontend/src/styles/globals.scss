@@ -116,6 +116,11 @@ h1.sub {
   padding: 4px 16px;
   margin-bottom: 16px !important;
 }
+@include color-mode(dark) {
+  .border-light {
+    border-color: var(--bs-light-border-subtle) !important;
+  }
+}
 
 // DatePicker
 .react-datepicker-wrapper {
