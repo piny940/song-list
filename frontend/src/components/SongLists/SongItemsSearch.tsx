@@ -1,21 +1,8 @@
 import { useState } from 'react'
 import styles from '@/styles/song-lists.module.scss'
-import { styled } from 'styled-components'
 import { TestID } from '@/resources/TestID'
 import { DateField } from '../Common/DateField'
-
-const DetailButton = styled.a`
-  --text-color: var(--bs-body-color);
-  &:hover {
-    --text-color: var(--bs-link-color);
-  }
-`
-
-const Triangle = styled.div`
-  border-left: 10px solid var(--text-color);
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid transparent;
-`
+import { ContentOpener } from './ContentOpener'
 
 export type SongItemsSearchProps = {
   query: string
@@ -45,19 +32,12 @@ export const SongItemsSearch: React.FC<SongItemsSearchProps> = ({
   return (
     <div className="song-search mb-3">
       <div className="d-flex justify-content-end">
-        <DetailButton
-          role="button"
-          className="small me-4"
+        <ContentOpener
+          testID={TestID.SONG_ITEMS_SEARCH_DETAIL_BUTTON}
           onClick={toggleOpened}
-          data-testid={TestID.SONG_ITEMS_SEARCH_DETAIL_BUTTON}
-        >
-          <Triangle
-            className={`${styles.animateFast} ${
-              detailOpened ? styles.rotate90 : ''
-            } d-inline-block`}
-          ></Triangle>
-          <span className="ms-1">詳細検索</span>
-        </DetailButton>
+          contentOpen={detailOpened}
+          label="詳細検索"
+        />
       </div>
       <div className="row px-4 mt-2 mb-2">
         <div className="fw-bold col-2 col-form-label">検索</div>
