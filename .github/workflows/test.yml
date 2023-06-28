@@ -29,13 +29,13 @@ jobs:
           mv $path/$SUB_DIR /tmp
           for dir in `find $path -maxdepth 0`
           do
-            echo $path/$dir
-            rm -rf $path/$dir
+            echo $dir
+            rm -rf $dir
           done
           for dir in `find /tmp/$SUB_DIR -maxdepth 0`
           do
             echo $dir
-            mv /tmp/$SUB_DIR/$dir $path
+            mv $dir $path
           done
           echo `ls`
       - uses: ruby/setup-ruby@v1
