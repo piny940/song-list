@@ -21,6 +21,12 @@ body {
 .root {
   height: var(--vh100);
 }
+main {
+  max-width: 1320px;
+  width: 90%;
+  margin: auto;
+  margin-top: 1rem;
+}
 footer {
   margin-top: 20px;
   position: sticky;
