@@ -8,6 +8,7 @@ const CircleSpan = styled.span`
   height: 16px;
   margin: 4px 0;
   border-radius: 50%;
+  flex-shrink: 0;
 `
 
 export type SongDiffProps = {
