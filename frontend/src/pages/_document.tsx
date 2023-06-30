@@ -32,6 +32,7 @@ function Document() {
           name="twitter:image"
           content="https://i.gyazo.com/af8cc7069a6fa8f6473b23f84a79bfa0.png"
         />
+        <meta name="apple-mobile-web-app-title" content="歌枠データベース" />
         <meta name="twitter:card" content="summary" />
         <link rel="shortcut icon" href="/favicon.io" type="image/x-icon"></link>
         <link rel="icon" href="/favicon.ico" />
