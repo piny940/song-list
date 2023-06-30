@@ -31,18 +31,20 @@ export const SongItem: React.FC<SongItemProps> = ({
         className="d-flex align-items-center border border-light rounded shadow-sm m-1 p-3"
         data-testid={TestID.SONG_ITEM}
       >
-        {isLink ? (
-          <YoutubeIcon />
-        ) : (
-          <Link
-            href={toSongLink(songItem)}
-            target="_blank"
-            onClick={stopPropagation}
-            className="d-flex align-items-center"
-          >
+        <span className="flex-shrink-0 d-flex align-items-center">
+          {isLink ? (
             <YoutubeIcon />
-          </Link>
-        )}
+          ) : (
+            <Link
+              href={toSongLink(songItem)}
+              target="_blank"
+              onClick={stopPropagation}
+              className="d-flex align-items-center"
+            >
+              <YoutubeIcon />
+            </Link>
+          )}
+        </span>
         <div className="">
           <span className="ms-2">{songItem.time}</span>
         </div>
