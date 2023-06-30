@@ -1,3 +1,4 @@
+import { Theme } from '@/resources/types'
 import { MaterialIcon } from './MaterialIcon'
 import { styled } from 'styled-components'
 
@@ -16,7 +17,7 @@ const TogglerA = styled.a`
 `
 
 export type ThemeTogglerProps = {
-  theme: 'light' | 'dark'
+  theme: Theme
   toggleTheme: () => void
 }
 
