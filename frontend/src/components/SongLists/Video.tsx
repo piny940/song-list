@@ -34,7 +34,7 @@ export const Video: React.FC<VideoProps> = ({
 
   return (
     <div
-      className="video  border border-light shadow-sm m-1"
+      className="video rounded border border-light shadow-sm m-1"
       data-testid={TestID.VIDEO}
     >
       <div
@@ -48,6 +48,10 @@ export const Video: React.FC<VideoProps> = ({
           width={160}
           height={90}
           alt=""
+          style={{
+            borderTopLeftRadius: 'var(--bs-border-radius)',
+            borderBottomLeftRadius: 'var(--bs-border-radius)',
+          }}
         />
         <div className="flex-grow-1 d-flex flex-column justify-content-between">
           <OneLineDiv className="p-2">

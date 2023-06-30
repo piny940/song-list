@@ -1,21 +1,8 @@
 import { useState } from 'react'
 import styles from '@/styles/song-lists.module.scss'
-import { styled } from 'styled-components'
 import { TestID } from '@/resources/TestID'
 import { DateField } from '../Common/DateField'
-
-const DetailButton = styled.a`
-  --text-color: black;
-  &:hover {
-    --text-color: #0d6efd;
-  }
-`
-
-const Triangle = styled.div`
-  border-left: 10px solid var(--text-color);
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid transparent;
-`
+import { ContentOpener } from '../Common/ContentOpener'
 
 export type SongItemsSearchProps = {
   query: string
@@ -43,25 +30,18 @@ export const SongItemsSearch: React.FC<SongItemsSearchProps> = ({
   const toggleOpened = () => setDetailOpened(!detailOpened)
 
   return (
-    <div className="song-search mb-3">
+    <div className="song-search mb-4">
       <div className="d-flex justify-content-end">
-        <DetailButton
-          role="button"
-          className="small me-4"
+        <ContentOpener
+          testID={TestID.SONG_ITEMS_SEARCH_DETAIL_BUTTON}
           onClick={toggleOpened}
-          data-testid={TestID.SONG_ITEMS_SEARCH_DETAIL_BUTTON}
-        >
-          <Triangle
-            className={`${styles.animateFast} ${
-              detailOpened ? styles.rotate90 : ''
-            } d-inline-block`}
-          ></Triangle>
-          <span className="ms-1">詳細検索</span>
-        </DetailButton>
+          contentOpen={detailOpened}
+          label="詳細検索"
+        />
       </div>
       <div className="row px-4 mt-2 mb-2">
-        <div className="fw-bold col-2 col-form-label">検索</div>
-        <div className="col-10">
+        <div className="fw-bold col-3 col-sm-2 col-form-label">検索</div>
+        <div className="col-9 col-sm-10">
           <input
             type="text"
             className="form-control"
@@ -73,17 +53,19 @@ export const SongItemsSearch: React.FC<SongItemsSearchProps> = ({
           />
         </div>
       </div>
-      <div className="detail-search my-2 px-4">
+      <div className="detail-search my-2 px-3">
         <div
-          className={`${styles.collapsableFast} ${
+          className={`px-2 ${styles.collapsableFast} ${
             detailOpened ? `${styles.active} border border-light rounded` : ''
           }`}
         >
           {detailOpened && (
-            <div className="mx-2" id="song-detail-search">
+            <div className="mx-3" id="song-detail-search">
               <div className="row my-1">
-                <div className="col-3 fw-bold col-form-label">開始日</div>
-                <div className="col-9">
+                <div className="col-4 col-sm-3 fw-bold col-form-label">
+                  開始日
+                </div>
+                <div className="col-8 col-sm-9">
                   <DateField
                     value={since}
                     setValue={setSince}
@@ -92,8 +74,10 @@ export const SongItemsSearch: React.FC<SongItemsSearchProps> = ({
                 </div>
               </div>
               <div className="row my-1">
-                <div className="col-3 fw-bold col-form-label">終了日</div>
-                <div className="col-9">
+                <div className="col-4 col-sm-3 fw-bold col-form-label">
+                  終了日
+                </div>
+                <div className="col-8 col-sm-9">
                   <DateField
                     value={until}
                     setValue={setUntil}
@@ -102,8 +86,10 @@ export const SongItemsSearch: React.FC<SongItemsSearchProps> = ({
                 </div>
               </div>
               <div className="row my-1">
-                <div className="col-3 fw-bold col-form-label">枠名</div>
-                <div className="col-9">
+                <div className="col-4 col-sm-3 fw-bold col-form-label">
+                  枠名
+                </div>
+                <div className="col-8 col-sm-9">
                   <input
                     type="text"
                     name="videoTitle"

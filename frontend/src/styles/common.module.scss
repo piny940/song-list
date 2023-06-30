@@ -13,3 +13,9 @@ $header-height: 56px;
     top: $header-height + 10px;
   }
 }
+.animateFast {
+  transition: transform 0.5s;
+}
+.rotate90 {
+  transform: rotate(90deg);
+}
