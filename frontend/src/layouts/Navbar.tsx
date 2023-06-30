@@ -1,3 +1,4 @@
+import { MaterialIcon } from '@/components/Common/MaterialIcon'
 import { ThemeToggler } from '@/components/Common/ThemeToggler'
 import { useTheme } from '@/context/ThemeProvider'
 import { useUser } from '@/hooks/user'
@@ -21,7 +22,9 @@ const SpannerButton = styled.button`
 export const Navbar: React.FC = () => {
   const router = useRouter()
   const { data, error } = useUser()
-  const { theme } = useTheme()
+  const { theme, setTheme } = useTheme()
+
+  const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light')
 
   const isMaintenance = () => router.asPath.includes('maintenance')
   if (error) return <Error statusCode={400} />
@@ -101,11 +104,30 @@ export const Navbar: React.FC = () => {
                   )
                 )}
               </div>
-              <div className="nav-item">
-                <div className="nav-link">
-                  <ThemeToggler />
+              <div className="nav-item d-none d-lg-block">
+                <div className="nav-link p-0">
+                  <ThemeToggler theme={theme} toggleTheme={toggleTheme} />
                 </div>
               </div>
+            </div>
+            <div className="nav-item d-lg-none">
+              <a
+                type="button"
+                onClick={toggleTheme}
+                className="nav-link d-flex align-items-center"
+              >
+                {theme === 'light' ? (
+                  <>
+                    <MaterialIcon className="me-1" name="light_mode" />
+                    ライトモード
+                  </>
+                ) : (
+                  <>
+                    <MaterialIcon className="me-1" name="dark_mode" />
+                    ダークモード
+                  </>
+                )}
+              </a>
             </div>
           </div>
         </div>
