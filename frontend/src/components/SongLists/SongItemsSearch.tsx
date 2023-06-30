@@ -30,7 +30,7 @@ export const SongItemsSearch: React.FC<SongItemsSearchProps> = ({
   const toggleOpened = () => setDetailOpened(!detailOpened)
 
   return (
-    <div className="song-search mb-3">
+    <div className="song-search mb-4">
       <div className="d-flex justify-content-end">
         <ContentOpener
           testID={TestID.SONG_ITEMS_SEARCH_DETAIL_BUTTON}
@@ -60,7 +60,7 @@ export const SongItemsSearch: React.FC<SongItemsSearchProps> = ({
           }`}
         >
           {detailOpened && (
-            <div className="mx-2" id="song-detail-search">
+            <div className="mx-3" id="song-detail-search">
               <div className="row my-1">
                 <div className="col-3 fw-bold col-form-label">開始日</div>
                 <div className="col-9">
