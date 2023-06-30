@@ -12,11 +12,6 @@ import { styled } from 'styled-components'
 const MaintenanceModeDiv = styled.div`
   height: 40px;
   padding-top: 6px;
-  background-color: rgb(188, 229, 255);
-`
-
-const SpannerButton = styled.button`
-  background-color: rgb(188, 229, 255);
 `
 
 export const Navbar: React.FC = () => {
@@ -51,19 +46,23 @@ export const Navbar: React.FC = () => {
           <span className="ms-2">Song Lists</span>
         </Link>
         {isMaintenance() ? (
-          <SpannerButton
-            className="navbar-toggler border border-3 border-primary"
+          <a
+            className="navbar-toggler border border-3 border-primary bg-primary-subtle text-primary-emphasis"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbar-collapse-target"
           >
             <Image
-              src="/images/spanner.png"
+              src={
+                theme === 'light'
+                  ? '/images/spanner.png'
+                  : '/images/spanner-blue.png'
+              }
               width={34}
               height={34}
               alt="Spanner"
             />
-          </SpannerButton>
+          </a>
         ) : (
           <button
             className="navbar-toggler"
@@ -91,8 +90,8 @@ export const Navbar: React.FC = () => {
             <div className="d-flex">
               <div className="nav-item">
                 {isMaintenance() ? (
-                  <MaintenanceModeDiv className="d-none d-lg-block border border-primary border-3 rounded nav-link fw-bold">
-                    <Link href="/" className="text-dark">
+                  <MaintenanceModeDiv className="d-none d-lg-block border border-primary border-3 rounded nav-link fw-bold bg-primary-subtle">
+                    <Link href="/" className="text-primary-emphasis">
                       メンテナンスモード
                     </Link>
                   </MaintenanceModeDiv>
