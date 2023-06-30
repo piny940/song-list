@@ -49,9 +49,9 @@ export const VideosSearch: React.FC<VideosSearchProps> = ({
           label="詳細検索"
         />
       </div>
-      <div className="detail-search my-2 px-4">
+      <div className="detail-search my-2 px-3">
         <div
-          className={`${styles.collapsableFast} ${
+          className={`px-2 ${styles.collapsableFast} ${
             detailOpened ? `${styles.active} border border-light rounded` : ''
           }`}
         >

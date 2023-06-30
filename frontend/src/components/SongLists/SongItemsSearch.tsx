@@ -40,8 +40,8 @@ export const SongItemsSearch: React.FC<SongItemsSearchProps> = ({
         />
       </div>
       <div className="row px-4 mt-2 mb-2">
-        <div className="fw-bold col-2 col-form-label">検索</div>
-        <div className="col-10">
+        <div className="fw-bold col-3 col-sm-2 col-form-label">検索</div>
+        <div className="col-9 col-sm-10">
           <input
             type="text"
             className="form-control"
@@ -53,17 +53,19 @@ export const SongItemsSearch: React.FC<SongItemsSearchProps> = ({
           />
         </div>
       </div>
-      <div className="detail-search my-2 px-4">
+      <div className="detail-search my-2 px-3">
         <div
-          className={`${styles.collapsableFast} ${
+          className={`px-2 ${styles.collapsableFast} ${
             detailOpened ? `${styles.active} border border-light rounded` : ''
           }`}
         >
           {detailOpened && (
             <div className="mx-3" id="song-detail-search">
               <div className="row my-1">
-                <div className="col-3 fw-bold col-form-label">開始日</div>
-                <div className="col-9">
+                <div className="col-4 col-sm-3 fw-bold col-form-label">
+                  開始日
+                </div>
+                <div className="col-8 col-sm-9">
                   <DateField
                     value={since}
                     setValue={setSince}
@@ -72,8 +74,10 @@ export const SongItemsSearch: React.FC<SongItemsSearchProps> = ({
                 </div>
               </div>
               <div className="row my-1">
-                <div className="col-3 fw-bold col-form-label">終了日</div>
-                <div className="col-9">
+                <div className="col-4 col-sm-3 fw-bold col-form-label">
+                  終了日
+                </div>
+                <div className="col-8 col-sm-9">
                   <DateField
                     value={until}
                     setValue={setUntil}
@@ -82,8 +86,10 @@ export const SongItemsSearch: React.FC<SongItemsSearchProps> = ({
                 </div>
               </div>
               <div className="row my-1">
-                <div className="col-3 fw-bold col-form-label">枠名</div>
-                <div className="col-9">
+                <div className="col-4 col-sm-3 fw-bold col-form-label">
+                  枠名
+                </div>
+                <div className="col-8 col-sm-9">
                   <input
                     type="text"
                     name="videoTitle"
