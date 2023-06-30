@@ -170,3 +170,7 @@ h1.sub {
     }
   }
 }
+[data-bs-theme='dark'] {
+  --bs-body-color-rgb: 210, 210, 210 !important;
+  --bs-body-color: #dddddd !important;
+}
