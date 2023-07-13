@@ -158,7 +158,7 @@ h1.sub {
   display: inline-block;
 
   &:hover {
-    background-image: url('/images/twitter-red.svg');
+    background-image: url('/images/twitter-blue.svg');
   }
 }
 @include color-mode(dark) {
