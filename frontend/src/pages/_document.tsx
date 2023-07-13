@@ -40,6 +40,10 @@ function Document() {
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet"
         ></link>
+        <meta
+          name="google-site-verification"
+          content="wh6YJ0kFTO_rXOkxX0C9lQqBndl_09ZG0MrkgTWcQIY"
+        />
       </Head>
       <body>
         <Main />
