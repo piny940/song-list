@@ -45,6 +45,6 @@ class Admin::ChannelsController < Admin::Base
   end
 
   def channel_params
-    params.require(:channel).permit(:channel_id, :name, :kind, :twitter_id, :channel_link)
+    params.require(:channel).permit(:channel_id, :name, :custom_name, :kind, :twitter_id, :channel_link)
   end
 end
