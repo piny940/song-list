@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import { ReactNode } from 'react'
 import { Navbar } from './Navbar'
 import { useTheme } from '@/context/ThemeProvider'
@@ -14,13 +13,6 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   return (
     <div data-bs-theme={theme} className="bg-body text-body root">
-      <Head>
-        <title>歌枠データベース Vtuberが歌った歌を検索</title>
-        <meta
-          name="theme-color"
-          content={theme === 'dark' ? '#212529' : '#f8f9fa'}
-        />
-      </Head>
       <header>
         <Navbar />
       </header>
