@@ -3,6 +3,7 @@ shairu:
   channel_id: UCe_8qM8Wk4cU5oD3WO07gZg
   twitter_id: hoge
   kind: published
+  custom_name: しゃいる
   response_json:
     {
       "etag": "HAaxd7j8Ol22PWVfnayFkJS1DAc",
@@ -42,6 +43,7 @@ shairu:
 mashiro:
   channel_id: UCewRhO43UmIohSBzW2HMheA
   name: 凪乃ましろ / Nagino Mashiro
+  custom_name: 凪乃ましろ
   twitter_id:
   kind: published
   response_json:

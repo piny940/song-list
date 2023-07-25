@@ -1,0 +1,5 @@
+class AddCustomNameToChannel < ActiveRecord::Migration[7.0]
+  def change
+    add_column :channels, :custom_name, :string, null: false, default: ''
+  end
+end

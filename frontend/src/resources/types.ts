@@ -31,6 +31,7 @@ export type ChannelType = {
   id: number
   channel_id: string
   name: string
+  custom_name: string
   twitter_id: string | null
   thumbnails: Thumbnails
   description: string
