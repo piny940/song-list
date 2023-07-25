@@ -30,7 +30,7 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
   return data ? (
     <div className="channel">
       <Head
-        title={data.channel.custom_name + ' 歌枠データベース'}
+        title={data.channel.custom_name + ' - 歌枠データベース'}
         keywords={[data.channel.custom_name]}
       />
       <h1>{data.channel.name}</h1>
