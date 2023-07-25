@@ -15,6 +15,7 @@ describe Api::ChannelsController, type: :request do
       expect(json['channels'][0]['thumbnails']['medium']['width']).to eq 240
       expect(json['channels'][0]['created_at']).to be_present
       expect(json['channels'][0]['updated_at']).to be_present
+      expect(json['channels'][0]['custom_name']).to be_present
     end
   end
   describe 'GET /api/channels/:id' do
@@ -26,6 +27,7 @@ describe Api::ChannelsController, type: :request do
 
       json = response.parsed_body
       expect(json['channel']['thumbnails']['medium']['width']).to eq 240
+      expect(json['channel']['custom_name']).to be_present
     end
   end
 end
