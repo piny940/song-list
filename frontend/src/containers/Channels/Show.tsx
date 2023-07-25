@@ -1,3 +1,4 @@
+import { Head } from '@/components/Common/Head'
 import { Loading } from '@/components/Common/Loading'
 import { SongItems } from '@/components/SongLists/SongItems'
 import { SongItemsSearch } from '@/components/SongLists/SongItemsSearch'
@@ -28,6 +29,10 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
 
   return data ? (
     <div className="channel">
+      <Head
+        title={data.channel.name + ' 歌枠データベース'}
+        keywords={[data.channel.name]}
+      />
       <h1>{data.channel.name}</h1>
       <div className="row p-0 m-0">
         <div className="col-lg-6 px-2">

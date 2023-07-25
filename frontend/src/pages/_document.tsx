@@ -9,6 +9,12 @@ function Document() {
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet"
         ></link>
+        <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="shortcut icon"
+          href="/favicon.ico"
+          type="image/x-icon"
+        ></link>
       </Head>
       <body>
         <Main />
