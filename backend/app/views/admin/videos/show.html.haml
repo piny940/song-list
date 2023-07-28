@@ -11,6 +11,9 @@
   .col-md-3.fw-bold Video
   .col-md-9= @video.video_id
 .row.py-1
+  .col-md-3.fw-bold リンク
+  .col-md-9= link_to @video.link_url, @video.link_url, target: :_blank
+.row.py-1
   .col-md-3.fw-bold Kind
   .col-md-9= @video.kind
 .row.py-1
