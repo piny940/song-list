@@ -32,7 +32,7 @@ class Admin::VideosController < Admin::Base
   end
 
   def update
-    published = video_params[:published] == 'true'
+    published = video_params[:published].present? ? video_params[:published] == 'true' : @video.published
     if @video.update({ **video_params, published: })
       redirect_to admin_videos_path(channel_id: @video.channel.id), notice: 'Videoが更新されました。'
     else
