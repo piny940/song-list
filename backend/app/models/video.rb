@@ -79,4 +79,8 @@ class Video < ApplicationRecord
   def description
     response_json.dig('snippet', 'description')
   end
+
+  def link_url
+    Youtube::ENDPOINT + "watch?v=#{video_id}"
+  end
 end

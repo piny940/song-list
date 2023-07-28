@@ -43,6 +43,7 @@
         %td
           = link_to '歌リスト', admin_video_song_items_path(video), class: 'm-1 btn btn-sm btn-outline-primary'
           = link_to 'コメント一覧', admin_video_comments_path(video), class: 'm-1 btn btn-sm btn-outline-primary'
+          = link_to 'Youtube', video.link_url, target: :_blank, class: 'm-1 btn btn-sm btn-outline-primary'
           = link_to '閲覧', admin_video_path(video), class: 'm-1 btn btn-sm btn-outline-primary'
           = link_to '編集', edit_admin_video_path(video), class: 'm-1 btn btn-sm btn-outline-primary'
           = link_to '削除', admin_video_path(video), method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: 'm-1 btn btn-sm btn-outline-danger'

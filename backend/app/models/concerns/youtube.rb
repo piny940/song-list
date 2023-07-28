@@ -4,11 +4,13 @@ require 'open-uri'
 module Youtube
   extend ActiveSupport::Concern
 
+  ENDPOINT = 'https://www.youtube.com/'.freeze
+
   def self.get_channels(channel_ids, page_token: nil)
     service.list_channels('snippet', id: channel_ids.join(','), page_token:)
   end
 
-  CHANNEL_PAGE_ENDPOINT = 'https://www.youtube.com/'.freeze
+  CHANNEL_PAGE_ENDPOINT = ENDPOINT
   def self.get_channel_id(custom_url)
     Rails.logger.debug custom_url
     html = Nokogiri::HTML(URI.open("#{CHANNEL_PAGE_ENDPOINT}#{custom_url}"))
