@@ -32,7 +32,8 @@ class Admin::VideosController < Admin::Base
   end
 
   def update
-    if @video.update(video_params)
+    published = video_params[:published] == 'true'
+    if @video.update({ **video_params, published: })
       redirect_to admin_videos_path(channel_id: @video.channel.id), notice: 'Videoが更新されました。'
     else
       render :edit, status: :unprocessable_entity
@@ -56,6 +57,6 @@ class Admin::VideosController < Admin::Base
   end
 
   def video_params
-    params.require(:video).permit(:channel_id, :video_id, :kind, :title, :status)
+    params.require(:video).permit(:channel_id, :video_id, :kind, :title, :status, :published)
   end
 end

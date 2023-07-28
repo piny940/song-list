@@ -20,6 +20,9 @@
     .col-md-3.col-form-label.fw-bold kind
     .col-md-9= form.select :kind, Video.kinds_i18n.invert, {}, class: 'form-control'
   .row.mb-3
+    .col-md-3.col-form-label.fw-bold Published
+    .col-md-9= form.select :published, [['公開', 'true'], ['非公開', 'false']], { value: @video.published ? '1' : '0' }, class: 'form-control'
+  .row.mb-3
     .col-md-3.col-form-label.fw-bold Status
     .col-md-9= form.select :status, Video.statuses_i18n.invert, {}, class: 'form-control'
   .row
