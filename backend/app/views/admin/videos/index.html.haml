@@ -16,6 +16,7 @@
       %th Video
       %th Kind
       %th PublishedAt
+      %th Published
       %th Status
       %th Title
       %th Action
@@ -23,13 +24,14 @@
 
   %tbody
     %tr
-      %td{colspan: 8}= link_to 'video新規作成', new_admin_video_path, class: 'btn btn-primary w-100'
+      %td{colspan: 9}= link_to 'video新規作成', new_admin_video_path, class: 'btn btn-primary w-100'
     - @videos.each do |video|
       %tr
         %th= image_tag video.thumbnails["high"]["url"], width: 200
         %td= video.video_id
         %td= video.kind
         %td= video.published_at
+        %td= video.published ? '公開' : '非公開'
         %td= video.status
         %td= video.title
         %td

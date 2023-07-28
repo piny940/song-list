@@ -24,3 +24,7 @@ mashiro1_one:
 mashiro2_one:
   video: mashiro2
   latest_diff: mashiro2_one1
+
+mashiro3_one:
+  video: mashiro3
+  latest_diff: mashiro3_one1

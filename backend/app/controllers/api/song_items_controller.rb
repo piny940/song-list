@@ -5,7 +5,7 @@ class Api::SongItemsController < Api::Base
 
   def index
     # チャンネル・動画で絞り込み
-    scope = @channel.present? ? @channel.all_song_items : SongItem
+    scope = @channel.present? ? @channel.all_song_items.displayed : SongItem.displayed
     scope = @video.present? ? @video.song_items : scope
 
     # あいまい検索(タイトル・歌手名)
