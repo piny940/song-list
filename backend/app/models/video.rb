@@ -5,6 +5,7 @@ class Video < ApplicationRecord
   has_many :song_items, dependent: :destroy
   has_many :comments, dependent: :destroy
   validates :video_id, presence: true, uniqueness: true
+  scope :displayed, -> { where(published: true) }
 
   enum kind: {
     video: 0,
