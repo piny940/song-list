@@ -2,7 +2,7 @@ class SongItem < ApplicationRecord
   belongs_to :video
   has_many :song_diffs, dependent: :destroy
   belongs_to :latest_diff, class_name: 'SongDiff', optional: true
-  scope :displayed, -> { includes(:video).where(videos: { published: true })}
+  scope :displayed, -> { includes(:video).where(videos: { published: true }) }
 
   def active?
     latest_diff.present? && !latest_diff.deletion?

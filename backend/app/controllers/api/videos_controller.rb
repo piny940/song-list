@@ -4,7 +4,7 @@ class Api::VideosController < Api::Base
 
   def index
     scope = @channel.present? ? @channel.videos.displayed : Video.displayed
-    
+
     # あいまい検索(タイトル・歌手名)
     scope = scope.where('videos.title ILIKE ?', "%#{params[:query]}%") \
               if params[:query].present?
