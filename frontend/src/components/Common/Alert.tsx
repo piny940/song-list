@@ -49,9 +49,13 @@ export const Alert: React.FC<AlertProps> = ({ alert, margin, removeAlert }) => {
       data-testid={TestID.ALERT}
     >
       <div>{alert.content}</div>
-      <a role="button" onClick={close} data-testid={TestID.ALERT_CLOSE}>
+      <button
+        className="border-0 d-flex align-items-center"
+        onClick={close}
+        data-testid={TestID.ALERT_CLOSE}
+      >
         <MaterialIcon name="close" />
-      </a>
+      </button>
     </div>
   )
 }

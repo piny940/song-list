@@ -32,10 +32,7 @@ export const Footer: React.FC = () => {
       </Link>
       {data?.user && (
         <>
-          ｜
-          <a type="button" onClick={logout}>
-            ログアウト
-          </a>
+          ｜<button onClick={logout}>ログアウト</button>
         </>
       )}
       <br />

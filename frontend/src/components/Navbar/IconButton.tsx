@@ -21,7 +21,7 @@ export const IconButton: React.FC<IconButtonProps> = ({
       ? '/images/default_account_icon_black.png'
       : '/images/default_account_icon_white.png'
   return (
-    <button type="button" onClick={onClick} data-testid={TestID.PROFILE_BUTTON}>
+    <button onClick={onClick} data-testid={TestID.PROFILE_BUTTON}>
       <Image width={size} height={size} src={src} alt="profile icon" />
     </button>
   )

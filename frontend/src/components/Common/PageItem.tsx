@@ -15,13 +15,9 @@ export const PageItem: React.FC<PageItemProps> = ({
 }) => {
   return (
     <li className={'page-item ' + pageClassName}>
-      <a
-        role="button"
-        className={'page-link ' + pageLinkClassName}
-        onClick={onClick}
-      >
+      <button className={'page-link ' + pageLinkClassName} onClick={onClick}>
         {children}
-      </a>
+      </button>
     </li>
   )
 }
