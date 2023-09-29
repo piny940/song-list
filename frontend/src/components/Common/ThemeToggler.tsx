@@ -2,18 +2,12 @@ import { Theme } from '@/resources/types'
 import { MaterialIcon } from './MaterialIcon'
 import { styled } from 'styled-components'
 
-const TogglerDiv = styled.div`
+const TogglerButton = styled.button`
+  width: 40px;
   height: 40px;
   &:hover {
     background-color: rgb(var(--bs-secondary-bg-rgb));
   }
-`
-
-const TogglerA = styled.a`
-  width: 40px;
-  height: 40px;
-  padding: 8px;
-  display: block;
 `
 
 export type ThemeTogglerProps = {
@@ -26,18 +20,17 @@ export const ThemeToggler: React.FC<ThemeTogglerProps> = ({
   toggleTheme,
 }) => {
   return (
-    <TogglerDiv
-      role="button"
+    <TogglerButton
       onClick={toggleTheme}
-      className="d-flex align-items-center rounded-pill"
+      className="mx-2 d-flex align-items-center justify-content-center rounded-pill"
     >
-      <TogglerA className="rounded-circle text-body-emphasis">
+      <div className="rounded-circle text-body-emphasis">
         {theme === 'light' ? (
           <MaterialIcon name="light_mode" />
         ) : (
           <MaterialIcon name="dark_mode" />
         )}
-      </TogglerA>
-    </TogglerDiv>
+      </div>
+    </TogglerButton>
   )
 }

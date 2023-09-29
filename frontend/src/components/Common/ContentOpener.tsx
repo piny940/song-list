@@ -2,7 +2,8 @@ import { MouseEventHandler } from 'react'
 import styles from '../../styles/common.module.scss'
 import { styled } from 'styled-components'
 
-const DetailButton = styled.a`
+const DetailButton = styled.button`
+  color: var(--text-color);
   --text-color: var(--bs-body-color);
   &:hover {
     --text-color: var(--bs-link-color);
@@ -30,7 +31,7 @@ export const ContentOpener: React.FC<ContentOpenerProps> = ({
 }) => {
   return (
     <DetailButton
-      role="button"
+      type="button"
       className="small me-4"
       onClick={onClick}
       data-testid={testID}

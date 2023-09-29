@@ -1,3 +1,3 @@
 export const YoutubeIcon: React.FC = () => {
-  return <span className="youtube-icon" role="button" />
+  return <span className="youtube-icon" />
 }

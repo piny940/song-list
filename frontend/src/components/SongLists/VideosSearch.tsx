@@ -30,7 +30,7 @@ export const VideosSearch: React.FC<VideosSearchProps> = ({
   const toggleOpened = () => setDetailOpened(!detailOpened)
 
   return (
-    <div className="song-search mb-3" data-testid={TestID.VIDEOS_SEARCH}>
+    <form className="song-search mb-3" data-testid={TestID.VIDEOS_SEARCH}>
       <div className="d-flex justify-content-between">
         <label className="ms-4 me-2 form-check">
           <input
@@ -85,6 +85,6 @@ export const VideosSearch: React.FC<VideosSearchProps> = ({
           )}
         </div>
       </div>
-    </div>
+    </form>
   )
 }

@@ -35,10 +35,10 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
       />
       <h1>{data.channel.name}</h1>
       <div className="row p-0 m-0">
-        <div className="col-lg-6 px-2">
-          <div className="text-sm fw-bold w-100 text-center d-none d-lg-block">
+        <section className="col-lg-6 px-2">
+          <h2 className="h6 m-0 fw-bold w-100 text-center d-none d-lg-block">
             歌一覧
-          </div>
+          </h2>
           <SongItemsSearch
             query={songQuery}
             setQuery={setSongQuery}
@@ -57,9 +57,9 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
             videoTitle={songVideoTitle}
             isLink={true}
           />
-        </div>
-        <div className="col-lg-6 px-2 d-none d-lg-block">
-          <div className="text-sm fw-bold w-100 text-center">配信から検索</div>
+        </section>
+        <section className="col-lg-6 px-2 d-none d-lg-block">
+          <div className="h6 m-0 w-100 text-center">配信から検索</div>
           <VideosSearch
             query={videoQuery}
             setQuery={setVideoQuery}
@@ -77,7 +77,7 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
             until={videoUntil}
             onlySongLives={onlySongLives}
           />
-        </div>
+        </section>
       </div>
     </div>
   ) : (

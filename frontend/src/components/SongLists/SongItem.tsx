@@ -66,9 +66,9 @@ export const SongItem: React.FC<SongItemProps> = ({
       {renderContent()}
     </Link>
   ) : onClick ? (
-    <div onClick={onClick} role="button">
+    <button className="w-100 d-block" onClick={onClick}>
       {renderContent()}
-    </div>
+    </button>
   ) : (
     <div className="" onClick={onClick}>
       {renderContent()}

@@ -46,9 +46,8 @@ export const Navbar: React.FC = () => {
           <span className="ms-2">Song Lists</span>
         </Link>
         {isMaintenance() ? (
-          <a
+          <button
             className="navbar-toggler border border-3 border-primary bg-primary-subtle text-primary-emphasis"
-            type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbar-collapse-target"
           >
@@ -62,11 +61,10 @@ export const Navbar: React.FC = () => {
               height={34}
               alt="Spanner"
             />
-          </a>
+          </button>
         ) : (
           <button
             className="navbar-toggler"
-            type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbar-collapse-target"
           >
@@ -110,8 +108,7 @@ export const Navbar: React.FC = () => {
               </div>
             </div>
             <div className="nav-item d-lg-none">
-              <a
-                type="button"
+              <button
                 onClick={toggleTheme}
                 className="nav-link d-flex align-items-center"
               >
@@ -126,7 +123,7 @@ export const Navbar: React.FC = () => {
                     ダークモード
                   </>
                 )}
-              </a>
+              </button>
             </div>
           </div>
         </div>
