@@ -2,7 +2,7 @@ import { MouseEventHandler } from 'react'
 import styles from '../../styles/common.module.scss'
 import { styled } from 'styled-components'
 
-const DetailButton = styled.a`
+const DetailButton = styled.button`
   --text-color: var(--bs-body-color);
   &:hover {
     --text-color: var(--bs-link-color);
@@ -29,12 +29,7 @@ export const ContentOpener: React.FC<ContentOpenerProps> = ({
   label,
 }) => {
   return (
-    <DetailButton
-      role="button"
-      className="small me-4"
-      onClick={onClick}
-      data-testid={testID}
-    >
+    <DetailButton className="small me-4" onClick={onClick} data-testid={testID}>
       <Triangle
         className={`${styles.animateFast} ${
           contentOpen ? styles.rotate90 : ''
