@@ -9,12 +9,14 @@ import { toVideoDate, toVideoLink } from '@/utils/helpers'
 import { useSongItems } from '@/hooks/songItem'
 import Link from 'next/link'
 
-const VideoTitleDiv = styled.div`
-  height: 20px;
+const VideoTitleH3 = styled.h3`
+  height: 19px;
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
+  margin: 0;
+  padding: 0;
 `
 
 export type SongItemsProps = {
@@ -69,10 +71,10 @@ export const SongItems: React.FC<SongItemsProps> = ({
           {Object.values(videos).map((video) => (
             <div className="" key={video.video_id}>
               <Link href={toVideoLink(video)} target="_blank">
-                <VideoTitleDiv className="w-75 small text-muted">
+                <VideoTitleH3 className="w-75 small text-muted">
                   <span>{toVideoDate(video.published_at)}</span>
                   <span className="">{video.title}</span>
-                </VideoTitleDiv>
+                </VideoTitleH3>
               </Link>
               <div className="mb-4 ps-3">
                 {songItems[video.video_id].map((songItem) => (

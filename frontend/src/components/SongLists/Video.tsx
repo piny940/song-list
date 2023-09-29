@@ -55,7 +55,7 @@ export const Video: React.FC<VideoProps> = ({
         />
         <div className="flex-grow-1 d-flex flex-column justify-content-between">
           <OneLineDiv className="p-2">
-            <span>{video.title}</span>
+            <h3 className="h6 fw-normal">{video.title}</h3>
           </OneLineDiv>
           <div className="pe-2 text-muted d-flex justify-content-between align-items-end">
             <div className="px-4 pb-1">

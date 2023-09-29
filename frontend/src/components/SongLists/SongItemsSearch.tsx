@@ -39,7 +39,7 @@ export const SongItemsSearch: React.FC<SongItemsSearchProps> = ({
           label="詳細検索"
         />
       </div>
-      <div className="row px-4 mt-2 mb-2">
+      <label className="row px-4 mt-2 mb-2">
         <div className="fw-bold col-3 col-sm-2 col-form-label">検索</div>
         <div className="col-9 col-sm-10">
           <input
@@ -52,7 +52,7 @@ export const SongItemsSearch: React.FC<SongItemsSearchProps> = ({
             }}
           />
         </div>
-      </div>
+      </label>
       <div className="detail-search my-2 px-3">
         <div
           className={`px-2 ${styles.collapsableFast} ${
@@ -61,7 +61,7 @@ export const SongItemsSearch: React.FC<SongItemsSearchProps> = ({
         >
           {detailOpened && (
             <div className="mx-3" id="song-detail-search">
-              <div className="row my-1">
+              <label className="row my-1">
                 <div className="col-4 col-sm-3 fw-bold col-form-label">
                   開始日
                 </div>
@@ -72,8 +72,8 @@ export const SongItemsSearch: React.FC<SongItemsSearchProps> = ({
                     maxDate={new Date()}
                   />
                 </div>
-              </div>
-              <div className="row my-1">
+              </label>
+              <label className="row my-1">
                 <div className="col-4 col-sm-3 fw-bold col-form-label">
                   終了日
                 </div>
@@ -84,8 +84,8 @@ export const SongItemsSearch: React.FC<SongItemsSearchProps> = ({
                     maxDate={new Date()}
                   />
                 </div>
-              </div>
-              <div className="row my-1">
+              </label>
+              <label className="row my-1">
                 <div className="col-4 col-sm-3 fw-bold col-form-label">
                   枠名
                 </div>
@@ -98,7 +98,7 @@ export const SongItemsSearch: React.FC<SongItemsSearchProps> = ({
                     onChange={(e) => setVideoTitle(e.target.value)}
                   />
                 </div>
-              </div>
+              </label>
             </div>
           )}
         </div>
