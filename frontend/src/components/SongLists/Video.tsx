@@ -38,7 +38,7 @@ export const Video: React.FC<VideoProps> = ({
       data-testid={TestID.VIDEO}
     >
       <div
-        className="d-flex text-body w-100"
+        className="d-flex border-0 text-body w-100"
         onClick={toggleSongListOpened}
         role="button"
       >
