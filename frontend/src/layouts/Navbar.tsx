@@ -75,12 +75,8 @@ export const Navbar: React.FC = () => {
         <div className="collapse navbar-collapse" id="navbar-collapse-target">
           <div className="d-flex justify-content-between navbar-nav w-100 mx-3">
             <div className="nav-item">
-              {isMaintenance() ? (
+              {isMaintenance() && (
                 <Link href="/maintenance" className="nav-link">
-                  チャンネル一覧
-                </Link>
-              ) : (
-                <Link href="/channels" className="nav-link">
                   チャンネル一覧
                 </Link>
               )}
