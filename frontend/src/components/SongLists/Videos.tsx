@@ -38,19 +38,20 @@ export const Videos: React.FC<VideosProps> = ({
     <div className="videos pb-4" data-testid={TestID.VIDEOS}>
       {data.videos.length > 0 ? (
         <>
-          <div className="mb-4">
+          <ul className="mb-4 list-unstyled">
             {data.videos.map((video) => (
-              <Video
-                songListOpen={openedVideo?.id === video.id}
-                video={video}
-                key={video.id}
-                toggleSongListOpened={() => {
-                  if (openedVideo === video) setOpenedVideo(null)
-                  else setOpenedVideo(video)
-                }}
-              />
+              <li key={video.id}>
+                <Video
+                  songListOpen={openedVideo?.id === video.id}
+                  video={video}
+                  toggleSongListOpened={() => {
+                    if (openedVideo === video) setOpenedVideo(null)
+                    else setOpenedVideo(video)
+                  }}
+                />
+              </li>
             ))}
-          </div>
+          </ul>
           <Paging
             setPageNumber={setPage}
             totalPages={data.total_pages}
