@@ -59,7 +59,7 @@ describe Api::VideosController do
       get endpoint, params: { only_song_lives: '1' }
       expect(response.status).to eq 200
       json = response.parsed_body
-      expect(json['videos'].count).to eq 2
+      expect(json['videos'].count).to eq 4
     end
   end
   describe 'GET /api/videos/:id' do
