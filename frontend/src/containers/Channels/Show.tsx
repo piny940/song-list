@@ -36,9 +36,7 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
       <h1>{data.channel.name}</h1>
       <div className="row p-0 m-0">
         <section className="col-lg-6 px-2">
-          <h2 className="h6 m-0 fw-bold w-100 text-center d-none d-lg-block">
-            歌一覧
-          </h2>
+          <h2 className="h6 m-0 fw-bold w-100 text-center">歌一覧</h2>
           <SongItemsSearch
             query={songQuery}
             setQuery={setSongQuery}
