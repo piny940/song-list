@@ -67,6 +67,7 @@ export const Navbar: React.FC = () => {
             className="navbar-toggler"
             data-bs-toggle="collapse"
             data-bs-target="#navbar-collapse-target"
+            aria-label="ヘッダーの隠された要素を表示"
           >
             <span className="navbar-toggler-icon"></span>
           </button>
