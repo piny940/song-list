@@ -27,7 +27,7 @@ export const SongList: React.FC<SongListProps> = ({ video }) => {
 
   if (error) return <Error statusCode={400} />
   return data ? (
-    <div className="song-items ps-4 mt-2">
+    <ul className="song-items list-unstyled ps-4 mt-2">
       {data.song_items.length > 0 ? (
         data.song_items.map((song) => (
           <OneLineLi
@@ -52,7 +52,7 @@ export const SongList: React.FC<SongListProps> = ({ video }) => {
           この動画での歌情報は登録されていません。
         </div>
       )}
-    </div>
+    </ul>
   ) : (
     <Loading />
   )
