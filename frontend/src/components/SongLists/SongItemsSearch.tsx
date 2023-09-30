@@ -39,7 +39,7 @@ export const SongItemsSearch: React.FC<SongItemsSearchProps> = ({
           label="詳細検索"
         />
       </div>
-      <label className="row px-4 mt-2 mb-2">
+      <label className="row px-4 mt-3 mt-md-2 mb-2">
         <div className="fw-bold col-3 col-sm-2 col-form-label">検索</div>
         <div className="col-9 col-sm-10">
           <input
