@@ -13,8 +13,8 @@ class Api::VideosController < Api::Base
     until_time = params[:until].present? ? Time.zone.parse(params[:until]).end_of_day : nil
     scope = scope.where(published_at: since_time..until_time)
 
-    # 歌枠のみに絞り込み
-    scope = scope.song_lives.where(id: SongItem.active.select(:video_id)) if params[:only_song_lives].to_i.positive?
+    # 歌枠のみに絞り込み(歌が1曲以上ある配信に絞る)
+    scope = scope.where(id: SongItem.active.select(:video_id)) if params[:only_song_lives].to_i.positive?
 
     @videos = scope.order(published_at: :desc).page(params[:page]).per(params[:count])
     @total_pages = @videos.total_pages
