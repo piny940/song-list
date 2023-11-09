@@ -1,0 +1,30 @@
+services:
+  app:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: backend-song-list
+    container_name: backend-song-list
+    ports:
+      - '8010:3000'
+    depends_on:
+      - db
+    env_file:
+      - ./backend/.env
+    environment:
+      - RAILS_ENV=production
+    volumes:
+      - ./public:/app/public
+  db:
+    image: postgres:15.1-alpine
+    restart: always
+    container_name: postgres
+    volumes:
+      - database:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: backend_song_list_production
+
+volumes:
+  database:
