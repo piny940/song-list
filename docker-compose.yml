@@ -14,7 +14,7 @@ services:
     environment:
       - RAILS_ENV=production
     volumes:
-      - ./public:/app/public
+      - ./backend/public:/app/public
   db:
     image: postgres:15.1-alpine
     restart: always
