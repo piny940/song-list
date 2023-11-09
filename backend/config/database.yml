@@ -84,7 +84,7 @@ test:
 #
 production:
   <<: *default
-  database: backend_song_list_production
+  database: song_list_production
   username: <%= ENV["POSTGRES_USER"] %>
   password: <%= ENV["POSTGRES_PASSWORD"] %>
   host: db
