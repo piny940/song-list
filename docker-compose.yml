@@ -24,6 +24,8 @@ services:
     restart: always
     ports:
       - 4500:4400
+    depends_on:
+      - backend
   db:
     image: postgres:15.1-alpine
     restart: always
