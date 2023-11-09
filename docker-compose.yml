@@ -1,5 +1,5 @@
 services:
-  app:
+  backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -15,6 +15,15 @@ services:
       - RAILS_ENV=production
     volumes:
       - ./backend/public:/app/public
+  frontend:
+    container_name: frontend-song-list
+    image: frontend-song-list
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 4500:4400
   db:
     image: postgres:15.1-alpine
     restart: always
