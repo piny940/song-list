@@ -9,9 +9,6 @@
     {
       "path": "frontend"
     },
-    {
-      "path": "nginx"
-    }
   ],
   "settings": {}
 }
