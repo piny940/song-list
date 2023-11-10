@@ -23,8 +23,6 @@ jobs:
       - name: Move to top directory
         env:
           SUB_DIR: backend
-          ADMIN_USER: admin
-          ADMIN_PASSWORD: password
         run: |
           path=`pwd`
           mv $path/$SUB_DIR /tmp

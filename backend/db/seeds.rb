@@ -10,7 +10,7 @@
 # 管理者ユーザーを作成
 User.create!(
   name: '管理者',
-  email: ENV.fetch('ADMIN_USER'),
-  password: ENV.fetch('ADMIN_PASSWORD'),
+  email: ENV.fetch('ADMIN_USER', 'admin'),
+  password: ENV.fetch('ADMIN_PASSWORD', 'password'),
   kind: 'admin'
 )
