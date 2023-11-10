@@ -1,12 +1,10 @@
 services:
-  backend:
+  rails:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    image: backend-song-list
-    container_name: backend-song-list
-    ports:
-      - '8020:3000'
+    image: song-list-rails
+    container_name: song-list-rails
     depends_on:
       - db
     env_file:
@@ -14,18 +12,42 @@ services:
     environment:
       - RAILS_ENV=production
     volumes:
-      - ./backend/public:/app/public
-  frontend:
-    container_name: frontend-song-list
-    image: frontend-song-list
+      - public:/app/public
+
+  rails-nginx:
+    container_name: song-list-rails-nginx
+    build:
+      context: ./backend/nginx
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 54020:80
+    depends_on:
+      - rails
+    volumes:
+      - public:/app/public
+
+  next:
+    container_name: song-list-next
+    image: song-list-next
     build:
       context: ./frontend
       dockerfile: Dockerfile
     restart: always
-    ports:
-      - 4500:4400
     depends_on:
-      - backend
+      - rails
+
+  next-nginx:
+    container_name: song-list-next-nginx
+    build:
+      context: ./frontend/nginx
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 54030:80
+    depends_on:
+      - next
+
   db:
     image: postgres:15.1-alpine
     restart: always
@@ -39,3 +61,4 @@ services:
 
 volumes:
   database:
+  public:
