@@ -34,10 +34,6 @@ jobs:
           do
             mv $dir $path
           done
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 3.1.2
-          bundler-cache: true
       - name: Set Env
         run: |
           echo "RAILS_ENV=test" >> $GITHUB_ENV
@@ -45,6 +41,12 @@ jobs:
           echo "TEST_PG_PASSWORD=postgres" >> $GITHUB_ENV
           echo "TEST_PG_HOST=localhost" >> $GITHUB_ENV
           echo "REDIS_URL=redis://redis:6379/1" >> $GITHUB_ENV
+          echo "ADMIN_USER=admin@example.com" >> $GITHUB_ENV
+          echo "ADMIN_PASSWORD=password" >> $GITHUB_ENV
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1.2
+          bundler-cache: true
       - name: DB setup
         run: bundle exec rails db:setup
       - name: Run rails test

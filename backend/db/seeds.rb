@@ -6,3 +6,11 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+# 管理者ユーザーを作成
+User.create!(
+  name: '管理者',
+  email: ENV.fetch('ADMIN_USER'),
+  password: ENV.fetch('ADMIN_PASSWORD'),
+  kind: 'admin'
+)

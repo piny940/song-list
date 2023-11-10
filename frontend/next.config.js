@@ -1,9 +1,6 @@
 /** @type {import('next').NextConfig} */
 
-const BACKEND =
-  process.env.NODE_ENV === 'development'
-    ? 'http://localhost:3000'
-    : 'https://backend_song_list.piny940.com'
+require('dotenv').config()
 
 const nextConfig = {
   reactStrictMode: true,
@@ -21,7 +18,7 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: `${BACKEND}/api/:path*`,
+        destination: `${process.env.BACKEND_HOST}/api/:path*`,
       },
     ]
   },
