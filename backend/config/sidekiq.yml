@@ -1,4 +1,4 @@
 :schedule:
   create_recent_video_song_items:
-    cron: "0 0 0 0 * *"
+    cron: "0 3 * * * *"
     class: CreateRecentVideosSongItemsJob
