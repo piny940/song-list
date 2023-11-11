@@ -13,7 +13,7 @@ services:
       - RAILS_ENV=production
     volumes:
       - public:/app/public
-  
+
   rails-nginx:
     container_name: song-list-rails-nginx
     build:
