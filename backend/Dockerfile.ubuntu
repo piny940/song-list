@@ -1,0 +1,27 @@
+FROM ruby:3.1.2 as builder
+
+RUN gem install bundler
+COPY Gemfile Gemfile.lock ./
+ENV RAILS_ENV=production
+RUN RAILS_ENV=${RAILS_ENV} bundle install
+
+FROM ruby:3.1.2 as app
+
+RUN apt update && apt -y upgrade && \
+  apt install -y \
+  tzdata \
+  postgresql-client \
+  libnss3 \
+  && wget -P /tmp https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/119.0.6045.105/linux64/chrome-linux64.zip \
+  && unzip /tmp/chrome-linux64.zip -d /usr/lib \
+  && ln -s /usr/lib/chrome-linux64/chrome /usr/local/bin/chrome \
+  && wget -P /tmp https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/119.0.6045.105/linux64/chromedriver-linux64.zip \
+  && unzip /tmp/chromedriver-linux64.zip -d /usr/lib \
+  && ln -s /usr/lib/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver
+
+WORKDIR /app
+
+COPY --from=builder /usr/local/bundle /usr/local/bundle
+COPY . .
+
+CMD ["/bin/sh"]
