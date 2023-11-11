@@ -13,7 +13,7 @@ services:
       - RAILS_ENV=production
     volumes:
       - public:/app/public
-
+  
   rails-nginx:
     container_name: song-list-rails-nginx
     build:
@@ -26,6 +26,20 @@ services:
       - rails
     volumes:
       - public:/app/public
+
+  sidekiq:
+    container_name: song-list-sidekiq
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: always
+    env_file:
+      - ./backend/.env
+    environment:
+      - RAILS_ENV=production
+    command: bundle exec sidekiq
+    depends_on:
+      - redis
 
   next:
     container_name: song-list-next
@@ -59,6 +73,14 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: song_list_production
 
+  redis:
+    image: redis:alpine
+    container_name: song-list-redis
+    restart: always
+    volumes:
+      - redis-data:/var/lib/redis
+
 volumes:
   database:
   public:
+  redis-data:
