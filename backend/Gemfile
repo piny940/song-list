@@ -120,3 +120,6 @@ gem 'selenium-webdriver'
 
 # slackエラー通知
 gem 'exception_notification'
+
+# 定期実行
+gem 'sidekiq-scheduler'
