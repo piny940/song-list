@@ -27,13 +27,19 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
 
   if (error) return <Error statusCode={404} />
 
-  return data ? (
+  return (
     <div className="channel">
-      <Head
-        title={data.channel.custom_name + ' - 歌枠データベース'}
-        keywords={[data.channel.custom_name]}
-      />
-      <h1>{data.channel.name}</h1>
+      {data ? (
+        <>
+          <Head
+            title={data.channel.custom_name + ' - 歌枠データベース'}
+            keywords={[data.channel.custom_name]}
+          />
+          <h1>{data.channel.name}</h1>
+        </>
+      ) : (
+        <Loading />
+      )}
       <div className="row p-0 m-0">
         <section className="col-lg-6 px-2">
           <h2 className="h6 m-0 fw-bold w-100 text-center">歌一覧</h2>
@@ -48,7 +54,7 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
             setVideoTitle={setSongVideoTitle}
           />
           <SongItems
-            channelId={data.channel.id}
+            channelId={id}
             query={songQuery}
             since={songSince}
             until={songUntil}
@@ -69,7 +75,7 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
             setOnlySongLives={setOnlySongLives}
           />
           <Videos
-            channel={data.channel}
+            channelId={id}
             query={videoQuery}
             since={videoSince}
             until={videoUntil}
@@ -78,7 +84,5 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
         </section>
       </div>
     </div>
-  ) : (
-    <Loading />
   )
 }

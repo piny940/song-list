@@ -1,5 +1,5 @@
 import { TestID } from '@/resources/TestID'
-import { ChannelType, VideoType } from '@/resources/types'
+import { VideoType } from '@/resources/types'
 import Error from 'next/error'
 import { Video } from './Video'
 import { Loading } from '../Common/Loading'
@@ -8,7 +8,7 @@ import { useState } from 'react'
 import { useVideos } from '@/hooks/video'
 
 export type VideosProps = {
-  channel: ChannelType
+  channelId: number
   query?: string
   since?: Date | null
   until?: Date | null
@@ -16,7 +16,7 @@ export type VideosProps = {
 }
 
 export const Videos: React.FC<VideosProps> = ({
-  channel,
+  channelId,
   query,
   since,
   until,
@@ -24,7 +24,7 @@ export const Videos: React.FC<VideosProps> = ({
 }) => {
   const [openedVideo, setOpenedVideo] = useState<VideoType | null>(null)
   const { data, error, getPage, setPage } = useVideos({
-    channelId: channel.id,
+    channelId: channelId,
     query,
     since,
     until,
