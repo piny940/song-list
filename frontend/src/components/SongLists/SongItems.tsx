@@ -63,7 +63,7 @@ export const SongItems: React.FC<SongItemsProps> = ({
   }
 
   return data ? (
-    <div className="pb-4" data-testid={TestID.SONG_ITEMS}>
+    <div className="py-4" data-testid={TestID.SONG_ITEMS}>
       {Object.keys(videos).length > 0 ? (
         <>
           {Object.values(videos).map((video) => (

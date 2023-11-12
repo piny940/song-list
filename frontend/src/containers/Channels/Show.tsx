@@ -41,7 +41,7 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
       ) : (
         <Loading />
       )}
-      <div className="row p-0 m-0">
+      <div className="row py-4 m-0">
         <section className="col-lg-6 px-2">
           <h2 className="h6 m-0 fw-bold w-100 text-center">歌一覧</h2>
           <SongItemsSearch
@@ -63,8 +63,8 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
           />
         </section>
         {!isMobile() && (
-          <section className="col-lg-6 px-2 d-none d-lg-block">
-            <div className="h6 m-0 w-100 text-center">配信から検索</div>
+          <section className="col-lg-6 px-3 d-none d-lg-block">
+            <div className="h6 mb-4 w-100 text-center">配信から検索</div>
             <VideosSearch
               query={videoQuery}
               setQuery={setVideoQuery}
