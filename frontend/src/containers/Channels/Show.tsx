@@ -59,7 +59,6 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
             since={songSince}
             until={songUntil}
             videoTitle={songVideoTitle}
-            isLink={true}
           />
         </section>
         <section className="col-lg-6 px-2 d-none d-lg-block">

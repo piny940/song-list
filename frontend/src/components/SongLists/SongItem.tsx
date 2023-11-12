@@ -1,8 +1,7 @@
 import { TestID } from '@/resources/TestID'
 import { SongItemType } from '@/resources/types'
-import { stopPropagation, toSongLink } from '@/utils/helpers'
+import { toSongLink } from '@/utils/helpers'
 import Link from 'next/link'
-import { MouseEventHandler } from 'react'
 import { styled } from 'styled-components'
 import { YoutubeIcon } from '../Common/YoutubeIcon'
 
@@ -16,34 +15,17 @@ const OneLineDiv = styled.div`
 
 export type SongItemProps = {
   songItem: SongItemType
-  isLink: boolean
-  onClick?: MouseEventHandler
 }
 
-export const SongItem: React.FC<SongItemProps> = ({
-  songItem,
-  isLink,
-  onClick,
-}) => {
-  const renderContent = () => {
-    return (
+export const SongItem: React.FC<SongItemProps> = ({ songItem }) => {
+  return (
+    <Link href={toSongLink(songItem)} target="_blank" title="Youtubeで視聴">
       <div
         className="d-flex align-items-center border border-light rounded shadow-sm m-1 p-3"
         data-testid={TestID.SONG_ITEM}
       >
         <span className="flex-shrink-0 d-flex align-items-center">
-          {isLink ? (
-            <YoutubeIcon />
-          ) : (
-            <Link
-              href={toSongLink(songItem)}
-              target="_blank"
-              onClick={stopPropagation}
-              className="d-flex align-items-center"
-            >
-              <YoutubeIcon />
-            </Link>
-          )}
+          <YoutubeIcon />
         </span>
         <div className="">
           <span className="ms-2">{songItem.time}</span>
@@ -59,19 +41,6 @@ export const SongItem: React.FC<SongItemProps> = ({
           )}
         </div>
       </div>
-    )
-  }
-  return isLink ? (
-    <Link href={toSongLink(songItem)} target="_blank" title="Youtubeで視聴">
-      {renderContent()}
     </Link>
-  ) : onClick ? (
-    <button className="w-100 d-block" onClick={onClick}>
-      {renderContent()}
-    </button>
-  ) : (
-    <div className="" onClick={onClick}>
-      {renderContent()}
-    </div>
   )
 }
