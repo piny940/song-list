@@ -5,6 +5,7 @@ import { SongItemsSearch } from '@/components/SongLists/SongItemsSearch'
 import { Videos } from '@/components/SongLists/Videos'
 import { VideosSearch } from '@/components/SongLists/VideosSearch'
 import { useChannel } from '@/hooks/channel'
+import { isMobile } from '@/utils/helpers'
 import Error from 'next/error'
 import { useState } from 'react'
 
@@ -61,26 +62,28 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
             videoTitle={songVideoTitle}
           />
         </section>
-        <section className="col-lg-6 px-2 d-none d-lg-block">
-          <div className="h6 m-0 w-100 text-center">配信から検索</div>
-          <VideosSearch
-            query={videoQuery}
-            setQuery={setVideoQuery}
-            since={videoSince}
-            setSince={setVideoSince}
-            until={videoUntil}
-            setUntil={setVideoUntil}
-            onlySongLives={onlySongLives}
-            setOnlySongLives={setOnlySongLives}
-          />
-          <Videos
-            channelId={id}
-            query={videoQuery}
-            since={videoSince}
-            until={videoUntil}
-            onlySongLives={onlySongLives}
-          />
-        </section>
+        {!isMobile() && (
+          <section className="col-lg-6 px-2 d-none d-lg-block">
+            <div className="h6 m-0 w-100 text-center">配信から検索</div>
+            <VideosSearch
+              query={videoQuery}
+              setQuery={setVideoQuery}
+              since={videoSince}
+              setSince={setVideoSince}
+              until={videoUntil}
+              setUntil={setVideoUntil}
+              onlySongLives={onlySongLives}
+              setOnlySongLives={setOnlySongLives}
+            />
+            <Videos
+              channelId={id}
+              query={videoQuery}
+              since={videoSince}
+              until={videoUntil}
+              onlySongLives={onlySongLives}
+            />
+          </section>
+        )}
       </div>
     </div>
   )

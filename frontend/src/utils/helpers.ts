@@ -30,3 +30,7 @@ export const queryToSearchParams = (
   return new URLSearchParams(query as Record<string, string>)
 }
 export const stopPropagation: MouseEventHandler = (e) => e.stopPropagation()
+
+export const isMobile = () =>
+  typeof window !== 'undefined' &&
+  window.matchMedia?.('(max-device-width: 640px)').matches
