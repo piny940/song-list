@@ -3,7 +3,7 @@ module SongLive
 
   module ClassMethods
     def song_lives
-      where('title LIKE ?', '%歌枠%').or(where('title LIKE ?', '%弾き語り%'))
+      where('title LIKE ?', '%歌枠%').or(where('title LIKE ?', '%弾き語り%')).or(where('title ILIKE ?', '%Karaoke%'))
     end
 
     def search_and_create_song_items!
@@ -25,7 +25,7 @@ module SongLive
   end
 
   def song_live?
-    !!title.match(/歌枠|弾き語り/)
+    !!title.match(/歌枠|弾き語り|(K|k)(A|a)(R|r)(A|a)(O|o)(K|k)(E|e)/)
   end
 
   def search_and_create_song_items!
