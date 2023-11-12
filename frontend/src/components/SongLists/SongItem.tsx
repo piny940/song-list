@@ -20,7 +20,7 @@ export type SongItemProps = {
 export const SongItem: React.FC<SongItemProps> = ({ songItem }) => {
   return (
     <Link
-      className="unstyled"
+      className="text-body unstyled"
       href={toSongLink(songItem)}
       target="_blank"
       title="Youtubeで視聴"
