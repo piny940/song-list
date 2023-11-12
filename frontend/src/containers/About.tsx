@@ -23,7 +23,6 @@ export const About: React.FC = () => {
         <p>
           間違いを見つけられた方は
           <Link
-            className="text-primary text-decoration-underline"
             href="https://marshmallow-qa.com/piny940?utm_medium=url_text&utm_source=promotion"
             target="_blank"
           >

@@ -36,7 +36,7 @@ export const SongList: React.FC<SongListProps> = ({ video }) => {
             data-testid={TestID.SONG_LIST_ITEM}
           >
             <Link
-              className="w-100 d-inline-block"
+              className="unstyled w-100 d-inline-block"
               href={toSongLink(song)}
               target="_blank"
               title="Youtubeで視聴"

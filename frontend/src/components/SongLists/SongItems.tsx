@@ -7,9 +7,10 @@ import { Paging } from '../Common/Paging'
 import { styled } from 'styled-components'
 import { toVideoDate } from '@/utils/helpers'
 import { useSongItems } from '@/hooks/songItem'
+import { SongItemButton } from './SongItemButton'
 
 const VideoTitleH3 = styled.h3`
-  height: 19px;
+  height: 18px;
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -25,7 +26,6 @@ export type SongItemsProps = {
   since?: Date | null
   until?: Date | null
   videoTitle?: string
-  isLink: boolean
   onClick?: (songItem: SongItemType) => void
 }
 
@@ -36,7 +36,6 @@ export const SongItems: React.FC<SongItemsProps> = ({
   since,
   until,
   videoTitle,
-  isLink,
   onClick,
 }) => {
   const { data, error, getPage, setPage } = useSongItems({
@@ -64,7 +63,7 @@ export const SongItems: React.FC<SongItemsProps> = ({
   }
 
   return data ? (
-    <div className="pb-4" data-testid={TestID.SONG_ITEMS}>
+    <div className="py-4" data-testid={TestID.SONG_ITEMS}>
       {Object.keys(videos).length > 0 ? (
         <>
           {Object.values(videos).map((video) => (
@@ -76,11 +75,14 @@ export const SongItems: React.FC<SongItemsProps> = ({
               <div className="mb-4 ps-3">
                 {songItems[video.video_id].map((songItem) => (
                   <div key={songItem.id}>
-                    <SongItem
-                      isLink={isLink}
-                      songItem={songItem}
-                      onClick={onClick && (() => onClick(songItem))}
-                    />
+                    {onClick ? (
+                      <SongItemButton
+                        songItem={songItem}
+                        onClick={() => onClick(songItem)}
+                      />
+                    ) : (
+                      <SongItem songItem={songItem} />
+                    )}
                   </div>
                 ))}
               </div>

@@ -55,7 +55,6 @@ export const MaintenanceChannelsShow: React.FC<
             setVideoTitle={setVideoTitle}
           />
           <SongItems
-            isLink={false}
             channelId={id}
             onClick={onSongItemClick}
             query={query}

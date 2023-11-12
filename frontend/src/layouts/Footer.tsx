@@ -17,17 +17,17 @@ export const Footer: React.FC = () => {
     >
       {data?.user && (
         <>
-          <Link href="/maintenance" className="text-white">
+          <Link href="/maintenance" className="unstyled text-white">
             メンテナンスする
           </Link>
           ｜
         </>
       )}
-      <Link href="/about" className="text-white">
+      <Link href="/about" className="unstyled text-white">
         このサイトについて
       </Link>
       ｜
-      <Link href="/inquiry" className="text-white">
+      <Link href="/inquiry" className="unstyled text-white">
         お問い合わせ
       </Link>
       {data?.user && (
@@ -39,7 +39,7 @@ export const Footer: React.FC = () => {
       <small>
         &copy;2023
         <Link
-          className="text-white"
+          className="unstyled text-white"
           href="https://github.com/piny940"
           target="_blank"
         >
