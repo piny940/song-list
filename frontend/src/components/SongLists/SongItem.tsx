@@ -1,6 +1,6 @@
 import { TestID } from '@/resources/TestID'
 import { SongItemType } from '@/resources/types'
-import { toSongLink } from '@/utils/helpers'
+import { isMobile, toSongLink } from '@/utils/helpers'
 import Link from 'next/link'
 import { styled } from 'styled-components'
 import { YoutubeIcon } from '../Common/YoutubeIcon'
@@ -29,15 +29,21 @@ export const SongItem: React.FC<SongItemProps> = ({ songItem }) => {
         className="d-flex align-items-center border border-light rounded shadow-sm m-1 p-3"
         data-testid={TestID.SONG_ITEM}
       >
-        <span className="flex-shrink-0 d-flex align-items-center me-2">
-          <YoutubeIcon />
-        </span>
-        <div className="">
-          <span className="">{songItem.time}</span>
-        </div>
+        {!isMobile() && (
+          <>
+            {' '}
+            <span className="flex-shrink-0 d-flex align-items-center me-2">
+              <YoutubeIcon />
+            </span>
+            <div className="">
+              <span className="me-2">{songItem.time}</span>
+            </div>
+          </>
+        )}
+
         <div className="d-flex flex-wrap">
           <OneLineDiv className="">
-            <span className="ms-2">{songItem.title}</span>
+            <span className="">{songItem.title}</span>
           </OneLineDiv>
           {songItem.author && (
             <OneLineDiv>
