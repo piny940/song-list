@@ -10,7 +10,7 @@ import { useSongItems } from '@/hooks/songItem'
 import { SongItemButton } from './SongItemButton'
 
 const VideoTitleH3 = styled.h3`
-  height: 19px;
+  height: 18px;
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
