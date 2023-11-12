@@ -14,19 +14,6 @@ services:
     volumes:
       - public:/app/public
 
-  rails-nginx:
-    container_name: song-list-rails-nginx
-    build:
-      context: ./backend/nginx
-      dockerfile: Dockerfile
-    restart: always
-    ports:
-      - 54020:80
-    depends_on:
-      - rails
-    volumes:
-      - public:/app/public
-
   sidekiq:
     container_name: song-list-sidekiq
     build:
@@ -51,17 +38,6 @@ services:
     depends_on:
       - rails
 
-  next-nginx:
-    container_name: song-list-next-nginx
-    build:
-      context: ./frontend/nginx
-      dockerfile: Dockerfile
-    restart: always
-    ports:
-      - 54030:80
-    depends_on:
-      - next
-
   db:
     image: postgres:15.1-alpine
     restart: always
@@ -79,6 +55,21 @@ services:
     restart: always
     volumes:
       - redis-data:/var/lib/redis
+
+  nginx:
+    container_name: song-list-nginx
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 54020:3080
+      - 54030:4080
+    depends_on:
+      - rails
+      - next
+    volumes:
+      - public:/app/public
 
 volumes:
   database:
