@@ -29,11 +29,11 @@ export const SongItem: React.FC<SongItemProps> = ({ songItem }) => {
         className="d-flex align-items-center border border-light rounded shadow-sm m-1 p-3"
         data-testid={TestID.SONG_ITEM}
       >
-        <span className="flex-shrink-0 d-flex align-items-center">
+        <span className="flex-shrink-0 d-flex align-items-center me-2">
           <YoutubeIcon />
         </span>
         <div className="">
-          <span className="ms-2">{songItem.time}</span>
+          <span className="">{songItem.time}</span>
         </div>
         <div className="d-flex flex-wrap">
           <OneLineDiv className="">
