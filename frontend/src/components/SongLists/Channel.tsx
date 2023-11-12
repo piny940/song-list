@@ -37,7 +37,10 @@ export const Channel: React.FC<ChannelProps> = ({ channel, link }) => {
         />
       </div>
       <div className="ms-3">
-        <Link href={`${link}/${channel.id}`} className="stretched-link">
+        <Link
+          href={`${link}/${channel.id}`}
+          className="unstyled stretched-link"
+        >
           <span className="fw-bold p-2 pt-3">{channel.name}</span>
         </Link>
         <LinksDiv>

@@ -7,7 +7,7 @@ export const Home: React.FC = () => {
       <div className="list-group">
         <Link
           href="/channels"
-          className="list-group-item list-group-item-action"
+          className="list-group-item list-group-item-action unstyled"
         >
           チャンネルから検索
         </Link>

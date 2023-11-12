@@ -57,7 +57,7 @@ export const SessionNew: React.FC = () => {
           name="password"
         />
         <div className="">
-          <Link href="/user/new" className="text-primary py-0">
+          <Link href="/user/new" className="py-0">
             &gt;アカウント新規作成
           </Link>
         </div>

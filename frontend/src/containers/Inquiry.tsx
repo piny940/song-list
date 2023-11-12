@@ -8,18 +8,13 @@ export const Inquiry: React.FC = () => {
         <p>
           お問い合わせは
           <Link
-            className="text-primary text-decoration-underline"
             href="https://marshmallow-qa.com/piny940?utm_medium=url_text&utm_source=promotion"
             target="_blank"
           >
             マシュマロ
           </Link>
           か
-          <Link
-            className="text-primary text-decoration-underline"
-            href="https://twitter.com/songlist940"
-            target="_blank"
-          >
+          <Link href="https://twitter.com/songlist940" target="_blank">
             Twitter
           </Link>
           へ！

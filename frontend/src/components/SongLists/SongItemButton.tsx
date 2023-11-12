@@ -34,7 +34,7 @@ export const SongItemButton: React.FC<SongItemButtonProps> = ({
             href={toSongLink(songItem)}
             target="_blank"
             onClick={stopPropagation}
-            className="d-flex align-items-center"
+            className="d-flex align-items-center unstyled"
           >
             <YoutubeIcon />
           </Link>

@@ -67,7 +67,7 @@ export const UserNew: React.FC = () => {
           required
         />
         <div className="">
-          <Link href="/session/new" className="text-primary py-0">
+          <Link href="/session/new" className="py-0">
             &gt;アカウントをすでにお持ちの場合はこちら
           </Link>
         </div>

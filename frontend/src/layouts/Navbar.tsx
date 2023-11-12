@@ -34,7 +34,7 @@ export const Navbar: React.FC = () => {
       <div className="container-fluid px-5">
         <Link
           href="/"
-          className="title fw-bold d-flex align-items-center text-body"
+          className="unstyled title fw-bold d-flex align-items-center text-body"
         >
           <Image
             src="/images/icon.png"
@@ -86,7 +86,7 @@ export const Navbar: React.FC = () => {
               <div className="nav-item">
                 {isMaintenance() ? (
                   <MaintenanceModeDiv className="d-none d-lg-block border border-primary border-3 rounded nav-link fw-bold bg-primary-subtle">
-                    <Link href="/" className="text-primary-emphasis">
+                    <Link href="/" className="unstyled text-primary-emphasis">
                       メンテナンスモード
                     </Link>
                   </MaintenanceModeDiv>
