@@ -22,7 +22,7 @@ Vtuberが歌枠で歌った曲のデータベースです。曲名や作者名�
   - `yarn dev`
 
 ## 過去の全ての配信を取得する
-- `docker build -t song-list-rails-ubuntu -f  backend/Dockerfile.ubuntu ./backend` (初回のみ)
+- `docker build -t song-list-rails-ubuntu -f  backend/Dockerfile.ubuntu ./backend` (コードを更新した場合のみ)
 - `docker run -it --net=song-list_default --env-file backend/.env song-list-rails-ubuntu sh -c "RAILS_ENV=production bundle exec rails channels:create_all_videos"`
 
 ## 全ての動画のセトリを作成する
