@@ -3,8 +3,8 @@ describe Api::UsersController do
 
   describe('GET /api/user') do
     it('ログイン中のユーザーを取得できる') do
-      user = create(:user, name: 'Alice')
-      sign_in user
+      alice = create(:user, name: 'Alice')
+      sign_in alice
       get endpoint
       expect(response.status).to eq 200
       json = response.parsed_body
@@ -35,7 +35,7 @@ describe Api::UsersController do
     end
 
     it('ユーザー名が同じユーザーは複数作れない') do
-      User.create!(name: 'Alice', password: 'password', password_confirmation: 'password')
+      create(:user, name: 'Alice')
       before_count = User.count
       post endpoint, params: { user: { name: 'Alice', password: 'password', password_confirmation: 'password' } }
       expect(response.status).to eq 400
