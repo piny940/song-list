@@ -3,7 +3,7 @@ describe Api::UsersController do
 
   describe('GET /api/user') do
     it('ログイン中のユーザーを取得できる') do
-      user = User.create!(name: 'Alice', password: 'password', password_confirmation: 'password')
+      user = create(:user, name: 'Alice')
       sign_in user
       get endpoint
       expect(response.status).to eq 200
