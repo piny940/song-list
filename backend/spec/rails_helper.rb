@@ -62,4 +62,5 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
   # config.render_views = true
   config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include FactoryBot::Syntax::Methods
 end
