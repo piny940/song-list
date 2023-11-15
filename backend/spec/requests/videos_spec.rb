@@ -55,7 +55,7 @@ describe Api::VideosController do
       expect(json['videos'].count).to eq 1
     end
 
-    it('歌枠で絞り込みできる') do
+    it('セトリが1曲以上あるVideoに絞り込みができる') do
       get endpoint, params: { only_song_lives: '1' }
       expect(response.status).to eq 200
       json = response.parsed_body
