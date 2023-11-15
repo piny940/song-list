@@ -1,0 +1,10 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/backend"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "bundler"
+    directory: "/backend"
+    schedule:
+      interval: "daily"
