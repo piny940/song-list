@@ -1,9 +1,26 @@
+SHAIRU_VIDEO_COUNT = 4
+MASHIRO_VIDEO_COUNT = 5
+
 describe Api::VideosController do
-  fixtures :channels, :videos
-  let(:channel) { channels(:shairu) }
-  let(:video) { videos(:shairu1) }
-  let(:last_video) { videos(:mashiro2) }
-  let(:endpoint) { '/api/videos' }
+  let(:last_video) { Video.last }
+
+  before do
+    shairu = create(:channel, name: 'しゃいる')
+    mashiro = create(:channel, name: 'ましろ')
+
+    video_num = 1
+    (SHAIRU_VIDEO_COUNT-1).times do
+      create(:video, channel: shairu, published_at: "2023-06-#{video_num} 12:00:00")
+      video_num += 1
+    end
+    (MASHIRO_VIDEO_COUNT-1).times do
+      create(:video, channel: mashiro, published_at: "2023-06-#{video_num} 12:00:00")
+      video_num += 1
+    end
+    create(:video, channel: shairu, title: 'ましろの歌枠！', published_at: "2023-06-#{video_num} 12:00:00")
+    video_num += 1
+    create(:video, channel: mashiro, title: 'しゃいるの歌枠！', published_at: "2023-06-#{video_num} 12:00:00")
+  end
 
   describe 'GET /api/videos' do
     it('正常に取得できる') do
@@ -13,7 +30,7 @@ describe Api::VideosController do
 
       json = response.parsed_body
 
-      expect(json['videos'].count).to eq 4
+      expect(json['videos'].count).to eq SHAIRU_VIDEO_COUNT + MASHIRO_VIDEO_COUNT
       expect(json['videos'][0]['id']).to eq last_video.id
       expect(json['videos'][0]['video_id']).to eq last_video.video_id
       expect(json['videos'][0]['channel_id']).to eq last_video.channel_id
@@ -28,10 +45,10 @@ describe Api::VideosController do
     end
 
     it('channelで絞り込みができる') do
-      get endpoint, params: { channel_id: channel.id }
+      get endpoint, params: { channel_id: shairu.id }
       expect(response.status).to eq 200
       json = response.parsed_body
-      expect(json['videos'].count).to eq 2
+      expect(json['videos'].count).to eq SHAIRU_VIDEO_COUNT
     end
 
     it('あいまい検索できる') do
