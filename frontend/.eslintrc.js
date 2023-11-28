@@ -9,6 +9,7 @@ module.exports = {
     'next/core-web-vitals',
     'prettier',
   ],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
