@@ -9,6 +9,7 @@ module.exports = {
     'next/core-web-vitals',
     'prettier',
   ],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
@@ -26,4 +27,5 @@ module.exports = {
     'object-shorthand': 'off',
     '@typescript-eslint/no-confusing-void-expression': 'off',
   },
+  ignorePatterns: ['.eslintrc.js', 'jest.config.js', 'next.config.js'],
 }
