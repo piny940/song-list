@@ -27,4 +27,5 @@ module.exports = {
     'object-shorthand': 'off',
     '@typescript-eslint/no-confusing-void-expression': 'off',
   },
+  ignorePatterns: ['.eslintrc.js', 'jest.config.js', 'next.config.js'],
 }
