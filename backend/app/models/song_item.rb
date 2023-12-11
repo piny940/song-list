@@ -104,7 +104,7 @@ class SongItem < ApplicationRecord
       content = content.gsub(/"-"/, '""')
       JSON.parse(content)
     rescue StandardError
-      SlackNotifier.send("セトリは作成されませんでした。\nコメント: #{comment_content}\nOpenAI出力: #{content}")
+      notify_song_items_creation_failed(comment_content, content)
       []
     end
   end
@@ -123,11 +123,14 @@ class SongItem < ApplicationRecord
       song_items.push(song_item)
     end
     song_items = where(id: song_items.map(&:id))
-    notify_creation(song_items)
+
+    # Slackに通知
+    notify_song_items_created(song_items)
+
     song_items
   end
 
-  def self.notify_creation(song_items)
+  def self.notify_song_items_created(song_items)
     return if song_items.blank?
 
     message = "セトリが作成されました。\n"
@@ -135,6 +138,14 @@ class SongItem < ApplicationRecord
     song_items.each do |song_item|
       message << "時間: #{song_item.time}, タイトル: #{song_item.title}, 歌手名: #{song_item.author}\n"
     end
+    SlackNotifier.send(message)
+  end
+
+  def self.notify_song_items_creation_failed(comment_content, openai_output)
+    message = "セトリは作成されませんでした。\n"
+    message << "URL: #{Rails.application.routes.url_helpers.admin_video_url(new.video_id)}\n"
+    message << "コメント: #{comment_content}\n"
+    message << "OpenAI出力: #{openai_output}\n"
     SlackNotifier.send(message)
   end
 end
