@@ -7,8 +7,9 @@ module SongLive
     end
 
     def search_and_create_song_items!
-      where(status: %w[ready fetched]) \
-        .order(published_at: :desc).all.each(&:search_and_create_song_items!)
+      videos = where(status: %w[ready fetched]).order(published_at: :desc).all
+
+      videos.each(&:search_and_create_song_items!)
     end
 
     def update_songs_author_from_history!
@@ -29,6 +30,8 @@ module SongLive
   end
 
   def search_and_create_song_items!
+    notify_start_create_song_items
+
     # 歌枠でない場合はstatusをcompleteにして終了
     unless song_live?
       update!(status: 'completed')
@@ -47,7 +50,7 @@ module SongLive
 
       # SongItemsが見つかったらそこで終了
       if song_items.present?
-        if song_items.filter(&:completed?).count == song_items.count
+        if song_items_completed?
           update!(status: 'completed')
         else
           update!(status: 'song_items_created')
@@ -81,7 +84,7 @@ module SongLive
         # SongItemsが見つかり次第終了
         next if song_items.blank?
 
-        if song_items.filter(&:completed?).count == song_items.count
+        if song_items_completed?
           update!(status: 'completed')
         else
           update!(status: 'song_items_created')
@@ -110,5 +113,19 @@ module SongLive
       song_item.update_author_from_spotify!(spotify_token)
     end
     update!(status: 'spotify_completed') if song_items.completed.count == song_items.count
+  end
+
+  def notify_start_create_song_items
+    message = "セトリを作成します。\n"
+    message << "URL: #{Rails.application.routes.url_helpers.admin_video_url(id)}\n"
+    message << "タイトル: #{title}\n"
+    message << "Status: #{status}\n"
+    SlackNotifier.send(message)
+  end
+
+  private
+
+  def song_items_completed?
+    song_items.completed.count == song_items.count
   end
 end
