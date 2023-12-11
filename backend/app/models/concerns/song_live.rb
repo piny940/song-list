@@ -29,6 +29,8 @@ module SongLive
   end
 
   def search_and_create_song_items!
+    notify_start_create_song_items
+
     # 歌枠でない場合はstatusをcompleteにして終了
     unless song_live?
       update!(status: 'completed')
@@ -110,6 +112,14 @@ module SongLive
       song_item.update_author_from_spotify!(spotify_token)
     end
     update!(status: 'spotify_completed') if song_items.completed.count == song_items.count
+  end
+
+  def notify_start_create_song_items
+    message = "セトリを作成します。\n"
+    message << "URL: #{Rails.application.routes.url_helpers.admin_video_url(id)}\n"
+    message << "タイトル: #{title}\n"
+    message << "Status: #{status}\n"
+    SlackNotifier.send(message)
   end
 
   private
