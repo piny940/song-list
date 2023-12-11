@@ -47,7 +47,7 @@ module SongLive
 
       # SongItemsが見つかったらそこで終了
       if song_items.present?
-        if song_items.filter(&:completed?).count == song_items.count
+        if song_items_completed?
           update!(status: 'completed')
         else
           update!(status: 'song_items_created')
@@ -81,7 +81,7 @@ module SongLive
         # SongItemsが見つかり次第終了
         next if song_items.blank?
 
-        if song_items.filter(&:completed?).count == song_items.count
+        if song_items_completed?
           update!(status: 'completed')
         else
           update!(status: 'song_items_created')
@@ -110,5 +110,11 @@ module SongLive
       song_item.update_author_from_spotify!(spotify_token)
     end
     update!(status: 'spotify_completed') if song_items.completed.count == song_items.count
+  end
+
+  private
+
+  def song_items_completed?
+    song_items.completed.count == song_items.count
   end
 end
