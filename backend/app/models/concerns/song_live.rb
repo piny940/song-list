@@ -7,8 +7,10 @@ module SongLive
     end
 
     def search_and_create_song_items!
-      where(status: %w[ready fetched]) \
-        .order(published_at: :desc).all.each(&:search_and_create_song_items!)
+      videos = where(status: %w[ready fetched]) \
+        .order(published_at: :desc).all
+
+      videos.each(&:search_and_create_song_items!)
     end
 
     def update_songs_author_from_history!
