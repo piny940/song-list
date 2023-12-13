@@ -18,7 +18,7 @@ services:
     container_name: song-list-sidekiq
     build:
       context: ./backend
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.ubuntu
     restart: always
     env_file:
       - ./backend/.env
