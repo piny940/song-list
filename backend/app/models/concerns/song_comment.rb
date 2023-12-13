@@ -22,7 +22,7 @@ module SongComment
 
   private
 
-  SETLIST_REGEX = /セトリ|セットリスト|タイム(テーブル|スタンプ)|曲集|(t|T)ime(\ |_)?(s|S)tamps?|せっとりすと|SET LIST|(s|S)et(\s|_)?(l|L)ist|ｓｏｎｇ|(s|S)ong(\ |_)?(l|L)ist/
+  SETLIST_REGEX = /セトリ|セットリスト|タイム(テーブル|スタンプ)|曲集|(t|T)ime(\ |_)?(s|S)tamps?|せっとりすと|SET ?LIST|(s|S)et(\s|_)?(l|L)ist|ｓｏｎｇ|(s|S)ong(\ |_)?(l|L)ist/
   def setlist?(text)
     !!text.match(SETLIST_REGEX)
   end
