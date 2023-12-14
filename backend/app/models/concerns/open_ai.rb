@@ -11,11 +11,12 @@ module OpenAi
   #   }
   # ]
   COMPLETIONS_ENDPOINT = 'https://api.openai.com/v1/chat/completions'.freeze
-  def self.complete_chat(messages)
+  def self.complete_chat(messages, type=nil)
     uri = URI.parse(COMPLETIONS_ENDPOINT)
     query = {
       model: 'gpt-3.5-turbo',
-      messages:
+      messages:,
+      type:
     }
     response = Net::HTTP.post(uri, query.to_json, header)
     body = response.body.to_s
