@@ -45,21 +45,6 @@ module SongLive
 
     update!(status: 'fetched')
 
-    # completedではないコメントは再度調べる
-    comments.where.not(status: 'completed').find_each do |comment|
-      song_items = comment.search_and_create_song_items!
-
-      # SongItemsが見つかったらそこで終了
-      if song_items.present?
-        if song_items_completed?
-          update!(status: 'completed')
-        else
-          update!(status: 'song_items_created')
-        end
-        return song_items
-      end
-    end
-
     # 新しいコメントを探しに行く
     page_token = nil
     loop do
@@ -80,7 +65,7 @@ module SongLive
           author: item.snippet.top_level_comment.snippet.author_display_name,
           content: item.snippet.top_level_comment.snippet.text_original
         )
-        song_items = comment.search_and_create_song_items!
+        song_items = comment.create_song_items!
 
         # SongItemsが見つかり次第終了
         next if song_items.blank?

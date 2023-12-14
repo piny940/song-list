@@ -73,7 +73,7 @@ class SongItem < ApplicationRecord
     songs = parse_setlist(content)
     return unless songs.is_a?(Enumerable)
 
-    create_from_json!(songs)
+    create_from_hash!(songs)
   end
 
   def self.parse_setlist(comment_content)
@@ -116,20 +116,23 @@ class SongItem < ApplicationRecord
     end
   end
 
-  def self.create_from_json!(songs, comment_id: nil)
-    if all.present?
-      # SongItemが既に存在する場合はセトリ・コメントをすべて削除して1から確認する
-      all.find_each(&:destroy)
-      new.video.comments.status_completed.each(&:destroy)
-    end
+  def self.create_from_hash!(songs, comment_id: nil)
+    # セトリをすべて削除してから作成
+    all.find_each(&:destroy)
 
-    song_items = []
-    songs.each do |song|
+    song_items = songs.map do |song|
       song_item = create!
-      song_item.song_diffs.create_from_json!(song, comment_id:)
-      song_items.push(song_item)
+      time = format_time(song['time'])
+      song_diff = song_item.song_diffs.create!(
+        kind: 'auto',
+        author: song['author'],
+        time:,
+        title: song['title'],
+        comment_id:
+      )
+      song_diff.update_status!('approved')
+      song_item
     end
-    song_items = where(id: song_items.map(&:id))
 
     # Slackに通知
     notify_song_items_created(song_items)
@@ -154,5 +157,20 @@ class SongItem < ApplicationRecord
     message << "コメント: #{comment_content}\n"
     message << "OpenAI出力: #{openai_output}\n"
     SlackNotifier.send(message)
+  end
+
+  private
+
+  def format_time(time)
+    case time.length
+    when 4
+      "00:0#{time}"
+    when 5
+      "00:#{time}"
+    when 7
+      "0#{time}"
+    else
+      time
+    end
   end
 end
