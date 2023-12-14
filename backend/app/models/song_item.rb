@@ -88,6 +88,10 @@ The time format will be HH:MM:SS.
 
 All the titles are in the same format. If the title consists of both Japanese and the romaji transcription, only return the Japanese result.
 
+There might be some informational entries, like "start of stream" or "end of stream" or "talk". Do not insert these in the list for those entries.
+
+Sometimes there will be extra description in parentheses. If they are found, do NOT output them in title, unless they are part of the name of the song. If any extra note is outputted in the title, there will be a penalty of $10.
+
 If this is not a set list, return false.
 EOS
     messages = [
