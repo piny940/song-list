@@ -15,7 +15,7 @@ module OpenAi
     uri = URI.parse(COMPLETIONS_ENDPOINT)
     query = {
       model: 'gpt-3.5-turbo',
-      messages:,
+      messages:
     }
     response = Net::HTTP.post(uri, query.to_json, header)
     body = response.body.to_s
