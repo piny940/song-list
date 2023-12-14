@@ -32,6 +32,7 @@ module Youtube
     counts = [nil, nil, nil, nil]
     driver = WebDriver.get_driver
     driver.get("https://www.youtube.com/#{custom_url}/streams")
+    sleep(1)
 
     begin
       while video_ids.count != counts[0]
