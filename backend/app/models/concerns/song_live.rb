@@ -41,30 +41,25 @@ module SongLive
 
     # 一旦セトリ・コメントをすべて削除して1から確認する
     song_items.find_each(&:destroy)
-    comments.status_completed.each(&:destroy)
+    comments.find_each(&:destroy)
 
     update!(status: 'fetched')
 
-    # 新しいコメントを探しに行く
+    create_song_items_from_comments!
+  end
+
+  def create_song_items_from_comments!
     page_token = nil
     loop do
       begin
         response = Youtube.get_video_comments(video_id, page_token:)
       rescue Google::Apis::ClientError
-        break
+        return []
       end
-      break if response.items.nil?
+      return [] if response.items.nil?
 
-      response.items.each do |item|
-        # すでに調査済みのコメントはスルー
-        next if Comment.find_by(comment_id: item.id).present?
-
-        comment = comments.create!(
-          comment_id: item.id,
-          response_json: item.to_h,
-          author: item.snippet.top_level_comment.snippet.author_display_name,
-          content: item.snippet.top_level_comment.snippet.text_original
-        )
+      new_comments = comments.create_from_youtube!(response.items)
+      new_comments.each do |comment|
         song_items = comment.create_song_items!
 
         # SongItemsが見つかり次第終了
@@ -79,11 +74,8 @@ module SongLive
       end
 
       page_token = response.next_page_token
-      break if page_token.blank?
+      return [] if page_token.blank?
     end
-
-    # SongItemsが見つからなかったらここに来る
-    []
   end
 
   def update_songs_author_from_history!
