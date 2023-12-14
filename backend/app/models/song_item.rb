@@ -112,7 +112,7 @@ class SongItem < ApplicationRecord
 
     begin
       content = OpenAi.complete_chat(messages)
-      content = content.gsub(/(u|U)nknown|UNKNOWN|/, '')
+      content = content.gsub(/(u|U)nknown|UNKNOWN|null|NULL/, '')
       content = content.gsub(/"-"/, '""')
       JSON.parse(content)
     rescue StandardError
