@@ -45,10 +45,10 @@ module SongLive
 
     update!(status: 'fetched')
 
-    create_song_items_from_comments!
+    create_song_items_from_new_comments!
   end
 
-  def create_song_items_from_comments!
+  def create_song_items_from_new_comments!
     page_token = nil
     loop do
       begin
