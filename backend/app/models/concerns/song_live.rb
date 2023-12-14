@@ -36,9 +36,6 @@ module SongLive
       return []
     end
 
-    # Slackに通知
-    notify_start_create_song_items
-
     # 一旦セトリ・コメントをすべて削除して1から確認する
     song_items.find_each(&:destroy)
     comments.find_each(&:destroy)
