@@ -97,7 +97,7 @@ class SongItem < ApplicationRecord
 
       If this is not a set list, return [].
 
-      日本語で返してください。
+      日本語で返してください。韓国語はすべて省略してください。
     EOS
     messages = [
       {
