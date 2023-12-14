@@ -73,7 +73,12 @@ class SongItem < ApplicationRecord
     songs = parse_setlist(content)
     return unless songs.is_a?(Enumerable)
 
-    create_from_hash!(songs)
+    song_items = create_from_hash!(songs)
+
+    # Slackに通知
+    notify_song_items_created(song_items)
+
+    song_items
   end
 
   def self.parse_setlist(comment_content)
@@ -120,7 +125,7 @@ class SongItem < ApplicationRecord
     # セトリをすべて削除してから作成
     all.find_each(&:destroy)
 
-    song_items = songs.map do |song|
+    songs.map do |song|
       song_item = create!
       time = format_time(song['time'])
       song_diff = song_item.song_diffs.create!(
@@ -133,11 +138,6 @@ class SongItem < ApplicationRecord
       song_diff.update_status!('approved')
       song_item
     end
-
-    # Slackに通知
-    notify_song_items_created(song_items)
-
-    song_items
   end
 
   def self.notify_song_items_created(song_items)
