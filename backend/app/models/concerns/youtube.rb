@@ -39,6 +39,7 @@ module Youtube
         counts.shift
         video_ids.merge(driver.find_elements(:css, '#video-title-link').map { |el| el.attribute('href').split('=')[1] })
         driver.action.scroll_by(0, 10_000).perform
+        sleep(1)
       end
     ensure
       driver.quit
