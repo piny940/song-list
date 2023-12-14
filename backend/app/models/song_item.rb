@@ -78,14 +78,21 @@ class SongItem < ApplicationRecord
 
   def self.parse_setlist(comment_content)
     instruction = <<~EOS
-      以下はYoutubeの動画のコメントです。これが曲のセットリストであるかを判定し、セットリストであるならばこれを時間と曲名と作曲者名のリストに変換してください。
+      This is a comment below a YouTube video. Determine whether it is a valid set list. If it is a valid set list, convert it into a JSON list of song names and authors.
 
-      フォーマットは
-      [{"time": "","title": "","author": ""}]
-      というJSONフォーマットで書いてください。内容が不明な箇所には'unknown'と書いてください。
-      JSON以外のことは書かないでください。
+      Always return valid JSON. If invalid JSON is returned, a penalty of $100 will be imposed. If the correct result is returned, an award of $100 will be given.
 
-      セットリストでない場合はfalseと返してください。
+      The format is [{"time": "","title": "","author":""}]. If a field is unknown, put null in the field. Do not return anything other than valid JSON.
+
+      The time format will be HH:MM:SS.
+
+      All the titles are in the same format. If the title consists of both Japanese and the romaji transcription, only return the Japanese result.
+
+      There might be some informational entries, like "start of stream" or "end of stream" or "talk". Do not insert these in the list for those entries.
+
+      Sometimes there will be extra description in parentheses. If they are found, do NOT output them in title, unless they are part of the name of the song. If any extra note is outputted in the title, there will be a penalty of $10.
+
+      If this is not a set list, return false.
     EOS
     messages = [
       {
