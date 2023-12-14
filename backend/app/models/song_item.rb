@@ -161,7 +161,7 @@ class SongItem < ApplicationRecord
 
   private
 
-  def format_time(time)
+  def self.format_time(time)
     case time.length
     when 4
       "00:0#{time}"

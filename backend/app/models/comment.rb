@@ -15,9 +15,9 @@ class Comment < ApplicationRecord
   def self.create_from_youtube!(items)
     items.map do |item|
       # すでに調査済みのコメントはスルー
-      return nil if find_by(comment_id: item.id).present?
+      next if find_by(comment_id: item.id).present?
 
-      comments.create!(
+      create!(
         comment_id: item.id,
         response_json: item.to_h,
         author: item.snippet.top_level_comment.snippet.author_display_name,
