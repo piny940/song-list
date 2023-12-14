@@ -159,8 +159,6 @@ class SongItem < ApplicationRecord
     SlackNotifier.send(message)
   end
 
-  private
-
   def self.format_time(time)
     case time.length
     when 4
