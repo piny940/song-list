@@ -98,8 +98,6 @@ class SongItem < ApplicationRecord
       xxx / yyy or xxx ／ yyy means that the title is xxx and the composer is yyy.
       OP means opening, so please do not include it in the set list.
 
-      If this is not a set list, return [].
-
       日本語で返してください。韓国語はすべて省略してください。
     EOS
     messages = [
