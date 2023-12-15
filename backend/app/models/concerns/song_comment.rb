@@ -20,8 +20,8 @@ module SongComment
     song_items
   end
 
-  SETLIST_REGEX = /セトリ|セットリスト|タイム(テーブル|スタンプ)|曲集|(t|T)ime(\ |_)?(s|S)tamps?|せっとりすと|SET ?LIST|(s|S)et(\s|_)?(l|L)ist|ｓｏｎｇ|(s|S)ong(\ |_)?(l|L)ist/
+  SETLIST_REGEX = /([0-9]{2}:)?[0-9]?[0-9]:[0-9]{2}/
   def setlist?(text)
-    !!text.match(SETLIST_REGEX)
+    text.scan(SETLIST_REGEX).size >= 3
   end
 end
