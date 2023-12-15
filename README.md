@@ -26,4 +26,5 @@ Vtuberが歌枠で歌った曲のデータベースです。曲名や作者名�
 - `docker run -it --net=song-list_default --env-file backend/.env song-list-rails-ubuntu sh -c "RAILS_ENV=production bundle exec rails channels:create_all_videos"`
 
 ## 全ての動画のセトリを作成する
+- `docker build -t song-list-rails -f  backend/Dockerfile.ubuntu ./backend` (コードを更新した場合のみ)
 - `docker run -it --net=song-list_default --env-file backend/.env song-list-rails sh -c "RAILS_ENV=production bundle exec rails videos:create_all_setlists"`
