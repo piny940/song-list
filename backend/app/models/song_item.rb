@@ -95,7 +95,7 @@ class SongItem < ApplicationRecord
 
       Sometimes there will be extra description in parentheses. If they are found, do NOT output them in title, unless they are part of the name of the song. If any extra note is outputted in the title, there will be a penalty of $10.
 
-      xxx / yyy means that the title is xxx and the author is yyyy.
+      xxx / yyy or xxx ／ yyy means that the title is xxx and the composer is yyy.
 
       If this is not a set list, return [].
 
