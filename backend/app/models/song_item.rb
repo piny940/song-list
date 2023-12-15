@@ -95,8 +95,8 @@ class SongItem < ApplicationRecord
 
       Sometimes there will be extra description in parentheses. If they are found, do NOT output them in title, unless they are part of the name of the song. If any extra note is outputted in the title, there will be a penalty of $10.
 
-      xxx / yyy or xxx ／ yyy means that the title is xxx and the composer is yyy.
-      OP means opening, so please do not include it in the set list.
+      xxx / yyy or xxx ／ yyy, [xxx / yyy], [xxx ／ yyy] means that the title is xxx and the composer is yyy.
+      Please do not include the OP or ED in the set list.
 
       日本語で返してください。韓国語はすべて省略してください。
     EOS
