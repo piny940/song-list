@@ -33,6 +33,9 @@ FROM deps as build
 
 # Copy the rest of the source files into the image.
 COPY . .
+
+ARG BACKEND_HOST
+ENV BACKEND_HOST ${BACKEND_HOST}
 # Run the build script.
 RUN yarn run build
 
