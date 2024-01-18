@@ -56,6 +56,8 @@ jobs:
 
   frontend:
     runs-on: ubuntu-latest
+    env:
+      NODE_VERSION: 20
     steps:
       - uses: actions/checkout@v2
       - name: Move to top directory
@@ -74,19 +76,14 @@ jobs:
           done
       - uses: actions/setup-node@v3
         with:
-          node-version: 20
-      - name: Cache node modules
+          node-version: ${{ env.NODE_VERSION }}}
+      - name: cache node_modules
+        id: node_modules_cache_id
         uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
         with:
-          # npm キャッシュファイルは Linux/macOS の「~/.npm」に保存される
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+          path: |
+            node_modules
+          key: frontend-node-v${{ env.NODE_VERSION }}-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
       - name: Yarn install
         run: yarn --cwd frontend install
       - name: Prettier && ESLint
