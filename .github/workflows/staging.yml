@@ -46,7 +46,7 @@ jobs:
           push: true
           context: ./frontend
           build-args: |
-            "BACKEND_HOST=http://song-list-backend-staging.default.svc.cluster.local:3000"
+            BACKEND_HOST=http://song-list-backend-staging.default.svc.cluster.local:3000
           file: ./frontend/Dockerfile
           tags: |
             ghcr.io/piny940/song-list-frontend:main-${{ github.sha }}-${{ github.run_number }}
