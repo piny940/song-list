@@ -7,7 +7,7 @@ describe Api::SongItemsController do
     it('全てのsong_itemsを取得できる') do
       video = create(:video)
       5.times do |i|
-        create_song("Song#{i}", "00:12:34", "ClariS", video)
+        create_song("Song#{i}", '00:12:34', 'ClariS', video)
       end
       inactive_song = create(:song_item)
       create(:song_diff, song_item: inactive_song, title: '')
@@ -30,7 +30,7 @@ describe Api::SongItemsController do
       video1 = create(:video)
       video2 = create(:video)
       song1 = create_song('Song1', '00:12:34', 'ClariS', video1)
-      song2 = create_song('Song2', '00:12:34', 'ClariS', video2)
+      create_song('Song2', '00:12:34', 'ClariS', video2)
 
       get endpoint, params: { video_id: video1.id }
 
@@ -48,7 +48,6 @@ describe Api::SongItemsController do
       song2 = create_song('Song2', '00:10:34', 'ClariS', video2)
       song3 = create_song('Song3', '00:09:34', 'ClariS', video1)
 
-
       get endpoint
       expect(response.status).to eq 200
       json = response.parsed_body
@@ -63,7 +62,7 @@ describe Api::SongItemsController do
       video1 = create(:video, channel: channel1)
       video2 = create(:video, channel: channel2)
       song1 = create_song('Song1', '00:12:34', 'ClariS', video1)
-      song2 = create_song('Song2', '00:12:34', 'ClariS', video2)
+      create_song('Song2', '00:12:34', 'ClariS', video2)
       get endpoint, params: { channel_id: channel1.id }
 
       expect(response.status).to eq 200
@@ -75,7 +74,7 @@ describe Api::SongItemsController do
     it('曲名で検索できる') do
       video = create(:video)
       song1 = create_song('fooアイドルhoge', '00:12:34', 'ClariS', video)
-      song2 = create_song('Song2', '00:12:34', 'ClariS', video)
+      create_song('Song2', '00:12:34', 'ClariS', video)
       get endpoint, params: { query: 'アイドル' }
 
       expect(response.status).to eq 200
@@ -86,9 +85,9 @@ describe Api::SongItemsController do
 
     it('歌手名で検索できる') do
       video = create(:video)
-      song1 = create_song('Song1', '00:12:34', 'YOASOBI', video)
-      song2 = create_song('Song2', '00:12:34', 'ClariS', video)
-      song3 = create_song('Song3', '00:12:34', 'yoasobi', video)
+      create_song('Song1', '00:12:34', 'YOASOBI', video)
+      create_song('Song2', '00:12:34', 'ClariS', video)
+      create_song('Song3', '00:12:34', 'yoasobi', video)
       get endpoint, params: { query: 'YoAsobI' }
 
       expect(response.status).to eq 200
@@ -114,7 +113,7 @@ describe Api::SongItemsController do
       video1 = create(:video, title: 'A Singing!')
       video2 = create(:video, title: 'Song!')
       song1 = create_song('Song1', '00:12:34', 'ClariS', video1)
-      song2 = create_song('Song2', '00:12:34', 'ClariS', video2)
+      create_song('Song2', '00:12:34', 'ClariS', video2)
 
       get endpoint, params: { video_title: 'sing' }
       expect(response.status).to eq 200

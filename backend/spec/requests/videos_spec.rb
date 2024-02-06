@@ -31,7 +31,7 @@ describe Api::VideosController do
       channel1 = create(:channel)
       channel2 = create(:channel)
       video1 = create(:video, channel: channel1)
-      video2 = create(:video, channel: channel2)
+      create(:video, channel: channel2)
 
       get endpoint, params: { channel_id: channel1.id }
       expect(response.status).to eq 200
@@ -42,7 +42,7 @@ describe Api::VideosController do
 
     it('あいまい検索できる') do
       video1 = create(:video, title: 'UtaWaku')
-      video2 = create(:video, title: '歌枠')
+      create(:video, title: '歌枠')
 
       get endpoint, params: { query: 'utAwAku' }
       expect(response.status).to eq 200
@@ -52,7 +52,7 @@ describe Api::VideosController do
     end
 
     it('sinceで絞り込みができる。ただし日付しか見ない') do
-      video1 = create(:video, published_at: Time.zone.parse('2023-06-12 23:59:59'))
+      create(:video, published_at: Time.zone.parse('2023-06-12 23:59:59'))
       video2 = create(:video, published_at: Time.zone.parse('2023-06-13 00:00:00'))
 
       get endpoint, params: { since: '2023-06-13 13:00:00' }
@@ -64,7 +64,7 @@ describe Api::VideosController do
 
     it('untilで絞り込みができる。ただし日付しか見ず、untilの日付も範囲に含む') do
       video1 = create(:video, published_at: Time.zone.parse('2023-06-12 23:59:59'))
-      video2 = create(:video, published_at: Time.zone.parse('2023-06-13 00:00:00'))
+      create(:video, published_at: Time.zone.parse('2023-06-13 00:00:00'))
 
       get endpoint, params: { until: '2023-06-12 11:00:00' }
       expect(response.status).to eq 200
@@ -75,7 +75,7 @@ describe Api::VideosController do
 
     it('歌枠(セトリが1曲以上ある配信)で絞り込みできる') do
       video1 = create(:video)
-      video2 = create(:video)
+      create(:video)
       create_song('Song1', '00:12:34', 'ClariS', video1)
 
       get endpoint, params: { only_song_lives: '1' }

@@ -74,5 +74,5 @@ def create_song(title, time, author, video)
   song = create(:song_item, video:)
   diff = create(:song_diff, title:, time:, author:, song_item: song)
   song.update!(latest_diff_id: diff.id)
-  return song
+  song
 end
