@@ -2,6 +2,11 @@ require 'rails_helper'
 
 describe Api::ChannelsController, type: :request do
   fixtures :channels
+  before do
+    create(:channel)
+    create(:channel)
+    create(:channel, :hidden)
+  end
 
   describe 'GET /api/channels' do
     it('正常に取得できる') do
