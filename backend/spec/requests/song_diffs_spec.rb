@@ -1,12 +1,6 @@
 require 'rails_helper'
 
 describe Api::Member::SongDiffsController do
-  # fixtures :channels
-  # fixtures :videos
-  # fixtures :song_items
-  # fixtures :users
-  # fixtures :song_diffs
-
   before do
     @user = create(:user)
     @song_item = create(:song_item)

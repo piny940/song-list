@@ -1,7 +1,0 @@
-one:
-  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
-  name: test1
-
-two:
-  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
-  name: test2
