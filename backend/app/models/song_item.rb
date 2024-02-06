@@ -122,7 +122,7 @@ class SongItem < ApplicationRecord
 
   def self.create_from_hash!(songs, comment_id: nil)
     # セトリをすべて削除してから作成
-    all.find_each(&:destroy)
+    find_each(&:destroy)
 
     songs.map do |song|
       song_item = create!
