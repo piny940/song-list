@@ -65,5 +65,8 @@ FactoryBot.define do
     trait :unpublished do
       published { false }
     end
+    trait :video do
+      kind { 'video' }
+    end
   end
 end

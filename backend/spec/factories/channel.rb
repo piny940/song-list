@@ -4,6 +4,7 @@ FactoryBot.define do
     sequence(:channel_id) { |n| "channel#{n}" }
     kind { 'published' }
     status { 'videos_fetched' }
+    sequence(:custom_name) { |n| "CustomName#{n}" }
     response_json {
       {
         "etag": "HAaxd7j8Ol22PWVfnayFkJS1DAc",

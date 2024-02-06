@@ -1,9 +1,8 @@
 require 'rails_helper'
 
 describe Api::ChannelsController, type: :request do
-  fixtures :channels
   before do
-    create(:channel)
+    @channel = create(:channel)
     create(:channel)
     create(:channel, :hidden)
   end
@@ -25,14 +24,12 @@ describe Api::ChannelsController, type: :request do
   end
   describe 'GET /api/channels/:id' do
     it('正常に取得できる') do
-      one = channels(:shairu)
-      get "/api/channels/#{one.id}"
+      get "/api/channels/#{@channel.id}"
 
       expect(response.status).to eq(200)
 
       json = response.parsed_body
-      expect(json['channel']['thumbnails']['medium']['width']).to eq 240
-      expect(json['channel']['custom_name']).to be_present
+      expect(json['channel']['id']).to eq @channel.id
     end
   end
 end

@@ -69,3 +69,10 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include Devise::Test::IntegrationHelpers, type: :request
 end
+
+def create_song(title, time, author, video)
+  song = create(:song_item, video:)
+  diff = create(:song_diff, title:, time:, author:, song_item: song)
+  song.update!(latest_diff_id: diff.id)
+  return song
+end

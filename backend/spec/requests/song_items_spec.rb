@@ -1,13 +1,6 @@
 require 'rails_helper'
 
 describe Api::SongItemsController do
-  def create_song(title, time, author, video)
-    song = create(:song_item, video:)
-    diff = create(:song_diff, title:, time:, author:, song_item: song)
-    song.update!(latest_diff_id: diff.id)
-    return song
-  end
-
   let(:endpoint) { '/api/song_items' }
 
   describe 'GET /api/song_items' do
@@ -103,7 +96,7 @@ describe Api::SongItemsController do
       expect(json['song_items'].count).to eq 2
     end
 
-    it('日付で検索できる') do
+    it('日付で検索できる。ただし時間は見ず、untilの日付も範囲に含む') do
       video1 = create(:video, published_at: Time.zone.parse('2023-06-12 23:59:59'))
       video2 = create(:video, published_at: Time.zone.parse('2023-06-13 00:00:00'))
       video3 = create(:video, published_at: Time.zone.parse('2023-06-14 23:59:59'))
