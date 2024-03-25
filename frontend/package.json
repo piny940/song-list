@@ -23,7 +23,7 @@
     "react-datepicker": "^4.25.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.51.0",
-    "sharp": "^0.33.2",
+    "sharp": "^0.33.3",
     "styled-components": "^6.1.8",
     "swr": "^2.2.5"
   },
