@@ -13,6 +13,8 @@ services:
       - RAILS_ENV=production
     volumes:
       - public:/app/public
+    tmpfs:
+      - /app/tmp/pids
 
   sidekiq:
     container_name: song-list-sidekiq
