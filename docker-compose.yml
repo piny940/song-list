@@ -34,7 +34,11 @@ services:
   next:
     container_name: song-list-next
     image: song-list-next
+    env_file:
+      - ./frontend/.env
     build:
+      args:
+        - BACKEND_HOST=http://rails:3000
       context: ./frontend
       dockerfile: Dockerfile
     restart: always
