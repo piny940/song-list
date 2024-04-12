@@ -113,7 +113,8 @@ class SongItem < ApplicationRecord
 
     begin
       content = OpenAi.complete_chat(messages)
-      JSON.parse(content)
+      clean_content = clean_openai_content(content)
+      JSON.parse(clean_content)
     rescue StandardError
       notify_song_items_creation_failed(comment_content, content)
       []
@@ -169,5 +170,10 @@ class SongItem < ApplicationRecord
     else
       time
     end
+  end
+
+  def self.clean_openai_content(content)
+    content = content[7...-3] if content.start_with?('```json')
+    content
   end
 end
