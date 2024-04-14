@@ -120,7 +120,9 @@ class SongItem < ApplicationRecord
     # セトリをすべて削除してから作成
     find_each(&:destroy)
 
-    songs.map do |song|
+    result = []
+
+    songs.each do |song|
       next if song['title'].blank? || song['time'].blank?
 
       song_item = create!
@@ -133,8 +135,9 @@ class SongItem < ApplicationRecord
         comment_id:
       )
       song_diff.update_status!('approved')
-      song_item
+      result << song_item
     end
+    result
   end
 
   def self.notify_song_items_created(song_items)
