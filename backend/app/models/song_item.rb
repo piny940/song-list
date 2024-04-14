@@ -172,7 +172,9 @@ class SongItem < ApplicationRecord
   end
 
   def self.clean_openai_content(content)
-    content = content[8...-4] if content.start_with?('```json')
-    content
+    match = content.match(/\[(\s|\S)+\]/)
+    return content if match.nil?
+
+    match[0]
   end
 end
