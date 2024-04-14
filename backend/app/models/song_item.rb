@@ -126,6 +126,8 @@ class SongItem < ApplicationRecord
     find_each(&:destroy)
 
     songs.map do |song|
+      next if song['title'].blank? || song['time'].blank?
+
       song_item = create!
       time = format_time(song['time'])
       song_diff = song_item.song_diffs.create!(
