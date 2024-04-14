@@ -87,7 +87,7 @@ class SongItem < ApplicationRecord
 
       This is a comment below a YouTube video. Determine whether it is a valid set list. If it is a valid set list, convert it into a JSON list of song names and authors.
 
-      The format is [{"time": "","title": "","author":""}]. If a field is unknown, put null in the field. Do not return anything other than valid JSON.
+      The format is [{"time": "","title": "","author":""}]. If a field is unknown, put null in the field.
 
       The time format will be HH:MM:SS.
 
@@ -98,18 +98,13 @@ class SongItem < ApplicationRecord
       xxx / yyy or xxx ／ yyy, [xxx / yyy], [xxx ／ yyy] means that the title is xxx and the composer is yyy.
       Please do not include the OP or ED in the set list.
 
+      Do not return anything other than valid JSON.
+
       日本語で返してください。韓国語はすべて省略してください。
+
+      #{comment_content}
     EOS
-    messages = [
-      {
-        role: 'system',
-        content: instruction
-      },
-      {
-        role: 'user',
-        content: comment_content
-      }
-    ]
+    messages = [{ role: 'system', content: instruction }]
 
     begin
       content = OpenAi.complete_chat(messages)
@@ -126,6 +121,8 @@ class SongItem < ApplicationRecord
     find_each(&:destroy)
 
     songs.map do |song|
+      next if song['title'].blank? || song['time'].blank?
+
       song_item = create!
       time = format_time(song['time'])
       song_diff = song_item.song_diffs.create!(
@@ -148,6 +145,7 @@ class SongItem < ApplicationRecord
     song_items.each do |song_item|
       message << "時間: #{song_item.time}, タイトル: #{song_item.title}, 歌手名: #{song_item.author}\n"
     end
+    Rails.logger.info message
     SlackNotifier.send(message)
   end
 
@@ -156,6 +154,7 @@ class SongItem < ApplicationRecord
     message << "URL: #{Rails.application.routes.url_helpers.admin_video_url(new.video_id)}\n"
     message << "コメント: #{comment_content}\n"
     message << "OpenAI出力: #{openai_output}\n"
+    Rails.logger.info message
     SlackNotifier.send(message)
   end
 
