@@ -173,7 +173,7 @@ class SongItem < ApplicationRecord
   end
 
   def self.clean_openai_content(content)
-    content = content[7...-3] if content.start_with?('```json')
+    content = content[8...-4] if content.start_with?('```json')
     content
   end
 end
