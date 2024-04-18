@@ -14,7 +14,6 @@ namespace :videos do
     p 'Completed searching setlist'
     Video.update_songs_author_from_history!
     p 'Completed updating from history'
-    Video.update_songs_author_from_spotify!
   end
 
   desc '過去の歌情報からauthorカラムを埋める'
