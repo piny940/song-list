@@ -116,6 +116,7 @@ class SongItem < ApplicationRecord
     end
   end
 
+  EXCLUDE_TITLES = %w[OP ED 開始 エンディング 最後].freeze
   def self.create_from_hash!(songs, comment_id: nil)
     # セトリをすべて削除してから作成
     find_each(&:destroy)
@@ -124,6 +125,7 @@ class SongItem < ApplicationRecord
 
     songs.each do |song|
       next if song['title'].blank? || song['time'].blank?
+      next if EXCLUDE_TITLES.include?(song['title'])
 
       song_item = create!
       time = format_time(song['time'])
