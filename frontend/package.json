@@ -27,7 +27,7 @@
     "react-cssfx-loading": "^2.1.0",
     "react-datepicker": "^4.25.0",
     "react-dom": "18.3.1",
-    "react-hook-form": "^7.51.3",
+    "react-hook-form": "^7.51.4",
     "sharp": "^0.33.3",
     "styled-components": "^6.1.8",
     "swr": "^2.2.5",
