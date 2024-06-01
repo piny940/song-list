@@ -16,6 +16,20 @@ services:
     tmpfs:
       - /app/tmp/pids
 
+  migrate:
+    container_name: song-list-migrate
+    image: song-list-rails
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    env_file:
+      - ./backend/.env
+    environment:
+      - RAILS_ENV=production
+    command: bundle exec rails db:migrate
+    depends_on:
+      - db
+
   sidekiq:
     container_name: song-list-sidekiq
     build:
