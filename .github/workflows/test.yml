@@ -41,6 +41,7 @@ jobs:
           echo "TEST_PG_PASSWORD=postgres" >> $GITHUB_ENV
           echo "TEST_PG_HOST=localhost" >> $GITHUB_ENV
           echo "REDIS_HOST=localhost:6379" >> $GITHUB_ENV
+          echo "REDIS_PASSWORD=" >> $GITHUB_ENV
           echo "ADMIN_USER=admin@example.com" >> $GITHUB_ENV
           echo "ADMIN_PASSWORD=password" >> $GITHUB_ENV
       - uses: ruby/setup-ruby@v1
