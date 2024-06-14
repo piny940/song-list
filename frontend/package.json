@@ -25,7 +25,7 @@
     "object-to-formdata": "^4.5.1",
     "react": "18.3.1",
     "react-cssfx-loading": "^2.1.0",
-    "react-datepicker": "^4.25.0",
+    "react-datepicker": "^7.0.0",
     "react-dom": "18.3.1",
     "react-hook-form": "^7.51.5",
     "sharp": "^0.33.4",
