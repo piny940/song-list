@@ -6,7 +6,7 @@ module SlackNotifier
 
     uri = URI.parse(ENV.fetch('SLACK_WEBHOOK_URL'))
     data = {
-      text: message
+      text: "Server: #{ENV.fetch('SERVER_NAME', '')}\n#{message}"
     }
     headers = {
       'Content-Type' => 'application/json'
