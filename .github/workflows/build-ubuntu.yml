@@ -21,7 +21,7 @@ jobs:
         with:
           push: true
           context: ./backend
-          file: ./backend/Dockerfile
+          file: ./backend/Dockerfile.ubuntu
           tags: |
             ghcr.io/piny940/song-list-backend:ubuntu-1.0.${{ github.run_number }}
 
