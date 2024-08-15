@@ -10,7 +10,7 @@ class Admin::VideosController < Admin::Base
     scope = scope.song_lives if @only_song_lives
     scope = scope.where.not(status: 'completed') if @only_incompleted
     scope = scope.order(published_at: :desc).all
-    @videos = scope.page(params[:page])
+    @videos = scope.page(params[:page]).per(20)
   end
 
   def show; end
