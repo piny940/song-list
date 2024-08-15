@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "@types/react-datepicker": "^4.19.5",
+    "@types/react-datepicker": "^7.0.0",
     "@types/bootstrap": "^5.2.10",
     "@types/jest": "^29.5.12",
     "@types/react": "18.3.3",
