@@ -1,4 +1,4 @@
-FROM ruby:3.1.2-alpine as builder
+FROM ruby:3.1.2-alpine AS builder
 
 RUN apk update && \
   apk add --no-cache \
@@ -10,7 +10,7 @@ COPY Gemfile Gemfile.lock ./
 ENV RAILS_ENV=production
 RUN RAILS_ENV=${RAILS_ENV} bundle install
 
-FROM ruby:3.1.2-alpine as app
+FROM ruby:3.1.2-alpine AS app
 
 RUN apk update && \
   apk add --no-cache \
