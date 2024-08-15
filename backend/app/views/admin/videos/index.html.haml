@@ -47,3 +47,5 @@
           = link_to '閲覧', admin_video_path(video), class: 'm-1 btn btn-sm btn-outline-primary'
           = link_to '編集', edit_admin_video_path(video), class: 'm-1 btn btn-sm btn-outline-primary'
           = link_to '削除', admin_video_path(video), method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: 'm-1 btn btn-sm btn-outline-danger'
+
+.my-2.d-flex.justify-content-center= paginate @videos
