@@ -340,7 +340,7 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     retriable (3.1.2)
-    rexml (3.3.5)
+    rexml (3.3.6)
       strscan
     rspec-core (3.13.0)
       rspec-support (~> 3.13.0)
@@ -382,7 +382,7 @@ GEM
     rufus-scheduler (3.9.1)
       fugit (~> 1.1, >= 1.1.6)
     securerandom (0.3.1)
-    selenium-webdriver (4.23.0)
+    selenium-webdriver (4.24.0)
       base64 (~> 0.2)
       logger (~> 1.4)
       rexml (~> 3.2, >= 3.2.5)
