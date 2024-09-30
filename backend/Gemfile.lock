@@ -169,7 +169,7 @@ GEM
       google-apis-core (>= 0.15.0, < 2.a)
     google-apis-storage_v1 (0.38.0)
       google-apis-core (>= 0.15.0, < 2.a)
-    google-apis-youtube_v3 (0.45.0)
+    google-apis-youtube_v3 (0.46.0)
       google-apis-core (>= 0.15.0, < 2.a)
     google-cloud-core (1.7.0)
       google-cloud-env (>= 1.0, < 3.a)
@@ -216,7 +216,7 @@ GEM
     jbuilder (2.13.0)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
-    json (2.6.3)
+    json (2.7.2)
     jwt (2.9.1)
       base64
     kaminari (1.2.2)
