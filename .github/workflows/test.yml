@@ -19,7 +19,7 @@ jobs:
         options: --health-cmd "redis-cli -h localhost ping" --health-interval 10s --health-timeout 5s --health-retries 15
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Move to top directory
         env:
           SUB_DIR: backend
@@ -60,7 +60,7 @@ jobs:
     env:
       NODE_VERSION: 20
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Move to top directory
         env:
           SUB_DIR: frontend
