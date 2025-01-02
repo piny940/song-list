@@ -75,7 +75,7 @@ jobs:
           do
             mv $dir $path
           done
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
       - name: cache node_modules
