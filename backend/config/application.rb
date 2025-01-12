@@ -32,5 +32,8 @@ module BackendSongList
     config.action_controller.forgery_protection_origin_check = false
 
     config.i18n.fallbacks = { ja: :en }
+
+    # DEPRECATION WARNING: `to_time` will always preserve the full timezone rather than offset of the receiver in Rails 8.1. To opt in to the new behavior, set `config.active_support.to_time_preserves_timezone = :zone`.
+    config.active_support.to_time_preserves_timezone = :zone
   end
 end
