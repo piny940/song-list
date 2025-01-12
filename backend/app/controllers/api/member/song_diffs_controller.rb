@@ -3,7 +3,7 @@ class Api::Member::SongDiffsController < Api::Member::Base
 
   def index
     @song_diffs = @song_item.song_diffs.order(id: :desc).page(params[:page]).per(params[:count])
-    @next_song_diff = @song_item.song_diffs.where('id < ?', @song_diffs.last).order(id: :desc).first
+    @next_song_diff = @song_item.song_diffs.where(id: ...@song_diffs.last).order(id: :desc).first
     @total_pages = @song_diffs.total_pages
   end
 

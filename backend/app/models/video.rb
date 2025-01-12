@@ -7,15 +7,15 @@ class Video < ApplicationRecord
   validates :video_id, presence: true, uniqueness: true
   scope :displayed, -> { where(published: true) }
 
-  enum kind: {
+  enum :kind, {
     video: 0,
     live: 10,
     short: 20
-  }, _prefix: true
+  }, prefix: true
 
   # 方針: コメントを探しに行く→セトリ作成→過去のSongDiffからauthorを埋める→Spotifyを使用
   # ただしSpotifyは精度が低いためspotify_completedの場合も適宜過去のSongDiffからauthorを更新する
-  enum status: {
+  enum :status, {
     ready: 0,
     fetched: 10, # コメントにセトリを探しに行った
     song_items_created: 20, # セトリ(SongItem)を作成した
@@ -23,7 +23,7 @@ class Video < ApplicationRecord
     spotify_fetched: 30, # spotifyのデータからauthorの空白部分で埋められる部分を埋めた
     spotify_completed: 35, # spotifyのデータからauthorの空白部分を埋めた
     completed: 40 # time, title, authorが埋まった
-  }, _prefix: true
+  }, prefix: true
 
   def self.fetch_and_create!(video_ids)
     response = Youtube.get_videos(video_ids)

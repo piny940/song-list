@@ -6,11 +6,11 @@ class Comment < ApplicationRecord
 
   # セトリのコメントでない場合はcompleted、
   # セトリのコメントの場合は、OpenAIで調べたらcompleted、エラーが起こったらfetched
-  enum status: {
+  enum :status, {
     ready: 0,
     fetched: 10,
     completed: 20
-  }, _prefix: true
+  }, prefix: true
 
   def self.create_from_youtube!(items)
     items.map do |item|
