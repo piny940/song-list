@@ -3,15 +3,15 @@ class Channel < ApplicationRecord
   validates :channel_id, presence: true, uniqueness: true
   has_many :all_song_items, through: :videos, class_name: 'SongItem', source: :song_items
 
-  enum kind: {
+  enum :kind, {
     hidden: 0,
     published: 100
-  }, _prefix: true
+  }, prefix: true
 
-  enum status: {
+  enum :status, {
     ready: 0,
     videos_fetched: 50
-  }, _prefix: true
+  }, prefix: true
 
   def self.fetch_and_create!(channel_ids)
     response = Youtube.get_channels(channel_ids)

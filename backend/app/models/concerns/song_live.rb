@@ -13,7 +13,7 @@ module SongLive
     end
 
     def update_songs_author_from_history!
-      where(status: %w[song_items_created fetched_history spotify_fetched spotify_completed]) \
+      where(status: %w[song_items_created fetched_history spotify_fetched spotify_completed])
         .each(&:update_songs_author_from_history!)
     end
 
