@@ -1,0 +1,41 @@
+inputs:
+  tags:
+    description: "Docker image tags"
+    required: true
+  github-actor:
+    description: "GitHub actor"
+    required: true
+  gh-token:
+    description: "GitHub token"
+    required: true
+  path:
+    description: "Path to Dockerfile"
+    required: true
+  build-args:
+    description: "Build arguments"
+    required: false
+  cache-registry:
+    description: "Cache registry"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ inputs.github-actor }}
+        password: ${{ inputs.gh-token }}
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+    - name: Build and push Docker Image
+      uses: docker/build-push-action@v6
+      with:
+        push: true
+        context: ${{ inputs.path }}
+        file: ${{ inputs.path }}/Dockerfile
+        tags: ${{ inputs.tags }}
+        build-args: ${{ inputs.build-args }}
+        cache-from: type=registry,ref=${{ inputs.cache-registry }}
+        cache-to: type=registry,ref=${{ inputs.cache-registry }},mode=max
