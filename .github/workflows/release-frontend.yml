@@ -17,4 +17,3 @@ jobs:
             ghcr.io/${{ github.repository }}-frontend:latest
           path: "./frontend"
           cache-registry: ghcr.io/${{ github.repository }}-frontend:buildcache
-
