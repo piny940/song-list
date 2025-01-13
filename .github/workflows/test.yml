@@ -1,7 +1,7 @@
 name: Test
 on: [push]
 jobs:
-  backend:
+  backend-test:
     runs-on: ubuntu-latest
 
     services:
@@ -55,7 +55,7 @@ jobs:
       - name: Run rubocop
         run: if (bundle exec rubocop -A) | grep -E "(corrected|\ W:\ )"; then exit 1; fi
 
-  frontend:
+  frontend-test:
     runs-on: ubuntu-latest
     env:
       NODE_VERSION: 20
