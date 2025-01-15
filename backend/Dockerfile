@@ -3,11 +3,12 @@ FROM ruby:3.4.1-alpine AS builder
 RUN apk update && \
   apk add --no-cache \
   build-base \
+  yaml-dev \
   postgresql-dev
 
 RUN gem install bundler
 COPY Gemfile Gemfile.lock ./
-ENV RAILS_ENV=production
+ENV RAILS_ENV production
 RUN RAILS_ENV=${RAILS_ENV} bundle install
 
 FROM ruby:3.4.1-alpine AS app
