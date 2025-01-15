@@ -1,6 +1,9 @@
 name: Build Frontend for Release
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   frontend:
