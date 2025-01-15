@@ -15,7 +15,7 @@
     "@types/bootstrap": "^5.2.10",
     "@types/jest": "^29.5.12",
     "@types/node": "20.17.11",
-    "@types/react": "19.0.6",
+    "@types/react": "19.0.7",
     "@types/react-datepicker": "^7.0.0",
     "@types/react-dom": "19.0.3",
     "bootstrap": "^5.3.3",
@@ -57,7 +57,7 @@
     "ts-node": "^10.9.2"
   },
   "overrides": {
-    "@types/react": "19.0.6",
+    "@types/react": "19.0.7",
     "@types/react-dom": "19.0.3"
   }
 }
