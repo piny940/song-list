@@ -57,6 +57,6 @@ class Admin::VideosController < Admin::Base
   end
 
   def video_params
-    params.require(:video).permit(:channel_id, :video_id, :kind, :title, :status, :published)
+    params.expect(video: %i[channel_id video_id kind title status published])
   end
 end

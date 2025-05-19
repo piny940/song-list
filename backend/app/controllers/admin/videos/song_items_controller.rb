@@ -46,7 +46,7 @@ class Admin::Videos::SongItemsController < Admin::Videos::Base
   end
 
   def song_item_params
-    params.require(:song_item).permit(:video_id)
+    params.expect(song_item: [:video_id])
   end
 
   def song_diff_params
