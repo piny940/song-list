@@ -30,6 +30,6 @@ class Api::Member::SongDiffsController < Api::Member::Base
   end
 
   def song_diff_params
-    params.require(:song_diff).permit(:time, :title, :author)
+    params.expect(song_diff: %i[time title author])
   end
 end

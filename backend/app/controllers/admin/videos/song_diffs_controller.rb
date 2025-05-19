@@ -50,6 +50,6 @@ class Admin::Videos::SongDiffsController < Admin::Videos::Base
   end
 
   def song_diff_params
-    params.require(:song_diff).permit(:made_by_id, :kind, :time, :title, :author)
+    params.expect(song_diff: %i[made_by_id kind time title author])
   end
 end
