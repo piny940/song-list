@@ -12,5 +12,11 @@
   "pin": {
     "automerge": true
   },
+  "packageRules": [
+    {
+      "matchManagers": ["dockerfile", "ruby-version"],
+      "automerge": false
+    }
+  ],
   "extends": ["config:recommended", ":disableDependencyDashboard"]
 }
