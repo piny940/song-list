@@ -32,7 +32,7 @@
     "sharp": "^0.34.0",
     "styled-components": "^6.1.11",
     "swr": "^2.2.5",
-    "typescript": "5.7.3"
+    "typescript": "5.8.3"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.8",
