@@ -57,50 +57,57 @@ export const SongItems: React.FC<SongItemsProps> = ({
     if (!Object.keys(videos).includes(videoId)) {
       videos[videoId] = song.video
       songItems[videoId] = [song]
-    } else {
+    }
+    else {
       songItems[videoId].push(song)
     }
   }
 
-  return data ? (
-    <div className="py-4" data-testid={TestID.SONG_ITEMS}>
-      {Object.keys(videos).length > 0 ? (
-        <>
-          {Object.values(videos).map((video) => (
-            <div className="" key={video.video_id}>
-              <VideoTitleH3 className="w-75 small text-muted">
-                <span>{toVideoDate(video.published_at)}</span>
-                <span className="">{video.title}</span>
-              </VideoTitleH3>
-              <div className="mb-4 ps-3">
-                {songItems[video.video_id].map((songItem) => (
-                  <div key={songItem.id}>
-                    {onClick ? (
-                      <SongItemButton
-                        songItem={songItem}
-                        onClick={() => onClick(songItem)}
-                      />
-                    ) : (
-                      <SongItem songItem={songItem} />
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-          <Paging
-            currentPage={getPage()}
-            totalPages={data.total_pages}
-            setPageNumber={setPage}
-          />
-        </>
-      ) : (
-        <div className="mb-4 text-center">
-          条件に合致する歌は見つかりませんでした。
+  return data
+    ? (
+        <div className="py-4" data-testid={TestID.SONG_ITEMS}>
+          {Object.keys(videos).length > 0
+            ? (
+                <>
+                  {Object.values(videos).map(video => (
+                    <div className="" key={video.video_id}>
+                      <VideoTitleH3 className="w-75 small text-muted">
+                        <span>{toVideoDate(video.published_at)}</span>
+                        <span className="">{video.title}</span>
+                      </VideoTitleH3>
+                      <div className="mb-4 ps-3">
+                        {songItems[video.video_id].map(songItem => (
+                          <div key={songItem.id}>
+                            {onClick
+                              ? (
+                                  <SongItemButton
+                                    songItem={songItem}
+                                    onClick={() => onClick(songItem)}
+                                  />
+                                )
+                              : (
+                                  <SongItem songItem={songItem} />
+                                )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                  <Paging
+                    currentPage={getPage()}
+                    totalPages={data.total_pages}
+                    setPageNumber={setPage}
+                  />
+                </>
+              )
+            : (
+                <div className="mb-4 text-center">
+                  条件に合致する歌は見つかりませんでした。
+                </div>
+              )}
         </div>
-      )}
-    </div>
-  ) : (
-    <Loading />
-  )
+      )
+    : (
+        <Loading />
+      )
 }

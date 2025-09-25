@@ -34,37 +34,41 @@ export const Videos: React.FC<VideosProps> = ({
 
   if (error) return <Error statusCode={404} />
 
-  return data ? (
-    <div className="videos pb-4" data-testid={TestID.VIDEOS}>
-      {data.videos.length > 0 ? (
-        <>
-          <ul className="mb-4 list-unstyled">
-            {data.videos.map((video) => (
-              <li key={video.id}>
-                <Video
-                  songListOpen={openedVideo?.id === video.id}
-                  video={video}
-                  toggleSongListOpened={() => {
-                    if (openedVideo === video) setOpenedVideo(null)
-                    else setOpenedVideo(video)
-                  }}
-                />
-              </li>
-            ))}
-          </ul>
-          <Paging
-            setPageNumber={setPage}
-            totalPages={data.total_pages}
-            currentPage={getPage()}
-          />
-        </>
-      ) : (
-        <div className="mb-4 text-center">
-          条件に合致する歌は見つかりませんでした。
+  return data
+    ? (
+        <div className="videos pb-4" data-testid={TestID.VIDEOS}>
+          {data.videos.length > 0
+            ? (
+                <>
+                  <ul className="mb-4 list-unstyled">
+                    {data.videos.map(video => (
+                      <li key={video.id}>
+                        <Video
+                          songListOpen={openedVideo?.id === video.id}
+                          video={video}
+                          toggleSongListOpened={() => {
+                            if (openedVideo === video) setOpenedVideo(null)
+                            else setOpenedVideo(video)
+                          }}
+                        />
+                      </li>
+                    ))}
+                  </ul>
+                  <Paging
+                    setPageNumber={setPage}
+                    totalPages={data.total_pages}
+                    currentPage={getPage()}
+                  />
+                </>
+              )
+            : (
+                <div className="mb-4 text-center">
+                  条件に合致する歌は見つかりませんでした。
+                </div>
+              )}
         </div>
-      )}
-    </div>
-  ) : (
-    <Loading />
-  )
+      )
+    : (
+        <Loading />
+      )
 }

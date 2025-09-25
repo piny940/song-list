@@ -16,7 +16,7 @@ export const usePaginate = (defaultPage = 1) => {
     void router.push(
       `${router.pathname}?${queryToSearchParams(router.query).toString()}`,
       undefined,
-      { scroll: false }
+      { scroll: false },
     )
   }
 
@@ -34,7 +34,7 @@ export const useHold = (timer: number) => {
     setTimeoutId(
       setTimeout(() => {
         setIsReady(true)
-      }, timer)
+      }, timer),
     )
   }
   return { isReady, updateTimer }
@@ -44,7 +44,7 @@ const mutates: { [url in string]: { [id in string]: KeyedMutator<any> } } = {}
 export function useSWRWithQuery<T = any>(
   url: string | undefined | null,
   query = '',
-  config: Partial<PublicConfiguration<T, any, BareFetcher<T>>> | undefined
+  config: Partial<PublicConfiguration<T, any, BareFetcher<T>>> | undefined,
 ) {
   const data = useSWR<T>(url && url + query, getData, config)
   const id = useId()
@@ -56,7 +56,7 @@ export function useSWRWithQuery<T = any>(
 
     return () => {
       if (!url) return
-      // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+
       delete mutates[url][id]
     }
   })
@@ -67,7 +67,7 @@ export function useSWRWithQuery<T = any>(
     return await Promise.all(
       Object.values(mutates[url]).map(async (mutate) => {
         return await mutate()
-      })
+      }),
     )
   }
   return [data, mutateAll] as const

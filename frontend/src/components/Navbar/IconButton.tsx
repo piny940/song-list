@@ -16,8 +16,8 @@ export const IconButton: React.FC<IconButtonProps> = ({
 }) => {
   const { theme } = useTheme()
 
-  const src =
-    theme === 'light'
+  const src
+    = theme === 'light'
       ? '/images/default_account_icon_black.png'
       : '/images/default_account_icon_white.png'
   return (

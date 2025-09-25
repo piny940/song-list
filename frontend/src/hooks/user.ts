@@ -7,15 +7,15 @@ export const useUser = (
   swrConfig?: Partial<
     PublicConfiguration<
       { user: UserType },
-      any,
+      unknown,
       BareFetcher<{ user: UserType }>
     >
-  >
+  >,
 ) => {
   const { data, error, mutate } = useSWR<{ user: UserType }>(
     '/user',
     getData,
-    swrConfig
+    swrConfig,
   )
 
   return { data, error, mutate }

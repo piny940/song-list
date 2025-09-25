@@ -40,7 +40,8 @@ export const ContentOpener: React.FC<ContentOpenerProps> = ({
         className={`${styles.animateFast} ${
           contentOpen ? styles.rotate90 : ''
         } d-inline-block`}
-      ></Triangle>
+      >
+      </Triangle>
       <span className="ms-1">{label}</span>
     </DetailButton>
   )

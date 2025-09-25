@@ -13,7 +13,7 @@ const getToken = async (): Promise<string> => {
 export const fetchApi = async (params: {
   url: string
   method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
-  data?: any
+  data?: unknown
 }) => {
   const response = await fetch(`/api${params.url}`, {
     method: params.method,

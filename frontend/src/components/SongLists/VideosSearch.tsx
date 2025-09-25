@@ -38,7 +38,7 @@ export const VideosSearch: React.FC<VideosSearchProps> = ({
             name="only-song-lives"
             className="form-check-input"
             checked={onlySongLives}
-            onChange={(e) => setOnlySongLives(e.target.checked)}
+            onChange={e => setOnlySongLives(e.target.checked)}
           />
           <div className="form-check-label">歌枠のみ表示</div>
         </label>
@@ -77,7 +77,7 @@ export const VideosSearch: React.FC<VideosSearchProps> = ({
                     name="videoTitle"
                     className="form-control"
                     value={query}
-                    onChange={(e) => setQuery(e.target.value)}
+                    onChange={e => setQuery(e.target.value)}
                   />
                 </div>
               </label>

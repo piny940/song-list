@@ -30,17 +30,19 @@ export const ChannelsShow: React.FC<ChannelsShowProps> = ({ id }) => {
 
   return (
     <div className="channel">
-      {data ? (
-        <>
-          <Head
-            title={data.channel.custom_name + ' - 歌枠データベース'}
-            keywords={[data.channel.custom_name]}
-          />
-          <h1>{data.channel.name}</h1>
-        </>
-      ) : (
-        <Loading />
-      )}
+      {data
+        ? (
+            <>
+              <Head
+                title={data.channel.custom_name + ' - 歌枠データベース'}
+                keywords={[data.channel.custom_name]}
+              />
+              <h1>{data.channel.name}</h1>
+            </>
+          )
+        : (
+            <Loading />
+          )}
       <div className="row py-4 m-0">
         <section className="col-lg-6 px-2">
           <h2 className="h6 m-0 fw-bold w-100 text-center">歌一覧</h2>

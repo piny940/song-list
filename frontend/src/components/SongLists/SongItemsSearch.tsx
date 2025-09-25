@@ -95,7 +95,7 @@ export const SongItemsSearch: React.FC<SongItemsSearchProps> = ({
                     name="videoTitle"
                     className="form-control"
                     value={videoTitle}
-                    onChange={(e) => setVideoTitle(e.target.value)}
+                    onChange={e => setVideoTitle(e.target.value)}
                   />
                 </div>
               </label>

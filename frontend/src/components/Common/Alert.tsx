@@ -28,7 +28,7 @@ export const Alert: React.FC<AlertProps> = ({ alert, margin, removeAlert }) => {
       break
   }
 
-  const close: MouseEventHandler = (e) => {
+  const close: MouseEventHandler = () => {
     removeAlert(alert.id)
   }
 
@@ -36,7 +36,7 @@ export const Alert: React.FC<AlertProps> = ({ alert, margin, removeAlert }) => {
     setTimeout(() => {
       removeAlert(alert.id)
     }, CLOSE_TIME)
-  }, [])
+  }, [removeAlert, alert.id])
 
   return (
     <div
@@ -44,7 +44,7 @@ export const Alert: React.FC<AlertProps> = ({ alert, margin, removeAlert }) => {
         className,
         styles.alert,
         margin,
-        'd-flex align-items-center justify-content-between'
+        'd-flex align-items-center justify-content-between',
       )}
       data-testid={TestID.ALERT}
     >
