@@ -13,7 +13,7 @@ export const useSongDiffs = (
     songItemId: number
     isPaused?: boolean
   },
-  swrConfig?: Partial<PublicConfiguration<any, any, BareFetcher<any>>>
+  swrConfig?: Partial<PublicConfiguration<any, any, BareFetcher<any>>>,
 ) => {
   const { getPage, setPage } = usePaginate()
   const { data, error, mutate } = useSWR<{
@@ -21,14 +21,14 @@ export const useSongDiffs = (
     next_song_diff: SongDiffType
     total_pages: number
   }>(
-    !isPaused &&
-      `/member/song_items/${songItemId}/song_diffs?` +
-        queryToSearchParams({
-          count: '7',
-          page: String(getPage()),
-        }).toString(),
+    !isPaused
+    && `/member/song_items/${songItemId}/song_diffs?`
+    + queryToSearchParams({
+      count: '7',
+      page: String(getPage()),
+    }).toString(),
     getData,
-    swrConfig
+    swrConfig,
   )
   return { data, error, mutate, getPage, setPage }
 }

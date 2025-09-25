@@ -48,7 +48,10 @@ export const SongItemButton: React.FC<SongItemButtonProps> = ({
           </OneLineDiv>
           {songItem.author && (
             <OneLineDiv>
-              <span className="ms-3">/ {songItem.author}</span>
+              <span className="ms-3">
+                /
+                {songItem.author}
+              </span>
             </OneLineDiv>
           )}
         </div>

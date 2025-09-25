@@ -15,7 +15,7 @@ interface ThemeContextInterface {
 
 const defaultThemeState: ThemeContextInterface = {
   theme: 'light',
-  setTheme: (theme: Theme) => undefined,
+  setTheme: () => undefined,
 }
 
 const ThemeContext = createContext(defaultThemeState)

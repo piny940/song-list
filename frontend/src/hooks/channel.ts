@@ -5,7 +5,7 @@ import useSWR from 'swr'
 export const useChannels = ({ isPaused }: { isPaused?: boolean }) => {
   const { data, error, mutate } = useSWR<{ channels: ChannelType[] }>(
     !isPaused && '/channels',
-    getData
+    getData,
   )
   return { data, error, mutate }
 }

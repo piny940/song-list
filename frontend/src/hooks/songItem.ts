@@ -26,7 +26,7 @@ export const useSongItems = (
     count?: number
     holdTime?: number
   },
-  swrConfig?: Partial<PublicConfiguration<any, any, BareFetcher<any>>>
+  swrConfig?: Partial<PublicConfiguration<any, any, BareFetcher<any>>>,
 ) => {
   const DEFAULT_PAGE = 1
   const { getPage, setPage } = usePaginate(DEFAULT_PAGE)
@@ -44,7 +44,7 @@ export const useSongItems = (
       count: count?.toString() || '15',
       page: String(getPage()),
     }).toString()
-  }, [query, since, until, videoTitle, channelId, videoId, count, getPage()])
+  }, [getPage, query, channelId, videoId, since, until, videoTitle, count])
 
   const [{ data, error, mutate }, mutateAll] = useSWRWithQuery<{
     song_items: SongItemType[]
@@ -58,7 +58,7 @@ export const useSongItems = (
     }
     setPage(DEFAULT_PAGE)
     updateTimer()
-  }, [query, since, until, videoTitle])
+  }, [setPage, updateTimer])
 
   return {
     data: isReady ? data : undefined,

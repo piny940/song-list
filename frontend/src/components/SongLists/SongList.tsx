@@ -26,34 +26,43 @@ export const SongList: React.FC<SongListProps> = ({ video }) => {
   })
 
   if (error) return <Error statusCode={400} />
-  return data ? (
-    <ul className="song-items list-unstyled ps-4 mt-2">
-      {data.song_items.length > 0 ? (
-        data.song_items.map((song) => (
-          <OneLineLi
-            className="my-1 w-100"
-            key={song.id}
-            data-testid={TestID.SONG_LIST_ITEM}
-          >
-            <Link
-              className="unstyled w-100 d-inline-block"
-              href={toSongLink(song)}
-              target="_blank"
-              title="Youtubeで視聴"
-            >
-              <span className="ms-1 me-3">{song.time}</span>
-              <span className="me-3">{song.title}</span>
-              {song.author && <span className="me-3">/ {song.author}</span>}
-            </Link>
-          </OneLineLi>
-        ))
-      ) : (
-        <div className="text-center my-1">
-          この動画での歌情報は登録されていません。
-        </div>
-      )}
-    </ul>
-  ) : (
-    <Loading />
-  )
+  return data
+    ? (
+        <ul className="song-items list-unstyled ps-4 mt-2">
+          {data.song_items.length > 0
+            ? (
+                data.song_items.map(song => (
+                  <OneLineLi
+                    className="my-1 w-100"
+                    key={song.id}
+                    data-testid={TestID.SONG_LIST_ITEM}
+                  >
+                    <Link
+                      className="unstyled w-100 d-inline-block"
+                      href={toSongLink(song)}
+                      target="_blank"
+                      title="Youtubeで視聴"
+                    >
+                      <span className="ms-1 me-3">{song.time}</span>
+                      <span className="me-3">{song.title}</span>
+                      {song.author && (
+                        <span className="me-3">
+                          /
+                          {song.author}
+                        </span>
+                      )}
+                    </Link>
+                  </OneLineLi>
+                ))
+              )
+            : (
+                <div className="text-center my-1">
+                  この動画での歌情報は登録されていません。
+                </div>
+              )}
+        </ul>
+      )
+    : (
+        <Loading />
+      )
 }

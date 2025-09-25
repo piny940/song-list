@@ -31,18 +31,18 @@ export const useVideos = ({
     videos: VideoType[]
     total_pages: number
   }>(
-    !isPaused &&
-      `/videos?` +
-        queryToSearchParams({
-          channel_id: channelId ? String(channelId) : '',
-          query: query || '',
-          since: since?.toString() || '',
-          until: until?.toString() || '',
-          only_song_lives: onlySongLives ? '1' : '0',
-          count: '10',
-          page: String(getPage()),
-        }).toString(),
-    getData
+    !isPaused
+    && `/videos?`
+    + queryToSearchParams({
+      channel_id: channelId ? String(channelId) : '',
+      query: query || '',
+      since: since?.toString() || '',
+      until: until?.toString() || '',
+      only_song_lives: onlySongLives ? '1' : '0',
+      count: '10',
+      page: String(getPage()),
+    }).toString(),
+    getData,
   )
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export const useVideos = ({
     }
     setPage(DEFAULT_PAGE)
     updateTimer()
-  }, [query, since, until, onlySongLives])
+  }, [setPage, updateTimer])
 
   return { setPage, getPage, data: isReady ? data : null, error, mutate }
 }

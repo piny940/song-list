@@ -47,7 +47,10 @@ export const SongItem: React.FC<SongItemProps> = ({ songItem }) => {
           </OneLineDiv>
           {songItem.author && (
             <OneLineDiv>
-              <span className="ms-3">/ {songItem.author}</span>
+              <span className="ms-3">
+                /
+                {songItem.author}
+              </span>
             </OneLineDiv>
           )}
         </div>

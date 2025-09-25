@@ -11,9 +11,9 @@ interface AlertsContextInterface {
 
 const defaultAlertState: AlertsContextInterface = {
   alerts: [],
-  addAlert: (alert: AlertInput) => undefined,
-  removeAlert: (id: number) => undefined,
-  setAlerts: (...alerts: AlertInput[]) => undefined,
+  addAlert: () => undefined,
+  removeAlert: () => undefined,
+  setAlerts: () => undefined,
 }
 
 const AlertsContext = createContext(defaultAlertState)
@@ -53,7 +53,7 @@ const AlertsProvider: React.FC<AlertsProviderProps> = ({ children }) => {
   }
 
   const removeAlert = (id: number) => {
-    setAlerts(alerts.filter((alert) => alert.id !== id))
+    setAlerts(alerts.filter(alert => alert.id !== id))
   }
 
   const value: AlertsContextInterface = {

@@ -25,11 +25,13 @@ export const ThemeToggler: React.FC<ThemeTogglerProps> = ({
       className="mx-2 d-flex align-items-center justify-content-center rounded-pill"
     >
       <div className="rounded-circle text-body-emphasis">
-        {theme === 'light' ? (
-          <MaterialIcon name="light_mode" />
-        ) : (
-          <MaterialIcon name="dark_mode" />
-        )}
+        {theme === 'light'
+          ? (
+              <MaterialIcon name="light_mode" />
+            )
+          : (
+              <MaterialIcon name="dark_mode" />
+            )}
       </div>
     </TogglerButton>
   )

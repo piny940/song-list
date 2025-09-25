@@ -10,20 +10,22 @@ export type ChannelsProps = {
 export const Channels: React.FC<ChannelsProps> = ({ testID, link }) => {
   const { data } = useChannels({})
 
-  return data ? (
-    <div
-      className="row row-cols-1 row-cols-lg-2 row-cols-xl-3"
-      data-testid={testID}
-    >
-      {data.channels.map((channel) => (
-        <div className="col" key={channel.id}>
-          <Channel link={link} channel={channel} />
+  return data
+    ? (
+        <div
+          className="row row-cols-1 row-cols-lg-2 row-cols-xl-3"
+          data-testid={testID}
+        >
+          {data.channels.map(channel => (
+            <div className="col" key={channel.id}>
+              <Channel link={link} channel={channel} />
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
-  ) : (
-    <div className="m-4">
-      <Loading />
-    </div>
-  )
+      )
+    : (
+        <div className="m-4">
+          <Loading />
+        </div>
+      )
 }

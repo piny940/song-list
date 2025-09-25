@@ -11,8 +11,8 @@ export const Footer: React.FC = () => {
   return (
     <footer
       className={
-        'footer text-center text-white p-4 ' +
-        (theme === 'light' ? 'bg-secondary' : 'bg-body-secondary')
+        'footer text-center text-white p-4 '
+        + (theme === 'light' ? 'bg-secondary' : 'bg-body-secondary')
       }
     >
       {data?.user && (
@@ -32,7 +32,8 @@ export const Footer: React.FC = () => {
       </Link>
       {data?.user && (
         <>
-          ｜<button onClick={logout}>ログアウト</button>
+          ｜
+          <button onClick={logout}>ログアウト</button>
         </>
       )}
       <br />

@@ -41,7 +41,7 @@ export const Paging: React.FC<PagingProps> = ({
       >
         &lt;
       </PageItem>
-      {items.map((i) => (
+      {items.map(i => (
         <PageItem
           pageClassName={currentPage === i ? 'active' : ''}
           key={i}

@@ -18,6 +18,11 @@ const gitignorePath = fileURLToPath(new URL('.gitignore', import.meta.url));
 export default defineConfig([
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
   stylistic.configs.recommended,
+  {
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+    }
+  },
 
   includeIgnoreFile(gitignorePath, 'Imported .gitignore patterns'),
   globalIgnores([

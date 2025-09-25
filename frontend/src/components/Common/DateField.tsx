@@ -19,7 +19,7 @@ export const DateField: React.FC<DateFieldProps> = ({
     <ReactDatePicker
       locale="ja"
       selected={value}
-      onChange={(date) => setValue(date)}
+      onChange={date => setValue(date)}
       className="form-control"
       dateFormat="yyyy/MM/dd"
       maxDate={maxDate}

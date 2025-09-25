@@ -27,13 +27,13 @@ export const NewSongDiff: React.FC<NewSongDiffProps> = ({ songItem }) => {
     setValue('time', songItem.time)
     setValue('title', songItem.title)
     setValue('author', songItem.author)
-  }, [songItem])
+  }, [songItem, setValue])
 
   const submit: SubmitHandler<FieldValues> = async (data) => {
     if (
-      songItem.time === data.time &&
-      songItem.title === data.title &&
-      songItem.author === data.author
+      songItem.time === data.time
+      && songItem.title === data.title
+      && songItem.author === data.author
     )
       return
 
@@ -63,7 +63,7 @@ export const NewSongDiff: React.FC<NewSongDiffProps> = ({ songItem }) => {
             step={1}
             className="form-control"
             value={watch().time}
-            onChange={(e) => setValue('time', e.target.value)}
+            onChange={e => setValue('time', e.target.value)}
           />
         </div>
       </label>
@@ -75,7 +75,7 @@ export const NewSongDiff: React.FC<NewSongDiffProps> = ({ songItem }) => {
             name="title"
             className="form-control"
             value={watch().title}
-            onChange={(e) => setValue('title', e.target.value)}
+            onChange={e => setValue('title', e.target.value)}
           />
         </div>
       </label>
@@ -87,7 +87,7 @@ export const NewSongDiff: React.FC<NewSongDiffProps> = ({ songItem }) => {
             name="author"
             className="form-control"
             value={watch().author}
-            onChange={(e) => setValue('author', e.target.value)}
+            onChange={e => setValue('author', e.target.value)}
           />
         </div>
       </label>
