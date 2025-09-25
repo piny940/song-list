@@ -52,7 +52,7 @@ export const useVideos = ({
     }
     setPage(DEFAULT_PAGE)
     updateTimer()
-  }, [setPage, updateTimer])
+  }, [query, since, until, onlySongLives, setPage, updateTimer])
 
   return { setPage, getPage, data: isReady ? data : null, error, mutate }
 }

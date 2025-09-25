@@ -58,7 +58,7 @@ export const useSongItems = (
     }
     setPage(DEFAULT_PAGE)
     updateTimer()
-  }, [setPage, updateTimer])
+  }, [query, since, until, setPage, updateTimer])
 
   return {
     data: isReady ? data : undefined,
