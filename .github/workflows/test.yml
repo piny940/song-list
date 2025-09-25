@@ -114,3 +114,5 @@ jobs:
       - run: cd frontend && pnpm install
       - name: Build Test
         run: cd frontend && pnpm build
+        env:
+          BACKEND_HOST: http://rails:3000
