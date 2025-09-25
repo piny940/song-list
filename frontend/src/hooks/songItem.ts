@@ -33,6 +33,7 @@ export const useSongItems = (
   const { isReady, updateTimer } = useHold(holdTime)
   const isFirst = useRef(true)
 
+  const currentPage = useMemo(() => getPage(), [getPage])
   const queryParams = useMemo(() => {
     return queryToSearchParams({
       query: query || '',
@@ -42,9 +43,9 @@ export const useSongItems = (
       channel_id: channelId != null ? String(channelId) : '',
       video_id: videoId != null ? String(videoId) : '',
       count: count?.toString() || '15',
-      page: String(getPage()),
+      page: String(currentPage),
     }).toString()
-  }, [getPage, query, channelId, videoId, since, until, videoTitle, count])
+  }, [currentPage, query, channelId, videoId, since, until, videoTitle, count])
 
   const [{ data, error, mutate }, mutateAll] = useSWRWithQuery<{
     song_items: SongItemType[]
@@ -58,7 +59,7 @@ export const useSongItems = (
     }
     setPage(DEFAULT_PAGE)
     updateTimer()
-  }, [query, since, until, setPage, updateTimer])
+  }, [query, since, until, videoTitle, channelId, videoId, count, setPage, updateTimer])
 
   return {
     data: isReady ? data : undefined,
