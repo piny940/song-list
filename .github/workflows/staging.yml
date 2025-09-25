@@ -21,7 +21,6 @@ jobs:
           tags: |
             ghcr.io/${{ github.repository }}-backend:main-${{ github.sha }}-${{ github.run_number }}
           path: "./backend"
-          cache-registry: ghcr.io/${{ github.repository }}-backend:buildcache
           build-args: |
             BACKEND_HOST=http://stg-song-list-backend.default.svc.cluster.local:3000
   backend-main:
@@ -37,7 +36,6 @@ jobs:
           tags: |
             ghcr.io/${{ github.repository }}-backend:main-${{ github.sha }}-${{ github.run_number }}
           path: "./backend"
-          cache-registry: ghcr.io/${{ github.repository }}-backend:buildcache
           build-args: |
             BACKEND_HOST=http://stg-song-list-backend.default.svc.cluster.local:3000
 
@@ -55,7 +53,6 @@ jobs:
           tags: |
             ghcr.io/${{ github.repository }}-frontend:main-${{ github.sha }}-${{ github.run_number }}
           path: "./frontend"
-          cache-registry: ghcr.io/${{ github.repository }}-frontend:buildcache
           build-args: |
             BACKEND_HOST=http://stg-song-list-backend.default.svc.cluster.local:3000
   frontend-main:
@@ -71,6 +68,5 @@ jobs:
           tags: |
             ghcr.io/${{ github.repository }}-frontend:main-${{ github.sha }}-${{ github.run_number }}
           path: "./frontend"
-          cache-registry: ghcr.io/${{ github.repository }}-frontend:buildcache
           build-args: |
             BACKEND_HOST=http://stg-song-list-backend.default.svc.cluster.local:3000

@@ -14,9 +14,6 @@ inputs:
   build-args:
     description: "Build arguments"
     required: false
-  cache-registry:
-    description: "Cache registry"
-    required: true
 
 runs:
   using: composite
@@ -37,5 +34,5 @@ runs:
         file: ${{ inputs.path }}/Dockerfile
         tags: ${{ inputs.tags }}
         build-args: ${{ inputs.build-args }}
-        cache-from: type=registry,ref=${{ inputs.cache-registry }}
-        cache-to: type=registry,ref=${{ inputs.cache-registry }},mode=max
+        cache-from: type=gha
+        cache-to: type=gha,mode=max

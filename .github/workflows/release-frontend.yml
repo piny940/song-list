@@ -19,6 +19,5 @@ jobs:
             ghcr.io/${{ github.repository }}-frontend:1.0.${{ github.run_number }}
             ghcr.io/${{ github.repository }}-frontend:latest
           path: "./frontend"
-          cache-registry: ghcr.io/${{ github.repository }}-frontend:buildcache
           build-args: |
             BACKEND_HOST=http://song-list-backend.default.svc.cluster.local:3000
