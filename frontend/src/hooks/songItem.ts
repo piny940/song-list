@@ -1,5 +1,5 @@
 import { queryToSearchParams } from '@/utils/helpers'
-import { useEffect, useMemo, useRef } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useHold, usePaginate, useSWRWithQuery } from './common'
 import { SongItemType } from '@/resources/types'
 import { BareFetcher, PublicConfiguration } from 'swr/_internal'
@@ -31,7 +31,6 @@ export const useSongItems = (
   const DEFAULT_PAGE = 1
   const { getPage, setPage } = usePaginate(DEFAULT_PAGE)
   const { isReady, updateTimer } = useHold(holdTime)
-  const isFirst = useRef(true)
 
   const currentPage = useMemo(() => getPage(), [getPage])
   const queryParams = useMemo(() => {
@@ -53,13 +52,11 @@ export const useSongItems = (
   }>(isPaused ? undefined : '/song_items?', queryParams, swrConfig)
 
   useEffect(() => {
-    if (isFirst.current) {
-      isFirst.current = false
-      return
+    if (currentPage !== DEFAULT_PAGE) {
+      setPage(DEFAULT_PAGE)
+      updateTimer()
     }
-    setPage(DEFAULT_PAGE)
-    updateTimer()
-  }, [query, since, until, videoTitle, channelId, videoId, count, setPage, updateTimer])
+  }, [query, since, until, videoTitle, channelId, videoId, count, currentPage, setPage, updateTimer])
 
   return {
     data: isReady ? data : undefined,

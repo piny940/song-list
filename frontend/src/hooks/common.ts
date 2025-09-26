@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { queryToSearchParams } from '../utils/helpers'
-import { useEffect, useId, useState } from 'react'
+import { useCallback, useEffect, useId, useRef, useState } from 'react'
 import useSWR, { KeyedMutator } from 'swr'
 import { getData } from '@/utils/api'
 import { BareFetcher, PublicConfiguration } from 'swr/_internal'
@@ -8,17 +8,17 @@ import { BareFetcher, PublicConfiguration } from 'swr/_internal'
 export const usePaginate = (defaultPage = 1) => {
   const id = useId()
   const router = useRouter()
-  const getPage = () => {
+  const getPage = useCallback(() => {
     return Number(router.query[id] || defaultPage)
-  }
-  const setPage = (newPage: number) => {
+  }, [defaultPage, id, router.query])
+  const setPage = useCallback((newPage: number) => {
     router.query[id] = String(newPage)
     void router.push(
       `${router.pathname}?${queryToSearchParams(router.query).toString()}`,
       undefined,
       { scroll: false },
     )
-  }
+  }, [id, router])
 
   return { getPage, setPage }
 }
@@ -27,8 +27,9 @@ export const useHold = (timer: number) => {
   const [isReady, setIsReady] = useState(true)
   const [timeoutId, setTimeoutId] = useState<null | NodeJS.Timeout>(null)
 
-  const updateTimer = () => {
+  const updateTimer = useRef(() => {
     if (timeoutId) clearTimeout(timeoutId)
+    console.log(timeoutId)
     setIsReady(false)
 
     setTimeoutId(
@@ -36,8 +37,8 @@ export const useHold = (timer: number) => {
         setIsReady(true)
       }, timer),
     )
-  }
-  return { isReady, updateTimer }
+  })
+  return { isReady, updateTimer: updateTimer.current }
 }
 
 const mutates: { [url in string]: { [id in string]: KeyedMutator<any> } } = {}
@@ -59,17 +60,17 @@ export function useSWRWithQuery<T = any>(
 
       delete mutates[url][id]
     }
-  })
+  }, [url, id, data.mutate])
 
   // クエリパラメータに関係なくURLが一致するものは全てmutateする
-  const mutateAll = async () => {
+  const mutateAll = useCallback(async () => {
     if (!url) return
     return await Promise.all(
       Object.values(mutates[url]).map(async (mutate) => {
         return await mutate()
       }),
     )
-  }
+  }, [url])
   return [data, mutateAll] as const
 }
 
