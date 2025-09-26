@@ -3,7 +3,7 @@ import { getData } from '@/utils/api'
 import useSWR from 'swr'
 import { queryToSearchParams } from '@/utils/helpers'
 import { useHold, usePaginate } from './common'
-import { useEffect, useRef } from 'react'
+import { useEffect, useMemo } from 'react'
 
 export const useVideos = ({
   channelId,
@@ -25,7 +25,7 @@ export const useVideos = ({
   const DEFAULT_PAGE = 1
   const { getPage, setPage } = usePaginate(DEFAULT_PAGE)
   const { isReady, updateTimer } = useHold(holdTime)
-  const isFirst = useRef(true)
+  const currentPage = useMemo(() => getPage(), [getPage])
 
   const { data, error, mutate } = useSWR<{
     videos: VideoType[]
@@ -46,13 +46,11 @@ export const useVideos = ({
   )
 
   useEffect(() => {
-    if (isFirst.current) {
-      isFirst.current = false
-      return
+    if (currentPage !== DEFAULT_PAGE) {
+      setPage(DEFAULT_PAGE)
+      updateTimer()
     }
-    setPage(DEFAULT_PAGE)
-    updateTimer()
-  }, [query, since, until, onlySongLives, setPage, updateTimer])
+  }, [query, since, until, onlySongLives, currentPage, setPage, updateTimer])
 
   return { setPage, getPage, data: isReady ? data : null, error, mutate }
 }
