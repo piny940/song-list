@@ -44,7 +44,7 @@ jobs:
         image: redis:alpine
         options: --health-cmd "redis-cli -h localhost ping" --health-interval 10s --health-timeout 5s --health-retries 15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Move to top directory
         env:
           SUB_DIR: backend

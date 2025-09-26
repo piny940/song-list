@@ -13,7 +13,7 @@ jobs:
     environment: staging # 管理者の承認を必要とする
     steps:
       - name: Check out
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - uses: ./.github/actions/docker-build
         with:
           gh-token: ${{ secrets.GITHUB_TOKEN }}
@@ -28,7 +28,7 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     steps:
       - name: Check out
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - uses: ./.github/actions/docker-build
         with:
           gh-token: ${{ secrets.GITHUB_TOKEN }}
@@ -45,7 +45,7 @@ jobs:
     environment: staging # 管理者の承認を必要とする
     steps:
       - name: Check out
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - uses: ./.github/actions/docker-build
         with:
           gh-token: ${{ secrets.GITHUB_TOKEN }}
@@ -60,7 +60,7 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     steps:
       - name: Check out
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - uses: ./.github/actions/docker-build
         with:
           gh-token: ${{ secrets.GITHUB_TOKEN }}
