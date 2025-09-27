@@ -114,4 +114,4 @@ gem 'selenium-webdriver', '4.35.0'
 gem 'exception_notification', '5.0.1'
 
 # 定期実行
-gem 'sidekiq-scheduler', '5.0.6'
+gem 'sidekiq-scheduler', '6.0.1'
