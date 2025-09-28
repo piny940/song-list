@@ -68,7 +68,7 @@ class Channel < ApplicationRecord
     i = 0
     while i * 50 < video_ids.length
       # 50個ずつ見に行く
-      videos.fetch_and_create!(video_ids[i * 50...(i + 1) * 50])
+      videos.fetch_and_create!(video_ids[(i * 50)...((i + 1) * 50)])
       i += 1
     end
     update!(status: 'videos_fetched')
