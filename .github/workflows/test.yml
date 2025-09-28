@@ -97,6 +97,23 @@ jobs:
       - run: cd frontend && pnpm install
       - name: ESLint
         run: cd frontend && pnpm lint
+  front-test:
+    runs-on: ubuntu-latest
+    needs: filter
+    if: ${{ needs.filter.outputs.frontend == 'true' }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: "frontend/package.json"
+      - uses: actions/setup-node@v5
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "pnpm"
+          cache-dependency-path: "frontend/pnpm-lock.yaml"
+      - run: cd frontend && pnpm install
+      - name: ESLint
+        run: cd frontend && pnpm test
   front-build-test:
     runs-on: ubuntu-latest
     needs: filter

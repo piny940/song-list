@@ -27,5 +27,6 @@ export default defineConfig([
   includeIgnoreFile(gitignorePath, 'Imported .gitignore patterns'),
   globalIgnores([
     '*.config.*',
+    'jest.setup.js',
   ]),
 ])
