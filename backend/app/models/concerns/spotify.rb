@@ -43,6 +43,6 @@ module Spotify
     response = Net::HTTP.get_response(uri, headers)
     json = JSON.parse(response.body)
     item2 = json.dig('tracks', 'items')&.first
-    (item2&.dig('popularity').to_i || 0) < (item1&.dig('popularity').to_i || 0) ? item1 : item2
+    item2&.dig('popularity').to_i < item1&.dig('popularity').to_i ? item1 : item2
   end
 end
