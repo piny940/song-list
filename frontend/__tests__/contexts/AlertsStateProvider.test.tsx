@@ -29,7 +29,7 @@ describe('<AlertStateProvider />', () => {
     act(() => {
       result.current.setAlerts(
         Mock.from<AlertInput>({ content: 'Test0' }),
-        Mock.from<AlertInput>({ content: 'Test1' })
+        Mock.from<AlertInput>({ content: 'Test1' }),
       )
     })
     await waitFor(() => {

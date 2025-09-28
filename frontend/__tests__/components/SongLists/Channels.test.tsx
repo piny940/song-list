@@ -28,7 +28,7 @@ jest.mock('swr', () =>
         }),
       ],
     },
-  }))
+  })),
 )
 
 describe('<Channels />', () => {

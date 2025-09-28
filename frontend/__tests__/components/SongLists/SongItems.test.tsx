@@ -27,7 +27,7 @@ jest.mock('swr', () =>
       ],
       total_pages: 1,
     },
-  }))
+  })),
 )
 
 describe('<SongItems />', () => {
