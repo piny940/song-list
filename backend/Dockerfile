@@ -1,22 +1,24 @@
-FROM ruby:3.4.6-alpine AS builder
+FROM ruby:3.4.6-slim AS builder
 
-RUN apk update && \
-  apk add --no-cache \
-  build-base \
-  yaml-dev \
-  postgresql-dev
+RUN apt update && \
+  apt install -y \
+  build-essential \
+  libyaml-dev \
+  libpq-dev \
+  && apt clean && rm -rf /var/lib/apt/lists/*
 
 RUN gem install bundler
 COPY Gemfile Gemfile.lock ./
-ENV RAILS_ENV production
+ENV RAILS_ENV=production
 RUN RAILS_ENV=${RAILS_ENV} bundle install
 
-FROM ruby:3.4.6-alpine AS app
+FROM ruby:3.4.6-slim AS app
 
-RUN apk update && \
-  apk add --no-cache \
+RUN apt update && \
+  apt install -y \
   tzdata \
-  postgresql-client
+  postgresql-client \
+  && apt clean && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
