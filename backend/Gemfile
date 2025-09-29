@@ -77,7 +77,7 @@ end
 
 # View
 gem 'haml', '6.3.0'
-gem 'haml-rails', '2.1.0'
+gem 'haml-rails', '3.0.0'
 
 # ENV
 gem 'dotenv-rails', '3.1.8', groups: %i[development test]
