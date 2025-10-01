@@ -59,7 +59,7 @@ importers:
         version: 5.4.0(eslint@9.36.0)
       '@testing-library/react':
         specifier: 16.3.0
-        version: 16.3.0(@testing-library/dom@10.4.1)(@types/react-dom@19.1.9(@types/react@19.1.16))(@types/react@19.1.16)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
+        version: 16.3.0(@testing-library/dom@10.4.1)(@types/react-dom@19.1.11(@types/react@19.1.17))(@types/react@19.1.17)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       '@types/bootstrap':
         specifier: 5.2.10
         version: 5.2.10
@@ -70,11 +70,11 @@ importers:
         specifier: 22.18.8
         version: 22.18.8
       '@types/react':
-        specifier: 19.1.16
-        version: 19.1.16
+        specifier: 19.1.17
+        version: 19.1.17
       '@types/react-dom':
-        specifier: 19.1.9
-        version: 19.1.9(@types/react@19.1.16)
+        specifier: 19.1.11
+        version: 19.1.11(@types/react@19.1.17)
       eslint:
         specifier: 9.36.0
         version: 9.36.0
@@ -911,13 +911,13 @@ packages:
   '@types/node@22.18.8':
     resolution: {integrity: sha512-pAZSHMiagDR7cARo/cch1f3rXy0AEXwsVsVH09FcyeJVAzCnGgmYis7P3JidtTUjyadhTeSo8TgRPswstghDaw==}
 
-  '@types/react-dom@19.1.9':
-    resolution: {integrity: sha512-qXRuZaOsAdXKFyOhRBg6Lqqc0yay13vN7KrIg4L7N4aaHN68ma9OK3NE1BoDFgFOTfM7zg+3/8+2n8rLUH3OKQ==}
+  '@types/react-dom@19.1.11':
+    resolution: {integrity: sha512-3BKc/yGdNTYQVVw4idqHtSOcFsgGuBbMveKCOgF8wQ5QtrYOc3jDIlzg3jef04zcXFIHLelyGlj0T+BJ8+KN+w==}
     peerDependencies:
       '@types/react': ^19.0.0
 
-  '@types/react@19.1.16':
-    resolution: {integrity: sha512-WBM/nDbEZmDUORKnh5i1bTnAz6vTohUf9b8esSMu+b24+srbaxa04UbJgWx78CVfNXA20sNu0odEIluZDFdCog==}
+  '@types/react@19.1.17':
+    resolution: {integrity: sha512-Qec1E3mhALmaspIrhWt9jkQMNdw6bReVu64mjvhbhq2NFPftLPVr+l1SZgmw/66WwBNpDh7ao5AT6gF5v41PFA==}
 
   '@types/stack-utils@2.0.3':
     resolution: {integrity: sha512-9aEbYZ3TbYMznPdcdr3SmIrLXwC/AKZXQeCf9Pgao5CKb8CyHuEX5jzWPTkvregvhRJHcpRO6BFoGW9ycaOkYw==}
@@ -3890,15 +3890,15 @@ snapshots:
       picocolors: 1.1.1
       pretty-format: 27.5.1
 
-  '@testing-library/react@16.3.0(@testing-library/dom@10.4.1)(@types/react-dom@19.1.9(@types/react@19.1.16))(@types/react@19.1.16)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)':
+  '@testing-library/react@16.3.0(@testing-library/dom@10.4.1)(@types/react-dom@19.1.11(@types/react@19.1.17))(@types/react@19.1.17)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)':
     dependencies:
       '@babel/runtime': 7.28.4
       '@testing-library/dom': 10.4.1
       react: 19.1.1
       react-dom: 19.1.1(react@19.1.1)
     optionalDependencies:
-      '@types/react': 19.1.16
-      '@types/react-dom': 19.1.9(@types/react@19.1.16)
+      '@types/react': 19.1.17
+      '@types/react-dom': 19.1.11(@types/react@19.1.17)
 
   '@tybys/wasm-util@0.10.1':
     dependencies:
@@ -3963,11 +3963,11 @@ snapshots:
     dependencies:
       undici-types: 6.21.0
 
-  '@types/react-dom@19.1.9(@types/react@19.1.16)':
+  '@types/react-dom@19.1.11(@types/react@19.1.17)':
     dependencies:
-      '@types/react': 19.1.16
+      '@types/react': 19.1.17
 
-  '@types/react@19.1.16':
+  '@types/react@19.1.17':
     dependencies:
       csstype: 3.1.3
 
