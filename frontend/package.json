@@ -2,7 +2,7 @@
   "name": "song-list-frontend",
   "version": "1.0.0",
   "private": true,
-  "packageManager": "pnpm@10.18.0",
+  "packageManager": "pnpm@10.18.1",
   "scripts": {
     "dev": "next dev -p 3001",
     "build": "next build",
