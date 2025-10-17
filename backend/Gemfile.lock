@@ -289,7 +289,7 @@ GEM
       date
       stringio
     public_suffix (6.0.2)
-    puma (7.0.4)
+    puma (7.1.0)
       nio4r (~> 2.0)
     raabro (1.4.0)
     racc (1.8.1)
@@ -497,7 +497,7 @@ DEPENDENCIES
   kaminari (= 1.2.2)
   nokogiri (= 1.18.10)
   pg (= 1.6.2)
-  puma (= 7.0.4)
+  puma (= 7.1.0)
   rack-cors (= 3.0.0)
   rails (= 8.0.3)
   rspec-rails (= 8.0.2)
