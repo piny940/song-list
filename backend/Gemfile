@@ -108,7 +108,7 @@ gem 'kaminari', '1.2.2'
 gem 'google-cloud-storage', '1.57.0'
 
 # スクレイピング
-gem 'selenium-webdriver', '4.37.0'
+gem 'selenium-webdriver', '4.38.0'
 
 # slackエラー通知
 gem 'exception_notification', '5.0.1'
