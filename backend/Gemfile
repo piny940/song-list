@@ -76,7 +76,7 @@ group :test do
 end
 
 # View
-gem 'haml', '6.3.0'
+gem 'haml', '6.4.0'
 gem 'haml-rails', '3.0.0'
 
 # ENV
