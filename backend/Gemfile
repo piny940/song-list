@@ -90,7 +90,7 @@ gem 'devise', '4.9.4'
 gem 'devise-i18n', '1.15.0'
 
 # Youtube
-gem 'google-apis-youtube_v3', '0.57.0'
+gem 'google-apis-youtube_v3', '0.58.0'
 
 # テスト
 gem 'rspec-rails', '8.0.2', groups: %i[development test]
