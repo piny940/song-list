@@ -27,8 +27,8 @@ importers:
         specifier: 19.2.3
         version: 19.2.3
       react-cssfx-loading:
-        specifier: 2.1.0
-        version: 2.1.0(csstype@3.2.3)(react@19.2.3)
+        specifier: 3.0.1
+        version: 3.0.1(csstype@3.2.3)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react-datepicker:
         specifier: 8.10.0
         version: 8.10.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -2560,11 +2560,12 @@ packages:
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
 
-  react-cssfx-loading@2.1.0:
-    resolution: {integrity: sha512-0SnS6HpaeLSaTxNuND6sAKTQmoKgjwFb9G2ltyEMmA5ARNN6TRQfiJ8PfaYM9RwVEOhDxIzGI7whb2zeI1VRxw==}
-    engines: {node: '>=10'}
+  react-cssfx-loading@3.0.1:
+    resolution: {integrity: sha512-FmEQca2aKjGFagoabWtyEiBbnoJYRfHOZWnF0pMAeIdTLtcMohmgggyto1watwEOH5ahs4X/fZpq5SUyMb7cRw==}
+    engines: {node: '>=18'}
     peerDependencies:
-      react: '>=16'
+      react: '>=18'
+      react-dom: '>=18'
 
   react-datepicker@8.10.0:
     resolution: {integrity: sha512-JIXuA+g+qP3c4MVJpx24o7n1gnv3WV/8A/D6964HucY1FlSEc30+ITPNUfbKZXYHl5rruCtxYCwi2lzn7gaz7g==}
@@ -5986,10 +5987,11 @@ snapshots:
 
   queue-microtask@1.2.3: {}
 
-  react-cssfx-loading@2.1.0(csstype@3.2.3)(react@19.2.3):
+  react-cssfx-loading@3.0.1(csstype@3.2.3)(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
     dependencies:
       goober: 2.1.16(csstype@3.2.3)
       react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
     transitivePeerDependencies:
       - csstype
 
