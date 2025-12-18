@@ -1,4 +1,4 @@
-FROM ruby:3.4.6-slim AS builder
+FROM ruby:3.4.8-slim AS builder
 
 RUN apt update && \
   apt install -y \
@@ -12,7 +12,7 @@ COPY Gemfile Gemfile.lock ./
 ENV RAILS_ENV=production
 RUN RAILS_ENV=${RAILS_ENV} bundle install
 
-FROM ruby:3.4.6-slim AS app
+FROM ruby:3.4.8-slim AS app
 
 RUN apt update && \
   apt install -y \
