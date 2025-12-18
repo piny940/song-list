@@ -1,11 +1,11 @@
-FROM ruby:3.4.6 AS builder
+FROM ruby:3.4.8 AS builder
 
 RUN gem install bundler
 COPY Gemfile Gemfile.lock ./
 ENV RAILS_ENV=production
 RUN RAILS_ENV=${RAILS_ENV} bundle install
 
-FROM ruby:3.4.6 AS app
+FROM ruby:3.4.8 AS app
 
 RUN apt update && apt -y upgrade && \
   apt install -y \
