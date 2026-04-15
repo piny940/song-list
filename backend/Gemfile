@@ -86,7 +86,7 @@ gem 'dotenv-rails', '3.2.0', groups: %i[development test]
 gem 'rack-cors', '3.0.0'
 
 # ログイン
-gem 'devise', '4.9.4'
+gem 'devise', '5.0.3'
 gem 'devise-i18n', '1.15.0'
 
 # Youtube
