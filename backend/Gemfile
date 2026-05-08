@@ -99,7 +99,7 @@ gem 'rspec-rails', '8.0.2', groups: %i[development test]
 gem 'enum_help', '0.0.20'
 
 # XML解析
-gem 'nokogiri', '1.19.1'
+gem 'nokogiri', '1.19.3'
 
 # ページング
 gem 'kaminari', '1.2.2'
