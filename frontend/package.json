@@ -14,7 +14,7 @@
     "@popperjs/core": "2.11.8",
     "bootstrap": "5.3.8",
     "date-fns": "4.4.0",
-    "next": "15.5.25",
+    "next": "15.5.27",
     "object-to-formdata": "4.5.1",
     "react": "19.2.8",
     "react-cssfx-loading": "2.1.0",
